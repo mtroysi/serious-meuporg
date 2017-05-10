@@ -1,5 +1,4 @@
-# angular-springboot-boilerplate
-A boiler plate for an angular / spring boot project
+# serious-meuporg
 
 # Installation
 * Installer NodeJS et npm sudo apt-get install nodejs npm
