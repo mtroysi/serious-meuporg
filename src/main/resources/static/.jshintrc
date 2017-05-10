@@ -1,0 +1,12 @@
+{
+    "camelcase"     : true,
+    "curly"         : true,
+    "eqeqeq"        : true,
+    "forin"         : true,
+    "nonbsp"        : false,
+    "nonew"         : true,
+    "plusplus"      : false,
+    "quotmark"      : "single",
+    "debug"         : false,
+    "unused"        : true
+}

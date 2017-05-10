@@ -1,0 +1,32 @@
+{
+  "name": "ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "angular-ui-router": "^0.4.2",
+    "bower": "^1.8.0",
+    "browser-sync": "^2.18.8",
+    "browser-sync-spa": "^1.0.3",
+    "gulp": "^3.9.1",
+    "gulp-angular-filesort": "^1.1.1",
+    "gulp-css-url-adjuster": "^0.2.3",
+    "gulp-inject": "^4.2.0",
+    "gulp-inject-version": "^1.0.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-util": "^3.0.8",
+    "http-proxy-middleware": "^0.17.4",
+    "jshint": "^2.9.4",
+    "lodash": "^4.17.4",
+    "ng-annotate": "^1.2.1",
+    "wiredep": "^4.0.0",
+    "wrench": "^1.5.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Morgane Troysi",
+  "license": "ISC"
+}

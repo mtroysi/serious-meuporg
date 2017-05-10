@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+
+    <title>Hello AngularJS</title>
+    <!-- build:css({target/.tmp/serve,src/main/resources/static}) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({target/.tmp/serve,src/main/resources/static}) styles/app.css -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- endbuild -->
+    <link href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], .ng-cloak {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body ng-app="hello">
+<div class="container col-md-4" ui-view>
+
+</div>
+<!-- build:js(src/main/resources/static) -->
+<!-- bower:js -->
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({target/.tmp/serve,target/.tmp/partials,src/main/resources/static}) -->
+<!-- inject:js -->
+<!-- endinject -->
+<!-- endbuild -->
+</body>
+</html>
