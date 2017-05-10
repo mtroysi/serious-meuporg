@@ -131,7 +131,10 @@ Desktop.ini
 ######################
 .eslintcache
 
-######################
-# Bower
-######################
-.bowerrc
+Supprimerait .idea/
+Supprimerait bower_components/
+Supprimerait node_modules/
+Supprimerait src/main/resources/static/assets/
+Supprimerait src/main/resources/static/bower_components/
+Supprimerait src/main/resources/static/images/
+Supprimerait target/
