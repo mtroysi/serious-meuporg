@@ -52,6 +52,7 @@ local.properties
 *.ipr
 *.ids
 **/*.orig
+.directory
 
 ######################
 # Maven
@@ -129,3 +130,8 @@ Desktop.ini
 # ESLint
 ######################
 .eslintcache
+
+######################
+# Bower
+######################
+.bowerrc
