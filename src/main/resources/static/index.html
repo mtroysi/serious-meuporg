@@ -34,9 +34,7 @@
 
     <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
         <div class="mdl-layout__header-row">
-          <span class="android-title mdl-layout-title ">
-            GameMaster
-          </span>
+            <span class="android-title mdl-layout-title ">GameMaster</span>
             <!-- Add spacer, to align navigation to the right in desktop -->
             <div class="android-header-spacer mdl-layout-spacer"></div>
             <div class="android-search-box mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
@@ -53,8 +51,7 @@
                     <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Option</a>
                 </nav>
             </div>
-            <span class="android-mobile-title mdl-layout-title">Profil
-          </span>
+            <span class="android-mobile-title mdl-layout-title">Profil</span>
             <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect"
                     id="more-button">
                 <i class="material-icons">more_vert</i>
@@ -76,17 +73,21 @@
     </div>
 
     <div class="android-content mdl-layout__content">
+
+
+        <!-- Contenu de la page -->
         <div class="container">
             <div ng-app="hello">
-                <div class="container col-md-4" ui-view></div>
+                <div class="container" ui-view></div>
             </div>
         </div>
+        <!-- Fin contenu de la page -->
+
 
         <footer class="android-footer mdl-mega-footer">
             <div class="mdl-mega-footer--middle-section">
                 <p class="mdl-typography--font-light">GameMaster, projet annuel M2 - Université d'Angers 2017</p>
             </div>
-
         </footer>
     </div>
 </div>
