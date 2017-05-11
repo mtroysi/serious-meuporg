@@ -11,6 +11,8 @@
     <!-- build:css({target/.tmp/serve,src/main/resources/static}) styles/app.css -->
     <!-- inject:css -->
     <!-- endinject -->
+    <!-- inject:less -->
+    <!-- endinject -->
     <!-- endbuild -->
     <link href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet">
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
@@ -28,79 +30,19 @@
 </head>
 
 
-<body>
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<body ng-app="hello">
+    <ui-view></ui-view>
 
-    <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
-        <div class="mdl-layout__header-row">
-            <span class="android-title mdl-layout-title ">GameMaster</span>
-            <!-- Add spacer, to align navigation to the right in desktop -->
-            <div class="android-header-spacer mdl-layout-spacer"></div>
-            <div class="android-search-box mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
-                <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
-                    <i class="material-icons">search</i>
-                </label>
-                <div class="mdl-textfield__expandable-holder">
-                    <input class="mdl-textfield__input" type="text" id="search-field">
-                </div>
-            </div>
-            <!-- Navigation -->
-            <div class="android-navigation-container">
-                <nav class="android-navigation mdl-navigation">
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Option</a>
-                </nav>
-            </div>
-            <span class="android-mobile-title mdl-layout-title">Profil</span>
-            <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect"
-                    id="more-button">
-                <i class="material-icons">more_vert</i>
-            </button>
-        </div>
-    </div>
-
-    <div class="android-drawer mdl-layout__drawer">
-        <span class="mdl-layout-title">GM</span>
-        <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Option 1</a>
-            <a class="mdl-navigation__link" href="">Option 2</a>
-            <a class="mdl-navigation__link" href="">Option 3</a>
-            <div class="android-drawer-separator"></div>
-            <span class="mdl-navigation__link" href="">Autres</span>
-            <a class="mdl-navigation__link" href="">Autre 1</a>
-            <a class="mdl-navigation__link" href="">Autre 2</a>
-        </nav>
-    </div>
-
-    <div class="android-content mdl-layout__content">
+    <!-- build:js(src/main/resources/static) -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- endbuild -->
 
 
-        <!-- Contenu de la page -->
-        <div class="container">
-            <div ng-app="hello">
-                <div class="container" ui-view></div>
-            </div>
-        </div>
-        <!-- Fin contenu de la page -->
-
-
-        <footer class="android-footer mdl-mega-footer">
-            <div class="mdl-mega-footer--middle-section">
-                <p class="mdl-typography--font-light">GameMaster, projet annuel M2 - Université d'Angers 2017</p>
-            </div>
-        </footer>
-    </div>
-</div>
-
-<!-- build:js(src/main/resources/static) -->
-<!-- bower:js -->
-<!-- endbower -->
-<!-- endbuild -->
-
-<!-- build:js({target/.tmp/serve,target/.tmp/partials,src/main/resources/static}) -->
-<!-- inject:js -->
-<!-- endinject -->
-<!-- endbuild -->
-
-<script src="bower_components/material-design-lite/material.min.js"></script>
+    <!-- build:js({target/.tmp/serve,target/.tmp/partials,src/main/resources/static}) -->
+    <!-- inject:js -->
+    <!-- endinject -->
+    <!-- endbuild -->
+    <script src="bower_components/material-design-lite/material.min.js"></script>
 </body>
 </html>
