@@ -32,6 +32,9 @@ public class Task extends CommonEntity {
     @Column(name = "is_bid")
     private Boolean isBid;
 
+    @Column(name = "date_end_bid")
+    private Date dateEndBid;
+
     @Column(name = "creator")
     private User creator;
 
@@ -53,6 +56,9 @@ public class Task extends CommonEntity {
 
     @OneToMany(mappedBy = "user")
     List<TaskUserBid> taskUserBids;
+
+    @ManyToMany
+    List<Task> taskParents;
 
     public String getTitle() {
         return title;
@@ -141,4 +147,20 @@ public class Task extends CommonEntity {
     public void setTaskUserBids(List<TaskUserBid> taskUserBids) {
         this.taskUserBids = taskUserBids;
     }
+
+    public Date getDateEndBid() { return dateEndBid; }
+
+    public void setDateEndBid(Date dateEndBid) { this.dateEndBid = dateEndBid; }
+
+    public User getCreator() { return creator; }
+
+    public void setCreator(User creator) { this.creator = creator; }
+
+    public Board getBoard() { return board; }
+
+    public void setBoard(Board board) { this.board = board; }
+
+    public List<Task> getTaskParents() { return taskParents; }
+
+    public void setTaskParents(List<Task> taskParents) { this.taskParents = taskParents; }
 }
