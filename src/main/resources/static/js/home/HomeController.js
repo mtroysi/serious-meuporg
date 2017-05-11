@@ -13,7 +13,6 @@
         ctrl.init = function () {
             HomeService.getResource().then(function (data) {
                 ctrl.greeting = data;
-                console.log();
             });
         };
 
