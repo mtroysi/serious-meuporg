@@ -12,14 +12,14 @@ public class BoardUser extends CommonEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    User user;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "board_id")
-    Board board;
+    private Board board;
 
     @Column(name = "role")
-    Role role;
+    private Role role;
 
     public User getUser() {
         return user;

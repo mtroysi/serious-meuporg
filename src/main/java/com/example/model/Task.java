@@ -1,7 +1,5 @@
 package com.example.model;
 
-import com.example.enumeration.PriorityEnum;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -15,34 +13,34 @@ import java.util.List;
 public class Task extends CommonEntity {
 
     @Column(name = "title")
-    String title;
+    private String title;
 
     @Column(name = "content")
-    String content;
+    private String content;
 
     @Column(name = "priority")
-    PriorityEnum priority;
+    private PriorityEnum priority;
 
     @Column(name = "date_creation")
-    Date dateCreation;
+    private Date dateCreation;
 
     @Column(name = "duration")
-    Double duration;
+    private Double duration;
 
     @Column(name = "is_bid")
-    Boolean isBid;
+    private Boolean isBid;
 
     @ManyToMany
-    List<Tag> tags;
+    private List<Tag> tags;
 
     @OneToMany
-    List<Link> links;
+    private List<Link> links;
 
     @OneToMany
-    List<Checklist> checklists;
+    private List<Checklist> checklists;
 
     @OneToMany(mappedBy = "task")
-    List<TaskUser> taskUsers;
+    private List<TaskUser> taskUsers;
 
     @OneToMany(mappedBy = "user")
     List<TaskUserBid> taskUserBids;

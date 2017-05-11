@@ -13,8 +13,24 @@ import javax.persistence.Table;
 public class ChecklistItem extends CommonEntity {
 
     @Column(name = "name")
-    String name;
+    private String name;
 
     @Column(name = "value")
-    Boolean value;
+    private Boolean value;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Boolean getValue() {
+        return value;
+    }
+
+    public void setValue(Boolean value) {
+        this.value = value;
+    }
 }

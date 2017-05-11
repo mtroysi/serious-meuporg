@@ -12,13 +12,13 @@ import javax.persistence.Table;
 @Table(name = "tag")
 public class Tag extends CommonEntity {
     @Column(name = "code")
-    String code;
+    private String code;
 
     @Column(name = "name")
-    String name;
+    private String name;
 
     @Column(name = "color")
-    String color;
+    private String color;
 
     public String getCode() {
         return code;

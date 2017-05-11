@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class Role extends CommonEntity {
 
     @Column(name = "code")
-    String code;
+    private String code;
 
     public String getCode() {
         return code;

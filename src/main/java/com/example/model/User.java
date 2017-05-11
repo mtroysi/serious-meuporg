@@ -1,9 +1,6 @@
 package com.example.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -16,28 +13,28 @@ import java.util.List;
 public class User extends CommonEntity {
 
     @Column(name = "first_name")
-    String firstName;
+    private String firstName;
 
     @Column(name = "last_name")
-    String lastName;
+    private String lastName;
 
-    @Column(name = "email")
-    String email;
+    @Column(name = "email", unique = true)
+    private String email;
 
     @Column(name = "password")
-    String password;
+    private String password;
 
     @Column(name = "date_creation")
-    Date dateCreation;
+    private Date dateCreation;
 
-    @OneToMany(mappedBy = "user")
-    List<BoardUser> boardUsers;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<BoardUser> boardUsers;
 
-    @OneToMany(mappedBy = "user")
-    List<TaskUser> taskUsers;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<TaskUser> taskUsers;
 
-    @OneToMany(mappedBy = "user")
-    List<TaskUserBid> taskUserBids;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<TaskUserBid> taskUserBids;
 
     public String getFirstName() {
         return firstName;

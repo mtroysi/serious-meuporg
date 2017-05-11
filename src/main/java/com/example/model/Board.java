@@ -16,16 +16,16 @@ import java.util.List;
 public class Board extends CommonEntity {
 
     @Column(name = "name")
-    String name;
+    private String name;
 
     @Column(name = "date_creation")
-    Date dateCreation;
+    private Date dateCreation;
 
     @OneToMany
-    List<Task> tasks;
+    private List<Task> tasks;
 
     @OneToMany(mappedBy = "board")
-    List<BoardUser> boardUsers;
+    private List<BoardUser> boardUsers;
 
     public String getName() {
         return name;

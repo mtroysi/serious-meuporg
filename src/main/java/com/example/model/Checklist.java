@@ -15,10 +15,10 @@ import java.util.List;
 public class Checklist extends CommonEntity {
 
     @Column(name = "name")
-    String name;
+    private String name;
 
     @OneToMany
-    List<ChecklistItem> checklistItems;
+    private List<ChecklistItem> checklistItems;
 
     public String getName() {
         return name;

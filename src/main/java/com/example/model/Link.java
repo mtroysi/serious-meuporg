@@ -13,10 +13,10 @@ import javax.persistence.Table;
 public class Link extends CommonEntity {
 
     @Column(name = "link")
-    String link;
+    private String link;
 
     @Column(name = "title")
-    String title;
+    private String title;
 
     public String getLink() {
         return link;
