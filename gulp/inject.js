@@ -2,6 +2,9 @@
 
 var path = require('path');
 var gulp = require('gulp');
+var less = require('gulp-less');
+var cssmin = require('gulp-cssmin');
+var concat = require('gulp-concat');
 var conf = require('./conf');
 
 var $ = require('gulp-load-plugins')();
@@ -20,6 +23,16 @@ gulp.task('inject', ['scripts'], function () {
     path.join(conf.paths.src, '/**/*.css')
   ], { read: false });
 
+  var injectLess = gulp.src([
+    path.join(conf.paths.src, '/less/**/*.less')
+    ])
+    .pipe(less())
+    .pipe(cssmin())
+    .pipe(concat('meuporg.css'))
+    .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/less')));
+
+
+
   var injectScripts = gulp.src([
     path.join(conf.paths.src, '*.module.js'),
     path.join(conf.paths.src, 'js/**/*.js'),
@@ -34,6 +47,7 @@ gulp.task('inject', ['scripts'], function () {
 
   return gulp.src(path.join(conf.paths.src, '/*.html'))
     .pipe($.inject(injectStyles, injectOptions))
+    .pipe($.inject(injectLess, injectOptions))
     .pipe($.inject(injectScripts, injectOptions))
     .pipe(wiredep(_.extend({}, conf.wiredep)))
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve')));
