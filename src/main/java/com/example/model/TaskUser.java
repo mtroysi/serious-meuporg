@@ -1,5 +1,7 @@
 package com.example.model;
 
+import com.example.enumeration.StatusEnum;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -19,8 +21,8 @@ public class TaskUser extends CommonEntity {
     @JoinColumn(name = "task_id")
     private Task task;
 
-    @Column(name = "statut")
-    private String statut;
+    @Column(name = "status")
+    private StatusEnum status;
 
     @Column(name = "date_begin")
     private Date dateBegin;
@@ -47,12 +49,12 @@ public class TaskUser extends CommonEntity {
         this.task = task;
     }
 
-    public String getStatut() {
-        return statut;
+    public StatusEnum getStatus() {
+        return status;
     }
 
-    public void setStatut(String statut) {
-        this.statut = statut;
+    public void setStatus(StatusEnum status) {
+        this.status = status;
     }
 
     public Date getDateBegin() {

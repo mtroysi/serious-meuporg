@@ -1,5 +1,7 @@
 package com.example.model;
 
+import com.example.enumeration.PriorityEnum;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -19,7 +21,7 @@ public class Task extends CommonEntity {
     String content;
 
     @Column(name = "priority")
-    String priority;
+    PriorityEnum priority;
 
     @Column(name = "date_creation")
     Date dateCreation;
@@ -61,11 +63,11 @@ public class Task extends CommonEntity {
         this.content = content;
     }
 
-    public String getPriority() {
+    public PriorityEnum getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(PriorityEnum priority) {
         this.priority = priority;
     }
 
