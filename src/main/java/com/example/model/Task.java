@@ -1,5 +1,7 @@
 package com.example.model;
 
+import com.example.enumeration.PriorityEnum;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
