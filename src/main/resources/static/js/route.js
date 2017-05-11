@@ -29,7 +29,14 @@
                 templateUrl: 'js/board/board-create.html',
                 controller: 'BoardController',
                 controllerAs: 'ctrl'
-            });
+            })
+            .state('app.task-create', {
+                url: '/task/create',
+                templateUrl: 'js/task/task-create.html',
+                controller: 'TaskController',
+                controllerAs: 'ctrl'
+            })
+        ;
 
         $urlRouterProvider.otherwise('/');
         $httpProvider.defaults.cache = false;
