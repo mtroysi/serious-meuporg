@@ -1,7 +1,6 @@
 package com.example.transformers;
 
-import com.example.dto.BoardDTO;
-import com.example.model.Board;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,10 +10,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class Transformers {
 
-    public BoardDTO transformBoardToBoardDto(Board board) {
-        BoardDTO boardDTO = new BoardDTO();
-        boardDTO.setId(board.getId());
-        boardDTO.setName(board.getName());
-        return boardDTO;
+    public Object convertEntityToDto(Object entity, Class dtoClass) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(entity, dtoClass);
+    }
+
+    public Object convertDtoToEntity(Object dto, Class entityClass) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(dto, entityClass);
     }
 }

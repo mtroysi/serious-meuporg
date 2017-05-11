@@ -27,6 +27,6 @@ public class BoardServiceImpl implements BoardService {
         Board board = new Board();
         board.setName(name);
         board.setDateCreation(Calendar.getInstance().getTime());
-        return transformers.transformBoardToBoardDto(boardRepository.save(board));
+        return (BoardDTO)transformers.convertEntityToDto(boardRepository.save(board), BoardDTO.class);
     }
 }
