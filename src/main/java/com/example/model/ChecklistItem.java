@@ -1,8 +1,6 @@
 package com.example.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Morgane TROYSI on 10/05/17.
@@ -18,6 +16,10 @@ public class ChecklistItem extends CommonEntity {
     @Column(name = "value")
     private Boolean value;
 
+    @ManyToOne
+    @JoinColumn(name = "checklist_id")
+    private Checklist checklist;
+
     public String getName() {
         return name;
     }
@@ -32,5 +34,13 @@ public class ChecklistItem extends CommonEntity {
 
     public void setValue(Boolean value) {
         this.value = value;
+    }
+
+    public Checklist getChecklist() {
+        return checklist;
+    }
+
+    public void setChecklist(Checklist checklist) {
+        this.checklist = checklist;
     }
 }

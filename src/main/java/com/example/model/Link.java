@@ -4,9 +4,7 @@ package com.example.model;
  * Created by Morgane TROYSI on 10/05/17.
  */
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity(name = "link")
 @Table(name = "link")
@@ -17,6 +15,10 @@ public class Link extends CommonEntity {
 
     @Column(name = "title")
     private String title;
+
+    @ManyToOne
+    @JoinColumn(name = "task_id")
+    private Task task;
 
     public String getLink() {
         return link;
@@ -32,5 +34,13 @@ public class Link extends CommonEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Task getTask() {
+        return task;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
     }
 }

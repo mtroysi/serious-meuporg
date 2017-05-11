@@ -1,9 +1,6 @@
 package com.example.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -17,8 +14,12 @@ public class Checklist extends CommonEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "checklist")
     private List<ChecklistItem> checklistItems;
+
+    @ManyToOne
+    @JoinColumn(name = "task_id")
+    private Task task;
 
     public String getName() {
         return name;
@@ -34,5 +35,13 @@ public class Checklist extends CommonEntity {
 
     public void setChecklistItems(List<ChecklistItem> checklistItems) {
         this.checklistItems = checklistItems;
+    }
+
+    public Task getTask() {
+        return task;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
     }
 }

@@ -30,13 +30,20 @@ public class Task extends CommonEntity {
     @Column(name = "is_bid")
     private Boolean isBid;
 
+    @Column(name = "creator")
+    private User creator;
+
     @ManyToMany
     private List<Tag> tags;
 
-    @OneToMany
+    @ManyToOne
+    @JoinColumn(name = "board_id")
+    private Board board;
+
+    @OneToMany(mappedBy = "task")
     private List<Link> links;
 
-    @OneToMany
+    @OneToMany(mappedBy = "task")
     private List<Checklist> checklists;
 
     @OneToMany(mappedBy = "task")

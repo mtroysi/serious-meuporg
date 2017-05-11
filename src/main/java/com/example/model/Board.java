@@ -21,7 +21,10 @@ public class Board extends CommonEntity {
     @Column(name = "date_creation")
     private Date dateCreation;
 
-    @OneToMany
+    @Column(name = "creator")
+    private User creator;
+
+    @OneToMany(mappedBy = "board")
     private List<Task> tasks;
 
     @OneToMany(mappedBy = "board")
@@ -57,5 +60,13 @@ public class Board extends CommonEntity {
 
     public void setBoardUsers(List<BoardUser> boardUsers) {
         this.boardUsers = boardUsers;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 }
