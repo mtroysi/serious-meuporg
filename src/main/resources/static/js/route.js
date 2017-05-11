@@ -23,6 +23,12 @@
                 templateUrl: 'js/home/home.html',
                 controller: 'HomeController',
                 controllerAs: 'ctrl'
+            })
+            .state('app.board-create', {
+                url: '/board/create',
+                templateUrl: 'js/board/board-create.html',
+                controller: 'BoardController',
+                controllerAs: 'ctrl'
             });
 
         $urlRouterProvider.otherwise('/');
