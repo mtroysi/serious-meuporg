@@ -9,14 +9,24 @@
 
     /** @ngInject */
     function routerConfig($stateProvider, $urlRouterProvider, $httpProvider) {
-        $stateProvider.state('home', {
-            url: '/',
-            templateUrl: 'js/home/home.html',
-            controller: 'HomeController',
-            controllerAs: 'ctrl'
-        });
+        $stateProvider
+            .state('app', {
+                abstract: true,
+                templateUrl: 'layout/full.html'
+            })
+            .state('appSimple', {
+                abstract: true,
+                templateUrl: 'layout/simple.html'
+            })
+            .state('app.home', {
+                url: '/',
+                templateUrl: 'js/home/home.html',
+                controller: 'HomeController',
+                controllerAs: 'ctrl'
+            });
 
         $urlRouterProvider.otherwise('/');
         $httpProvider.defaults.cache = false;
 
-    }})();
+    }
+})();
