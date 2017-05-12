@@ -18,6 +18,10 @@
                 return $http.put(constant.BASE_URI + '/task/' + id, jsonToSend);
             };
 
+            svc.deleteTask = function (id) {
+                return $http.delete(constant.BASE_URI + '/task/' + id);
+            };
+
             return svc;
         })
 })();

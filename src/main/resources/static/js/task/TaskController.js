@@ -20,7 +20,11 @@
                 })
             };
 
-            ctrl.updateBoard = function () {
+            ctrl.updateTask = function () {
+
+            };
+
+            ctrl.deleteTask = function () {
 
             };
 
