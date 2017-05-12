@@ -3,12 +3,11 @@ package com.example.controller;
 import com.example.dto.TaskDTO;
 import com.example.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Florentin NOËL on 11/05/17.
@@ -20,13 +19,18 @@ public class TaskController {
     TaskService taskService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<TaskDTO> listTask(){
+    public List<TaskDTO> listTask() {
         return taskService.listTask();
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public TaskDTO createTask(@RequestBody String title) {
         return taskService.createTask(title);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public TaskDTO updateTask(@PathVariable("id") Long id, @RequestBody Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
+        return taskService.updateTask(id, values);
     }
 
 }

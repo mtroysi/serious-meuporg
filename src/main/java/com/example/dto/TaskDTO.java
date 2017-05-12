@@ -10,6 +10,7 @@ import java.util.Date;
  * Created by Florentin NOËL on 11/05/17.
  */
 public class TaskDTO {
+    private Long id;
     private String title;
     private String content;
     private PriorityEnum priority;
@@ -18,12 +19,33 @@ public class TaskDTO {
     private Boolean isBid;
 
     public TaskDTO(Task task) {
+        this.id = task.getId();
         this.title = task.getTitle();
         this.content = task.getContent();
         this.priority = task.getPriority();
         this.dateCreation = task.getDateCreation();
         this.duration = task.getDuration();
         this.isBid = task.getBid();
+    }
+
+    public Task toModel() {
+        Task task = new Task();
+        task.setId(this.id);
+        task.setTitle(this.title);
+        task.setContent(this.content);
+        task.setPriority(this.priority);
+        task.setDateCreation(this.dateCreation);
+        task.setDuration(this.duration);
+        task.setBid(this.isBid);
+        return task;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
