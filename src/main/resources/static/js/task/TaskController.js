@@ -1,5 +1,5 @@
 /**
- * Created by Morgane TROYSI on 11/05/17.
+ * Created by Florentin NOËL on 11/05/17.
  */
 
 (function () {
@@ -18,6 +18,10 @@
                 TaskService.createTask(ctrl.task.title).then(function (data) {
                     ctrl.task = data;
                 })
+            };
+
+            ctrl.updateBoard = function () {
+
             };
 
             ctrl.init();
