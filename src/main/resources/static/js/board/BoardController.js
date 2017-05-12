@@ -12,14 +12,16 @@
 
         ctrl.init = function () {
             ctrl.board = {};
-            console.log('BoardController');
         };
 
         ctrl.createBoard = function () {
-            console.log(ctrl.board);
             BoardService.createBoard(ctrl.board.name).then(function (data) {
                 ctrl.board = data;
             })
+        };
+        
+        ctrl.updateBoard = function () {
+            
         };
 
         ctrl.init();

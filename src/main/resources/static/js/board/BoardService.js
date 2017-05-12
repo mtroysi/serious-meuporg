@@ -16,6 +16,16 @@
             })
         };
 
+        svc.updateBoard = function (id, jsonToSend) {
+            return BoardWS.updateBoard(id, jsonToSend).then(function (response) {
+                return response.data;
+            })
+        };
+
+        svc.deleteBoard = function (id) {
+            return BoardWS.deleteBoard(id);
+        };
+
         return svc;
     })
 })();
