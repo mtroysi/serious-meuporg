@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.dto.TaskDTO;
 import com.example.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.logging.log4j2.Log4J2LoggingSystem;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;
@@ -18,9 +19,13 @@ public class TaskController {
     @Autowired
     TaskService taskService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<TaskDTO> listTask() {
-        return taskService.listTask();
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public TaskDTO listTask(@PathVariable("id") Long id) {
+        return taskService.listTask(id);
+    }
+
+    public List<TaskDTO> listAllTask() {
+        return taskService.listAllTask();
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -37,5 +42,4 @@ public class TaskController {
     public void deleteTask(@PathVariable("id") Long id) {
         taskService.deleteTask(id);
     }
-
 }
