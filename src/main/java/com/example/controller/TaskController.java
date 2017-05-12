@@ -24,8 +24,8 @@ public class TaskController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public TaskDTO createTask(@RequestBody String title) {
-        return taskService.createTask(title);
+    public TaskDTO createTask(@RequestBody Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
+        return taskService.createTask(values);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

@@ -26,11 +26,10 @@ public class TaskServiceImpl implements TaskService {
     private Transformers transformers;
 
     @Override
-    public TaskDTO createTask(String title) {
+    public TaskDTO createTask(Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         Task task = new Task();
-        task.setTitle(title);
-        task.setDateCreation(Calendar.getInstance().getTime());
-        return new TaskDTO(taskRepository.save(task));
+        BeanUtils.populate(task, values);
+        return (TaskDTO) transformers.convertEntityToDto(taskRepository.save(task), TaskDTO.class);
     }
 
     @Override
@@ -38,7 +37,8 @@ public class TaskServiceImpl implements TaskService {
         Iterable<Task> res = taskRepository.findAll();
         List<TaskDTO> list = new ArrayList<>();
         for (Task task : res) {
-            list.add(new TaskDTO(task));
+            TaskDTO dto = (TaskDTO) transformers.convertEntityToDto(task, TaskDTO.class);
+            list.add(dto);
         }
         return list;
     }

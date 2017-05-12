@@ -11,7 +11,7 @@ import java.util.Map;
  * Created by Florentin NOËL on 11/05/17.
  */
 public interface TaskService {
-    TaskDTO createTask(String name);
+    TaskDTO createTask(Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
     List<TaskDTO> listTask();
     TaskDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
 }
