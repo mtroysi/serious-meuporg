@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -16,33 +17,42 @@
     <!-- endbuild -->
     <link href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet">
     <style type="text/css">
-        [ng\:cloak], [ng-cloak], .ng-cloak {
+        [ng\:cloak],
+        [ng-cloak],
+        .ng-cloak {
             display: none !important;
         }
     </style>
-    <link rel="stylesheet" href="bower_components/material-design-lite/material.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="index.css">
-    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="bower_components/material-design-lite/material.min.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/fonts/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 </head>
 
 
-<body ng-app="hello">
-<ui-view></ui-view>
+<body ng-app="hello" class="animated-content">
+    <ui-view></ui-view>
 
-<!-- build:js(src/main/resources/static) -->
-<!-- bower:js -->
-<!-- endbower -->
-<!-- endbuild -->
+    <!-- build:js(src/main/resources/static) -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- endbuild -->
 
 
-<!-- build:js({target/.tmp/serve,target/.tmp/partials,src/main/resources/static}) -->
-<!-- inject:js -->
-<!-- endinject -->
-<!-- endbuild -->
-<script src="bower_components/material-design-lite/material.min.js"></script>
+    <!-- build:js({target/.tmp/serve,target/.tmp/partials,src/main/resources/static}) -->
+    <!-- inject:js -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/enquire/dist/enquire.js"></script>
+    <script src="assets/js/jquery.nanoscroller.min.js"></script>
+    <script src="assets/js/application.js"></script>
 </body>
+
 </html>
