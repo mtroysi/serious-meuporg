@@ -12,6 +12,7 @@
 
         ctrl.init = function () {
             ctrl.board = {};
+            ctrl.board.id = 2;
         };
 
         ctrl.createBoard = function () {
@@ -19,9 +20,20 @@
                 ctrl.board = data;
             })
         };
-        
-        ctrl.updateBoard = function () {
-            
+
+        /* exemple usage : ctrl.updateBoard('name', ctrl.board.name) */
+        ctrl.updateBoard = function (key, value) {
+            var jsonToSend = {};
+            value !== undefined ? jsonToSend[key] = value :  jsonToSend[key] = '';
+            BoardService.updateBoard(ctrl.board.id, jsonToSend).then(function (data) {
+                ctrl.board = data;
+            })
+        };
+
+        ctrl.deleteBoard = function() {
+            BoardService.deleteBoard(ctrl.board.id).then(function() {
+                // redirection, rafraichissement de la page ?
+            })
         };
 
         ctrl.init();

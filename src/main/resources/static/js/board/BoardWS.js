@@ -19,7 +19,7 @@
         };
 
         svc.deleteBoard = function (id) {
-            return $http.put(constant.BASE_URI + '/board/' + id);
+            return $http.delete(constant.BASE_URI + '/board/' + id);
         };
 
         return svc;
