@@ -33,4 +33,9 @@ public class TaskController {
         return taskService.updateTask(id, values);
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteTask(@PathVariable("id") Long id) {
+        taskService.deleteTask(id);
+    }
+
 }

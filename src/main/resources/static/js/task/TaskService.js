@@ -13,13 +13,19 @@
             svc.createTask = function (name) {
                 return TaskWS.createTask(name).then(function (response) {
                     return response.data;
-                })
+                });
             };
 
             svc.updateTask = function (id, jsonToSend) {
                 return TaskWS.updateTask(id, jsonToSend).then(function (response) {
                     return response.data;
-                })
+                });
+            };
+
+            svc.deleteTask = function (id) {
+                return TaskWS.deleteTask(id).then(function (response) {
+                    return response.data;
+                });
             };
 
             return svc;

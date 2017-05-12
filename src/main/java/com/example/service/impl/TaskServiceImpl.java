@@ -50,4 +50,9 @@ public class TaskServiceImpl implements TaskService {
         BeanUtils.populate(task, values);
         return (TaskDTO) transformers.convertEntityToDto(taskRepository.save(task), TaskDTO.class);
     }
+
+    @Override
+    public void deleteTask(Long id) {
+        taskRepository.delete(id);
+    }
 }
