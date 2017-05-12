@@ -4759,7 +4759,8 @@ button.close {
     display: block;
 }
 
-.nav>li>a {
+.nav>li>a,
+.nav>li .component>a {
     position: relative;
     display: block;
     padding: 14px 16px;
@@ -23657,11 +23658,13 @@ body.error .error-wrapper h1 {
     background-color: transparent;
 }
 
-#topnav .toolbar.pull-right .toolbar-icon-bg>a {
+#topnav .toolbar.pull-right .toolbar-icon-bg>a,
+#topnav .toolbar.pull-right .toolbar-icon-bg>div.component>a {
     padding: 8px 0;
 }
 
-#topnav .toolbar.pull-right .toolbar-icon-bg>a span.icon-bg {
+#topnav .toolbar.pull-right .toolbar-icon-bg>a span.icon-bg,
+#topnav .toolbar.pull-right .toolbar-icon-bg>div.component>a span.icon-bg {
     display: block;
     border-radius: 20px;
     padding: 0;

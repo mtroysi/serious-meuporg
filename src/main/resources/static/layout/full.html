@@ -14,79 +14,16 @@
 
     <ul class="nav navbar-nav toolbar pull-right">
 
-        <li class="toolbar-icon-bg hidden-xs">
-            <a href="#"><span class="icon-bg"><i class="ti ti-world"></i></span></i></a>
-        </li>
-
-        <li class="toolbar-icon-bg hidden-xs">
-            <a href="#"><span class="icon-bg"><i class="ti ti-view-grid"></i></span></i></a>
-        </li>
-
         <li class="toolbar-icon-bg hidden-xs" id="trigger-fullscreen">
             <a href="#" class="toggle-fullscreen"><span class="icon-bg"><i class="ti ti-fullscreen"></i></span></i></a>
         </li>
 
-        <li class="dropdown toolbar-icon-bg hidden-xs">
-            <a href="#" class="hasnotifications dropdown-toggle" data-toggle='dropdown'><span class="icon-bg"><i class="ti ti-email"></i></span><span
-			class="badge badge-deeporange">2</span></a>
-            <div class="dropdown-menu notifications arrow">
-                <div class="topnav-dropdown-header">
-                    <span>Messages</span>
-                </div>
-                <div class="scroll-pane">
-                    <ul class="media-list scroll-content">
-                        <li class="media notification-message">
-                            <a href="#">
-                                <div class="media-body">
-                                    <h4 class="notification-heading"><strong>Vincent Keller</strong> <span class="text-gray">‒ Design should be ...</span></h4>
-                                    <span class="notification-time">2 mins ago</span>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="topnav-dropdown-footer">
-                    <a href="#">See all messages</a>
-                </div>
-            </div>
+        <li class="toolbar-icon-bg">
+            <mg-notification></mg-notification>
         </li>
 
-        <li class="dropdown toolbar-icon-bg">
-            <a href="#" class="hasnotifications dropdown-toggle" data-toggle='dropdown'><span class="icon-bg"><i class="ti ti-bell"></i></span><span class="badge badge-deeporange">2</span></a>
-            <div class="dropdown-menu notifications arrow">
-                <div class="topnav-dropdown-header">
-                    <span>Notifications</span>
-                </div>
-                <div class="scroll-pane">
-                    <ul class="media-list scroll-content">
-                        <li class="media notification-success">
-                            <a href="#">
-                                <div class="media-left">
-                                    <span class="notification-icon"><i class="ti ti-check"></i></span>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="notification-heading">Update 1.0.4 successfully pushed</h4>
-                                    <span class="notification-time">8 mins ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="media notification-info">
-                            <a href="#">
-                                <div class="media-left">
-                                    <span class="notification-icon"><i class="ti ti-check"></i></span>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="notification-heading">Update 1.0.3 successfully pushed</h4>
-                                    <span class="notification-time">24 mins ago</span>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="topnav-dropdown-footer">
-                    <a href="#">See all notifications</a>
-                </div>
-            </div>
+        <li class="toolbar-icon-bg">
+            <a href="#"><span class="icon-bg"><i class="ti ti-power-off"></i></span></i></a>
         </li>
     </ul>
 
@@ -97,33 +34,8 @@
         <div class="static-sidebar-wrapper sidebar-default sidebar-midnightblue">
             <div class="static-sidebar">
                 <div class="sidebar">
-
                     <div class="widget stay-on-collapse" id="widget-sidebar">
-                        <nav role="navigation" class="widget-body">
-
-                            <ul class="acc-menu">
-                                <li class="nav-separator"><span>Tableau</span></li>
-                                <li><a href="javascript:;"><i class="ti ti-layout"></i><span>Tableau 1</span><span class="badge badge-teal">2</span></a>
-                                    <ul class="acc-menu">
-                                        <li><a href="layout-grids.html">Visualiser</a></li>
-                                        <li><a href="layout-static-leftbar.html">Enchères<span class="badge badge-teal">2</span></a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="javascript:;"><i class="ti ti-file"></i><span>Tableau 2 </span></a>
-                                    <ul class="acc-menu">
-                                        <li><a href="extras-profile.html">Visualiser</a></li>
-                                        <li><a href="javascript:;">Sous-Tableau</a>
-                                            <ul class="acc-menu">
-                                                <li><a href="responsive-email/basic.html">1</a></li>
-                                                <li><a href="responsive-email/hero.html">2</a></li>
-                                                <li><a href="responsive-email/sidebar.html">3</a></li>
-                                                <li><a href="responsive-email/sidebar-hero.html">3</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav>
+                        <mg-menu></mg-menu>
                     </div>
                     <div class="widget" id="widget-progress">
                         <div class="widget-heading">
