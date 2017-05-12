@@ -33,7 +33,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<TaskDTO> listTask() {
+    public List<TaskDTO> listAllTask() {
         Iterable<Task> res = taskRepository.findAll();
         List<TaskDTO> list = new ArrayList<>();
         for (Task task : res) {
@@ -41,6 +41,11 @@ public class TaskServiceImpl implements TaskService {
             list.add(dto);
         }
         return list;
+    }
+
+    @Override
+    public TaskDTO listTask(Long id) {
+        return (TaskDTO) transformers.convertEntityToDto(taskRepository.findOne(id), TaskDTO.class);
     }
 
     @Override
