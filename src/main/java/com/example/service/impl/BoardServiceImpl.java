@@ -1,6 +1,6 @@
 package com.example.service.impl;
 
-import com.example.dto.BoardDTO;
+import com.example.dto.board.BoardDTO;
 import com.example.model.Board;
 import com.example.repository.BoardRepository;
 import com.example.service.BoardService;

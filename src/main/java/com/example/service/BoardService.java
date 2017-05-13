@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.dto.BoardDTO;
+import com.example.dto.board.BoardDTO;
 
 /**
  * Created by Morgane TROYSI on 11/05/17.

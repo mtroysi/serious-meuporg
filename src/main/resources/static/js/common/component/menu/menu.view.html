@@ -2,18 +2,23 @@
 
     <ul class="acc-menu">
         <li class="nav-separator"><span>Tableau</span></li>
-        <li><a href="javascript:;"><i class="ti ti-layout"></i><span>Tableau 1</span><span class="badge badge-teal">2</span></a>
+        <li><a><i class="ti ti-plus"></i><span>Créer un tableau</span></a></li>
+        <li><a><i class="ti ti-world"></i><span>Tableau global</span></a></li>
+        <li class="line-separator"></li>
+        <li ng-repeat="board in vm.listBoard">
+            <a href="javascript:;"><i class="ti ti-layout"></i><span>{{ board.name }}</span><span ng-show="board.role=='ADMIN'" class="badge badge-teal"><i class="ti ti-star"></i></span></a>
             <ul class="acc-menu">
                 <li><a href="layout-grids.html">Visualiser</a></li>
-                <li><a href="layout-static-leftbar.html">Enchères<span class="badge badge-teal">2</span></a></li>
+                <li><a href="layout-static-leftbar.html">Enchères</a></li>
             </ul>
         </li>
+        <!--
         <li><a href="javascript:;"><i class="ti ti-file"></i><span>Tableau 2 </span></a>
             <ul class="acc-menu">
                 <li><a href="extras-profile.html">Visualiser</a></li>
                 <li><a href="javascript:;">Sous-Tableau</a>
                     <ul class="acc-menu">
-                        <li><a href="responsive-email/basic.html">1</a></li>
+                        <li><a href="responsive-email/basic.html">1<span class="badge badge-teal">2</span></a></li>
                         <li><a href="responsive-email/hero.html">2</a></li>
                         <li><a href="responsive-email/sidebar.html">3</a></li>
                         <li><a href="responsive-email/sidebar-hero.html">3</a></li>
@@ -21,5 +26,6 @@
                 </li>
             </ul>
         </li>
+        -->
     </ul>
 </nav>

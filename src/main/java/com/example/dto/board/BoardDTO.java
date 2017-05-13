@@ -1,4 +1,6 @@
-package com.example.dto;
+package com.example.dto.board;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Created by Morgane TROYSI on 11/05/17.
