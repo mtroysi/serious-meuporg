@@ -1,11 +1,70 @@
 @import "variable.less";
+@import "function.less";
 
 body{
     background-color: @background_color !important;
-
+    .strong{
+        font-weight: bold;
+    }
     .line-separator{
         height: 1px;
         margin: 5px 20px;
         border-bottom: 1px solid #455a64;
     }
+    .titleHeader {
+        background: #FFF;
+        border-bottom: 1px solid #DADADA;
+        margin: 0;
+        h1{
+            font-size: 25px;
+            padding: 5px;
+            color: #555;
+            float: left;
+        }
+        .panel-heading .panel-ctrls{
+            margin-top: 16px;
+        }
+    }
+    .sliderPanelBox{
+        background: #455a64;
+        color: #FFF;
+        display: none;
+        padding: 5px;
+    }
+
+    .boxMatrice{
+        margin-top: 25px;
+
+        .panel-body{
+            height: 320px;
+        }
+    }
+    
+    .tile-perso {
+        border: 1px solid #DADADA;
+        cursor: pointer;  
+        margin-top: 3px;
+        margin-bottom: 20px; 
+
+        .tile-heading{
+            margin-bottom: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        &:hover{
+            margin-top: 0;  
+            margin-bottom: 23px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        }
+        &.info-tile .tile-footer {
+            text-align: right;
+            font-size: 12px;
+            position: absolute;
+            right: 0;
+            bottom: 8px;
+            padding: 0 16px;
+            width: 100%;
+        }
+     }
 }

@@ -36,6 +36,12 @@
                 controller: 'BoardController',
                 controllerAs: 'ctrl'
             })
+            .state('app.board-preview', {
+                url: '/board/preview/{id}',
+                templateUrl: 'js/board/preview/board-preview.html',
+                controller: 'BoardPreviewController',
+                controllerAs: 'ctrl'
+            })
             .state('app.task-create', {
                 url: '/task/create',
                 templateUrl: 'js/task/task-create.html',

@@ -1,0 +1,101 @@
+<div class="row">
+    <div class="col-md-12 titleHeader panel">
+        <div class="panel-heading">
+            <h1>Tableau 1</h1>
+            <div class="panel-ctrls button-icon-bg">
+                <button class="btn btn-default-alt btn-lg"><i class="ti ti-package"></i> Vue équipe</button>
+                <button class="btn btn-default-alt btn-lg"><i class="ti ti-plus"></i> Ajouter une tâche</button>
+                <button class="btn btn-default-alt btn-lg" ng-click="ctrl.openPanelFilterAction('#boxFilter')"><i class="ti ti-panel"></i> Filtre</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 sliderPanelBox text-right" id="boxFilter">
+        <div class="btn-group">
+            <button type="button" class="btn btn-block btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <i class="ti ti-tag"></i> Catégorie : Tout <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu col-xs-12" role="menu">
+                <li><a href="#">TOUT</a></li>
+                <li><a href="#">TAG 1 </a></li>
+                <li><a href="#">TAG 2 </a></li>
+                <li><a href="#">TAG 3 </a></li>
+                <li><a href="#">TAG 4 </a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-block btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <i class="ti ti-check-box"></i> Type : Tout<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu col-xs-12" role="menu">
+                <li><a href="#">TOUT</a></li>
+                <li><a href="#">TODO</a></li>
+                <li><a href="#">IN PROGRESS</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-12 boxMatrice">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Urgent / Important</h2>
+                        <div class="panel-ctrls button-icon-bg">
+                            <span class="button-icon has-bg"><i class="ti ti-fullscreen"></i></span>
+                        </div>
+                    </div>
+                    <div class="panel-body scroll-pane">
+                        <div class="row scroll-content">
+                            <div class="col-md-4" ng-repeat="n in [1,2,3,4,5,6,7,8,9,10,11,12,13,14]">
+                                <div class="info-tile tile-success tile-perso">
+                                    <div class="tile-heading"><span>Revenues zae eazeazeaz eazeaze  </span></div>
+                                    <div class="tile-footer">
+                                        <span class="pull-left strong"><i class="ti ti-check-box"></i> <i class="ti ti-comment"></i> <i class="ti ti-clip"></i></span>
+                                        <span class="strong">10/06/2016</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Urgent / Pas Important</h2>
+                        <div class="panel-ctrls button-icon-bg">
+                            <span class="button-icon has-bg"><i class="ti ti-fullscreen"></i></span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Pas Urgent / Important</h2>
+                        <div class="panel-ctrls button-icon-bg">
+                            <span class="button-icon has-bg"><i class="ti ti-fullscreen"></i></span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Pas Urgent / Pas Important</h2>
+                        <div class="panel-ctrls button-icon-bg">
+                            <span class="button-icon has-bg"><i class="ti ti-fullscreen"></i></span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,3 +14,63 @@
 	.gradient(left, #663333, #333333);
 }
 */
+
+//Create 70 classes helpers for margins. (e.g margin-v-15 for 15px margins top and bottom)
+@iterations-margin: 50;
+.margin-helpers (@iterations-margin);
+//Create 70 classes helpers for padding. (e.g padding-v-15 for 15px padding top and bottom)
+@iterations-padding: 50;
+.padding-helpers (@iterations-padding);
+
+.margin-helpers (@i) when (@i >= 0) {
+	.margin-helpers(@i - 5);
+	.margin-@{i} {
+		margin: ~"@{i}px";
+	}
+	.margin-v-@{i} {
+		margin-top: ~"@{i}px";
+		margin-bottom: ~"@{i}px";
+	}
+	.margin-h-@{i} {
+		margin-right: ~"@{i}px";
+		margin-left: ~"@{i}px";
+	}
+	.margin-t-@{i} {
+		margin-top: ~"@{i}px";
+	}
+	.margin-b-@{i} {
+		margin-bottom: ~"@{i}px";
+	}
+	.margin-l-@{i} {
+		margin-left: ~"@{i}px";
+	}
+	.margin-r-@{i} {
+		margin-right: ~"@{i}px";
+	}
+}
+.padding-helpers (@i) when (@i >= 0) {
+	.padding-helpers(@i - 5);
+	.padding-@{i} {
+		padding: ~"@{i}px";
+	}
+	.padding-v-@{i} {
+		padding-top: ~"@{i}px";
+		padding-bottom: ~"@{i}px";
+	}
+	.padding-h-@{i} {
+		padding-right: ~"@{i}px";
+		padding-left: ~"@{i}px";
+	}
+	.padding-t-@{i} {
+		padding-top: ~"@{i}px";
+	}
+	.padding-b-@{i} {
+		padding-bottom: ~"@{i}px";
+	}
+	.padding-l-@{i} {
+		padding-left: ~"@{i}px";
+	}
+	.padding-r-@{i} {
+		padding-right: ~"@{i}px";
+	}
+}

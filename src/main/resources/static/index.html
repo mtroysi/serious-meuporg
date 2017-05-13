@@ -9,12 +9,7 @@
     <!-- bower:css -->
     <!-- endbower -->
     <!-- endbuild -->
-    <!-- build:css({target/.tmp/serve,src/main/resources/static}) styles/app.css -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- inject:less -->
-    <!-- endinject -->
-    <!-- endbuild -->
+
     <link href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet">
     <style type="text/css">
         [ng\:cloak],
@@ -31,11 +26,16 @@
     <link rel="stylesheet" type="text/css" href="assets/fonts/themify-icons/themify-icons.css">
     <link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
+    <!-- build:css({target/.tmp/serve,src/main/resources/static}) styles/app.css -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- inject:less -->
+    <!-- endinject -->
+    <!-- endbuild -->
 </head>
 
 
-<body ng-app="hello" class="animated-content">
+<body ng-app="hello">
     <ui-view></ui-view>
 
     <!-- build:js(src/main/resources/static) -->
