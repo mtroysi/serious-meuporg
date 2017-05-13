@@ -14,6 +14,9 @@ public class Board extends CommonEntity {
 
     @Column(name = "name")
     private String name;
+    
+    @Column(name = "color")
+    private String color;
 
     @Column(name = "date_creation")
     private Date dateCreation;
