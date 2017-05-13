@@ -7,13 +7,11 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.controller('HomeController', function($location, $http, HomeService) {
+    helloApp.controller('DashboardController', function($location, $http, CommonNotificationService) {
         var ctrl = this;
 
         ctrl.init = function() {
-            HomeService.getResource().then(function(data) {
-                ctrl.greeting = data;
-            });
+            CommonNotificationService.info('Bienvenue', 'je suis sur le dashboard');
         };
 
         ctrl.init();

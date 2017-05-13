@@ -2,7 +2,7 @@
  * Created by Morgane TROYSI on 26/04/2017.
  */
 
-(function () {
+(function() {
     'use strict';
 
     angular.module('hello').config(routerConfig);
@@ -18,10 +18,16 @@
                 abstract: true,
                 templateUrl: 'layout/simple.html'
             })
-            .state('app.home', {
+            .state('appSimple.home', {
                 url: '/',
                 templateUrl: 'js/home/home.html',
                 controller: 'HomeController',
+                controllerAs: 'ctrl'
+            })
+            .state('app.dashboard', {
+                url: '/dashboard/',
+                templateUrl: 'js/dashboard/dashboard.html',
+                controller: 'DashboardController',
                 controllerAs: 'ctrl'
             })
             .state('app.board-create', {
@@ -35,8 +41,7 @@
                 templateUrl: 'js/task/task-create.html',
                 controller: 'TaskController',
                 controllerAs: 'ctrl'
-            })
-        ;
+            });
 
         $urlRouterProvider.otherwise('/');
         $httpProvider.defaults.cache = false;
