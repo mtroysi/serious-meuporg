@@ -20,6 +20,7 @@
         "jquery": "1.10.2",
         "bootstrap": "^3.3.7",
         "angular-bootstrap": "^2.5.0",
-        "enquire": "2.1.6"
+        "enquire": "2.1.6",
+        "pnotify": "3.2.0"
     }
 }
