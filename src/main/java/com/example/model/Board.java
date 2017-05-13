@@ -1,9 +1,6 @@
 package com.example.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +18,8 @@ public class Board extends CommonEntity {
     @Column(name = "date_creation")
     private Date dateCreation;
 
-    @Column(name = "creator")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="creator_id", nullable=false)
     private User creator;
 
     @OneToMany(mappedBy = "board")

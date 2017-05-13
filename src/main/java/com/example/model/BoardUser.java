@@ -18,7 +18,8 @@ public class BoardUser extends CommonEntity {
     @JoinColumn(name = "board_id")
     private Board board;
 
-    @Column(name = "role")
+    @ManyToOne
+    @JoinColumn(name="role_id")
     private Role role;
 
     public User getUser() {

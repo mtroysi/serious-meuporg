@@ -35,7 +35,8 @@ public class Task extends CommonEntity {
     @Column(name = "date_end_bid")
     private Date dateEndBid;
 
-    @Column(name = "creator")
+    @ManyToOne
+    @JoinColumn(name="creator_id")
     private User creator;
 
     @ManyToMany
