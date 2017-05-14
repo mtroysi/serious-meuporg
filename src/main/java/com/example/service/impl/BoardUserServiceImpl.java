@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.dto.board.BoardWithDetailDTO;
+import com.example.dto.BoardWithDetailDTO;
 import com.example.model.BoardUser;
 import com.example.repository.BoardUserRepository;
 import com.example.service.BoardUserService;

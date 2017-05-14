@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.dto.board.BoardWithDetailDTO;
+import com.example.dto.BoardWithDetailDTO;
 
 import java.util.List;
 

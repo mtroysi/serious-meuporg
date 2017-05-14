@@ -1,4 +1,4 @@
-package com.example.dto.board;
+package com.example.dto;
 
 public class BoardWithDetailDTO {
 
