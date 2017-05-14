@@ -1,13 +1,11 @@
 package com.example.model;
 
-import com.example.enumeration.PriorityEnum;
-
-import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
- * Created by Morgane TROYSI on 10/05/17.
+ * Created by Adrien CASELLES on 11/05/17.
  */
 
 @Entity(name = "notification")

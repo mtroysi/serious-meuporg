@@ -12,13 +12,27 @@
 
         ctrl.init = function () {
             ctrl.board = {};
-            console.log('BoardController');
+            ctrl.board.id = 2;
         };
 
         ctrl.createBoard = function () {
-            console.log(ctrl.board);
             BoardService.createBoard(ctrl.board.name).then(function (data) {
                 ctrl.board = data;
+            })
+        };
+
+        /* exemple usage : ctrl.updateBoard('name', ctrl.board.name) */
+        ctrl.updateBoard = function (key, value) {
+            var jsonToSend = {};
+            value !== undefined ? jsonToSend[key] = value :  jsonToSend[key] = '';
+            BoardService.updateBoard(ctrl.board.id, jsonToSend).then(function (data) {
+                ctrl.board = data;
+            })
+        };
+
+        ctrl.deleteBoard = function() {
+            BoardService.deleteBoard(ctrl.board.id).then(function() {
+                // redirection, rafraichissement de la page ?
             })
         };
 

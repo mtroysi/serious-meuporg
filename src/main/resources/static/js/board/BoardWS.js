@@ -11,7 +11,15 @@
             var svc = this;
 
             svc.createBoard = function(name) {
-                return $http.post(constant.BASE_URI + '/board/create', name);
+                return $http.post(constant.BASE_URI + '/board', name);
+            };
+
+            svc.updateBoard = function(id, jsonToSend) {
+                return $http.put(constant.BASE_URI + '/board/' + id, jsonToSend);
+            };
+
+            svc.deleteBoard = function(id) {
+                return $http.delete(constant.BASE_URI + '/board/' + id);
             };
 
             svc.listBoardByUser = function(user_id) {

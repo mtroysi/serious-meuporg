@@ -7,26 +7,20 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('TaskController', function (TaskService) {
+        .controller('TaskShowController', function (TaskShowService, $stateParams) {
             var ctrl = this;
 
             ctrl.init = function () {
                 ctrl.task = {};
+                ctrl.showTask($stateParams.id);
             };
 
-            ctrl.createTask = function () {
-                TaskService.createTask(ctrl.task.title).then(function (data) {
+            ctrl.showTask = function (id) {
+                TaskShowService.showTask(id).then(function (data) {
                     ctrl.task = data;
-                })
+                });
             };
 
-            ctrl.updateTask = function () {
-
-            };
-
-            ctrl.deleteTask = function () {
-
-            };
 
             ctrl.init();
         })

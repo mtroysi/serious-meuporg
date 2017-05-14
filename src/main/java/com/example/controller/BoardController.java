@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 
 import com.example.dto.BoardDTO;
 import com.example.dto.BoardWithDetailDTO;
@@ -35,7 +38,7 @@ public class BoardController {
     @Autowired
     BoardUserService boardUserService;
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public BoardDTO createBoard(@RequestBody String name) {
         return boardService.createBoard(name);
     }
@@ -56,5 +59,15 @@ public class BoardController {
         }
 
         return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public BoardDTO updateBoard(@PathVariable("id") Long id, @RequestBody Map<String, Object> values) throws IllegalAccessException, InvocationTargetException {
+        return boardService.updateBoard(id, values);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteBoard(@PathVariable("id") Long id) {
+        boardService.deleteBoard(id);
     }
 }
