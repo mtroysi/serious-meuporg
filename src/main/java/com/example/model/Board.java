@@ -1,10 +1,7 @@
 package com.example.model;
 
 import javax.persistence.*;
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
->>>>>>> master
 import java.util.Date;
 import java.util.List;
 
