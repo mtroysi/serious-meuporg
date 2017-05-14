@@ -141,4 +141,71 @@ body{
             }
         }
     }
+
+    .home-content{
+        a.navbar-brand, a.navbar-brand:hover, a.navbar-brand:active, a.navbar-brand:link {
+            color: #FFF;
+            text-decoration: none;
+            padding: 0 25px;
+            vertical-align: middle;
+            line-height: 56px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .navbar{
+            background: rgba(0,121,191,0.6);
+
+            .navbar-nav {
+                padding: 5px;
+                a{
+                    margin: 10px;
+                    padding: 5px;
+                }
+            }
+        }
+
+        
+        .contentHome{
+            padding: 75px;
+            font-size: 1.5em;
+            color: #FFF;       
+            font-family: "Roboto";
+
+            .row{
+                max-width: 850px;
+                margin: 0 auto;
+            }
+
+            h1, h2{
+                color: #FFF;
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: 1.777em;
+                line-height: 1.2em;
+            }
+            h2{
+                font-size: 1.3em;
+            }
+            &.contentWithImg {
+                padding: 120px 75px;
+                background: #0079bf url('../images/usecases-bg.jpg') no-repeat scroll left center / cover ;
+            }
+            &.contentYellow {
+                background: #FB9B49;
+            }
+            &.contentBlue{
+                background: #42548E;
+
+                i{
+                    font-size: 65px;
+                    margin: 25px;
+                }
+            }
+            &.contentWhite{
+                color: #444;
+                text-transform: uppercase;
+                font-size: 14px;
+            }
+        }
+    }
 }

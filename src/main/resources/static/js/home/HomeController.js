@@ -10,11 +10,7 @@
     helloApp.controller('HomeController', function($location, $http, HomeService) {
         var ctrl = this;
 
-        ctrl.init = function() {
-            HomeService.getResource().then(function(data) {
-                ctrl.greeting = data;
-            });
-        };
+        ctrl.init = function() {};
 
         ctrl.init();
     })
