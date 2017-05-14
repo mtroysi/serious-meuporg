@@ -1,6 +1,7 @@
 package com.example.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,8 +15,8 @@ public class Checklist extends CommonEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "checklist")
-    private List<ChecklistItem> checklistItems;
+    @OneToMany(mappedBy = "checklist", cascade = CascadeType.ALL)
+    private List<ChecklistItem> checklistItems = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "task_id")

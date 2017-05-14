@@ -3,6 +3,7 @@ package com.example.model;
 import com.example.enumeration.PriorityEnum;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -39,26 +40,26 @@ public class Task extends CommonEntity {
     private User creator;
 
     @ManyToMany
-    private List<Tag> tags;
+    private List<Tag> tags = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "board_id")
     private Board board;
 
-    @OneToMany(mappedBy = "task")
-    private List<Link> links;
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+    private List<Link> links = new ArrayList<>();
 
-    @OneToMany(mappedBy = "task")
-    private List<Checklist> checklists;
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+    private List<Checklist> checklists = new ArrayList<>();
 
-    @OneToMany(mappedBy = "task")
-    private List<TaskUser> taskUsers;
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+    private List<TaskUser> taskUsers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
-    List<TaskUserBid> taskUserBids;
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+    private List<TaskUserBid> taskUserBids = new ArrayList<>();
 
     @ManyToMany
-    List<Task> taskParents;
+    private List<Task> taskParents = new ArrayList<>();
 
     public String getTitle() {
         return title;

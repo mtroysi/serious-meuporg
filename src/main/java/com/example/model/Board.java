@@ -1,9 +1,7 @@
 package com.example.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,11 +22,11 @@ public class Board extends CommonEntity {
     @Column(name = "creator")
     private User creator;
 
-    @OneToMany(mappedBy = "board")
-    private List<Task> tasks;
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+    private List<Task> tasks = new ArrayList<>();
 
-    @OneToMany(mappedBy = "board")
-    private List<BoardUser> boardUsers;
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+    private List<BoardUser> boardUsers = new ArrayList<>();
 
     public String getName() {
         return name;
