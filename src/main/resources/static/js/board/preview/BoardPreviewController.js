@@ -11,6 +11,7 @@
              */
             ctrl.init = function() {
                 ctrl.openPanelFilter = false;
+                ctrl.openPanelNewColonne = false;
             };
 
             /**
@@ -28,8 +29,17 @@
                     $(this).fadeToggle(150);
                 });
                 $timeout(function() { $('.bigPanelMatrice').fadeToggle(); }, 200);
+                ctrl.sizeKanban();
             }
 
+            ctrl.sizeKanban = function() {
+                var width = 0;
+                $('.contentKanban .columnKanban').each(function() {
+                    console.log($(this).width());
+                    width += $(this).width() + 51;
+                });
+                $('.contentKanban').width(width);
+            }
 
             ctrl.init();
         });

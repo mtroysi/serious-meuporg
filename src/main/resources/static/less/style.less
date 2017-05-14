@@ -40,16 +40,6 @@ body{
         }
     }
 
-    .bigPanelMatrice {
-        display: none;
-        .panel{
-            margin-bottom: 0;
-        }
-        .panel-body {
-            height: 730px;
-        }
-    }
-    
     .tile-perso {
         border: 1px solid #DADADA;
         cursor: pointer;  
@@ -88,6 +78,67 @@ body{
         background: #e67e22;
         h5 {
             color: #FFF !important;
+        }
+    }
+
+    .bigPanelMatrice {
+        display: none;
+        .panel{
+            margin-bottom: 0;
+        }
+        & > .panel > .panel-body {
+            height: 730px;
+        }
+        .scroll-x-kanban{
+            overflow-y: auto;
+            height: 100%;
+        }
+        .columnKanban{
+            width: 350px;
+            display: inline-block;
+            margin-right: 50px;
+            vertical-align: top;
+
+            .panel-default{
+                border-color: #eee;
+
+                .panel-heading{
+                    background-color: #eee;
+                    border-color: #eee;
+                }
+            }
+            .header-red{
+               border-top: 3px solid #ff5722 !important;
+            }
+            .listTache{
+                list-style: none;
+                margin: 10px 0;
+                padding: 0;
+                li {
+                    .tile-perso {
+                        &:hover{
+                            margin-top: 3px !important;
+                            margin-bottom: 20px !important; 
+                            box-shadow: 0 0 0 !important;
+                        }
+                    }
+                }
+                .addTask{
+                    text-align: center;
+                    padding: 10px;
+                    button{
+                        border-radius: 60px;
+                        width: 35px;
+                        height: 35px;
+                    }
+                }
+            }
+            .panel-color-list.no_box{
+                box-shadow: 0 0 0;
+            }
+            .control-label, .input-group{
+                margin: 0 16px;
+            }
         }
     }
 }
