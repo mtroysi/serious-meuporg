@@ -1,5 +1,211 @@
 @import "variable.less";
+@import "function.less";
 
 body{
     background-color: @background_color !important;
+    .strong{
+        font-weight: bold;
+    }
+    .line-separator{
+        height: 1px;
+        margin: 5px 20px;
+        border-bottom: 1px solid #455a64;
+    }
+    .titleHeader {
+        background: #FFF;
+        border-bottom: 1px solid #DADADA;
+        margin: 0;
+        h1{
+            font-size: 25px;
+            padding: 5px;
+            color: #555;
+            float: left;
+        }
+        .panel-heading .panel-ctrls{
+            margin-top: 16px;
+        }
+    }
+    .sliderPanelBox{
+        background: #455a64;
+        color: #FFF;
+        display: none;
+        padding: 5px;
+    }
+
+    .boxMatrice{
+        margin-top: 25px;
+
+        .panel-body{
+            height: 320px;
+        }
+    }
+
+    .tile-perso {
+        border: 1px solid #DADADA;
+        cursor: pointer;  
+        margin-top: 3px;
+        margin-bottom: 20px; 
+
+        .tile-heading{
+            margin-bottom: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        &:hover{
+            margin-top: 0;  
+            margin-bottom: 23px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        }
+        &.info-tile .tile-footer {
+            text-align: right;
+            font-size: 12px;
+            position: absolute;
+            right: 0;
+            bottom: 8px;
+            padding: 0 16px;
+            width: 100%;
+        }
+     }
+    
+    .modal-header-error {
+        background: #e74c3c;
+        h5 {
+            color: #FFF !important;
+        }
+    }
+    .modal-header-warning {
+        background: #e67e22;
+        h5 {
+            color: #FFF !important;
+        }
+    }
+
+    .bigPanelMatrice {
+        display: none;
+        .panel{
+            margin-bottom: 0;
+        }
+        & > .panel > .panel-body {
+            height: 730px;
+        }
+        .scroll-x-kanban{
+            overflow-y: auto;
+            height: 100%;
+        }
+        .columnKanban{
+            width: 350px;
+            display: inline-block;
+            margin-right: 50px;
+            vertical-align: top;
+
+            .panel-default{
+                border-color: #eee;
+
+                .panel-heading{
+                    background-color: #eee;
+                    border-color: #eee;
+                }
+            }
+            .header-red{
+               border-top: 3px solid #ff5722 !important;
+            }
+            .listTache{
+                list-style: none;
+                margin: 10px 0;
+                padding: 0;
+                li {
+                    .tile-perso {
+                        &:hover{
+                            margin-top: 3px !important;
+                            margin-bottom: 20px !important; 
+                            box-shadow: 0 0 0 !important;
+                        }
+                    }
+                }
+                .addTask{
+                    text-align: center;
+                    padding: 10px;
+                    button{
+                        border-radius: 60px;
+                        width: 35px;
+                        height: 35px;
+                    }
+                }
+            }
+            .panel-color-list.no_box{
+                box-shadow: 0 0 0;
+            }
+            .control-label, .input-group{
+                margin: 0 16px;
+            }
+        }
+    }
+
+    .home-content{
+        a.navbar-brand, a.navbar-brand:hover, a.navbar-brand:active, a.navbar-brand:link {
+            color: #FFF;
+            text-decoration: none;
+            padding: 0 25px;
+            vertical-align: middle;
+            line-height: 56px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .navbar{
+            background: rgba(0,121,191,0.6);
+
+            .navbar-nav {
+                padding: 5px;
+                a{
+                    margin: 10px;
+                    padding: 5px;
+                }
+            }
+        }
+
+        
+        .contentHome{
+            padding: 75px;
+            font-size: 1.5em;
+            color: #FFF;       
+            font-family: "Roboto";
+
+            .row{
+                max-width: 850px;
+                margin: 0 auto;
+            }
+
+            h1, h2{
+                color: #FFF;
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: 1.777em;
+                line-height: 1.2em;
+            }
+            h2{
+                font-size: 1.3em;
+            }
+            &.contentWithImg {
+                padding: 120px 75px;
+                background: #0079bf url('../images/usecases-bg.jpg') no-repeat scroll left center / cover ;
+            }
+            &.contentYellow {
+                background: #FB9B49;
+            }
+            &.contentBlue{
+                background: #42548E;
+
+                i{
+                    font-size: 65px;
+                    margin: 25px;
+                }
+            }
+            &.contentWhite{
+                color: #444;
+                text-transform: uppercase;
+                font-size: 14px;
+            }
+        }
+    }
 }

@@ -2,6 +2,8 @@ package com.example.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -18,7 +20,8 @@ public class Notification extends CommonEntity {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "user")
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
     private User user;
 
     @Column(name = "is_read")

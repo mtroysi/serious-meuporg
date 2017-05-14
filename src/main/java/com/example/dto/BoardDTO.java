@@ -1,5 +1,7 @@
 package com.example.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by Morgane TROYSI on 11/05/17.
  */

@@ -1,20 +1,16 @@
 /**
  * Created by Morgane TROYSI on 20/04/2017.
  */
-(function () {
+(function() {
     'use strict';
 
-    var helloApp = angular.module('hello', ['ui.router']);
+    var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.controller('HomeController', function ($location, $http, HomeService) {
+    helloApp.controller('HomeController', function($location, $http, HomeService) {
         var ctrl = this;
 
-        ctrl.init = function () {
-            HomeService.getResource().then(function (data) {
-                ctrl.greeting = data;
-            });
-        };
+        ctrl.init = function() {};
 
         ctrl.init();
     })
