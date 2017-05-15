@@ -1,8 +1,13 @@
 package com.example.security;
 
-import com.example.model.User;
-import com.example.repository.UserRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.util.Collections;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -10,12 +15,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Collections;
+import com.example.model.User;
+import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * Created by sara on 15/05/17.
  */
@@ -47,6 +48,11 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
             HttpServletRequest req,
             HttpServletResponse res, FilterChain chain,
             Authentication auth) throws IOException, ServletException {
+    	
+    	MyUserDetails userDetail = (MyUserDetails)auth.getPrincipal();
+    	if(userDetail != null){
+    		res.addHeader("user_id", String.valueOf(userDetail.getIdUser()));
+	    }
         TokenAuthenticationService
                 .addAuthentication(res, auth.getName());
     }

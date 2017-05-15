@@ -22,7 +22,10 @@
                 url: '/',
                 templateUrl: 'js/home/home.html',
                 controller: 'HomeController',
-                controllerAs: 'ctrl'
+                controllerAs: 'ctrl',
+                data: {
+                    requireLogin: false
+                }
             })
             .state('appSimple.login', {
                 url: '/login',
@@ -30,7 +33,7 @@
                 controller: 'LoginController',
                 controllerAs: 'loginCtrl',
                 data: {
-                    requireLogin: true
+                    requireLogin: false
                 }
             })
             .state('appSimple.signup', {
@@ -39,38 +42,53 @@
                 controller: 'SignupController',
                 controllerAs: 'signupCtrl',
                 data: {
-                    requireLogin: true
+                    requireLogin: false
                 }
             })
             .state('app.dashboard', {
                 url: '/dashboard/',
                 templateUrl: 'js/dashboard/dashboard.html',
                 controller: 'DashboardController',
-                controllerAs: 'ctrl'
+                controllerAs: 'ctrl',
+                data: {
+                    requireLogin: true
+                }
             })
             .state('app.board-create', {
                 url: '/board/create',
                 templateUrl: 'js/board/board-create.html',
                 controller: 'BoardController',
-                controllerAs: 'ctrl'
+                controllerAs: 'ctrl',
+                data: {
+                    requireLogin: true
+                }
             })
             .state('app.board-preview', {
                 url: '/board/preview/{id}',
                 templateUrl: 'js/board/preview/board-preview.html',
                 controller: 'BoardPreviewController',
-                controllerAs: 'ctrl'
+                controllerAs: 'ctrl',
+                data: {
+                    requireLogin: true
+                }
             })
             .state('app.task-create', {
                 url: '/task/create',
                 templateUrl: 'js/task/task-create.html',
                 controller: 'TaskController',
-                controllerAs: 'ctrl'
+                controllerAs: 'ctrl',
+                data: {
+                    requireLogin: true
+                }
             })
             .state('app.task-show', {
                 url: '/task/{id}',
                 templateUrl: 'js/task/show/task-show.html',
                 controller: 'TaskShowController',
-                controllerAs: 'ctrl'
+                controllerAs: 'ctrl',
+                data: {
+                    requireLogin: true
+                }
             });
 
         $urlRouterProvider.otherwise('/');

@@ -29,7 +29,7 @@
     }
 
 
-    angular.module('hello', ['ui.router']).component('mgMenu', {
+    angular.module('hello', ['ui.router', 'ngCookies']).component('mgMenu', {
         controller: ComponentMenuController,
         controllerAs: 'vm',
         templateUrl: 'js/common/component/menu/menu.view.html'
