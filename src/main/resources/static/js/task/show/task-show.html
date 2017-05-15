@@ -1,27 +1,28 @@
-<div class="container-fluid">
-    <p>Détail de la quête</p>
+<div class="container-fluid" ng-cloak>
+    <h1>Détail de la quête</h1>
     <div class="row">
-        <b class="col-xs-4">Nom</b>
-        <p class="col-xs-8">{{ctrl.task.title}}</p>
+        <b class="col-sm-3 col-sm-offset-1">Nom</b>
+        <p class="col-sm-8">{{ctrl.task.title}}</p>
     </div>
     <div class="row">
-        <b class="col-xs-4">Description</b>
-        <p class="col-xs-8">{{ctrl.task.content}}</p>
+        <b class="col-sm-3 col-sm-offset-1">Description</b>
+        <p class="col-sm-8">{{ctrl.task.content}}</p>
     </div>
     <div class="row">
-        <b class="col-xs-4">Priorité</b>
-        <p class="col-xs-8">{{ctrl.task.priority}}</p>
+        <b class="col-sm-3 col-sm-offset-1">Priorité</b>
+        <p class="col-sm-8">{{ctrl.task.priority}}</p>
     </div>
     <div class="row">
-        <b class="col-xs-4">Date de création</b>
-        <p class="col-xs-8">{{ctrl.task.dateCreation | date : "dd/MM/yyyy HH:mm"}}</p>
+        <b class="col-sm-3 col-sm-offset-1">Date de création</b>
+        <p class="col-sm-8">{{ctrl.task.dateCreation | date : "dd/MM/yyyy HH:mm"}}</p>
     </div>
     <div class="row">
-        <b class="col-xs-4">Durée</b>
-        <p class="col-xs-8">{{ctrl.task.duration}}</p>
+        <b class="col-sm-3 col-sm-offset-1">Durée</b>
+        <p class="col-sm-8">{{ctrl.task.duration}} points d'énergie</p>
     </div>
     <div class="row">
-        <b class="col-xs-4">Est aux enchères</b>
-        <p class="col-xs-8">{{ctrl.task.isBid}}</p>
+        <b class="col-sm-3 col-sm-offset-1">Est aux enchères</b>
+        <p class="col-sm-8" ng-show="ctrl.task.isBid">Oui</p>
+        <p class="col-sm-8" ng-hide="ctrl.task.isBid">Non</p>
     </div>
 </div>

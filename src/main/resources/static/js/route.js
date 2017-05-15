@@ -44,8 +44,8 @@
             })
             .state('app.task-create', {
                 url: '/task/create',
-                templateUrl: 'js/task/task-create.html',
-                controller: 'TaskController',
+                templateUrl: 'js/task/create/task-create.html',
+                controller: 'TaskCreateController',
                 controllerAs: 'ctrl'
             })
             .state('app.task-show', {
