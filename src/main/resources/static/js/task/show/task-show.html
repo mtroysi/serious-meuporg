@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <p>Détail de la quête</p>
+    <div class="row">
+        <b class="col-xs-4">Nom</b>
+        <p class="col-xs-8">{{ctrl.task.title}}</p>
+    </div>
+    <div class="row">
+        <b class="col-xs-4">Description</b>
+        <p class="col-xs-8">{{ctrl.task.content}}</p>
+    </div>
+    <div class="row">
+        <b class="col-xs-4">Priorité</b>
+        <p class="col-xs-8">{{ctrl.task.priority}}</p>
+    </div>
+    <div class="row">
+        <b class="col-xs-4">Date de création</b>
+        <p class="col-xs-8">{{ctrl.task.dateCreation | date : "dd/MM/yyyy HH:mm"}}</p>
+    </div>
+    <div class="row">
+        <b class="col-xs-4">Durée</b>
+        <p class="col-xs-8">{{ctrl.task.duration}}</p>
+    </div>
+    <div class="row">
+        <b class="col-xs-4">Est aux enchères</b>
+        <p class="col-xs-8">{{ctrl.task.isBid}}</p>
+    </div>
+</div>

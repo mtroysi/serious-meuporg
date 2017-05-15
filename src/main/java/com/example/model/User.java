@@ -1,6 +1,7 @@
 package com.example.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,14 +28,14 @@ public class User extends CommonEntity {
     @Column(name = "date_creation")
     private Date dateCreation;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<BoardUser> boardUsers;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<BoardUser> boardUsers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<TaskUser> taskUsers;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<TaskUser> taskUsers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<TaskUserBid> taskUserBids;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<TaskUserBid> taskUserBids = new ArrayList<>();
 
     public String getFirstName() {
         return firstName;

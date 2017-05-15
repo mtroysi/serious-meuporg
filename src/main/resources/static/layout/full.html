@@ -1,63 +1,72 @@
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<header id="topnav" class="navbar navbar-fixed-top navbar-midnightblue" role="banner">
 
-    <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
-        <div class="mdl-layout__header-row">
-            <span class="android-title mdl-layout-title ">GameMaster</span>
-            <!-- Add spacer, to align navigation to the right in desktop -->
-            <div class="android-header-spacer mdl-layout-spacer"></div>
-            <div class="android-search-box mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
-                <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
-                    <i class="material-icons">search</i>
-                </label>
-                <div class="mdl-textfield__expandable-holder">
-                    <input class="mdl-textfield__input" type="text" id="search-field">
+    <div class="logo-area">
+        <span id="trigger-sidebar" class="toolbar-trigger toolbar-icon-bg">
+			<a data-toggle="tooltips" data-placement="right" title="Toggle Sidebar">
+				<span class="icon-bg"><i class="ti ti-menu"></i></span>
+        </a>
+        </span>
+        <a class="navbar-brand" ui-sref="app.dashboard">GameMaster</a>
+    </div>
+
+    <ul class="nav navbar-nav toolbar pull-right">
+        <li class="toolbar-icon-bg hidden-xs" id="trigger-fullscreen">
+            <a class="toggle-fullscreen"><span class="icon-bg"><i class="ti ti-fullscreen"></i></span></i></a>
+        </li>
+        <li class="toolbar-icon-bg">
+            <mg-notification></mg-notification>
+        </li>
+        <li class="toolbar-icon-bg">
+            <a href="#"><span class="icon-bg"><i class="ti ti-power-off"></i></span></i></a>
+        </li>
+    </ul>
+
+</header>
+
+<div id="wrapper">
+    <div id="layout-static">
+        <div class="static-sidebar-wrapper sidebar-default sidebar-midnightblue">
+            <div class="static-sidebar">
+                <div class="sidebar">
+                    <div class="widget stay-on-collapse" id="widget-sidebar">
+                        <mg-menu></mg-menu>
+                    </div>
+                    <!--<div class="widget" id="widget-progress">
+                        <div class="widget-heading">
+                            Expérience
+                        </div>
+                        <div class="widget-body">
+                            <div class="mini-progressbar">
+                                <div class="clearfix mb-sm">
+                                    <div class="pull-left">Niveau</div>
+                                    <div class="pull-right">12</div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-lime" style="width: 50%"></div>
+                                </div>
+                            </div>
+                            <div class="mini-progressbar">
+                                <div class="clearfix mb-sm">
+                                    <div class="pull-left">Expérience</div>
+                                    <div class="pull-right">1 300 / 3000</div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-info" style="width: 25%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
                 </div>
             </div>
-            <!-- Navigation -->
-            <div class="android-navigation-container">
-                <nav class="android-navigation mdl-navigation">
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Option</a>
-                </nav>
-            </div>
-<<<<<<< Updated upstream
-            <span class="android-mobile-title mdl-layout-title">Profil</span>
-            <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect"
-                    id="more-button">
-=======
-            <a class="android-mobile-title mdl-layout-title" ui-sref='appSimple.login'>Se connecter</a>
-            <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
->>>>>>> Stashed changes
-                <i class="material-icons">more_vert</i>
-            </button>
         </div>
-    </div>
-
-    <div class="android-drawer mdl-layout__drawer">
-        <span class="mdl-layout-title">GM</span>
-        <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Option 1</a>
-            <a class="mdl-navigation__link" href="">Option 2</a>
-            <a class="mdl-navigation__link" href="">Option 3</a>
-            <div class="android-drawer-separator"></div>
-            <span class="mdl-navigation__link" href="">Autres</span>
-            <a class="mdl-navigation__link" href="">Autre 1</a>
-            <a class="mdl-navigation__link" href="">Autre 2</a>
-        </nav>
-    </div>
-
-    <div class="android-content mdl-layout__content">
-
-        <!-- Contenu de la page -->
-        <div class="container-fluid" style="margin-top: 10px">
-            <ui-view></ui-view>
-        </div>
-        <!-- Fin contenu de la page -->
-
-
-        <footer class="android-footer mdl-mega-footer">
-            <div class="mdl-mega-footer--middle-section">
-                <p class="mdl-typography--font-light">GameMaster, projet annuel M2 - Université d'Angers 2017</p>
+        <div class="static-content-wrapper">
+            <div class="static-content">
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <ui-view></ui-view>
+                    </div>
+                </div>
             </div>
-        </footer>
+        </div>
     </div>
 </div>

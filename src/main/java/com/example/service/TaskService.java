@@ -12,6 +12,8 @@ import java.util.Map;
  */
 public interface TaskService {
     TaskDTO createTask(Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
-    List<TaskDTO> listTask();
+    List<TaskDTO> listAllTask();
+    TaskDTO listTask(Long id);
     TaskDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
+    void deleteTask(Long id);
 }

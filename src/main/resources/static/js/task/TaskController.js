@@ -1,26 +1,29 @@
 /**
  * Created by Florentin NOËL on 11/05/17.
  */
-
-(function () {
+(function() {
     'use strict';
 
     /** @ngInject */
     angular.module('hello')
-        .controller('TaskController', function (TaskService) {
+        .controller('TaskController', function(TaskService) {
             var ctrl = this;
 
-            ctrl.init = function () {
+            ctrl.init = function() {
                 ctrl.task = {};
             };
 
-            ctrl.createTask = function () {
-                TaskService.createTask(ctrl.task.title).then(function (data) {
+            ctrl.createTask = function() {
+                TaskService.createTask(ctrl.task.title).then(function(data) {
                     ctrl.task = data;
                 })
             };
 
-            ctrl.updateBoard = function () {
+            ctrl.updateTask = function() {
+
+            };
+
+            ctrl.deleteTask = function() {
 
             };
 

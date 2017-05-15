@@ -7,9 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Morgane TROYSI on 10/05/17.
+ * Created by Adrien CASELLES on 11/05/17.
  */
-
 @Entity(name = "notification")
 @Table(name = "notification")
 public class Notification extends CommonEntity {
@@ -20,7 +19,8 @@ public class Notification extends CommonEntity {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "user")
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
     private User user;
 
     @Column(name = "is_read")

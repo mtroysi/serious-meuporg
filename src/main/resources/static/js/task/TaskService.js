@@ -2,24 +2,30 @@
  * Created by Florentin NOËL on 11/05/17.
  */
 
-(function () {
+(function() {
     'use strict';
 
     /** @ngInject */
     angular.module('hello')
-        .service('TaskService', function (TaskWS) {
+        .service('TaskService', function(TaskWS) {
             var svc = {};
 
-            svc.createTask = function (name) {
-                return TaskWS.createTask(name).then(function (response) {
+            svc.createTask = function(name) {
+                return TaskWS.createTask(name).then(function(response) {
                     return response.data;
-                })
+                });
             };
 
-            svc.updateTask = function (id, jsonToSend) {
-                return TaskWS.updateTask(id, jsonToSend).then(function (response) {
+            svc.updateTask = function(id, jsonToSend) {
+                return TaskWS.updateTask(id, jsonToSend).then(function(response) {
                     return response.data;
-                })
+                });
+            };
+
+            svc.deleteTask = function(id) {
+                return TaskWS.deleteTask(id).then(function(response) {
+                    return response.data;
+                });
             };
 
             return svc;
