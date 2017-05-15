@@ -8,7 +8,7 @@
         var svc = {};
 
         svc.authentification = function (email,password) {
-           return LoginWS.authentification().then(function (response) {
+           return LoginWS.createUser().then(function (response) {
                 return response.data;
             })
         };
