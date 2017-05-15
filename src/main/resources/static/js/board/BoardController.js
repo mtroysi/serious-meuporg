@@ -7,18 +7,21 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('BoardController', function(BoardService, CommonMenuService) {
+        .controller('BoardController', function(BoardService, CommonMenuService, $state, $stateParams) {
             var ctrl = this;
 
             ctrl.init = function() {
                 ctrl.board = {};
-                ctrl.board.id = 2;
+                if($stateParams.id) {
+                    ctrl.board.id = $stateParams.id;
+                }
             };
 
             ctrl.createBoard = function() {
                 BoardService.createBoard(ctrl.board.name).then(function(data) {
                     ctrl.board = data;
                     CommonMenuService.addListBoard(angular.copy(data));
+                    $state.go('app.board-preview', {id: ctrl.board.id});
                 });
             };
 
@@ -34,6 +37,7 @@
             ctrl.deleteBoard = function() {
                 BoardService.deleteBoard(ctrl.board.id).then(function() {
                     // redirection, rafraichissement de la page ?
+                    $state.go('app.dashboard');
                 })
             };
 

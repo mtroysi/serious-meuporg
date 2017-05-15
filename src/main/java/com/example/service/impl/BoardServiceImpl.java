@@ -1,7 +1,10 @@
 package com.example.service.impl;
 
-import java.util.Calendar;
+import java.util.*;
 
+import com.example.model.BoardUser;
+import com.example.model.User;
+import com.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Calendar;
-import java.util.Map;
 
 /**
  * Created by Morgane TROYSI on 11/05/17.
@@ -28,6 +30,9 @@ public class BoardServiceImpl implements BoardService {
     private BoardRepository boardRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private Transformers transformers;
 
     @Override
@@ -35,6 +40,16 @@ public class BoardServiceImpl implements BoardService {
         Board board = new Board();
         board.setName(name);
         board.setDateCreation(Calendar.getInstance().getTime());
+
+        //TODO: à remplacer par l'utilisateur connecté
+        User user = userRepository.findOne(1L);
+        board.setCreator(user);
+
+        BoardUser boardUser = new BoardUser();
+        boardUser.setBoard(board);
+        boardUser.setUser(user);
+        board.setBoardUsers(Collections.singletonList(boardUser));
+
         return (BoardDTO)transformers.convertEntityToDto(boardRepository.save(board), BoardDTO.class);
     }
 
