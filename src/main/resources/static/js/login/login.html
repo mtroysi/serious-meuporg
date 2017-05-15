@@ -1,20 +1,19 @@
 <div class="col-md-6 col-md-offset-3">
     <h2>Se connecter</h2>
     <form name="formLogin" ng-submit="loginCtrl.loginAction()" role="formLogin">
-        <div class="form-group" ng-class="{ 'has-error': form.nom.$dirty && form.nom.$error.required }">
+        <div class="form-group" ng-class="{ 'has-error': formLogin.nom.$dirty && formLogin.nom.$error.required }">
             <label for="nom">Adresse mail :</label>
-            <input type="text" name="nom" id="nom" class="form-control" ng-model="loginCtrl.credentials.email" required />
-            <span ng-show="form.nom.$dirty && form.nom.$error.required" class="help-block">Champs obligatoire</span>
+            <input type="text" name="nom" id="nom" class="form-control" ng-model="loginCtrl.credentials.email" ng-required="true" />
+            <span ng-show="formLogin.nom.$dirty && formLogin.nom.$error.required" class="help-block">Champs obligatoire</span>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.mdp.$dirty && form.mdp.$error.required }">
+        <div class="form-group" ng-class="{ 'has-error': formLogin.mdp.$dirty && formLogin.mdp.$error.required }">
             <label for="mdp">Mot de passe : </label>
-            <input type="mdp" name="mdp" id="mdp" class="form-control" ng-model="loginCtrl.credentials.password" required />
-            <span ng-show="form.mdp.$dirty && form.mdp.$error.required" class="help-block">Champs obligatoire</span>
+            <input type="password" name="mdp" id="mdp" class="form-control" ng-model="loginCtrl.credentials.password" ng-required="true" />
+            <span ng-show="formLogin.mdp.$dirty && formLogin.mdp.$error.required" class="help-block">Champs obligatoire</span>
         </div>
         <div class="form-actions">
-            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary">Connexion</button>
-            <a class="android-mobile-title mdl-layout-title" ui-sref='appSimple.singup'>S'inscrir</a>
+            <button type="submit" ng-disabled="formLogin.$invalid" class="btn btn-primary">Connexion</button>
+            <a class="android-mobile-title mdl-layout-title" ui-sref='appSimple.signup'>S'inscrire</a>
         </div>
-        
     </form>
 </div>

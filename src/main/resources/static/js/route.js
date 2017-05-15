@@ -24,6 +24,24 @@
                 controller: 'HomeController',
                 controllerAs: 'ctrl'
             })
+            .state('appSimple.login', {
+                url: '/login',
+                templateUrl: 'js/login/login.html',
+                controller: 'LoginController',
+                controllerAs: 'loginCtrl',
+                data: {
+                    requireLogin: true
+                }
+            })
+            .state('appSimple.signup', {
+                url: '/signup',
+                templateUrl: 'js/signup/signup.html',
+                controller: 'SignupController',
+                controllerAs: 'signupCtrl',
+                data: {
+                    requireLogin: true
+                }
+            })
             .state('app.dashboard', {
                 url: '/dashboard/',
                 templateUrl: 'js/dashboard/dashboard.html',
@@ -47,24 +65,6 @@
                 templateUrl: 'js/task/task-create.html',
                 controller: 'TaskController',
                 controllerAs: 'ctrl'
-            })
-            .state('appSimple.login', {
-                url: '/login',
-                templateUrl: 'js/login/login.html',
-                controller: 'loginController',
-                controllerAs: 'loginCtrl',
-                data: {
-                    requireLogin: true
-                }
-            })
-            .state('appSimple.signup', {
-                url: '/signup',
-                templateUrl: 'js/signup/signup.html',
-                controller: 'signupController',
-                controllerAs: 'signupCtrl',
-                data: {
-                    requireLogin: true
-                }
             })
             .state('app.task-show', {
                 url: '/task/{id}',

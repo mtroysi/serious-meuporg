@@ -21,9 +21,4 @@ public class UserController {
         return userService.createUser(userDTO);
     }
 
-    // return true : il peut se connecter, false sinon
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Boolean login (@RequestBody UserDTO userDTO){
-        return userService.login(userDTO);
-    }
 }
