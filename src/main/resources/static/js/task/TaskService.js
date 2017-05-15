@@ -10,8 +10,8 @@
         .service('TaskService', function (TaskWS) {
             var svc = {};
 
-            svc.createTask = function (name) {
-                return TaskWS.createTask(name).then(function (response) {
+            svc.createTask = function (newTask) {
+                return TaskWS.createTask(newTask).then(function (response) {
                     return response.data;
                 });
             };
@@ -29,5 +29,5 @@
             };
 
             return svc;
-        })
+        });
 })();

@@ -1,6 +1,7 @@
 package com.example.service.impl;
 
 import com.example.dto.TaskDTO;
+import com.example.enumeration.PriorityEnum;
 import com.example.model.Task;
 import com.example.repository.TaskRepository;
 import com.example.service.TaskService;
@@ -52,6 +53,8 @@ public class TaskServiceImpl implements TaskService {
     public TaskDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         //TODO: vérifier si l'utilisateur connecté a le droit de modification sur le tableau
         Task task = taskRepository.findOne(id);
+        BeanUtils.setProperty(task,"priority", PriorityEnum.valueOf((String) values.get("priority")));
+        values.remove("priority");
         BeanUtils.populate(task, values);
         return (TaskDTO) transformers.convertEntityToDto(taskRepository.save(task), TaskDTO.class);
     }

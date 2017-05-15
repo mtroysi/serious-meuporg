@@ -10,8 +10,9 @@
         .service('TaskWS', function ($http, constant) {
             var svc = this;
 
-            svc.createTask = function (name) {
-                return $http.post(constant.BASE_URI + '/task/create', name);
+            svc.createTask = function (newTask) {
+                console.log(newTask);
+                return $http.post(constant.BASE_URI + '/task/', newTask);
             };
 
             svc.updateTask = function (id, jsonToSend) {

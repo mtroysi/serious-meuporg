@@ -15,17 +15,10 @@
             };
 
             ctrl.createTask = function () {
-                TaskService.createTask(ctrl.task.title).then(function (data) {
+                ctrl.task.dateCreation = Date.now();
+                TaskService.createTask(ctrl.task).then(function (data) {
                     ctrl.task = data;
                 })
-            };
-
-            ctrl.updateTask = function () {
-
-            };
-
-            ctrl.deleteTask = function () {
-
             };
 
             ctrl.init();

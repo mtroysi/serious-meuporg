@@ -53,6 +53,12 @@
                 templateUrl: 'js/task/show/task-show.html',
                 controller: 'TaskShowController',
                 controllerAs: 'ctrl'
+            })
+            .state('app.task-edit', {
+                url: '/task/edit/{id}',
+                templateUrl: 'js/task/edit/task-edit.html',
+                controller: 'TaskEditController',
+                controllerAs: 'ctrl'
             });
 
         $urlRouterProvider.otherwise('/');
