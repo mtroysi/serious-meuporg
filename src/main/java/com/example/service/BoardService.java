@@ -12,7 +12,7 @@ import java.util.Map;
 
 public interface BoardService {
 
-    BoardDTO createBoard(String name);
+    BoardDTO createBoard(BoardDTO boardDTO);
 
     BoardDTO updateBoard(Long id, Map<String, Object> values) throws IllegalAccessException, InvocationTargetException;
 

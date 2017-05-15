@@ -15,7 +15,7 @@
             };
 
             ctrl.createBoard = function() {
-                BoardService.createBoard(ctrl.board.name).then(function(data) {
+                BoardService.createBoard(ctrl.board).then(function(data) {
                     ctrl.board = data;
                     CommonMenuService.addListBoard(angular.copy(data));
                     $state.go('app.board-preview', {id: ctrl.board.id});
@@ -36,6 +36,10 @@
                     // redirection, rafraichissement de la page ?
                     $state.go('app.dashboard');
                 })
+            };
+
+            ctrl.setColor = function (color) {
+                ctrl.board.color = color;
             };
 
             ctrl.init();

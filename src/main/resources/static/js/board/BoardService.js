@@ -16,8 +16,8 @@
                 });
             };
 
-            svc.createBoard = function(name) {
-                return BoardWS.createBoard(name).then(function(response) {
+            svc.createBoard = function(board) {
+                return BoardWS.createBoard(board).then(function(response) {
                     return response.data;
                 });
             };

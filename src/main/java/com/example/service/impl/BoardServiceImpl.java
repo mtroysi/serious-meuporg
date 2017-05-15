@@ -41,9 +41,10 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public BoardDTO createBoard(String name) {
+    public BoardDTO createBoard(BoardDTO boardDTO) {
         Board board = new Board();
-        board.setName(name);
+        board.setName(boardDTO.getName());
+        board.setColor(boardDTO.getColor());
         board.setDateCreation(Calendar.getInstance().getTime());
 
         //TODO: à remplacer par l'utilisateur connecté
