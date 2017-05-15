@@ -7,7 +7,7 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('TaskController', function (TaskService) {
+        .controller('TaskCreateController', function (TaskCreateService) {
             var ctrl = this;
 
             ctrl.init = function () {
@@ -16,7 +16,7 @@
 
             ctrl.createTask = function () {
                 ctrl.task.dateCreation = Date.now();
-                TaskService.createTask(ctrl.task).then(function (data) {
+                TaskCreateService.createTask(ctrl.task).then(function (data) {
                     ctrl.task = data;
                 })
             };

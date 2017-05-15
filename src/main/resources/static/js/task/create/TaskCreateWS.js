@@ -7,7 +7,7 @@
 
     /** @ngInject */
     angular.module('hello')
-        .service('TaskWS', function ($http, constant) {
+        .service('TaskCreateWS', function ($http, constant) {
             var svc = this;
 
             svc.createTask = function (newTask) {
