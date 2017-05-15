@@ -43,6 +43,11 @@ public class BoardController {
         return boardService.createBoard(name);
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public BoardDTO updateBoard(@PathVariable("id") Long id) {
+        return boardService.getBoard(id);
+    }
+
     /**
      * Return list of board by user
      * @param user_id

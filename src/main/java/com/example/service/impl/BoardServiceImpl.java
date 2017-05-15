@@ -36,6 +36,11 @@ public class BoardServiceImpl implements BoardService {
     private Transformers transformers;
 
     @Override
+    public BoardDTO getBoard(Long id) {
+        return (BoardDTO)transformers.convertEntityToDto(boardRepository.findOne(id), BoardDTO.class);
+    }
+
+    @Override
     public BoardDTO createBoard(String name) {
         Board board = new Board();
         board.setName(name);

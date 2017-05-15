@@ -17,4 +17,6 @@ public interface BoardService {
     BoardDTO updateBoard(Long id, Map<String, Object> values) throws IllegalAccessException, InvocationTargetException;
 
     void deleteBoard(Long id);
+
+    BoardDTO getBoard(Long id);
 }

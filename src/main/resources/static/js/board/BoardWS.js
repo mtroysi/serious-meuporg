@@ -10,6 +10,10 @@
         .service('BoardWS', function($http, constant) {
             var svc = this;
 
+            svc.getBoard = function(id) {
+                return $http.get(constant.BASE_URI + '/board/' + id);
+            };
+
             svc.createBoard = function(name) {
                 return $http.post(constant.BASE_URI + '/board', name);
             };

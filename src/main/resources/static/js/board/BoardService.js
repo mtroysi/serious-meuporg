@@ -10,6 +10,12 @@
         .service('BoardService', function(BoardWS) {
             var svc = {};
 
+            svc.getBoard = function(id) {
+                return BoardWS.getBoard(id).then(function(response) {
+                    return response.data;
+                });
+            };
+
             svc.createBoard = function(name) {
                 return BoardWS.createBoard(name).then(function(response) {
                     return response.data;

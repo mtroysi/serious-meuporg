@@ -12,9 +12,6 @@
 
             ctrl.init = function() {
                 ctrl.board = {};
-                if($stateParams.id) {
-                    ctrl.board.id = $stateParams.id;
-                }
             };
 
             ctrl.createBoard = function() {
