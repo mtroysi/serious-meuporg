@@ -32,6 +32,10 @@ public class TaskUser extends CommonEntity {
 
     @Column(name = "duration_reel")
     private Double durationReel;
+    
+    @ManyToOne
+    @JoinColumn(name = "colonne_kanban_id", nullable= true)
+    private ColonneKanban colonneKanban;
 
     public User getUser() {
         return user;
