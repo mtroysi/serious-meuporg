@@ -22,7 +22,8 @@
                                 <li ng-click="ctrl.setColor('primary')"><span data-style="panel-primary"></span></li>
                                 <li ng-click="ctrl.setColor('blue')"><span data-style="panel-blue"></span></li>
                                 <li ng-click="ctrl.setColor('indigo')"><span data-style="panel-indigo"></span></li>
-                                <li ng-click="ctrl.setColor('deeppurple')"><span data-style="panel-deeppurple"></span></li>
+                                <li ng-click="ctrl.setColor('deeppurple')"><span data-style="panel-deeppurple"></span>
+                                </li>
                                 <li ng-click="ctrl.setColor('purple')"><span data-style="panel-purple"></span></li>
                                 <li ng-click="ctrl.setColor('pink')"><span data-style="panel-pink"></span></li>
                                 <li ng-click="ctrl.setColor('danger')"><span data-style="panel-danger"></span></li>
@@ -33,10 +34,13 @@
                                 <li ng-click="ctrl.setColor('yellow')"><span data-style="panel-yellow"></span></li>
                                 <li ng-click="ctrl.setColor('warning')"><span data-style="panel-warning"></span></li>
                                 <li ng-click="ctrl.setColor('orange')"><span data-style="panel-orange"></span></li>
-                                <li ng-click="ctrl.setColor('deeporange')"><span data-style="panel-deeporange"></span></li>
-                                <li ng-click="ctrl.setColor('midnightblue')"><span data-style="panel-midnightblue"></span></li>
+                                <li ng-click="ctrl.setColor('deeporange')"><span data-style="panel-deeporange"></span>
+                                </li>
+                                <li ng-click="ctrl.setColor('midnightblue')"><span
+                                        data-style="panel-midnightblue"></span></li>
                                 <li ng-click="ctrl.setColor('bluegray')"><span data-style="panel-bluegray"></span></li>
-                                <li ng-click="ctrl.setColor('bluegraylight')"><span data-style="panel-bluegraylight"></span></li>
+                                <li ng-click="ctrl.setColor('bluegraylight')"><span
+                                        data-style="panel-bluegraylight"></span></li>
                                 <li ng-click="ctrl.setColor('black')"><span data-style="panel-black"></span></li>
                                 <li ng-click="ctrl.setColor('gray')"><span data-style="panel-gray"></span></li>
                                 <li ng-click="ctrl.setColor('default')"><span data-style="panel-default"></span></li>
@@ -49,14 +53,19 @@
             </div>
 
             <div class="form-group">
+                <label class="col-sm-2 control-label">Inviter des utilisateurs : </label>
+                <div class="col-sm-7">
+                    <users-input key='ctrl.users'></users-input>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="button" class="btn btn-primary" ng-click="ctrl.createBoard()">Créer</button>
                 </div>
             </div>
 
-
         </form>
-
     </div>
 </div>
 </div>

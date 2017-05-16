@@ -12,9 +12,11 @@
 
             ctrl.init = function() {
                 ctrl.board = {};
+                ctrl.users = [];
             };
 
             ctrl.createBoard = function() {
+                // console.log(ctrl.board);
                 BoardService.createBoard(ctrl.board).then(function(data) {
                     ctrl.board = data;
                     CommonMenuService.addListBoard(angular.copy(data));
@@ -28,14 +30,14 @@
                 value !== undefined ? jsonToSend[key] = value : jsonToSend[key] = '';
                 BoardService.updateBoard(ctrl.board.id, jsonToSend).then(function(data) {
                     ctrl.board = data;
-                })
+                });
             };
 
             ctrl.deleteBoard = function() {
                 BoardService.deleteBoard(ctrl.board.id).then(function() {
                     // redirection, rafraichissement de la page ?
                     $state.go('app.dashboard');
-                })
+                });
             };
 
             ctrl.setColor = function (color) {
