@@ -42,6 +42,10 @@
                 controller: 'SignupController',
                 controllerAs: 'signupCtrl'
             })
+             .state('appSimple.signin', {
+                url: '/signin',
+                controller: 'SigninController',
+            })
             .state('app.dashboard', {
                 url: '/dashboard/',
                 templateUrl: 'js/dashboard/dashboard.html',
