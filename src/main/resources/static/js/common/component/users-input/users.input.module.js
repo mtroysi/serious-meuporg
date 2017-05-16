@@ -9,8 +9,6 @@
     /** @ngInject */
     function ComponentUsersInputController(CommonUsersInputService) {
         var ctrl = this;
-        // ctrl.users = [];
-        console.log(ctrl);
 
         ctrl.loadUsers = function (query) {
             return CommonUsersInputService.loadUsers(query);
@@ -24,7 +22,7 @@
             controllerAs: 'ctrl',
             templateUrl: 'js/common/component/users-input/users.input.view.html',
             bindings: {
-                key: '='
+                users: '='
             }
         });
 })();
