@@ -2,8 +2,10 @@ package com.example.service.impl;
 
 import java.util.*;
 
+import com.example.dto.UserDTO;
 import com.example.model.BoardUser;
 import com.example.model.User;
+import com.example.repository.RoleRepository;
 import com.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,11 +35,14 @@ public class BoardServiceImpl implements BoardService {
     private UserRepository userRepository;
 
     @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
     private Transformers transformers;
 
     @Override
     public BoardDTO getBoard(Long id) {
-        return (BoardDTO)transformers.convertEntityToDto(boardRepository.findOne(id), BoardDTO.class);
+        return transformers.transformBoardToBoardDto(boardRepository.findOne(id));
     }
 
     @Override
@@ -48,15 +53,23 @@ public class BoardServiceImpl implements BoardService {
         board.setDateCreation(Calendar.getInstance().getTime());
 
         //TODO: à remplacer par l'utilisateur connecté
-        User user = userRepository.findOne(1L);
-        board.setCreator(user);
+        User creator = userRepository.findOne(1L);
+        board.setCreator(creator);
+        // On ajoute le créateur aux utilisateurs du tableau
+        boardDTO.getUsers().add((UserDTO)transformers.convertEntityToDto(creator, UserDTO.class));
 
-        BoardUser boardUser = new BoardUser();
-        boardUser.setBoard(board);
-        boardUser.setUser(user);
-        board.setBoardUsers(Collections.singletonList(boardUser));
+        boardDTO.getUsers().stream().forEach(userDTO -> {
+            if (userDTO.getId() != null) {
+                BoardUser boardUser = new BoardUser();
+                boardUser.setBoard(board);
+                //TODO: à remplacer par le rôle de l'utilisateur connecté
+                boardUser.setRole(roleRepository.findOne(1L));
+                boardUser.setUser((User) transformers.convertDtoToEntity(userDTO, User.class));
+                board.getBoardUsers().add(boardUser);
+            }
+        });
 
-        return (BoardDTO)transformers.convertEntityToDto(boardRepository.save(board), BoardDTO.class);
+        return transformers.transformBoardToBoardDto(boardRepository.save(board));
     }
 
     @Override
@@ -64,7 +77,7 @@ public class BoardServiceImpl implements BoardService {
         //TODO: vérifier si l'utilisateur connecté a le droit de modification sur le tableau
         Board board = boardRepository.findOne(id);
         BeanUtils.populate(board, values);
-        return (BoardDTO)transformers.convertEntityToDto(boardRepository.save(board), BoardDTO.class);
+        return transformers.transformBoardToBoardDto(boardRepository.save(board));
     }
 
     @Override

@@ -16,7 +16,7 @@
             };
 
             ctrl.createBoard = function() {
-                console.log(ctrl.users);
+                ctrl.board.users = angular.copy(ctrl.users);
                 BoardService.createBoard(ctrl.board).then(function(data) {
                     ctrl.board = data;
                     CommonMenuService.addListBoard(angular.copy(data));
@@ -35,7 +35,6 @@
 
             ctrl.deleteBoard = function() {
                 BoardService.deleteBoard(ctrl.board.id).then(function() {
-                    // redirection, rafraichissement de la page ?
                     $state.go('app.dashboard');
                 });
             };
