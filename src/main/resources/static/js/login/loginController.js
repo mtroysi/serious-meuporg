@@ -12,17 +12,8 @@
         };
 
         loginCtrl.loginAction = function() {
-            var user = {
-                email: loginCtrl.credentials.email,
-                password: loginCtrl.credentials.password,
-            };
+            LoginService.authentification(loginCtrl.credentials).then(function(data) { /** appel aux methodes du services */
 
-            LoginService.authentification(user).then(function(data) { /** appel aux methodes du services */
-                if (data.email) {
-                    $rootScope.currentUser = true;
-                } else {
-                    $rootScope.currentUser = false;
-                }
                 /* if ($rootScope.currentUser) {
           $location.path("/");
           loginCtrl.error = false;

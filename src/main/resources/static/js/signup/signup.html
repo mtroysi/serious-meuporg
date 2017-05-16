@@ -1,26 +1,31 @@
 <div class="col-md-6 col-md-offset-3">
-    <h2>S'inscrir</h2>
-    <form name="formSignup" ng-submit="signupCtrl.signupAction()" role="formSignup">
-        <div class="form-group" ng-class="{ 'has-error': formSignup.firstName.$dirty && formSignup.firstName.$error.required }">
-            <label for="firstName">Prénom :</label>
-            <input type="text" name="firstName" id="firstName" class="form-control" ng-model="signupCtrl.credentials.firstName" required />
-        </div>
-        <div class="form-group" ng-class="{ 'has-error': formSignup.lastName.$dirty && formSignup.lastName.$error.required }">
-            <label for="lastName">Nom : </label>
-            <input type="text" name="lastName" id="lastName" class="form-control" ng-model="signupCtrl.credentials.lastName" required />
-        </div>
-        <div class="form-group" ng-class="{ 'has-error': formSignup.email.$dirty && formSignup.email.$error.required }">
-            <label for="email">E-mail : </label>
-            <input type="text" name="email" id="email" class="form-control" ng-model="signupCtrl.credentials.email" required />
-        </div>
-        <div class="form-group" ng-class="{ 'has-error': formSignup.password.$dirty && formSignup.password.$error.required }">
-            <label for="password">Mot de passe : </label>
-            <input type="password" name="password" id="password" class="form-control" ng-model="signupCtrl.credentials.password" required />
-        </div>
-        <div class="form-actions">
-            <button type="submit" ng-disabled="formSignup.$invalid" class="btn btn-primary">Valider</button>
-            <a class="android-mobile-title mdl-layout-title" ui-sref="appSimple.login">Se connecter</a>
-        </div>
+    <div class="form-block">
+        <h2>S'inscrire</h2>
+        <form name="formSignup" ng-submit="signupCtrl.signupAction()" role="formSignup">
+            <div class="form-group" ng-class="{ 'has-error': formSignup.firstName.$dirty && formSignup.firstName.$error.required }">
+                <label for="firstName">Prénom :</label>
+                <input type="text" name="firstName" id="firstName" class="form-control" ng-model="signupCtrl.credentials.firstName" required
+                />
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': formSignup.lastName.$dirty && formSignup.lastName.$error.required }">
+                <label for="lastName">Nom : </label>
+                <input type="text" name="lastName" id="lastName" class="form-control" ng-model="signupCtrl.credentials.lastName" required
+                />
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': formSignup.email.$dirty && formSignup.email.$error.required }">
+                <label for="email">E-mail : </label>
+                <input type="text" name="email" id="email" class="form-control" ng-model="signupCtrl.credentials.email" required />
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': formSignup.password.$dirty && formSignup.password.$error.required }">
+                <label for="password">Mot de passe : </label>
+                <input type="password" name="password" id="password" class="form-control" ng-model="signupCtrl.credentials.password" required
+                />
+            </div>
+            <div class="form-actions">
+                <button type="submit" ng-disabled="formSignup.$invalid" class="btn btn-primary">Valider</button>
+                <a class="android-mobile-title mdl-layout-title" ui-sref="appSimple.login">Se connecter</a>
+            </div>
 
-    </form>
+        </form>
+    </div>
 </div>

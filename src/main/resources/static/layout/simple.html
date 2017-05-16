@@ -1,1 +1,24 @@
-<ui-view></ui-view>
+
+<div class="home-content">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fuild">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a class="navbar-brand" href="#">Game Master</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse margin-r-15">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="btn btn-default btn-sm" ui-sref="app.dashboard">Dashboard</a></li>
+                    <li><a class="btn btn-default btn-sm" ui-sref="appSimple.login">Connexion</a></li>
+                    <li><a class="btn btn-default btn-sm" ui-sref="appSimple.signup">Inscription</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <ui-view></ui-view>
+</div>
