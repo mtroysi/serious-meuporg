@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.example.enumeration.PriorityEnum;
@@ -43,17 +44,21 @@ public class Task extends CommonEntity {
 
     @Column(name = "date_end_bid")
     private Date dateEndBid;
-
+    
+    @OneToOne
+    @JoinColumn(name="periodicity_id", nullable = true)
+    private Periodicity periodicity;
+        
     @ManyToOne
     @JoinColumn(name="creator_id")
     private User creator;
 
-    @ManyToMany
-    private List<Tag> tags = new ArrayList<>();
-
     @ManyToOne
     @JoinColumn(name = "board_id")
     private Board board;
+
+    @ManyToMany
+    private List<Tag> tags = new ArrayList<>();
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<Link> links = new ArrayList<>();
@@ -69,6 +74,8 @@ public class Task extends CommonEntity {
 
     @ManyToMany
     private List<Task> taskParents = new ArrayList<>();
+ 
+
 
     public String getTitle() {
         return title;
@@ -173,4 +180,21 @@ public class Task extends CommonEntity {
     public List<Task> getTaskParents() { return taskParents; }
 
     public void setTaskParents(List<Task> taskParents) { this.taskParents = taskParents; }
+
+	public Boolean getIsBid() {
+		return isBid;
+	}
+
+	public void setIsBid(Boolean isBid) {
+		this.isBid = isBid;
+	}
+
+	public Periodicity getPeriodicity() {
+		return periodicity;
+	}
+
+	public void setPeriodicity(Periodicity periodicity) {
+		this.periodicity = periodicity;
+	}
+
 }
