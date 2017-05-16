@@ -12,6 +12,13 @@
             ctrl.init = function() {
                 ctrl.openPanelFilter = false;
                 ctrl.openPanelNewColonne = false;
+                ctrl.getBoard($stateParams.id);
+            };
+
+            ctrl.getBoard = function(id) {
+                BoardService.getBoard(id).then(function (data) {
+                    ctrl.board = data;
+                });
             };
 
             /**
@@ -19,7 +26,7 @@
              */
             ctrl.openPanelFilterAction = function(element) {
                 $(element).slideToggle(500);
-            }
+            };
 
             /**
              * Open panel Task (Kanban)
@@ -30,16 +37,15 @@
                 });
                 $timeout(function() { $('.bigPanelMatrice').fadeToggle(); }, 200);
                 ctrl.sizeKanban();
-            }
+            };
 
             ctrl.sizeKanban = function() {
                 var width = 0;
                 $('.contentKanban .columnKanban').each(function() {
-                    console.log($(this).width());
                     width += $(this).width() + 51;
                 });
                 $('.contentKanban').width(width);
-            }
+            };
 
             ctrl.init();
         });
