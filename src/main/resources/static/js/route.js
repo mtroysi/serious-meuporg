@@ -32,13 +32,13 @@
             })
             .state('appSimple.login', {
                 url: '/login',
-                templateUrl: 'js/login/login.html',
+                templateUrl: 'js/user/login/login.html',
                 controller: 'LoginController',
                 controllerAs: 'loginCtrl',
             })
             .state('appSimple.signup', {
                 url: '/signup',
-                templateUrl: 'js/signup/signup.html',
+                templateUrl: 'js/user/signup/signup.html',
                 controller: 'SignupController',
                 controllerAs: 'signupCtrl'
             })
