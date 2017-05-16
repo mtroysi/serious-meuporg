@@ -7,7 +7,6 @@
     helloApp.run(function($rootScope, $state, CommonDialogService, AuthenticationService) {
 
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams) {
-            console.log("---->", AuthenticationService.getAuthorization());
             //On regarde si il y a le parametre requireLogin
             if (toState && toState.data && typeof toState.data.requireLogin !== 'undefined') {
                 if (toState.data.requireLogin === true && !AuthenticationService.getAuthorization()) {
