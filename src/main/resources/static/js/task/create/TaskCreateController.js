@@ -7,8 +7,10 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('TaskCreateController', function (TaskCreateService) {
+        .controller('TaskCreateController', function (TaskCreateService,constant) {
             var ctrl = this;
+
+            ctrl.priority = constant.priority;
 
             ctrl.init = function () {
                 ctrl.task = {};

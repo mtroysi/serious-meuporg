@@ -7,14 +7,12 @@
 
     /** @ngInject */
     angular.module('hello')
-        .service('TaskEditWS', function ($http, constant) {
+        .service('TagCreateWS', function ($http, constant) {
             var svc = this;
 
-            svc.editTask = function (id, task) {
-                console.log(task);
-                return $http.put(constant.BASE_URI + '/task/'+id, task);
+            svc.createTag = function (newTag) {
+                return $http.post(constant.BASE_URI + '/tag/', newTag);
             };
-
 
             return svc;
         })

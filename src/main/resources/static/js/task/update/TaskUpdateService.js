@@ -7,11 +7,11 @@
 
     /** @ngInject */
     angular.module('hello')
-        .service('TaskEditService', function (TaskEditWS) {
+        .service('TaskUpdateService', function (TaskUpdateWS) {
             var svc = {};
 
-            svc.editTask = function (id, task) {
-                return TaskEditWS.editTask(id, task).then(function (response) {
+            svc.updateTask = function (id, task) {
+                return TaskUpdateWS.updateTask(id, task).then(function (response) {
                     return response.data;
                 });
             };
