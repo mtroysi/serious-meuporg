@@ -10,8 +10,12 @@
         .service('BoardWS', function($http, constant) {
             var svc = this;
 
-            svc.createBoard = function(name) {
-                return $http.post(constant.BASE_URI + '/board', name);
+            svc.getBoard = function(id) {
+                return $http.get(constant.BASE_URI + '/board/' + id);
+            };
+
+            svc.createBoard = function(board) {
+                return $http.post(constant.BASE_URI + '/board', board);
             };
 
             svc.updateBoard = function(id, jsonToSend) {
@@ -27,5 +31,5 @@
             };
 
             return svc;
-        });
+        })
 })();

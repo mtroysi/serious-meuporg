@@ -30,7 +30,7 @@ public class Board extends CommonEntity {
     private Date dateCreation;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="creator_id", nullable=false)
+    @JoinColumn(name="creator", nullable=false)
     private User creator;
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
@@ -38,6 +38,9 @@ public class Board extends CommonEntity {
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
     private List<BoardUser> boardUsers = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+    private List<ColonneKanban> colonneKanbans = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -78,4 +81,20 @@ public class Board extends CommonEntity {
     public void setCreator(User creator) {
         this.creator = creator;
     }
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public List<ColonneKanban> getColonneKanbans() {
+		return colonneKanbans;
+	}
+
+	public void setColonneKanbans(List<ColonneKanban> colonneKanbans) {
+		this.colonneKanbans = colonneKanbans;
+	}
 }

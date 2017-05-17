@@ -1,23 +1,26 @@
 /**
  * Created by Morgane TROYSI on 11/05/17.
  */
+
 (function() {
     'use strict';
 
     /** @ngInject */
     angular.module('hello')
-        .controller('BoardController', function(BoardService, CommonMenuService) {
+        .controller('BoardController', function(BoardService, CommonMenuService, $state) {
             var ctrl = this;
 
             ctrl.init = function() {
                 ctrl.board = {};
-                ctrl.board.id = 2;
+                ctrl.users = [];
             };
 
             ctrl.createBoard = function() {
-                BoardService.createBoard(ctrl.board.name).then(function(data) {
+                ctrl.board.users = angular.copy(ctrl.users);
+                BoardService.createBoard(ctrl.board).then(function(data) {
                     ctrl.board = data;
                     CommonMenuService.addListBoard(angular.copy(data));
+                    $state.go('app.board-preview', {id: ctrl.board.id});
                 });
             };
 
@@ -27,13 +30,17 @@
                 value !== undefined ? jsonToSend[key] = value : jsonToSend[key] = '';
                 BoardService.updateBoard(ctrl.board.id, jsonToSend).then(function(data) {
                     ctrl.board = data;
-                })
+                });
             };
 
             ctrl.deleteBoard = function() {
                 BoardService.deleteBoard(ctrl.board.id).then(function() {
-                    // redirection, rafraichissement de la page ?
-                })
+                    $state.go('app.dashboard');
+                });
+            };
+
+            ctrl.setColor = function (color) {
+                ctrl.board.color = color;
             };
 
             ctrl.init();

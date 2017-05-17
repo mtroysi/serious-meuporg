@@ -1,6 +1,7 @@
 /**
  * Created by Morgane TROYSI on 11/05/17.
  */
+
 (function() {
     'use strict';
 
@@ -9,8 +10,14 @@
         .service('BoardService', function(BoardWS) {
             var svc = {};
 
-            svc.createBoard = function(name) {
-                return BoardWS.createBoard(name).then(function(response) {
+            svc.getBoard = function(id) {
+                return BoardWS.getBoard(id).then(function(response) {
+                    return response.data;
+                });
+            };
+
+            svc.createBoard = function(board) {
+                return BoardWS.createBoard(board).then(function(response) {
                     return response.data;
                 });
             };

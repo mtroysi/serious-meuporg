@@ -3,7 +3,6 @@ package com.example.controller;
 import com.example.dto.TaskDTO;
 import com.example.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.logging.log4j2.Log4J2LoggingSystem;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;

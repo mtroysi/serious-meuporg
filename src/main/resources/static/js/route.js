@@ -2,7 +2,7 @@
  * Created by Morgane TROYSI on 26/04/2017.
  */
 
-(function() {
+(function () {
     'use strict';
 
     angular.module('hello').config(routerConfig);
@@ -56,25 +56,43 @@
                 url: '/board/create',
                 templateUrl: 'js/board/board-create.html',
                 controller: 'BoardController',
-                controllerAs: 'ctrl',
+                controllerAs: 'ctrl'
             })
             .state('app.board-preview', {
                 url: '/board/preview/{id}',
                 templateUrl: 'js/board/preview/board-preview.html',
                 controller: 'BoardPreviewController',
-                controllerAs: 'ctrl',
+                controllerAs: 'ctrl'
             })
             .state('app.task-create', {
                 url: '/task/create',
-                templateUrl: 'js/task/task-create.html',
-                controller: 'TaskController',
-                controllerAs: 'ctrl',
+                templateUrl: 'js/task/create/task-create.html',
+                controller: 'TaskCreateController',
+                controllerAs: 'ctrl'
             })
             .state('app.task-show', {
                 url: '/task/{id}',
                 templateUrl: 'js/task/show/task-show.html',
                 controller: 'TaskShowController',
-                controllerAs: 'ctrl',
+                controllerAs: 'ctrl'
+            })
+            .state('app.task-update', {
+                url: '/task/update/{id}',
+                templateUrl: 'js/task/update/task-update.html',
+                controller: 'TaskUpdateController',
+                controllerAs: 'ctrl'
+            })
+            .state('app.tag-create', {
+                url: '/tag/create',
+                templateUrl: 'js/tag/create/tag-create.html',
+                controller: 'TagCreateController',
+                controllerAs: 'ctrl'
+            })
+            .state('app.tag-update', {
+                url: '/tag/update/{id}',
+                templateUrl: 'js/tag/update/tag-update.html',
+                controller: 'TagUpdateController',
+                controllerAs: 'ctrl'
             });
 
         $urlRouterProvider.otherwise('/');

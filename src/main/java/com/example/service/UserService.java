@@ -1,13 +1,14 @@
 package com.example.service;
 
-
-import antlr.collections.List;
 import com.example.dto.UserDTO;
 
+import java.util.List;
+
 /**
- * Created by sara on 12/05/17.
+ * Created by Morgane TROYSI on 16/05/17.
  */
+
 public interface UserService {
     UserDTO createUser(UserDTO userDTO);
-    //List<UserDTO> listUsers();
+    List<UserDTO> loadUsers(String query);
 }

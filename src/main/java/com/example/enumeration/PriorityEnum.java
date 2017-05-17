@@ -3,10 +3,10 @@ package com.example.enumeration;
 
 public enum PriorityEnum {
 
-    URGENT_IMPORTANT("Urgent and important"),
-    URGENT_NOT_IMPORTANT("Urgent and not important"),
-    NOT_URGENT_IMPORTANT("Not urgent and important"),
-    NOT_URGENT_NOT_IMPORTANT("Not urgent and not important");
+    URGENT_IMPORTANT("Urgent et important"),
+    URGENT_NOT_IMPORTANT("Urgent et pas important"),
+    NOT_URGENT_IMPORTANT("Pas urgent et important"),
+    NOT_URGENT_NOT_IMPORTANT("Pas urgent et pas important");
 
     private String name = "";
 

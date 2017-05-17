@@ -1,31 +1,42 @@
 package com.example.service.impl;
 
-import com.example.ConstanteGameMaster;
 import com.example.dto.UserDTO;
 import com.example.model.User;
 import com.example.repository.UserRepository;
 import com.example.service.UserService;
 import com.example.transformers.Transformers;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.exception.*;
-import java.util.Calendar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by sara on 12/05/17.
+ * Created by Morgane TROYSI on 16/05/17.
  */
+
 @Service
 public class UserServiceImpl implements UserService {
-
+    
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    private Transformers transformers;
 
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private Transformers transformers;
+    @Override
+    public List<UserDTO> loadUsers(String query) {
+        List<User> users = userRepository.findByFirstNameContainingOrLastNameContaining(query, query);
+        List<UserDTO> result = new ArrayList<>();
+        for (User user : users) {
+            UserDTO userDTO = (UserDTO) transformers.convertEntityToDto(user, UserDTO.class);
+            userDTO.setFullName(user.getFirstName() + ' ' + user.getLastName());
+            result.add(userDTO);
+        }
+        return result;
+    }
 
     @Override
     public UserDTO createUser(UserDTO userDTO){

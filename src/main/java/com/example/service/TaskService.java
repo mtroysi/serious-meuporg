@@ -1,7 +1,6 @@
 package com.example.service;
 
 import com.example.dto.TaskDTO;
-import com.example.model.Task;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -16,4 +15,6 @@ public interface TaskService {
     TaskDTO listTask(Long id);
     TaskDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
     void deleteTask(Long id);
+
+    void addTagToTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
 }
