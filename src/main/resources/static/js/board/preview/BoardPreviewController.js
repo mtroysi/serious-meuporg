@@ -3,7 +3,7 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('BoardPreviewController', function($state, $stateParams, BoardService, $timeout) {
+        .controller('BoardPreviewController', function($state, $stateParams, BoardService, $timeout, CommonMenuService) {
             var ctrl = this;
 
             /**
@@ -49,6 +49,13 @@
                     width += $(this).width() + 51;
                 });
                 $('.contentKanban').width(width);
+            };
+
+            ctrl.deleteBoard = function() {
+                BoardService.deleteBoard(ctrl.board.id).then(function() {
+                    CommonMenuService.removeListBoard(ctrl.board.id);
+                    $state.go('app.dashboard');
+                });
             };
 
             ctrl.init();

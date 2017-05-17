@@ -59,14 +59,12 @@ public class BoardServiceImpl implements BoardService {
         boardDTO.getUsers().add((UserDTO)transformers.convertEntityToDto(creator, UserDTO.class));
 
         boardDTO.getUsers().stream().forEach(userDTO -> {
-            if (userDTO.getId() != null) {
-                BoardUser boardUser = new BoardUser();
-                boardUser.setBoard(board);
-                //TODO: à remplacer par le rôle de l'utilisateur connecté
-                boardUser.setRole(roleRepository.findOne(1L));
-                boardUser.setUser((User) transformers.convertDtoToEntity(userDTO, User.class));
-                board.getBoardUsers().add(boardUser);
-            }
+            BoardUser boardUser = new BoardUser();
+            boardUser.setBoard(board);
+            //TODO: à remplacer par le rôle de l'utilisateur connecté
+            boardUser.setRole(roleRepository.findOne(1L));
+            boardUser.setUser((User) transformers.convertDtoToEntity(userDTO, User.class));
+            board.getBoardUsers().add(boardUser);
         });
 
         return transformers.transformBoardToBoardDto(boardRepository.save(board));
