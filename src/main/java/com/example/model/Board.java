@@ -29,7 +29,7 @@ public class Board extends CommonEntity {
     @Column(name = "date_creation")
     private Date dateCreation;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="creator", nullable=false)
     private User creator;
 

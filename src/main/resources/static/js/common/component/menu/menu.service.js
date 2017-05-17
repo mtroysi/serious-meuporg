@@ -14,7 +14,15 @@
         };
 
         svc.addListBoard = function(element) {
+            if(!svc.listBoard) {
+                svc.listBoard = [];
+            }
             svc.listBoard.push(element);
+        };
+
+        svc.removeListBoard = function(board_id) {
+            var index = _.findIndex(svc.listBoard, {id: board_id});
+            svc.listBoard.splice(index, 1);
         };
 
         svc.initListBoard = function(elements) {

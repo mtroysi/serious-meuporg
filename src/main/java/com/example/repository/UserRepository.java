@@ -1,6 +1,7 @@
 package com.example.repository;
 
 import com.example.model.User;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +16,8 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
     User findByEmail(String email);
     User findByEmailAndPassword(String email,String password);
-    List<User> findByFirstNameContainingOrLastNameContaining(String query1, String query2);
+
+    @Query(value = "SELECT * FROM user WHERE (first_name LIKE %?1% OR last_name LIKE %?1%) AND email != ?2", nativeQuery = true)
+    List<User> findByFirstNameContainingOrLastNameContainingAndEmailNot(String query1, String mail);
 
 }

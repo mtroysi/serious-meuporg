@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.example.ConstanteGameMaster;
@@ -30,7 +31,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> loadUsers(String query) {
-        List<User> users = userRepository.findByFirstNameContainingOrLastNameContaining(query, query);
+        User currentUser = this.getCurrentUser();
+        List<User> users = userRepository.findByFirstNameContainingOrLastNameContainingAndEmailNot(query, currentUser.getEmail());
         List<UserDTO> result = new ArrayList<>();
         for (User user : users) {
             UserDTO userDTO = (UserDTO) transformers.convertEntityToDto(user, UserDTO.class);
@@ -47,11 +49,17 @@ public class UserServiceImpl implements UserService {
         if (userTest != null){
         	throw new GameMasterException(ConstanteGameMaster.SIGNUP_ERROR);
         }else{
-            // TO DO : chiffrer le password
+            // TODO : chiffrer le password
         	user.setId(null);
             user.setDateCreation(Calendar.getInstance().getTime());
             userRepository.save(user);
         }
         return (UserDTO)transformers.convertEntityToDto(user, UserDTO.class);
+    }
+
+    @Override
+    public User getCurrentUser() {
+        String mail = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return userRepository.findByEmail(mail);
     }
 }

@@ -33,12 +33,6 @@
                 });
             };
 
-            ctrl.deleteBoard = function() {
-                BoardService.deleteBoard(ctrl.board.id).then(function() {
-                    $state.go('app.dashboard');
-                });
-            };
-
             ctrl.setColor = function (color) {
                 ctrl.board.color = color;
             };

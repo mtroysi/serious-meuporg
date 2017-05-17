@@ -20,10 +20,7 @@ import com.example.transformers.Transformers;
 @Service
 public class BoardUserServiceImpl implements BoardUserService {
     @Autowired
-    BoardUserRepository boardUserRepository;
-
-    @Autowired
-    Transformers transformers;
+    private BoardUserRepository boardUserRepository;
 
     @Override
     public List<BoardWithDetailDTO> getListBoardByUserId(Long user_id) {

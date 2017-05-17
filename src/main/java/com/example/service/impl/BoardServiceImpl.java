@@ -7,6 +7,7 @@ import com.example.model.BoardUser;
 import com.example.model.User;
 import com.example.repository.RoleRepository;
 import com.example.repository.UserRepository;
+import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,7 @@ public class BoardServiceImpl implements BoardService {
     private BoardRepository boardRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
     private RoleRepository roleRepository;
@@ -52,21 +53,18 @@ public class BoardServiceImpl implements BoardService {
         board.setColor(boardDTO.getColor());
         board.setDateCreation(Calendar.getInstance().getTime());
 
-        //TODO: à remplacer par l'utilisateur connecté
-        User creator = userRepository.findOne(1L);
+        User creator = userService.getCurrentUser();
         board.setCreator(creator);
         // On ajoute le créateur aux utilisateurs du tableau
         boardDTO.getUsers().add((UserDTO)transformers.convertEntityToDto(creator, UserDTO.class));
 
         boardDTO.getUsers().stream().forEach(userDTO -> {
-            if (userDTO.getId() != null) {
-                BoardUser boardUser = new BoardUser();
-                boardUser.setBoard(board);
-                //TODO: à remplacer par le rôle de l'utilisateur connecté
-                boardUser.setRole(roleRepository.findOne(1L));
-                boardUser.setUser((User) transformers.convertDtoToEntity(userDTO, User.class));
-                board.getBoardUsers().add(boardUser);
-            }
+            BoardUser boardUser = new BoardUser();
+            boardUser.setBoard(board);
+            //TODO: à remplacer par le rôle de l'utilisateur connecté
+            boardUser.setRole(roleRepository.findOne(1L));
+            boardUser.setUser((User) transformers.convertDtoToEntity(userDTO, User.class));
+            board.getBoardUsers().add(boardUser);
         });
 
         return transformers.transformBoardToBoardDto(boardRepository.save(board));
