@@ -1,15 +1,19 @@
 package com.example.service.impl;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.ConstanteGameMaster;
 import com.example.dto.UserDTO;
+import com.example.exception.GameMasterException;
 import com.example.model.User;
 import com.example.repository.UserRepository;
 import com.example.service.UserService;
 import com.example.transformers.Transformers;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Morgane TROYSI on 16/05/17.
@@ -18,8 +22,6 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     private Transformers transformers;
 
