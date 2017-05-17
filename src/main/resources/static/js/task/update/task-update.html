@@ -6,7 +6,7 @@
             <span class="fa-plus"></span>
         </div>
     </div>
-    <form class="form-horizontal" ng-submit="ctrl.editTask()">
+    <form class="form-horizontal" ng-submit="ctrl.updateTask()">
         <div class="form-group">
             <label class="col-sm-2 control-label" for="taskTitle">Nom</label>
             <div class="col-sm-8">
@@ -35,11 +35,16 @@
                        ng-model="ctrl.task.duration"
                        placeholder="Durée"/>
             </div>
-            <label class="col-sm-1"> points d'énergie</label>
+            <label class="col-sm-1 control-label"> points d'énergie</label>
         </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-8">
-                <button type="submit" class="btn btn-primary">Modifier</button>
+        <div class="form-group btn-toolbar" role="toolbar">
+            <div class="col-sm-offset-2 col-sm-8 ">
+                <div class="btn-group" role="group">
+                    <button type="submit" class="btn btn-primary">Modifier</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-danger" ng-click="ctrl.deleteTask()">Supprimer</button>
+                </div>
             </div>
         </div>
     </form>

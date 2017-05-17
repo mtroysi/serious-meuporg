@@ -24,15 +24,15 @@ public class TagServiceImpl implements TagService {
 
 
     @Override
+    public TagDTO listTag(Long id) {
+        return (TagDTO) transformers.convertEntityToDto(tagRepository.findOne(id), TagDTO.class);
+    }
+
+    @Override
     public TagDTO createTag(Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         Tag tag = new Tag();
         BeanUtils.populate(tag,values);
         return (TagDTO) transformers.convertEntityToDto(tagRepository.save(tag), TagDTO.class);
-    }
-
-    @Override
-    public TagDTO listTag(Long id) {
-        return null;
     }
 
     @Override

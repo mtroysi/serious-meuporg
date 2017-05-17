@@ -57,13 +57,19 @@
             .state('app.task-update', {
                 url: '/task/update/{id}',
                 templateUrl: 'js/task/update/task-update.html',
-                controller: 'TaskEditController',
+                controller: 'TaskUpdateController',
                 controllerAs: 'ctrl'
             })
             .state('app.tag-create', {
                 url: '/tag/create',
                 templateUrl: 'js/tag/create/tag-create.html',
                 controller: 'TagCreateController',
+                controllerAs: 'ctrl'
+            })
+            .state('app.tag-update', {
+                url: '/tag/update/{id}',
+                templateUrl: 'js/tag/update/tag-update.html',
+                controller: 'TagUpdateController',
                 controllerAs: 'ctrl'
             });
 

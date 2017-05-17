@@ -20,8 +20,14 @@
                 });
             };
 
-            ctrl.editTask = function () {
+            ctrl.updateTask = function () {
                 TaskUpdateService.updateTask($stateParams.id, ctrl.task).then(function (data) {
+                    ctrl.task = data;
+                });
+            };
+
+            ctrl.deleteTask = function () {
+                TaskUpdateService.deleteTask($stateParams.id).then(function (data) {
                     ctrl.task = data;
                 });
             };

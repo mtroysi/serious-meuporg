@@ -7,21 +7,21 @@
 
     /** @ngInject */
     angular.module('hello')
-        .service('TaskUpdateService', function (TaskUpdateWS) {
+        .service('TagUpdateService', function (TagUpdateWS) {
             var svc = {};
 
-            svc.updateTask = function (id, task) {
-                return TaskUpdateWS.updateTask(id, task).then(function (response) {
+            svc.updateTag = function (id, tag) {
+                return TagUpdateWS.updateTask(id, tag).then(function (response) {
                     return response.data;
                 });
             };
 
-            svc.deleteTask = function (id) {
-                return TaskUpdateWS.deleteTask(id).then(function (response) {
+            svc.deleteTag = function (id) {
+                return TagUpdateWS.deleteTag(id).then(function (response) {
                     return response.data;
                 });
             };
 
             return svc;
-        })
+        });
 })();
