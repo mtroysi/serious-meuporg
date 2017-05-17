@@ -1,0 +1,11 @@
+<tags-input class="bootstrap"
+            ng-model="ctrl.users"
+            placeholder="Ajouter un utilisateur"
+            replace-spaces-with-dashes="false"
+            display-property="fullName">
+    <auto-complete source="ctrl.loadUsers($query)"
+                   min-length="0"
+                   debounce-delay="0"
+                   max-results="10">
+    </auto-complete>
+</tags-input>

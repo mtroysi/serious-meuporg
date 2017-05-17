@@ -30,7 +30,7 @@ public class Board extends CommonEntity {
     private Date dateCreation;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="creator_id", nullable=false)
+    @JoinColumn(name="creator", nullable=false)
     private User creator;
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)

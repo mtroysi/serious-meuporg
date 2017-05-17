@@ -39,8 +39,13 @@ public class BoardController {
     BoardUserService boardUserService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public BoardDTO createBoard(@RequestBody String name) {
-        return boardService.createBoard(name);
+    public BoardDTO createBoard(@RequestBody BoardDTO boardDTO) {
+        return boardService.createBoard(boardDTO);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public BoardDTO updateBoard(@PathVariable("id") Long id) {
+        return boardService.getBoard(id);
     }
 
     /**
