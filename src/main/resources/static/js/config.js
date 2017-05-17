@@ -31,7 +31,7 @@
         svc.getAuthorization = function () {
             if ($cookies.get('Authorization') === "null") {
                 return null;
-            }else{
+            } else {
                 return $cookies.get('Authorization')
             }
 
@@ -40,13 +40,13 @@
             $cookies.put('Authorization', val);
         };
         svc.getUserId = function () {
-             if ($cookies.get('user_id') === "null") {
+            if ($cookies.get('user_id') === "null") {
                 return null;
-            }else{
+            } else {
                 return $cookies.get('user_id');
             }
 
-            
+
         };
         svc.setUserId = function (val) {
             $cookies.put('user_id', val);
@@ -60,16 +60,23 @@
     });
 
     // AJout dans tous les Header l'autorisation (token de connexion)
-    helloApp.factory('AuthorizationInjector', function (AuthenticationService) {
+    helloApp.factory('AuthorizationInjector', function (AuthenticationService,CommonNotificationService,$q) {
         var sessionInjector = {
             request: function (config) {
                 if (AuthenticationService.getAuthorization()) {
                     config.headers['Authorization'] = AuthenticationService.getAuthorization();
                 }
                 return config;
+            },
+            responseError: function (response) {
+                console.log(response);
+                CommonNotificationService.error("Erreur",response.data.message);
+                return $q.reject(response.message);
             }
         };
         return sessionInjector;
+
+
     });
 
     helloApp.config(['$httpProvider', function ($httpProvider) {

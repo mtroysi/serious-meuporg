@@ -1,5 +1,6 @@
 package com.example.service.impl;
 
+import com.example.ConstanteGameMaster;
 import com.example.dto.UserDTO;
 import com.example.model.User;
 import com.example.repository.UserRepository;
@@ -9,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.example.exception.*;
 import java.util.Calendar;
 
 /**
@@ -31,7 +32,7 @@ public class UserServiceImpl implements UserService {
         User user = (User)transformers.convertDtoToEntity(userDTO, User.class);
         User userTest = userRepository.findByEmail(user.getEmail());
         if (userTest != null){
-            logger.error("utilisateur existe déja");
+        	throw new GameMasterException(ConstanteGameMaster.SIGNUP_ERROR);
         }else{
             // TO DO : chiffrer le password
         	user.setId(null);
@@ -39,17 +40,5 @@ public class UserServiceImpl implements UserService {
             userRepository.save(user);
         }
         return (UserDTO)transformers.convertEntityToDto(user, UserDTO.class);
-    }
-
-
-    @Override
-    public boolean login(UserDTO userDTO){
-        User user = (User)transformers.convertDtoToEntity(userDTO, User.class);
-        User loginTest = userRepository.findByEmailAndPassword(user.getEmail(),user.getPassword());
-        if (loginTest!=null){
-            return true;
-        }else {
-            return false;
-        }
     }
 }
