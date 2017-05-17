@@ -12,7 +12,11 @@
         };
 
         loginCtrl.loginAction = function() {
-            LoginService.authentification(loginCtrl.credentials).then(function(data) { /** appel aux methodes du services */
+            var user = {
+                email: loginCtrl.credentials.email,
+                password: loginCtrl.credentials.password,
+            };
+            LoginService.authentification(user).then(function(data) { /** appel aux methodes du services */
 
                 /* if ($rootScope.currentUser) {
           $location.path("/");

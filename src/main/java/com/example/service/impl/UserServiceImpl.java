@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
             logger.error("utilisateur existe déja");
         }else{
             // TO DO : chiffrer le password
-            user.setPassword(userDTO.getPassword());
+        	user.setId(null);
             user.setDateCreation(Calendar.getInstance().getTime());
             userRepository.save(user);
         }
