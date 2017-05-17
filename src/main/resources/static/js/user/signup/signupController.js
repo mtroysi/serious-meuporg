@@ -4,7 +4,7 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.controller('SignupController', function( $state, SignupService) {
+    helloApp.controller('SignupController', function( $state, SignupService,CommonNotificationService) {
         var signupCtrl = this;
 
         signupCtrl.init = function() { /** constructeur (pseudo objet) */
@@ -20,6 +20,7 @@
             };
             SignupService.signup(user).then(function(data) { /** appel aux methodes du services */
                 if(data!=null){
+                    CommonNotificationService.success("Information","votre compte à bien été créé");
                     $state.go('appSimple.login');
                 }
             });

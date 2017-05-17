@@ -8,8 +8,7 @@
         var signinCtrl = this;
 
         signinCtrl.init = function () { /** constructeur (pseudo objet) */
-            AuthenticationService.setUserId(null);
-            AuthenticationService.setAuthorization(null);
+            AuthenticationService.empty();
             $state.go('appSimple.home');
         };
         signinCtrl.init();

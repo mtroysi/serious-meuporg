@@ -42,7 +42,7 @@
                 controller: 'SignupController',
                 controllerAs: 'signupCtrl'
             })
-             .state('appSimple.signin', {
+             .state('app.signin', {
                 url: '/signin',
                 controller: 'SigninController',
             })
