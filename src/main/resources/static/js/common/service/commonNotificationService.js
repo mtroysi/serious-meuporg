@@ -4,26 +4,26 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.service('CommonNotificationService', function(HomeWS) {
+    helloApp.service('CommonNotificationService', function() {
         var svc = {};
 
         svc.info = function(title, message) {
-            svc.notice(title, message, 'info');
+            svc.message(title, message, 'info');
         };
 
         svc.notice = function(title, message) {
-            svc.notice(title, message, 'notice');
+            svc.message(title, message, 'notice');
         };
 
         svc.success = function(title, message) {
-            svc.notice(title, message, 'success');
+            svc.message(title, message, 'success');
         };
 
         svc.error = function(title, message) {
-            svc.notice(title, message, 'error');
+            svc.message(title, message, 'error');
         };
 
-        svc.notice = function(title, message, type) {
+        svc.message = function(title, message, type) {
             new PNotify({
                 title: title,
                 text: message,

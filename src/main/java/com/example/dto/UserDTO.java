@@ -10,6 +10,7 @@ public class UserDTO {
     private String lastName;
     private String fullName;
     private String email;
+    private String password;
     private Date dateCreation;
 
     public Long getId() {
@@ -58,5 +59,13 @@ public class UserDTO {
 
     public void setDateCreation(Date dateCreation) {
         this.dateCreation = dateCreation;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

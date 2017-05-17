@@ -12,17 +12,39 @@
         $stateProvider
             .state('app', {
                 abstract: true,
-                templateUrl: 'layout/full.html'
+                templateUrl: 'layout/full.html',
+                data: {
+                    requireLogin: true
+                }
             })
             .state('appSimple', {
                 abstract: true,
-                templateUrl: 'layout/simple.html'
+                templateUrl: 'layout/simple.html',
+                data: {
+                    requireLogin: false
+                }
             })
             .state('appSimple.home', {
                 url: '/',
                 templateUrl: 'js/home/home.html',
                 controller: 'HomeController',
                 controllerAs: 'ctrl'
+            })
+            .state('appSimple.login', {
+                url: '/login',
+                templateUrl: 'js/user/login/login.html',
+                controller: 'LoginController',
+                controllerAs: 'loginCtrl',
+            })
+            .state('appSimple.signup', {
+                url: '/signup',
+                templateUrl: 'js/user/signup/signup.html',
+                controller: 'SignupController',
+                controllerAs: 'signupCtrl'
+            })
+             .state('app.signin', {
+                url: '/signin',
+                controller: 'SigninController',
             })
             .state('app.dashboard', {
                 url: '/dashboard/',

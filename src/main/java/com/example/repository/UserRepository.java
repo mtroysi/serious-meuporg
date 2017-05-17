@@ -12,5 +12,9 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
+
+    User findByEmail(String email);
+    User findByEmailAndPassword(String email,String password);
     List<User> findByFirstNameContainingOrLastNameContaining(String query1, String query2);
+
 }

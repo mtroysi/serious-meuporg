@@ -9,7 +9,6 @@ import javax.persistence.Table;
 /**
  * Created by Adrien CASELLES on 11/05/17.
  */
-
 @Entity(name = "notification")
 @Table(name = "notification")
 public class Notification extends CommonEntity {
