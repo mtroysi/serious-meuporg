@@ -13,7 +13,7 @@
                 var header = response.headers();
                 if (header) {
                     AuthenticationService.setUserId(header.user_id);
-                    AuthenticationService.setAuthorization(header.authorization ? header.authorization.replace('Bearer ', '') : null);
+                    AuthenticationService.setAuthorization(header.authorization ? header.authorization : null);
                 }
 
                 return response.data;
