@@ -7,7 +7,7 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('TaskEditController', function (TaskShowService, TaskEditService, $stateParams, constant) {
+        .controller('TaskUpdateController', function (TaskShowService, TaskUpdateService, $stateParams, constant) {
             var ctrl = this;
 
             ctrl.priority = constant.priority;
@@ -20,8 +20,14 @@
                 });
             };
 
-            ctrl.editTask = function () {
-                TaskEditService.editTask($stateParams.id, ctrl.task).then(function (data) {
+            ctrl.updateTask = function () {
+                TaskUpdateService.updateTask($stateParams.id, ctrl.task).then(function (data) {
+                    ctrl.task = data;
+                });
+            };
+
+            ctrl.deleteTask = function () {
+                TaskUpdateService.deleteTask($stateParams.id).then(function (data) {
                     ctrl.task = data;
                 });
             };

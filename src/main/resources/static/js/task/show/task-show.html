@@ -1,5 +1,10 @@
 <div class="container-fluid" ng-cloak>
-    <h1>Détail de la quête</h1>
+    <div class="row">
+        <h1 class="inline-block">Détail de la quête</h1>
+        <div class="tags">
+            <span ng-repeat="tag in ctrl.task.tags" style="background-color: {{tag.color}}">{{tag.name}}</span>
+        </div>
+    </div>
     <div class="row">
         <b class="col-sm-3 col-sm-offset-1">Nom</b>
         <p class="col-sm-8">{{ctrl.task.title}}</p>
@@ -10,7 +15,7 @@
     </div>
     <div class="row">
         <b class="col-sm-3 col-sm-offset-1">Priorité</b>
-        <p class="col-sm-8">{{ctrl.task.priority}}</p>
+        <p class="col-sm-8">{{ctrl.priority[ctrl.task.priority]}}</p>
     </div>
     <div class="row">
         <b class="col-sm-3 col-sm-offset-1">Date de création</b>
