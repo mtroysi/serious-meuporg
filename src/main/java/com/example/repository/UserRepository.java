@@ -17,7 +17,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
     User findByEmail(String email);
     User findByEmailAndPassword(String email,String password);
 
-    @Query(value = "SELECT * FROM user WHERE first_name LIKE %?1% AND last_name LIKE %?1% AND email != ?2", nativeQuery = true)
+    @Query(value = "SELECT * FROM user WHERE (first_name LIKE %?1% OR last_name LIKE %?1%) AND email != ?2", nativeQuery = true)
     List<User> findByFirstNameContainingOrLastNameContainingAndEmailNot(String query1, String mail);
 
 }

@@ -14,7 +14,9 @@
         };
 
         svc.addListBoard = function(element) {
-            console.log(svc.listBoard);
+            if(!svc.listBoard) {
+                svc.listBoard = [];
+            }
             svc.listBoard.push(element);
         };
 
