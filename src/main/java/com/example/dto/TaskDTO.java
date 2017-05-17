@@ -17,7 +17,7 @@ public class TaskDTO {
     private Date dateCreation;
     private Double duration;
     private Boolean isBid;
-
+    
     public Long getId() {
         return id;
     }
@@ -31,8 +31,7 @@ public class TaskDTO {
     }
 
     public void setTitle(String title) {
-        this.title = title;
-    }
+        this.title = title;    }
 
     public String getContent() {
         return content;
