@@ -3,6 +3,10 @@ package com.example.security;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
+
+import com.example.ConstanteGameMaster;
+import com.example.exception.GameMasterException;
+
 import org.springframework.security.core.Authentication;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

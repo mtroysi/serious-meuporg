@@ -9,6 +9,5 @@ import com.example.dto.UserDTO;
  */
 public interface UserService {
     UserDTO createUser(UserDTO userDTO);
-    boolean login(UserDTO userDTO);
     //List<UserDTO> listUsers();
 }
