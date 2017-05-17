@@ -23,13 +23,8 @@ public class Periodicity extends CommonEntity {
 	@Column(name = "frequency")
 	private Integer frequency = 1;
 
-	/* used for monthly treatment or yearly */
-	@Column(name = "day_number")
-	private Integer dayNumber;
-	
-	/* used for yearly treatment */
-	@Column(name = "month_number")
-	private Integer monthNumber;
+	@Column(name = "date_begin")
+	private Date dateBegin;
 	
 	@Column(name = "periodicity_chain")
 	private String periodicityChain;
@@ -53,20 +48,12 @@ public class Periodicity extends CommonEntity {
 		this.frequency = frequency;
 	}
 
-	public Integer getDayNumber() {
-		return dayNumber;
+	public Date getDateBegin() {
+		return dateBegin;
 	}
 
-	public void setDayNumber(Integer dayNumber) {
-		this.dayNumber = dayNumber;
-	}
-
-	public Integer getMonthNumber() {
-		return monthNumber;
-	}
-
-	public void setMonthNumber(Integer monthNumber) {
-		this.monthNumber = monthNumber;
+	public void setDateBegin(Date dateBegin) {
+		this.dateBegin = dateBegin;
 	}
 
 	public String getPeriodicityChain() {

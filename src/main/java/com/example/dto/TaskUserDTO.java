@@ -11,13 +11,13 @@ import com.example.model.Task;
  */
 public class TaskUserDTO {
 
-	private TaskDTO task;
+	private TaskWithPeriodDTO task;
 	private UserDTO user;
 	
-	public TaskDTO getTask() {
+	public TaskWithPeriodDTO getTask() {
 		return task;
 	}
-	public void setTask(TaskDTO task) {
+	public void setTask(TaskWithPeriodDTO task) {
 		this.task = task;
 	}
 	public UserDTO getUser() {

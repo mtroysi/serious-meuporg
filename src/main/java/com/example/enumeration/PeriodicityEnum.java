@@ -4,7 +4,7 @@ public enum PeriodicityEnum {
 	
 	DAILY("Jour"),
 	MONTHLY("Mois"), 
-	ANNUAL("Année");
+	YEARLY("Année");
 
 	private final String name;
 

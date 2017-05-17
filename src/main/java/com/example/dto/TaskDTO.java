@@ -44,8 +44,7 @@ public class TaskDTO {
     }
 
     public void setTitle(String title) {
-        this.title = title;
-    }
+        this.title = title;    }
 
     public String getContent() {
         return content;

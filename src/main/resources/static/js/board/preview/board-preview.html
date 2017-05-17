@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12 titleHeader panel">
         <div class="panel-heading">
-            <h1><span class="label label-default">EQUIPE</span> {{ctrl.board.name}}</h1>
+            <h1><span class="label label-default">{{ ctrl.typeDisplayTeam == true ? "EQUIPE" : "INDIVIDUELLE" }}</span> {{ctrl.board.name}}</h1>
             <div class="panel-ctrls button-icon-bg">
                 <button class="btn btn-default-alt btn-lg"><i class="ti ti-package"></i> Vue équipe</button>
                 <button class="btn btn-default-alt btn-lg"><i class="ti ti-plus"></i> Ajouter une tâche</button>
