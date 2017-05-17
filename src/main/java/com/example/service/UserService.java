@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.dto.UserDTO;
+import com.example.model.User;
 
 import java.util.List;
 
@@ -11,4 +12,5 @@ import java.util.List;
 public interface UserService {
     UserDTO createUser(UserDTO userDTO);
     List<UserDTO> loadUsers(String query);
+    User getCurrentUser();
 }

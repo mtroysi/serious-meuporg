@@ -7,6 +7,7 @@ import com.example.model.BoardUser;
 import com.example.model.User;
 import com.example.repository.RoleRepository;
 import com.example.repository.UserRepository;
+import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,7 @@ public class BoardServiceImpl implements BoardService {
     private BoardRepository boardRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
     private RoleRepository roleRepository;
@@ -52,8 +53,7 @@ public class BoardServiceImpl implements BoardService {
         board.setColor(boardDTO.getColor());
         board.setDateCreation(Calendar.getInstance().getTime());
 
-        //TODO: à remplacer par l'utilisateur connecté
-        User creator = userRepository.findOne(1L);
+        User creator = userService.getCurrentUser();
         board.setCreator(creator);
         // On ajoute le créateur aux utilisateurs du tableau
         boardDTO.getUsers().add((UserDTO)transformers.convertEntityToDto(creator, UserDTO.class));
