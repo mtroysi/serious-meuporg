@@ -12,11 +12,15 @@
             ctrl.init = function() {
                 ctrl.openPanelFilter = false;
                 ctrl.openPanelNewColonne = false;
+                ctrl.typeDisplayTeam = false;
                 ctrl.getBoard($stateParams.id);
             };
 
+            /**
+             * WS Loard info board
+             */
             ctrl.getBoard = function(id) {
-                BoardService.getBoard(id).then(function (data) {
+                BoardService.getBoard(id).then(function(data) {
                     ctrl.board = data;
                 });
             };
