@@ -34,7 +34,6 @@ public class TaskController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public TaskDTO updateTask(@PathVariable("id") Long id, @RequestBody Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
-        System.out.println(values);
         return taskService.updateTask(id, values);
     }
 

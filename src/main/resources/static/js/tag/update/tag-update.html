@@ -1,0 +1,38 @@
+<div class="container-fluid" ng-cloak>
+    <h1>Créer un tag</h1>
+    <form class="form-horizontal" ng-submit="ctrl.createTag()">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="tagName">Nom</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control" id="tagName" placeholder="Nom"
+                       ng-model="ctrl.tag.name">
+            </div>
+            <div class="palette col-sm-1">
+                <div class="panel-ctrls button-icon-bg">
+                    <div class="btn-group dropdown">
+                            <span class="button-icon has-bg dropdown-toggle" data-style="panel-{{ctrl.tag.color}}"
+                                  data-toggle="dropdown" aria-expanded="false">
+                                <i class="ti ti-palette"></i>
+                            </span>
+                        <ul class="panel-color-list dropdown-menu arrow" role="menu">
+                            <li ng-repeat="color in ctrl.color" ng-click="ctrl.setColor(color)">
+                                <span data-style="panel-{{color}}"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group btn-toolbar" role="toolbar">
+            <div class="col-sm-offset-2 col-sm-8 ">
+                <div class="btn-group" role="group">
+                    <button type="submit" class="btn btn-primary">Modifier</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-danger" ng-click="ctrl.deleteTag()">Supprimer</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

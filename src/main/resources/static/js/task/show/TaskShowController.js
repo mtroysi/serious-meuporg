@@ -7,8 +7,9 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('TaskShowController', function (TaskShowService, $stateParams) {
+        .controller('TaskShowController', function (TaskShowService, $stateParams, constant) {
             var ctrl = this;
+            ctrl.priority = constant.priority;
 
             ctrl.init = function () {
                 ctrl.task = {};

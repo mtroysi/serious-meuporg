@@ -2,7 +2,9 @@ package com.example.service.impl;
 
 import com.example.dto.TaskDTO;
 import com.example.enumeration.PriorityEnum;
+import com.example.model.Tag;
 import com.example.model.Task;
+import com.example.repository.TagRepository;
 import com.example.repository.TaskRepository;
 import com.example.service.TaskService;
 import com.example.transformers.Transformers;
@@ -62,5 +64,16 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void deleteTask(Long id) {
         taskRepository.delete(id);
+    }
+
+    @Override
+    public void addTagToTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
+        Tag tag = new Tag();
+        BeanUtils.populate(tag,values);
+        Task task = taskRepository.findOne(id);
+        List<Tag> tagList = task.getTags();
+        tagList.add(tag);
+        task.setTags(tagList);
+        taskRepository.save(task);
     }
 }

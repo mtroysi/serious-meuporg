@@ -7,16 +7,15 @@
 
     /** @ngInject */
     angular.module('hello')
-        .service('TaskEditService', function (TaskEditWS) {
+        .service('TagCreateService', function (TagCreateWS) {
             var svc = {};
 
-            svc.editTask = function (id, task) {
-                return TaskEditWS.editTask(id, task).then(function (response) {
+            svc.createTag = function (newTag) {
+                return TagCreateWS.createTag(newTag).then(function (response) {
                     return response.data;
                 });
             };
 
-
             return svc;
-        })
+        });
 })();
