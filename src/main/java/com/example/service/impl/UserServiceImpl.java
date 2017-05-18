@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.example.ConstanteGameMaster;
+import com.example.dto.TagDTO;
 import com.example.dto.UserDTO;
 import com.example.exception.GameMasterException;
 import com.example.model.User;
@@ -60,5 +61,9 @@ public class UserServiceImpl implements UserService {
     public User getCurrentUser() {
         String mail = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return userRepository.findByEmail(mail);
+    }
+    @Override
+    public UserDTO getUser(long id){
+    	 return (UserDTO) transformers.convertEntityToDto(userRepository.findOne(id), UserDTO.class);
     }
 }

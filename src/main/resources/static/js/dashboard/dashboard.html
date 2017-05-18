@@ -1,5 +1,66 @@
 <div class="row">
     <div class="col-md-12">
-
+        <div class="row">
+            <div class="col-md-12 titleHeader panel">
+                <div class="panel-heading">
+                    <h1><span class="label label-default">Bonjour {{ctrl.user.firstName}}</span></h1>
+                    <div class="panel-ctrls button-icon-bg">
+                        <button class="btn btn-default-alt btn-lg"><i class="ti ti-settings"></i> Mes stats</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+    <div class="col-md-12 boxMatrice">
+        <div class="row">
+
+            <div class="col-md-4 panelMatrice">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Mon profil</h2>
+                    </div>
+                    <div class="panel-body scroll-pane">
+                        <div class="row scroll-content">
+                            <div class="col-md-12">
+                                <div> Nom : {{ctrl.user.firstName}} </div>
+                                <div> Prénom : {{ctrl.user.lastName}} </div>
+                                <div> E-mail : {{ctrl.user.email}} </div>
+                                <div> Date d'inscription : {{ctrl.user.dateCreation | date:'dd/MM/yyyy'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+              <div class="col-md-4 panelMatrice">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Mes tableaux</h2>
+                    </div>
+                    <div class="panel-body scroll-pane">
+                        <div class="row scroll-content">
+                            <div class="col-md-12">
+                                liste de mes tâches
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 panelMatrice">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Les tâches en enchére</h2>
+                    </div>
+                    <div class="panel-body scroll-pane">
+                        <div class="row scroll-content">
+                            <div class="col-md-12">
+                               mes tâches
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
