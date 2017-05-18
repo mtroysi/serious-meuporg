@@ -102,21 +102,14 @@ public class TaskDTO {
         this.creator = creator;
     }
 
-	public Boolean getIsBid() {
-		return isBid;
-	}
-
-	public void setIsBid(Boolean isBid) {
-		this.isBid = isBid;
-	}
-
-	public BoardDTO getBoard() {
+    public BoardDTO getBoard() {
 		return board;
 	}
 
-	public void setBoard(BoardDTO board) {
+    public void setBoard(BoardDTO board) {
 		this.board = board;
 	}
+
     public List<Tag> getTags() {
         return tags;
     }
@@ -156,4 +149,13 @@ public class TaskDTO {
     public void setTaskComments(List<CommentDTO> taskComments) {
         this.taskComments = taskComments;
     }
+
+	public Boolean getIsBid() {
+		return isBid;
+	}
+
+	public void setIsBid(Boolean isBid) {
+		this.isBid = isBid;
+	}
+
 }
