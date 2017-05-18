@@ -3,7 +3,7 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('BoardPreviewController', function($state, $stateParams, BoardService, $timeout, CommonMenuService) {
+        .controller('BoardPreviewController', function($state, $stateParams, BoardService, $timeout, CommonMenuService, TaskService, AuthenticationService) {
             var ctrl = this;
 
             /**
@@ -13,7 +13,9 @@
                 ctrl.openPanelFilter = false;
                 ctrl.openPanelNewColonne = false;
                 ctrl.typeDisplayTeam = false;
+                ctrl.listTask = [];
                 ctrl.getBoard($stateParams.id);
+                ctrl.getTaskBoard($stateParams.id, AuthenticationService.getUserId());
             };
 
             /**
@@ -23,6 +25,24 @@
                 BoardService.getBoard(id).then(function(data) {
                     ctrl.board = data;
                 });
+            };
+
+            /**
+             * WS Loard list of task by board and/or user
+             */
+            ctrl.getTaskBoard = function(board_id, user_id) {
+                // Task of the team 
+                if (ctrl.typeDisplayTeam === true) {
+                    TaskService.listTaskByBoard(board_id).then(function(fetchData) {
+                        console.log('rrrrrrr');
+                        ctrl.listTask = fetchData;
+                    });
+                } else {
+                    TaskService.listTaskByBoardAndUser(board_id, user_id).then(function(fetchData) {
+                        console.log('rrrrr22rr');
+                        ctrl.listTask = fetchData;
+                    });
+                }
             };
 
             /**
@@ -43,6 +63,9 @@
                 ctrl.sizeKanban();
             };
 
+            /**
+             * Box size management
+             */
             ctrl.sizeKanban = function() {
                 var width = 0;
                 $('.contentKanban .columnKanban').each(function() {
@@ -51,6 +74,9 @@
                 $('.contentKanban').width(width);
             };
 
+            /**
+             * Delete Board
+             */
             ctrl.deleteBoard = function() {
                 BoardService.deleteBoard(ctrl.board.id).then(function() {
                     CommonMenuService.removeListBoard(ctrl.board.id);
