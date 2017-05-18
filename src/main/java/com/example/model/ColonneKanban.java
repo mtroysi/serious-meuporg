@@ -30,10 +30,6 @@ public class ColonneKanban extends CommonEntity {
     @JoinColumn(name = "board", nullable = true)
     private Board board;
 
-    @Column(name = "is_default")
-    private Boolean isDefault;
-
-    
 	public String getTitle() {
 		return title;
 	}
@@ -64,13 +60,5 @@ public class ColonneKanban extends CommonEntity {
 
 	public void setBoard(Board board) {
 		this.board = board;
-	}
-
-	public Boolean getIsDefault() {
-		return isDefault;
-	}
-
-	public void setIsDefault(Boolean isDefault) {
-		this.isDefault = isDefault;
 	}
 }

@@ -1,0 +1,10 @@
+<div class="btn-group dropdown">
+    <span class="button-icon has-bg dropdown-toggle text-custom-{{vm.ngModel}}" data-toggle="dropdown" aria-expanded="false">
+        <i class="ti ti-palette"></i>
+    </span>
+    <ul class="panel-color-list dropdown-menu arrow" role="menu">
+        <li ng-repeat="color in vm.colors" ng-click="vm.setColor(color)">
+            <span data-style="panel-{{color}}"></span>
+        </li>
+    </ul>
+</div>
