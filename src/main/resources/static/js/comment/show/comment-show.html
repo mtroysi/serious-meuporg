@@ -1,0 +1,10 @@
+<div class="container-fluid" ng-cloak>
+    <div class="row">
+        <div>
+            <textarea ng-hide="ctrl.editing">{{ctrl.comment.content}}</textarea>
+            <span ng-click="ctrl.toggleEditatble()" class="glyphicon glyphicon-pencil"></span>
+        </div>
+        <input type="text" ng-show="ctrl.editing">{{ctrl.comment.content}}</input>
+
+    </div>
+</div>

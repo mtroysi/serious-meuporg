@@ -7,7 +7,7 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('TaskShowController', function (TagShowService, $stateParams) {
+        .controller('TagShowController', function (TagShowService, $stateParams) {
             var ctrl = this;
 
             ctrl.init = function () {

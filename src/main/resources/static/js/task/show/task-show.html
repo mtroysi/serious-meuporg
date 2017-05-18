@@ -30,4 +30,17 @@
         <p class="col-sm-8" ng-show="ctrl.task.isBid">Oui</p>
         <p class="col-sm-8" ng-hide="ctrl.task.isBid">Non</p>
     </div>
+    <div class="row">
+        <b class="col-sm-11 col-sm-offset-1">Commentaires</b>
+        <comment-div class="col-sm-11 col-sm-offset-1" ng-repeat="c in ctrl.task.taskComments"
+                     comment="c"></comment-div>
+        <div class="col-sm-10 col-sm-offset-2">
+            <form class="form-inline" ng-submit="ctrl.">
+                <div class="col-sm-5">
+                    <textarea class="form-control" style="min-width: 100%" placeholder="Ecrire un commentaire"></textarea>
+                </div>
+                <button class="form-control" type="submit" class="btn btn-primary">Envoyer</button>
+            </form>
+        </div>
+    </div>
 </div>

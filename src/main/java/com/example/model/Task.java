@@ -82,6 +82,8 @@ public class Task extends CommonEntity {
     private List<Task> taskParents = new ArrayList<>();
  
 
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+    private List<Comment> taskComments = new ArrayList<>();
 
     public String getTitle() {
         return title;
@@ -203,7 +205,14 @@ public class Task extends CommonEntity {
 		this.periodicity = periodicity;
 	}
 
-    public Long getMoney() {
+    public List<Comment> getTaskComments() {
+        return taskComments;
+    }
+
+    public void setTaskComments(List<Comment> taskComments) {
+        this.taskComments = taskComments;
+    }
+public Long getMoney() {
         return money;
     }
 

@@ -22,8 +22,15 @@ public class TaskDTO {
     private Boolean isBid;
     private Date dateEndBid;
     private Periodicity periodicity;
-    private UserDTO creator;
-    private BoardDTO board;
+    private User creator;
+    private Board board;
+    private List<Tag> tags = new ArrayList<>();
+    private List<Link> links = new ArrayList<>();
+    private List<Checklist> checklists = new ArrayList<>();
+    private List<TaskUser> taskUsers = new ArrayList<>();
+    private List<TaskUserBid> taskUserBids = new ArrayList<>();
+    private List<Task> taskParents = new ArrayList<>();
+    private List<CommentDTO> taskComments = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -104,20 +111,30 @@ public class TaskDTO {
         this.creator = creator;
     }
 
-	public Boolean getIsBid() {
-		return isBid;
-	}
-
-	public void setIsBid(Boolean isBid) {
-		this.isBid = isBid;
-	}
-
-	public BoardDTO getBoard() {
+    public BoardDTO getBoard() {
 		return board;
 	}
 
 	public void setBoard(BoardDTO board) {
 		this.board = board;
 	}
-    
-}
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public List<CommentDTO> getTaskComments() {
+        return taskComments;
+    }
+
+    public void setTaskComments(List<CommentDTO> taskComments) {
+        this.taskComments = taskComments;
+    }
+  public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+

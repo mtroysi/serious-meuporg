@@ -13,6 +13,7 @@
 
             ctrl.init = function () {
                 ctrl.task = {};
+                ctrl.comment = {};
                 ctrl.showTask($stateParams.id);
             };
 
@@ -22,6 +23,9 @@
                 });
             };
 
+            ctrl.addComment = function () {
+
+            }
 
             ctrl.init();
         })
