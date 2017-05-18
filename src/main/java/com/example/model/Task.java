@@ -80,7 +80,6 @@ public class Task extends CommonEntity {
 
     @ManyToMany
     private List<Task> taskParents = new ArrayList<>();
- 
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<Comment> taskComments = new ArrayList<>();
