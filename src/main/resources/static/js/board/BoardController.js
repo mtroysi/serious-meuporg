@@ -20,7 +20,7 @@
                 BoardService.createBoard(ctrl.board).then(function(data) {
                     ctrl.board = data;
                     CommonMenuService.addListBoard(angular.copy(data));
-                    $state.go('app.board-preview', {id: ctrl.board.id});
+                    $state.go('app.board-preview', { id: ctrl.board.id });
                 });
             };
 
@@ -31,10 +31,6 @@
                 BoardService.updateBoard(ctrl.board.id, jsonToSend).then(function(data) {
                     ctrl.board = data;
                 });
-            };
-
-            ctrl.setColor = function (color) {
-                ctrl.board.color = color;
             };
 
             ctrl.init();
