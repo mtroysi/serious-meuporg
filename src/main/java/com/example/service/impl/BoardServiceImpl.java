@@ -2,8 +2,12 @@ package com.example.service.impl;
 
 import java.util.*;
 
+import com.example.ConstanteGameMaster;
 import com.example.dto.UserDTO;
+import com.example.enumeration.RoleEnum;
+import com.example.exception.GameMasterException;
 import com.example.model.BoardUser;
+import com.example.model.Role;
 import com.example.model.User;
 import com.example.repository.RoleRepository;
 import com.example.repository.UserRepository;
@@ -53,16 +57,18 @@ public class BoardServiceImpl implements BoardService {
         board.setColor(boardDTO.getColor());
         board.setDateCreation(Calendar.getInstance().getTime());
 
+        /* Gestion du créateur/administrateur du tableau */
         User creator = userService.getCurrentUser();
         board.setCreator(creator);
-        // On ajoute le créateur aux utilisateurs du tableau
-        boardDTO.getUsers().add((UserDTO)transformers.convertEntityToDto(creator, UserDTO.class));
+        BoardUser boardUser = new BoardUser();
+        boardUser.setBoard(board);
+        boardUser.setRole(roleRepository.findByCode(RoleEnum.ADMIN));
+        boardUser.setUser(creator);
+        board.getBoardUsers().add(boardUser);
 
+        /* Gestion des utilisateurs invités */
+        boardUser.setRole(roleRepository.findByCode(RoleEnum.USER));
         boardDTO.getUsers().stream().forEach(userDTO -> {
-            BoardUser boardUser = new BoardUser();
-            boardUser.setBoard(board);
-            //TODO: à remplacer par le rôle de l'utilisateur connecté
-            boardUser.setRole(roleRepository.findOne(1L));
             boardUser.setUser((User) transformers.convertDtoToEntity(userDTO, User.class));
             board.getBoardUsers().add(boardUser);
         });
@@ -72,10 +78,13 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public BoardDTO updateBoard(Long id, Map<String, Object> values) throws IllegalAccessException, InvocationTargetException {
-        //TODO: vérifier si l'utilisateur connecté a le droit de modification sur le tableau
         Board board = boardRepository.findOne(id);
-        BeanUtils.populate(board, values);
-        return transformers.transformBoardToBoardDto(boardRepository.save(board));
+        if(board.getCreator().getId().equals(userService.getCurrentUser().getId())) {
+            BeanUtils.populate(board, values);
+            return transformers.transformBoardToBoardDto(boardRepository.save(board));
+        } else {
+            throw new GameMasterException(ConstanteGameMaster.UNAUTHORIZED_ERROR);
+        }
     }
 
     @Override

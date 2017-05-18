@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.example.enumeration.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.init.ScriptException;
 import org.springframework.transaction.annotation.Transactional;
@@ -105,14 +106,14 @@ public class CreateTestData {
 		Role role1 = new Role();
 		role1.setId(1L);
 		role1.setVersion(1);
-		role1.setCode("ADMIN");
+		role1.setCode(RoleEnum.ADMIN);
 		this.role1 = this.roleRepository.save(role1);
 		
 		
 		Role role2 = new Role();
 		role2.setId(2L);
 		role2.setVersion(1);
-		role2.setCode("USER");
+		role2.setCode(RoleEnum.USER);
 		this.role2 = this.roleRepository.save(role2);
 		
 		
