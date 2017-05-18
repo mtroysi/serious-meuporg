@@ -106,7 +106,7 @@
                 controller: 'TagUpdateController',
                 controllerAs: 'ctrl'
             })
-            .state('app.notification', {
+ 	   .state('app.notification', {
                 url: '/notification',
                 templateUrl: 'js/notification/notification.html',
                 controller: 'NotificationController',

@@ -78,14 +78,6 @@ public class TaskDTO {
         this.duration = duration;
     }
 
-    public Boolean getBid() {
-        return isBid;
-    }
-
-    public void setBid(Boolean bid) {
-        isBid = bid;
-    }
-
     public Date getDateEndBid() {
         return dateEndBid;
     }
@@ -110,14 +102,21 @@ public class TaskDTO {
         this.creator = creator;
     }
 
-    public BoardDTO getBoard() {
+	public Boolean getIsBid() {
+		return isBid;
+	}
+
+	public void setIsBid(Boolean isBid) {
+		this.isBid = isBid;
+	}
+
+	public BoardDTO getBoard() {
 		return board;
 	}
 
 	public void setBoard(BoardDTO board) {
 		this.board = board;
 	}
-
     public List<Tag> getTags() {
         return tags;
     }

@@ -15,6 +15,7 @@
             });
 
             ctrl.priority = constant.priority;
+
             ctrl.init = function () {
                 ctrl.comment = {};
             };
