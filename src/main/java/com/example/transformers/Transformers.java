@@ -33,8 +33,14 @@ public class Transformers {
         BoardDTO boardDTO = (BoardDTO)convertEntityToDto(board, BoardDTO.class);
         boardDTO.setUsers(new ArrayList<>());
         board.getBoardUsers().stream().forEach(boardUser ->
-            boardDTO.getUsers().add((UserDTO)convertEntityToDto(boardUser.getUser(), UserDTO.class))
+            boardDTO.getUsers().add(this.transformUserToUserDto(boardUser.getUser()))
         );
         return boardDTO;
+    }
+
+    public UserDTO transformUserToUserDto(User user) {
+        UserDTO userDTO = (UserDTO)convertEntityToDto(user, UserDTO.class);
+        userDTO.setFullName(user.getFirstName() + ' ' + user.getLastName());
+        return userDTO;
     }
 }

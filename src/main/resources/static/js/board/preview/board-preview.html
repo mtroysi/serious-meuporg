@@ -6,7 +6,7 @@
                 <button class="btn btn-default-alt btn-lg"><i class="ti ti-package"></i> Vue équipe</button>
                 <button class="btn btn-default-alt btn-lg"><i class="ti ti-plus"></i> Ajouter une tâche</button>
                 <button class="btn btn-default-alt btn-lg" ng-click="ctrl.openPanelFilterAction('#boxFilter')"><i class="ti ti-panel"></i> Filtre</button>
-                <button class="btn btn-default-alt btn-lg"><i class="ti ti-settings"></i> Paramètres</button>
+                <button class="btn btn-default-alt btn-lg" ui-sref="app.board-edit({ id: ctrl.board.id })"><i class="ti ti-settings"></i> Paramètres</button>
                 <button class="btn btn-default-alt btn-lg" ng-click="ctrl.deleteBoard()"><i class="ti ti-trash"></i></button>
             </div>
         </div>

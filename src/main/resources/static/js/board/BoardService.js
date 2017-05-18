@@ -28,8 +28,8 @@
                 });
             };
 
-            svc.updateBoard = function(id, jsonToSend) {
-                return BoardWS.updateBoard(id, jsonToSend).then(function(response) {
+            svc.updateBoard = function(board) {
+                return BoardWS.updateBoard(board).then(function(response) {
                     return response.data;
                 })
             };

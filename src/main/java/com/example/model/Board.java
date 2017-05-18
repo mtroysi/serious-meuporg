@@ -36,7 +36,7 @@ public class Board extends CommonEntity {
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
     private List<Task> tasks = new ArrayList<>();
 
-    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BoardUser> boardUsers = new ArrayList<>();
     
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)

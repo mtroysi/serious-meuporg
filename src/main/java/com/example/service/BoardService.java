@@ -14,7 +14,9 @@ public interface BoardService {
 
     BoardDTO createBoard(BoardDTO boardDTO);
 
-    BoardDTO updateBoard(Long id, Map<String, Object> values) throws IllegalAccessException, InvocationTargetException;
+//    BoardDTO updateBoard(Long id, Map<String, Object> values) throws IllegalAccessException, InvocationTargetException;
+
+    BoardDTO updateBoard(BoardDTO boardDTO);
 
     void deleteBoard(Long id);
 
