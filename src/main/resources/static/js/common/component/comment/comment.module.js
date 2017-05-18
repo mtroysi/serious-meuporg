@@ -7,12 +7,12 @@
     'use strict';
 
     /** @ngInject */
-    function ComponentCommentController(CommonCommentService) {
+    function ComponentCommentController() {
         var ctrl = this;
         ctrl.editable = false;
 
         ctrl.toggleEditable = function () {
-            ctrl.editable = !ctrl.editable;
+            return ctrl.editable = !ctrl.editable;
         };
     }
 
@@ -23,7 +23,8 @@
             controllerAs: 'ctrl',
             templateUrl: 'js/common/component/comment/comment.view.html',
             bindings: {
-                comment: '='
+                comment: '=',
+                deleteComment:"&"
             }
         });
 })();

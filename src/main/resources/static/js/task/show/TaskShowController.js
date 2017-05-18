@@ -7,7 +7,7 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('TaskShowController', function (TaskShowService, $stateParams, constant) {
+        .controller('TaskShowController', function (TaskShowService, $stateParams, constant, AuthenticationService) {
             var ctrl = this;
             ctrl.priority = constant.priority;
 
@@ -24,8 +24,19 @@
             };
 
             ctrl.addComment = function () {
+                ctrl.comment.dateCreation = Date.now();
+                ctrl.creator = AuthenticationService.getUserId();
+                return TaskShowService.addComment($stateParams.id, ctrl.comment, ctrl.creator).then(function (data) {
+                    ctrl.task.taskComments.push(data);
+                    ctrl.comment = {};
+                });
+            };
 
-            }
+            ctrl.deleteComment = function (idx) {
+                return TaskShowService.deleteComment(ctrl.task.taskComments[idx].id).then(function () {
+                    ctrl.task.taskComments.splice(idx,1);
+                });
+            };
 
             ctrl.init();
         })

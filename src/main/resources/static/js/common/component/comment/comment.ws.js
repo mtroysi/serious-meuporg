@@ -7,8 +7,12 @@
 
     /** @ngInject */
     angular.module('hello')
-        .service('CommonCommentWS', function($http) {
+        .service('CommonCommentWS', function($http, constant) {
             var svc = this;
+
+            svc.deleteComment = function(id) {
+                return $http.delete(constant.BASE_URI + '/comment/'+id);
+            };
 
             return svc;
         })

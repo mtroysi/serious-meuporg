@@ -10,6 +10,6 @@ import java.util.Map;
  */
 public interface CommentService {
 
-    CommentDTO addCommentToTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
-
+    CommentDTO addCommentToTask(Long id, Map<String, Object> values, Long idUser) throws InvocationTargetException, IllegalAccessException;
+    void deleteComment(Long id);
 }

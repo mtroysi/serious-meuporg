@@ -48,7 +48,10 @@ public class TaskController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public CommentDTO addCommentToTask(@PathVariable("id") Long id, @RequestBody Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
-        return commentService.addCommentToTask(id, values);
+    public CommentDTO addCommentToTask(@PathVariable("id") Long id, @RequestBody Map<String, Object> comment) throws InvocationTargetException, IllegalAccessException {
+        Long idUser = Long.parseLong((String) comment.get("creator"));
+        System.out.println(idUser);
+        comment.remove("creator");
+        return commentService.addCommentToTask(id, comment, idUser);
     }
 }

@@ -16,6 +16,19 @@
                 });
             };
 
+            svc.addComment = function (id, comment, creator) {
+                comment.creator = creator;
+                return TaskShowWS.addComment(id, comment).then(function (response) {
+                    return response.data;
+                });
+            };
+
+            svc.deleteComment = function (id) {
+                return TaskShowWS.deleteComment(id).then(function (response) {
+                    return response.data;
+                });
+            };
+
 
             return svc;
         })

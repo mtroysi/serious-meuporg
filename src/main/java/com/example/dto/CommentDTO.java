@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public class CommentDTO {
     private Long id;
-    private User creator;
+    private UserDTO creator;
     private String content;
     private Date dateCreation;
 
@@ -21,11 +21,11 @@ public class CommentDTO {
         this.id = id;
     }
 
-    public User getCreator() {
+    public UserDTO getCreator() {
         return creator;
     }
 
-    public void setCreator(User creator) {
+    public void setCreator(UserDTO creator) {
         this.creator = creator;
     }
 
