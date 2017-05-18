@@ -47,12 +47,11 @@
                     </div>
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content">
-                            <div class="col-md-4" ng-repeat="n in [1,2,3,4,5,6,7,8,9,10,11,12,13,14]">
+                            <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'URGENT_IMPORTANT' }}:true">
                                 <div class="info-tile tile-success tile-perso">
-                                    <div class="tile-heading"><span>Revenues zae eazeazeaz eazeaze  </span></div>
+                                    <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
-                                        <span class="pull-left strong"><i class="ti ti-check-box"></i> <i class="ti ti-comment"></i> <i class="ti ti-clip"></i></span>
-                                        <span class="strong">10/06/2016</span>
+                                        <span class="strong">{{ n.task.dateBeginTask | date:'dd/MM/yyyy'  }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -64,12 +63,20 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>Urgent / Pas Important</h2>
-                        <div class="panel-ctrls button-icon-bg" ng-click="ctrl.zoomTask('URGENT_PASIMPORTANT')">
+                        <div class="panel-ctrls button-icon-bg" ng-click="ctrl.zoomTask('URGENT_NOT_IMPORTANT')">
                             <span class="button-icon has-bg"><i class="ti ti-fullscreen"></i></span>
                         </div>
                     </div>
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content">
+                            <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'URGENT_NOT_IMPORTANT'}}:true">
+                                <div class="info-tile tile-success tile-perso">
+                                    <div class="tile-heading"><span>{{ n.task.title }}</span></div>
+                                    <div class="tile-footer">
+                                        <span class="strong">{{ n.task.dateBeginTask | date:'dd/MM/yyyy'  }}</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,12 +87,20 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>Pas Urgent / Important</h2>
-                        <div class="panel-ctrls button-icon-bg" ng-click="ctrl.zoomTask('PASURGENT_IMPORTANT')">
+                        <div class="panel-ctrls button-icon-bg" ng-click="ctrl.zoomTask('NOT_URGENT_IMPORTANT')">
                             <span class="button-icon has-bg"><i class="ti ti-fullscreen"></i></span>
                         </div>
                     </div>
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content">
+                            <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'NOT_URGENT_IMPORTANT'}}:true">
+                                <div class="info-tile tile-success tile-perso">
+                                    <div class="tile-heading"><span>{{ n.task.title }}</span></div>
+                                    <div class="tile-footer">
+                                        <span class="strong">{{ n.task.dateBeginTask | date:'dd/MM/yyyy'  }}</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -94,12 +109,20 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>Pas Urgent / Pas Important</h2>
-                        <div class="panel-ctrls button-icon-bg" ng-click="ctrl.zoomTask('PASURGENT_PASIMPORTANT')">
+                        <div class="panel-ctrls button-icon-bg" ng-click="ctrl.zoomTask('NOT_URGENT_NOT_IMPORTANT')">
                             <span class="button-icon has-bg"><i class="ti ti-fullscreen"></i></span>
                         </div>
                     </div>
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content">
+                            <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'NOT_URGENT_NOT_IMPORTANT'}}:true">
+                                <div class="info-tile tile-success tile-perso">
+                                    <div class="tile-heading"><span>{{ n.task.title }}</span></div>
+                                    <div class="tile-footer">
+                                        <span class="strong">{{ n.task.dateBeginTask | date:'dd/MM/yyyy'  }}</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -171,3 +194,10 @@
                                     </li>
                                 </ul>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

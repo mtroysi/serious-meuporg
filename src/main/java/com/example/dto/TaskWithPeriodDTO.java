@@ -4,10 +4,21 @@ import java.util.Date;
 
 import com.example.enumeration.PriorityEnum;
 import com.example.enumeration.StatusEnum;
+import com.example.model.Board;
+import com.example.model.Periodicity;
+import com.example.model.User;
 
 
-public class TaskWithPeriodDTO extends TaskDTO {
+public class TaskWithPeriodDTO{
 	
+	private Long id;
+    private String title;
+    private String content;
+    private PriorityEnum priority;
+    private Date dateCreation;
+    private Double duration;
+    private Boolean isBid;
+    private Date dateEndBid;
     private StatusEnum status;
     private Double durationReel;
     private Date dateBegin;
@@ -71,6 +82,78 @@ public class TaskWithPeriodDTO extends TaskDTO {
 
 	public void setIsPeriodicity(Boolean isPeriodicity) {
 		this.isPeriodicity = isPeriodicity;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public PriorityEnum getPriority() {
+		return priority;
+	}
+
+	public void setPriority(PriorityEnum priority) {
+		this.priority = priority;
+	}
+
+	public Date getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+
+	public Double getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Double duration) {
+		this.duration = duration;
+	}
+
+	public Boolean getIsBid() {
+		return isBid;
+	}
+
+	public void setIsBid(Boolean isBid) {
+		this.isBid = isBid;
+	}
+
+	public Date getDateEndBid() {
+		return dateEndBid;
+	}
+
+	public void setDateEndBid(Date dateEndBid) {
+		this.dateEndBid = dateEndBid;
+	}
+
+	public PeriodicityDTO getPeriodicity() {
+		return periodicity;
+	}
+
+	public void setPeriodicity(PeriodicityDTO periodicity) {
+		this.periodicity = periodicity;
 	}
 	
 }

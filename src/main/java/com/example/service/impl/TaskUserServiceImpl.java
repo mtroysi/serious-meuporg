@@ -56,7 +56,7 @@ public class TaskUserServiceImpl implements TaskUserService {
 				dateBeginPeriodicity.setTime(period.getDateBegin());
 				
 				Calendar dateBegin = new GregorianCalendar();
-				dateBegin.setTime(period.getPeriodicityDateUpdate() != null ? period.getPeriodicityDateUpdate() : taskWithPeriod.getDateBegin());
+				dateBegin.setTime(new Date());
 				
 				Calendar dateEnd = new GregorianCalendar();
 				dateEnd.setTime(taskWithPeriod.getDateEnd());
@@ -68,63 +68,57 @@ public class TaskUserServiceImpl implements TaskUserService {
 				
 				
 				Boolean test = Boolean.FALSE;
-				System.out.println("---->>>>>>>>>>>>>>>>>>>>>>>>>>>>>><" + taskWithPeriod.getId());
 				do {
-					/*System.out.println("--------------");
-					System.out.println("dateBegin -" + dateBegin.getTime().toString());
-					System.out.println("dateBeginPeriodicity -" + dateBeginPeriodicity.getTime().toString());
-					System.out.println("getDateEnd -" + dateEnd.getTime().toString());
-					System.out.println("if -" + dateBegin.after(dateBeginPeriodicity));*/
-					
 					if(dateBegin.before(dateBeginPeriodicity) && (period.getPeriodicityDateUpdate() == null || (period.getPeriodicityDateUpdate() != null && dateUpdatePeriodicity.before(dateBeginPeriodicity)))){
 						test = Boolean.TRUE;
 					}
 					else{
-						this.addPeriodicityDate(dateBeginPeriodicity, period);
+						this.addPeriodicityDate(dateBeginPeriodicity, period, 1);
 					}
-					/*System.out.println("dateBegin -" + dateBegin.getTime().toString());
-					System.out.println("while 1 -" + dateBegin.before(dateBeginPeriodicity));
-					System.out.println("while 2 -" + !test);
-					System.out.println("------------");*/
 					
 				} while ( dateBeginPeriodicity.before(dateEnd) && !test);
 				
+				// SI la dateBeginPeriodicity est avant la date de fin alors en prend la date de la premiere occurence (pour la date de fin)
+				// et la date de -1 occurrence pour la date de debut
 				if(dateBeginPeriodicity.before(dateEnd)){
+					taskWithPeriod.setDateEndTask((Date) dateBeginPeriodicity.getTime().clone());
+					this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
 					taskWithPeriod.setDateBeginTask(dateBeginPeriodicity.getTime());
-					taskWithPeriod.setDateEndTask(taskWithPeriod.getDateEnd());
 					taskUserDTO.setTask(taskWithPeriod);
 				}else{
-					taskUserDTO = null;
+					// SI la dateBeginPeriodicity est avant la date de fin alors en prend la date de l'occurence -1 (pour la date de fin)
+					// et la date de -2 occurrence pour la date de debut
+					this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
+					taskWithPeriod.setDateEndTask((Date) dateBeginPeriodicity.getTime().clone());
+					this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
+					taskWithPeriod.setDateBeginTask(dateBeginPeriodicity.getTime());
+					taskUserDTO.setTask(taskWithPeriod);
 				}
+				
+				// Test sur les valeurs de la tasks, on va remettre le statut a TODO pour chaque nouvelle occurence de la periodicity.
 				
 			}
 			
-
-			System.out.println("DEBUT  -" + taskWithPeriod.getTitle());
-			System.out.println("DEBUT TASK -" + taskWithPeriod.getDateBeginTask().toString());
-			System.out.println("DEBUT  -" + taskWithPeriod.getDateBegin().toString());
-			System.out.println("FIN TASK -" + taskWithPeriod.getDateEnd().toString());
-			System.out.println("**************************************" + taskWithPeriod.getId());
-				
+			
+			
 			return taskUserDTO;
 		})
 		.filter((TaskUserDTO tud) -> tud != null).collect(Collectors.toList());
 	}
 	
 	
-	private void addPeriodicityDate(Calendar date, Periodicity periodicity){
+	private void addPeriodicityDate(Calendar date, Periodicity periodicity, int negativeFrequence){
 		
 		switch(periodicity.getType()){
 		case DAILY:
-			date.add(Calendar.DAY_OF_YEAR, periodicity.getFrequency());
+			date.add(Calendar.DAY_OF_YEAR, periodicity.getFrequency() * negativeFrequence);
 			break;
 		case MONTHLY:
-			date.add(Calendar.MONTH, periodicity.getFrequency());
+			date.add(Calendar.MONTH, periodicity.getFrequency() * negativeFrequence);
 			break;		
 		case YEARLY:
-			date.add(Calendar.YEAR, periodicity.getFrequency());
+			date.add(Calendar.YEAR, periodicity.getFrequency() * negativeFrequence);
 			break;		
 		}	
 	}
-   
 }

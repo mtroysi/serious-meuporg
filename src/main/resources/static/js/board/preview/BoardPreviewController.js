@@ -14,6 +14,7 @@
                 ctrl.openPanelNewColonne = false;
                 ctrl.typeDisplayTeam = false;
                 ctrl.listTask = [];
+                ctrl.listTaskDefault = [];
                 ctrl.getBoard($stateParams.id);
                 ctrl.getTaskBoard($stateParams.id, AuthenticationService.getUserId());
             };
@@ -34,13 +35,13 @@
                 // Task of the team 
                 if (ctrl.typeDisplayTeam === true) {
                     TaskService.listTaskByBoard(board_id).then(function(fetchData) {
-                        console.log('rrrrrrr');
-                        ctrl.listTask = fetchData;
+                        ctrl.listTaskDefault = angular.copy(fetchData);
+                        ctrl.listTask = angular.copy(fetchData);
                     });
                 } else {
                     TaskService.listTaskByBoardAndUser(board_id, user_id).then(function(fetchData) {
-                        console.log('rrrrr22rr');
-                        ctrl.listTask = fetchData;
+                        ctrl.listTaskDefault = angular.copy(fetchData);
+                        ctrl.listTask = angular.copy(fetchData);
                     });
                 }
             };
