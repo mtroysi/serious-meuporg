@@ -3,7 +3,7 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('BoardPreviewController', function($state, $stateParams, BoardService, $timeout, CommonMenuService, TaskService, AuthenticationService) {
+        .controller('BoardPreviewController', function($scope, $state, $stateParams, BoardService, $timeout, CommonMenuService, TaskService, AuthenticationService) {
             var ctrl = this;
 
             /**
@@ -15,8 +15,15 @@
                 ctrl.typeDisplayTeam = false;
                 ctrl.listTask = [];
                 ctrl.listTaskDefault = [];
+                ctrl.filter = { type: 'TOUT' };
                 ctrl.getBoard($stateParams.id);
                 ctrl.getTaskBoard($stateParams.id, AuthenticationService.getUserId());
+
+                $scope.$watch('this.ctrl.filter.type', function() {
+                    ctrl.listTask = ctrl.listTaskDefault.filter(function(e) {
+                        return e.task.status == ctrl.filter.type;
+                    });
+                });
             };
 
             /**
@@ -44,6 +51,16 @@
                         ctrl.listTask = angular.copy(fetchData);
                     });
                 }
+            };
+
+            /**
+             * VIew TEAM Or INDIVIDUELLE
+             */
+            ctrl.changeView = function() {
+                ctrl.typeDisplayTeam = !ctrl.typeDisplayTeam;
+                ctrl.listTask = [];
+                ctrl.listTaskDefault = [];
+                ctrl.getTaskBoard($stateParams.id, AuthenticationService.getUserId());
             };
 
             /**
