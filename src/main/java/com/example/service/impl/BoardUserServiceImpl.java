@@ -29,7 +29,7 @@ public class BoardUserServiceImpl implements BoardUserService {
 
         return list.stream()
                 .sorted(Comparator.comparing(board -> board.getBoard().getDateCreation()))
-                .map((BoardUser board) -> new BoardWithDetailDTO(board.getBoard().getId(), board.getBoard().getName(), board.getRole().getCode()))
+                .map((BoardUser board) -> new BoardWithDetailDTO(board.getBoard().getId(), board.getBoard().getName(), board.getRole().getCode().toString()))
                 .collect(Collectors.toList());
     }
 }

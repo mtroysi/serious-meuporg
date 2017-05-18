@@ -1,8 +1,8 @@
 package com.example.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.example.enumeration.RoleEnum;
+
+import javax.persistence.*;
 
 /**
  * Created by Morgane TROYSI on 10/05/17.
@@ -13,13 +13,14 @@ import javax.persistence.Table;
 public class Role extends CommonEntity {
 
     @Column(name = "code")
-    private String code;
+    @Enumerated(EnumType.STRING)
+    private RoleEnum code;
 
-    public String getCode() {
+    public RoleEnum getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(RoleEnum code) {
         this.code = code;
     }
 }

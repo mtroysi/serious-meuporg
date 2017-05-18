@@ -10,6 +10,7 @@ public class BoardDTO {
     private Long id;
     private String name;
     private String color;
+    private UserDTO creator;
     private List<UserDTO> users = new ArrayList<>();
 
     public Long getId() {
@@ -42,5 +43,13 @@ public class BoardDTO {
 
     public void setUsers(List<UserDTO> users) {
         this.users = users;
+    }
+
+    public UserDTO getCreator() {
+        return creator;
+    }
+
+    public void setCreator(UserDTO creator) {
+        this.creator = creator;
     }
 }

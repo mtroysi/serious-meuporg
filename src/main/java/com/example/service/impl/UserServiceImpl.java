@@ -35,8 +35,7 @@ public class UserServiceImpl implements UserService {
         List<User> users = userRepository.findByFirstNameContainingOrLastNameContainingAndEmailNot(query, currentUser.getEmail());
         List<UserDTO> result = new ArrayList<>();
         for (User user : users) {
-            UserDTO userDTO = (UserDTO) transformers.convertEntityToDto(user, UserDTO.class);
-            userDTO.setFullName(user.getFirstName() + ' ' + user.getLastName());
+            UserDTO userDTO = transformers.transformUserToUserDto(user);
             result.add(userDTO);
         }
         return result;

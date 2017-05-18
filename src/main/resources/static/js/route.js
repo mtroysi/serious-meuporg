@@ -34,7 +34,7 @@
                 url: '/login',
                 templateUrl: 'js/user/login/login.html',
                 controller: 'LoginController',
-                controllerAs: 'loginCtrl',
+                controllerAs: 'loginCtrl'
             })
             .state('appSimple.signup', {
                 url: '/signup',
@@ -44,7 +44,7 @@
             })
              .state('app.signin', {
                 url: '/signin',
-                controller: 'SigninController',
+                controller: 'SigninController'
             })
             .state('app.dashboard', {
                 url: '/dashboard/',
@@ -55,6 +55,12 @@
             .state('app.board-create', {
                 url: '/board/create',
                 templateUrl: 'js/board/board-create.html',
+                controller: 'BoardController',
+                controllerAs: 'ctrl'
+            })
+            .state('app.board-edit', {
+                url: '/board/edit/{id}',
+                templateUrl: 'js/board/board-edit.html',
                 controller: 'BoardController',
                 controllerAs: 'ctrl'
             })

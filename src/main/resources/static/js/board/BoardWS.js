@@ -18,8 +18,8 @@
                 return $http.post(constant.BASE_URI + '/board', board);
             };
 
-            svc.updateBoard = function(id, jsonToSend) {
-                return $http.put(constant.BASE_URI + '/board/' + id, jsonToSend);
+            svc.updateBoard = function(boardDto) {
+                return $http.put(constant.BASE_URI + '/board/', boardDto);
             };
 
             svc.deleteBoard = function(id) {
