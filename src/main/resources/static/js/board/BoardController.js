@@ -11,11 +11,10 @@
             var ctrl = this;
 
             ctrl.init = function() {
-                if(!$stateParams.id) {
+                if (!$stateParams.id) {
                     ctrl.board = {};
                     ctrl.board.users = [];
-                }
-                else {
+                } else {
                     BoardService.getBoard($stateParams.id).then(function(data) {
                         ctrl.board = data;
                         //On ne veut pas que le créateur(= admin) du tableau n'apparaisse dans les utilisateurs invités.
@@ -47,7 +46,8 @@
 
             ctrl.updateBoard = function() {
                 BoardService.updateBoard(ctrl.board).then(function(data) {
-                    $state.go('app.board-preview', {id: data.id});
+                    CommonMenuService.updateElementListBoard(angular.copy(ctrl.board));
+                    $state.go('app.board-preview', { id: data.id });
                 });
             };
 
