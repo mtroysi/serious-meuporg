@@ -3,8 +3,9 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('BoardPreviewController', function($state, $stateParams, BoardService, $timeout, CommonMenuService) {
+        .controller('BoardPreviewController', function(AuthenticationService, $state, $stateParams, BoardService, $timeout, CommonMenuService) {
             var ctrl = this;
+            ctrl.isAdmin = false;
 
             /**
              * Constructor
@@ -16,14 +17,20 @@
                 ctrl.getBoard($stateParams.id);
             };
 
+            function typeOf (obj) {
+                return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
+            }
+
             /**
              * WS Loard info board
              */
             ctrl.getBoard = function(id) {
                 BoardService.getBoard(id).then(function(data) {
                     ctrl.board = data;
+                    ctrl.isAdmin = (Number(AuthenticationService.getUserId()) === ctrl.board.creator.id);
                 });
             };
+
 
             /**
              * Open panel FILTER
