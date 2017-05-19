@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface ColonneKanbanService {
 
-	ColonneKanbanDTO createColonneKanban(ColonneKanbanDTO colonneKanbanDTO);
+	ColonneKanbanDTO createColonneKanban(ColonneKanbanDTO colonneKanbanDTO, Long boardId);
 
 	ColonneKanbanDTO updateColonneKanban(Long id, Map<String, Object> values) throws IllegalAccessException, InvocationTargetException;
 

@@ -22,6 +22,7 @@ import com.example.dto.BoardWithDetailDTO;
 import com.example.dto.ColonneKanbanDTO;
 import com.example.service.BoardService;
 import com.example.service.BoardUserService;
+import com.example.service.ColonneKanbanService;
 
 /**
  * Created by Morgane TROYSI on 11/05/17.
@@ -38,15 +39,17 @@ public class ColonneKanbanController {
 
     
     /**
-     * Return list of board by user
+     * Update colonne Kanban
      * @param user_id
      * @return list of BoardWithDetailDTO
+     * @throws InvocationTargetException 
+     * @throws IllegalAccessException 
      */
     @RequestMapping(value = "/{kanban_id}", method = RequestMethod.PUT)
-    public ResponseEntity<ColonneKanbanDTO> editColonneKanban(@PathVariable(value = "kanban_id") Long kanban_id, @RequestBody Map<String, Object> values) {
+    public ResponseEntity<ColonneKanbanDTO> editColonneKanban(@PathVariable(value = "kanban_id") Long kanban_id, @RequestBody Map<String, Object> values) throws IllegalAccessException, InvocationTargetException {
         logger.info("Calling ColonneKanbanController.editColonneKanban with {}", kanban_id);
 
-       ColonneKanbanDTO colonne = colonneKanbanService.update(user_id);
+        Return list of board by user  ColonneKanbanDTO colonne = colonneKanbanService.updateColonneKanban(kanban_id, values);
 
         if (colonne == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -54,7 +57,26 @@ public class ColonneKanbanController {
 
         return new ResponseEntity<>(colonne, HttpStatus.OK);
     }
+    
+    /**
+     * Create colonne Kanban for boardId
+     * @param user_id
+     * @return list of BoardWithDetailDTO
+     * @throws InvocationTargetException 
+     * @throws IllegalAccessException 
+     */
+    @RequestMapping(value = "/board/{board_id}", method = RequestMethod.POST)
+    public ResponseEntity<ColonneKanbanDTO> createColonneKanban(@PathVariable(value = "board_id") Long board_id, @RequestBody ColonneKanbanDTO colonneKanbanDTO) throws IllegalAccessException, InvocationTargetException {
+        logger.info("Calling ColonneKanbanController.createColonneKanban with {}", board_id);
 
+        ColonneKanbanDTO colonne = colonneKanbanService.createColonneKanban(colonneKanbanDTO, board_id);
+
+        if (colonne == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(colonne, HttpStatus.OK);
+    }
 
 
 }

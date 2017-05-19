@@ -32,15 +32,19 @@ public class ColonneKanbanServiceImpl implements ColonneKanbanService {
 	
     @Autowired
     private ColonneKanbanRepository colonneKanbanRepository;
+    
+    @Autowired
+    private BoardRepository boardRepository;
 
     @Autowired
     private Transformers transformers;
 
     
 	@Override
-	public ColonneKanbanDTO createColonneKanban(ColonneKanbanDTO colonneKanbanDTO) {
+	public ColonneKanbanDTO createColonneKanban(ColonneKanbanDTO colonneKanbanDTO, Long boardId) {
 		ColonneKanban ck;
 		ck = (ColonneKanban)transformers.convertDtoToEntity(colonneKanbanDTO, ColonneKanban.class);
+		ck.setBoard(boardRepository.findOne(boardId));
         return (ColonneKanbanDTO) transformers.convertEntityToDto(colonneKanbanRepository.save(ck), ColonneKanbanDTO.class);
 	}
 
