@@ -1,29 +1,24 @@
 (function() {
     'use strict';
 
-    function ComponentColorPickerController(constant) {
-        var ctrl = this;
-
-        // Constructor
-        ctrl.init = function() {
-            ctrl.colors = constant.color;
-        };
-
-        ctrl.setColor = function(color) {
-            ctrl.ngModel = color;
-        };
-
-        ctrl.init();
-    }
-
-
     angular.module('hello')
-        .component('colorPicker', {
-            controller: ComponentColorPickerController,
-            controllerAs: 'vm',
-            templateUrl: 'js/common/component/color-picker/color-picker.view.html',
-            bindings: {
-                ngModel: '='
-            }
+        .directive("colorPicker", function(constant) {
+            return {
+                restrict: "E",
+                controllerAs: 'ctrl',
+                templateUrl: 'js/common/component/color-picker/color-picker.view.html',
+                require: 'ngModel',
+                scope: {
+                    ngModel: '=',
+                },
+                link: function($scope, element, attrs, ngModel) {
+
+                    $scope.colors = constant.color;
+
+                    $scope.setColor = function(color) {
+                        ngModel.$setViewValue(color);
+                    };
+                }
+            };
         });
 })();

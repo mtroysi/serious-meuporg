@@ -159,7 +159,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <div class="panel-ctrls button-icon-bg">
-                                                <color-picker ng-model="colonne.color"></color-picker>
+                                                <color-picker ng-model="colonne.color" ng-change="ctrl.setColor(colonne);"></color-picker>
                                                 <span class="button-icon has-bg" ng-click="ctrl.editColonneAction(colonne)">
                                                     <i class="ti ti-pencil"></i>
                                                 </span>

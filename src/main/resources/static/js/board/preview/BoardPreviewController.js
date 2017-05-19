@@ -109,6 +109,16 @@
                 ctrl.editColonne = angular.copy(colonne);
             };
 
+
+            /**
+             * Edit color Colonne
+             */
+            ctrl.setColor = function(colonne) {
+                ctrl.editColonne = colonne;
+                ctrl.saveEditColonne();
+            }
+
+
             /**
              * Save new column Kanban
              */
