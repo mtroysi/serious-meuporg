@@ -6,7 +6,7 @@
         <li><a ui-sref="app.board-preview-common"><i class="ti ti-world"></i><span>Tableau global</span></a></li>
         <li class="line-separator"></li>
         <li ng-repeat="board in vm.listBoard">
-            <a href="javascript:;"><i class="ti ti-layout"></i><span>{{ board.name }}</span><span ng-show="board.role=='ADMIN'" class="badge badge-teal"><i class="ti ti-star"></i></span></a>
+            <a href="javascript:;"><i class="ti ti-layout text-custom-{{board.color}}"></i><span>{{ board.name }}</span></a>
             <ul class="acc-menu">
                 <li><a ui-sref="app.board-preview({ id: board.id})">Visualiser</a></li>
                 <li><a href="layout-static-leftbar.html">Enchères</a></li>
