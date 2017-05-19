@@ -66,4 +66,20 @@ public class UserServiceImpl implements UserService {
     public UserDTO getUser(long id){
     	 return (UserDTO) transformers.convertEntityToDto(userRepository.findOne(id), UserDTO.class);
     }
+    
+    @Override
+    public UserDTO editUser(UserDTO userDTO){
+        User user = userRepository.findOne(userDTO.getId());
+        if(user!=null && (userDTO.getId()!=null)){
+              user.setFirstName(userDTO.getFirstName());
+              user.setLastName(userDTO.getLastName());
+              userRepository.save(user);
+        }
+        else{
+        	throw new GameMasterException(ConstanteGameMaster.EDIT_ERROR);
+        }
+      
+        return (UserDTO)transformers.convertEntityToDto(user, UserDTO.class);
+    }
+
 }

@@ -7,7 +7,7 @@
     helloApp.service('SignupService', function (SignupWS) {
         var svc = {};
 
-        svc.signup = function (user) {
+        svc.editorUser = function (user) {
            return SignupWS.createUser(user).then(function (response) {
                 return response.data;
             })
