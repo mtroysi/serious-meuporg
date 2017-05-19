@@ -1,5 +1,7 @@
 package com.example.dto;
 
+import com.example.enumeration.ItemEnum;
+
 /**
  * Created by Morgane TROYSI on 19/05/17.
  */
@@ -7,7 +9,7 @@ package com.example.dto;
 public class ItemDto {
     private String name;
 
-    private String type;
+    private ItemEnum type;
 
     private Long price;
 
@@ -27,11 +29,11 @@ public class ItemDto {
         this.name = name;
     }
 
-    public String getType() {
+    public ItemEnum getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(ItemEnum type) {
         this.type = type;
     }
 

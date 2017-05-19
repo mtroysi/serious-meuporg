@@ -1,8 +1,8 @@
 package com.example.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.example.enumeration.ItemEnum;
+
+import javax.persistence.*;
 
 /**
  * Created by Morgane TROYSI on 19/05/17.
@@ -16,7 +16,8 @@ public class Item extends CommonEntity {
     private String name;
 
     @Column(name = "type")
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private ItemEnum type;
 
     @Column(name = "price")
     private Long price = 0L;
@@ -41,11 +42,11 @@ public class Item extends CommonEntity {
         this.name = name;
     }
 
-    public String getType() {
+    public ItemEnum getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(ItemEnum type) {
         this.type = type;
     }
 
