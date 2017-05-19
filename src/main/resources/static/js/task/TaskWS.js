@@ -22,6 +22,14 @@
                 return $http.delete(constant.BASE_URI + '/task/' + id);
             };
 
+            svc.listTaskByBoardAndUser = function(board_id, user_id) {
+                return $http.get(constant.BASE_URI + '/taskUser/board/' + board_id + '/user/' + user_id);
+            };
+
+            svc.listTaskByBoard = function(board_id) {
+                return $http.get(constant.BASE_URI + '/taskUser/board/' + board_id);
+            };
+
             return svc;
         })
 })();

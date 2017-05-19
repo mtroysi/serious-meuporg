@@ -30,6 +30,18 @@
                 return $http.get(constant.BASE_URI + '/board/user/' + user_id);
             };
 
+            svc.createColonneKanban = function(colonneKanban, boardId) {
+                return $http.post(constant.BASE_URI + '/colonneKanban/board/' + boardId, colonneKanban);
+            };
+
+            svc.editColonneKanban = function(colonneKanban) {
+                return $http.put(constant.BASE_URI + '/colonneKanban/' + colonneKanban.id, colonneKanban);
+            };
+
+            svc.deleteColonneKanban = function(colonneKanbanId) {
+                return $http.delete(constant.BASE_URI + '/colonneKanban/' + colonneKanbanId);
+            };
+
             return svc;
         })
 })();

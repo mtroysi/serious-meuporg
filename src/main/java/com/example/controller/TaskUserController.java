@@ -29,7 +29,13 @@ public class TaskUserController {
     
     @Autowired
     TaskUserService taskUserService;
-
+    
+    /**
+     * Return list of TaskUser By Board and User
+     * @param user_id
+     * @param board_id
+     * @return
+     */
     @RequestMapping(value = "/board/{board_id}/user/{user_id}", method = RequestMethod.GET)
     public ResponseEntity<List<TaskUserDTO>> listTaskByBoardAndUser(@PathVariable(value = "user_id") Long user_id, @PathVariable(value = "board_id") Long board_id){
         logger.info("Calling TaskUserController.listTaskByBoardAndUser with {}  {}", user_id, board_id);
@@ -42,7 +48,12 @@ public class TaskUserController {
 
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
-
+    
+    /**
+     * Return list of TaskUser By Board
+     * @param board_id
+     * @return
+     */
     @RequestMapping(value = "/board/{board_id}", method = RequestMethod.GET)
     public ResponseEntity<List<TaskUserDTO>> listTaskByBoard(@PathVariable(value = "board_id") Long board_id){
     	logger.info("Calling TaskUserController.listTaskByBoardAndUser with {}", board_id);

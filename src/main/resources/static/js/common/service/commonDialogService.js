@@ -4,7 +4,7 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.service('CommonDialogService', function(HomeWS) {
+    helloApp.service('CommonDialogService', function(HomeWS, $rootScope) {
 
         var svc = {};
 
@@ -133,22 +133,22 @@
             }
 
             const $dialog = $(
-                '<div class="modal fade" id="' +id+ '" tabindex="-1" role="dialog" aria-labelledby="titleModal"> \
+                    '<div class="modal fade" id="' + id + '" tabindex="-1" role="dialog" aria-labelledby="titleModal"> \
                         <div class="modal-dialog" role="document"> \
                             <div class="modal-content"> \
-                                <div class="modal-header modal-header-' +suffix+ '"> \
+                                <div class="modal-header modal-header-' + suffix + '"> \
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> \
-                                    <h5 class="modal-title" id="titleModal">' +title+ '</h5> \
+                                    <h5 class="modal-title" id="titleModal">' + title + '</h5> \
                                 </div> \
                                 <div class="modal-body text-center clearfix"> \
-                                    <h4 class="wrap">' +options.message+ '</h4> \
-                                    ' + buttons+ ' \
+                                    <h4 class="wrap">' + options.message + '</h4> \
+                                    ' + buttons + ' \
                                 </div> \
                             </div> \
                         </div> \
                     </div>'
-            )
-            .appendTo('body');
+                )
+                .appendTo('body');
 
             // override some features
             $dialog.on('hidden.bs.modal', function() {
