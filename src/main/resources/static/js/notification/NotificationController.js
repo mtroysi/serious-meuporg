@@ -7,10 +7,12 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.controller('NotificationController', function($location, $http, NotificationService) {
+    helloApp.controller('NotificationController', function($location, $http, NotificationService, CommonNotificationService) {
         var ctrl = this;
 
-        ctrl.init = function() {};
+        ctrl.init = function() {
+
+        };
 
         ctrl.init();
     })

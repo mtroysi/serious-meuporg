@@ -26,7 +26,7 @@ public class Notification extends CommonEntity {
     private User user;
 
     @Column(name = "date_creation")
-    private Date date_creation;
+    private Date dateCreation;
 
 
     public String getTitle() {
@@ -53,12 +53,12 @@ public class Notification extends CommonEntity {
         this.user = user;
     }
 
-	public Date getDate_creation() {
-		return date_creation;
+	public Date getDateCreation() {
+		return dateCreation;
 	}
 
-	public void setDate_creation(Date date_creation) {
-		this.date_creation = date_creation;
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
 	}
     
 }

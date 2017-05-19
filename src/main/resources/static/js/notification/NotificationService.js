@@ -11,7 +11,7 @@
         var svc = {};
 
         svc.getNotificationByUser = function(id) {
-            return UserWS.getNotificationByUser(id).then(function(response) {
+            return NotificationWS.getNotificationByUser(id).then(function(response) {
                 return response.data;
             });
         };
