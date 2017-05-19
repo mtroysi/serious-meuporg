@@ -44,7 +44,7 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public BoardDTO updateBoard(@PathVariable("id") Long id) {
+    public BoardDTO getBoard(@PathVariable("id") Long id) {
         return boardService.getBoard(id);
     }
 
@@ -66,9 +66,9 @@ public class BoardController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public BoardDTO updateBoard(@PathVariable("id") Long id, @RequestBody Map<String, Object> values) throws IllegalAccessException, InvocationTargetException {
-        return boardService.updateBoard(id, values);
+    @RequestMapping(method = RequestMethod.PUT)
+    public BoardDTO updateBoard(@RequestBody BoardDTO boardDTO) throws IllegalAccessException, InvocationTargetException {
+        return boardService.updateBoard(boardDTO);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

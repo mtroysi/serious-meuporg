@@ -1,5 +1,6 @@
 package com.example.repository;
 
+import com.example.enumeration.RoleEnum;
 import com.example.model.Role;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
@@ -10,4 +11,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RoleRepository extends PagingAndSortingRepository<Role, Long> {
+    Role findByCode(RoleEnum role);
 }

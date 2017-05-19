@@ -12,6 +12,7 @@ public class BoardDTO {
     private Long id;
     private String name;
     private String color;
+    private UserDTO creator;
     private List<UserDTO> users = new ArrayList<>();
     private List<ColonneKanbanDTO> colonneKanbans = new ArrayList<>();
 
@@ -47,11 +48,19 @@ public class BoardDTO {
         this.users = users;
     }
 
-	public List<ColonneKanbanDTO> getColonneKanbans() {
-		return colonneKanbans;
-	}
+    public UserDTO getCreator() {
+        return creator;
+    }
 
-	public void setColonneKanbans(List<ColonneKanbanDTO> colonneKanbans) {
-		this.colonneKanbans = colonneKanbans;
-	}
+    public void setCreator(UserDTO creator) {
+        this.creator = creator;
+    }
+
+    public List<ColonneKanbanDTO> getColonneKanbans() {
+	return colonneKanbans;
+    }
+
+    public void setColonneKanbans(List<ColonneKanbanDTO> colonneKanbans) {
+	this.colonneKanbans = colonneKanbans;
+    }
 }

@@ -1,0 +1,70 @@
+<h1>Modifier le tableau</h1>
+<div ng-cloak class="ng-cloak">
+    <div class="row col-md-12">
+
+        <form class="form-horizontal">
+
+            <div class="form-group">
+                <label for="board_name" class="col-sm-2 control-label">Nom du tableau : </label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="board_name" ng-model="ctrl.board.name"/>
+                </div>
+
+                <div class="palette col-sm-1">
+                    <div class="panel-ctrls button-icon-bg">
+                        <div class="btn-group dropdown">
+                            <span class="button-icon has-bg dropdown-toggle"
+                                  data-toggle="dropdown" aria-expanded="false">
+                                <i class="ti ti-palette"></i>
+                            </span>
+                            <ul class="panel-color-list dropdown-menu arrow" role="menu">
+                                <li ng-click="ctrl.setColor('info')"><span data-style="panel-info"></span></li>
+                                <li ng-click="ctrl.setColor('primary')"><span data-style="panel-primary"></span></li>
+                                <li ng-click="ctrl.setColor('blue')"><span data-style="panel-blue"></span></li>
+                                <li ng-click="ctrl.setColor('indigo')"><span data-style="panel-indigo"></span></li>
+                                <li ng-click="ctrl.setColor('deeppurple')"><span data-style="panel-deeppurple"></span>
+                                </li>
+                                <li ng-click="ctrl.setColor('purple')"><span data-style="panel-purple"></span></li>
+                                <li ng-click="ctrl.setColor('pink')"><span data-style="panel-pink"></span></li>
+                                <li ng-click="ctrl.setColor('danger')"><span data-style="panel-danger"></span></li>
+                                <li ng-click="ctrl.setColor('teal')"><span data-style="panel-teal"></span></li>
+                                <li ng-click="ctrl.setColor('green')"><span data-style="panel-green"></span></li>
+                                <li ng-click="ctrl.setColor('success')"><span data-style="panel-success"></span></li>
+                                <li ng-click="ctrl.setColor('lime')"><span data-style="panel-lime"></span></li>
+                                <li ng-click="ctrl.setColor('yellow')"><span data-style="panel-yellow"></span></li>
+                                <li ng-click="ctrl.setColor('warning')"><span data-style="panel-warning"></span></li>
+                                <li ng-click="ctrl.setColor('orange')"><span data-style="panel-orange"></span></li>
+                                <li ng-click="ctrl.setColor('deeporange')"><span data-style="panel-deeporange"></span>
+                                </li>
+                                <li ng-click="ctrl.setColor('midnightblue')"><span
+                                        data-style="panel-midnightblue"></span></li>
+                                <li ng-click="ctrl.setColor('bluegray')"><span data-style="panel-bluegray"></span></li>
+                                <li ng-click="ctrl.setColor('bluegraylight')"><span
+                                        data-style="panel-bluegraylight"></span></li>
+                                <li ng-click="ctrl.setColor('black')"><span data-style="panel-black"></span></li>
+                                <li ng-click="ctrl.setColor('gray')"><span data-style="panel-gray"></span></li>
+                                <li ng-click="ctrl.setColor('default')"><span data-style="panel-default"></span></li>
+                                <li ng-click="ctrl.setColor('white')"><span data-style="panel-white"></span></li>
+                                <li ng-click="ctrl.setColor('brown')"><span data-style="panel-brown"></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Inviter des utilisateurs : </label>
+                <div class="col-sm-7">
+                    <users-input users="ctrl.board.users"></users-input>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" class="btn btn-primary" ng-click="ctrl.updateBoard()">Modifier</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
