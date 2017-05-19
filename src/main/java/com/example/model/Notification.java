@@ -1,5 +1,7 @@
 package com.example.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -23,8 +25,8 @@ public class Notification extends CommonEntity {
     @JoinColumn(name="user_id", nullable=false)
     private User user;
 
-    @Column(name = "is_read")
-    private Boolean isRead = false;
+    @Column(name = "date_creation")
+    private Date date_creation;
 
 
     public String getTitle() {
@@ -51,11 +53,12 @@ public class Notification extends CommonEntity {
         this.user = user;
     }
 
-    public Boolean getRead() {
-        return isRead;
-    }
+	public Date getDate_creation() {
+		return date_creation;
+	}
 
-    public void setRead(Boolean read) {
-        isRead = read;
-    }
+	public void setDate_creation(Date date_creation) {
+		this.date_creation = date_creation;
+	}
+    
 }
