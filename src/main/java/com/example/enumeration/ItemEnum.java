@@ -5,6 +5,7 @@ package com.example.enumeration;
  */
 public enum ItemEnum {
     WALLPAPER("wallpaper"),
+    AVATAR("avatar"),
     SPELL("spell");
 
     private String name = "";

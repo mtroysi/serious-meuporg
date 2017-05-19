@@ -25,6 +25,9 @@ public class Item extends CommonEntity {
     @Column(name = "requiredLevel")
     private Long requiredLevel = 1L;
 
+    @Column(name = "image")
+    private String image;
+
     @Column(name = "url")
     private String url;
 
@@ -88,5 +91,13 @@ public class Item extends CommonEntity {
 
     public void setReusable(Boolean reusable) {
         isReusable = reusable;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -456,6 +456,7 @@ public class CreateTestData {
 		item1.setReusable(Boolean.TRUE);
 		item1.setType(ItemEnum.WALLPAPER);
 		item1.setUrl("https://wallpaperscraft.com/image/toulouse_city_square_night_france_58716_3840x2160.jpg");
+		item1.setImage("https://wallpaperscraft.com/image/toulouse_city_square_night_france_58716_3840x2160.jpg");
 		itemRepository.save(item1);
 
 		Item item2 = new Item();
@@ -465,6 +466,7 @@ public class CreateTestData {
 		item2.setRequiredLevel(2L);
 		item2.setReusable(Boolean.FALSE);
 		item2.setType(ItemEnum.SPELL);
+		item2.setImage("https://previews.123rf.com/images/anastasiiam/anastasiiam1605/anastasiiam160500090/57128892-Simple-flat-like-icon-in-pink-color-Like-counter-notification-emblem-isolated-on-white-background--Stock-Vector.jpg");
 		itemRepository.save(item2);
 		
 		return "FINI";

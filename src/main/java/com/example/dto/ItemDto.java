@@ -21,6 +21,8 @@ public class ItemDto {
 
     private Boolean isReusable;
 
+    private String image;
+
     public String getName() {
         return name;
     }
@@ -75,5 +77,13 @@ public class ItemDto {
 
     public void setReusable(Boolean reusable) {
         isReusable = reusable;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
