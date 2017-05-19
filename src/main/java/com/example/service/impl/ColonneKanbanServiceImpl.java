@@ -58,6 +58,7 @@ public class ColonneKanbanServiceImpl implements ColonneKanbanService {
 
 	@Override
 	public void deleteColonneKanban(Long id) {
+		colonneKanbanRepository.updateColonneKanbanDelete(id);
 		colonneKanbanRepository.delete(id);
 	}
 }

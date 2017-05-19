@@ -38,6 +38,10 @@
                 return $http.put(constant.BASE_URI + '/colonneKanban/' + colonneKanban.id, colonneKanban);
             };
 
+            svc.deleteColonneKanban = function(colonneKanbanId) {
+                return $http.delete(constant.BASE_URI + '/colonneKanban/' + colonneKanbanId);
+            };
+
             return svc;
         })
 })();

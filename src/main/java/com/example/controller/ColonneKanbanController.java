@@ -77,6 +77,21 @@ public class ColonneKanbanController {
 
         return new ResponseEntity<>(colonne, HttpStatus.OK);
     }
+    
+    
+    /**
+     * Update colonne Kanban
+     * @param user_id
+     * @return list of BoardWithDetailDTO
+     * @throws InvocationTargetException 
+     * @throws IllegalAccessException 
+     */
+    @RequestMapping(value = "/{kanban_id}", method = RequestMethod.DELETE)
+    public void editColonneKanban(@PathVariable(value = "kanban_id") Long kanban_id) {
+        logger.info("Calling ColonneKanbanController.editColonneKanban with {}", kanban_id);
+
+        colonneKanbanService.deleteColonneKanban(kanban_id);
+    }
 
 
 }

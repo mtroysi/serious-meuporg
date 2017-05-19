@@ -22,9 +22,7 @@
                 ctrl.getTaskBoard($stateParams.id, AuthenticationService.getUserId());
 
                 $scope.$watch('this.ctrl.filter.type', function() {
-                    ctrl.listTask = ctrl.listTaskDefault.filter(function(e) {
-                        return e.task.status == ctrl.filter.type;
-                    });
+                    ctrl.filterTask();
                 });
             };
 
@@ -53,6 +51,15 @@
                         ctrl.listTask = angular.copy(fetchData);
                     });
                 }
+            };
+
+            /**
+             * Filter Data Task
+             */
+            ctrl.filterTask = function() {
+                ctrl.listTask = ctrl.listTaskDefault.filter(function(e) {
+                    return e.task.status == ctrl.filter.type || ctrl.filter.type == 'TOUT';
+                });
             };
 
             /**
@@ -87,7 +94,7 @@
              * Box size management
              */
             ctrl.sizeKanban = function() {
-                var width = 0;
+                var width = 5;
                 $('.contentKanban .columnKanban').each(function() {
                     width += $(this).width() + 52;
                 });
@@ -151,7 +158,21 @@
              * Delete column Kanban
              */
             ctrl.deleteColonne = function(idColonne) {
-                alert(idColonne);
+                var index = ctrl.board.colonneKanbans.findIndex(function(element) { return element.id == idColonne });
+                if (index !== -1) {
+                    BoardService.deleteColonneKanban(idColonne).then(function(response) {
+                        ctrl.board.colonneKanbans.splice(index, 1);
+
+                        // Updating Task Lists
+                        ctrl.listTaskDefault.forEach(function(element) {
+                            if (element.task.colonneKanban && element.task.colonneKanban.id === idColonne) {
+                                element.task.colonneKanban = null;
+                            }
+                        });
+                        ctrl.listTask = angular.copy(ctrl.listTaskDefault);
+                        ctrl.filterTask();
+                    });
+                }
             };
 
             /**

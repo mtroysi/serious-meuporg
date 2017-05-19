@@ -50,6 +50,12 @@
                 })
             };
 
+            svc.deleteColonneKanban = function(idColonneKanban) {
+                return BoardWS.deleteColonneKanban(idColonneKanban).then(function(response) {
+                    return response.data;
+                })
+            };
+
             return svc;
         });
 })();
