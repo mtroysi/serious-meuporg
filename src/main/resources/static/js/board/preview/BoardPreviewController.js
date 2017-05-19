@@ -5,6 +5,7 @@
     angular.module('hello')
         .controller('BoardPreviewController', function($scope, $state, $stateParams, BoardService, $timeout, CommonMenuService, TaskService, AuthenticationService, CommonDialogService) {
             var ctrl = this;
+            ctrl.isAdmin = false;
 
             /**
              * Constructor
@@ -26,10 +27,6 @@
                     ctrl.filterTask();
                 });
             };
-
-            function typeOf(obj) {
-                return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
-            }
 
             /**
              * WS Loard info board

@@ -31,6 +31,15 @@ public class User extends CommonEntity {
     @Column(name = "avatar")
     private String avatar;
 
+    @Column(name = "money")
+    private Long money = 0L;
+
+    @Column(name = "level")
+    private Long level = 1L;
+
+    @Column(name = "xp")
+    private Long experience = 0L;
+
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<BoardUser> boardUsers = new ArrayList<>();
 
@@ -110,5 +119,29 @@ public class User extends CommonEntity {
 
     public void setTaskUserBids(List<TaskUserBid> taskUserBids) {
         this.taskUserBids = taskUserBids;
+    }
+
+    public Long getMoney() {
+        return money;
+    }
+
+    public void setMoney(Long money) {
+        this.money = money;
+    }
+
+    public Long getLevel() {
+        return level;
+    }
+
+    public void setLevel(Long level) {
+        this.level = level;
+    }
+
+    public Long getExperience() {
+        return experience;
+    }
+
+    public void setExperience(Long experience) {
+        this.experience = experience;
     }
 }
