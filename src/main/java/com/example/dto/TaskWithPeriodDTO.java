@@ -1,6 +1,8 @@
 package com.example.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.example.enumeration.PriorityEnum;
 import com.example.enumeration.StatusEnum;
@@ -27,6 +29,7 @@ public class TaskWithPeriodDTO{
     private Date dateEndTask; /* Valeur reel de la tache (gestion de la périodicity) */
     private Boolean isPeriodicity = false;
     private PeriodicityDTO periodicity;
+    private ColonneKanbanDTO colonneKanban;
         
 	public StatusEnum getStatus() {
 		return status;
@@ -155,5 +158,12 @@ public class TaskWithPeriodDTO{
 	public void setPeriodicity(PeriodicityDTO periodicity) {
 		this.periodicity = periodicity;
 	}
-	
+
+	public ColonneKanbanDTO getColonneKanban() {
+		return colonneKanban;
+	}
+
+	public void setColonneKanban(ColonneKanbanDTO colonneKanban) {
+		this.colonneKanban = colonneKanban;
+	}
 }

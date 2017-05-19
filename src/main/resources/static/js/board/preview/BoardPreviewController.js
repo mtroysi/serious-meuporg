@@ -87,7 +87,7 @@
             ctrl.sizeKanban = function() {
                 var width = 0;
                 $('.contentKanban .columnKanban').each(function() {
-                    width += $(this).width() + 51;
+                    width += $(this).width() + 52;
                 });
                 $('.contentKanban').width(width);
             };
