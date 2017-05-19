@@ -30358,12 +30358,12 @@ input.dial {
     color: #e51c23 !important;
 }
 
-.inbox-menu a.list-group-item i.circle-green {
-    color: #8bc34a !important;
+.inbox-menu a.list-group-item i.circle-orange {
+    color: #ff5722 !important;
 }
 
-.inbox-menu a.list-group-item i.circle-purple {
-    color: #673ab7 !important;
+.inbox-menu a.list-group-item i.circle-blue {
+    color: #2196f3 !important;
 }
 
 .inbox-mail-heading {

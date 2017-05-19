@@ -105,6 +105,12 @@
                 templateUrl: 'js/tag/update/tag-update.html',
                 controller: 'TagUpdateController',
                 controllerAs: 'ctrl'
+            })
+            .state('app.notification', {
+                url: '/notification',
+                templateUrl: 'js/notification/notification.html',
+                controller: 'NotificationController',
+                controllerAs: 'ctrl'
             });
 
         $urlRouterProvider.otherwise('/');
