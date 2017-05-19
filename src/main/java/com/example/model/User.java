@@ -27,6 +27,9 @@ public class User extends CommonEntity {
 
     @Column(name = "date_creation")
     private Date dateCreation;
+    
+    @Column(name = "avatar")
+    private String avatar;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<BoardUser> boardUsers = new ArrayList<>();
@@ -60,8 +63,16 @@ public class User extends CommonEntity {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    public String getAvatar() {
+		return avatar;
+	}
 
-    public String getPassword() {
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+	public String getPassword() {
         return password;
     }
 

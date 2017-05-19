@@ -11,6 +11,7 @@ public class UserDTO {
     private String fullName;
     private String email;
     private String password;
+    private String avatar;
     private Date dateCreation;
 
     public Long getId() {
@@ -33,6 +34,13 @@ public class UserDTO {
         return lastName;
     }
 
+    public String getAvatar(){
+    	return avatar;
+    }
+    
+    public void setAvatar(String avatar){
+    	this.avatar=avatar;
+    }
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
