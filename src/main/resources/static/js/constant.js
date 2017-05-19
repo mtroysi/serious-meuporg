@@ -17,6 +17,7 @@
             },
             'color': ['info', 'primary', 'blue', 'indigo', 'deeppurple', 'purple', 'pink', 'danger', 'teal', 'green',
                 'success', 'lime', 'yellow', 'warning', 'orange', 'deeporange', 'midnightblue', 'bluegray',
-                'bluegraylight', 'black', 'gray', 'default', 'white', 'brown']
+                'bluegraylight', 'black', 'gray', 'default', 'white', 'brown'],
+            'XP': 50
         });
 })();

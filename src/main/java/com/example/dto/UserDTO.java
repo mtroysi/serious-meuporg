@@ -13,6 +13,9 @@ public class UserDTO {
     private String password;
     private String avatar;
     private Date dateCreation;
+    private Long experience;
+    private Long level;
+    private Long money;
 
     public Long getId() {
         return id;
@@ -75,5 +78,29 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Long getExperience() {
+        return experience;
+    }
+
+    public void setExperience(Long experience) {
+        this.experience = experience;
+    }
+
+    public Long getLevel() {
+        return level;
+    }
+
+    public void setLevel(Long level) {
+        this.level = level;
+    }
+
+    public Long getMoney() {
+        return money;
+    }
+
+    public void setMoney(Long money) {
+        this.money = money;
     }
 }

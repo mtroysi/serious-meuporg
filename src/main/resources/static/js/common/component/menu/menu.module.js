@@ -11,7 +11,6 @@
             ctrl.CommonMenuService = CommonMenuService;
 
             // Call WS for get the list of board of the user
-            // TODO : METTRE LE VRAI ID
             BoardService.listBoardByUser(AuthenticationService.getUserId()).then(function(data) {
                 CommonMenuService.initListBoard(angular.copy(data));
             });

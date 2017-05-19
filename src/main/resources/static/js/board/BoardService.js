@@ -38,6 +38,24 @@
                 return BoardWS.deleteBoard(id);
             };
 
+            svc.createColonneKanban = function(colonneKanban, boardId) {
+                return BoardWS.createColonneKanban(colonneKanban, boardId).then(function(response) {
+                    return response.data;
+                })
+            };
+
+            svc.editColonneKanban = function(colonneKanban) {
+                return BoardWS.editColonneKanban(colonneKanban).then(function(response) {
+                    return response.data;
+                })
+            };
+
+            svc.deleteColonneKanban = function(idColonneKanban) {
+                return BoardWS.deleteColonneKanban(idColonneKanban).then(function(response) {
+                    return response.data;
+                })
+            };
+
             return svc;
         });
 })();

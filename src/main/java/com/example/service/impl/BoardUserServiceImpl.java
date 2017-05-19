@@ -11,7 +11,6 @@ import com.example.dto.BoardWithDetailDTO;
 import com.example.model.BoardUser;
 import com.example.repository.BoardUserRepository;
 import com.example.service.BoardUserService;
-import com.example.transformers.Transformers;
 
 /**
  * Created by Morgane TROYSI on 11/05/17.
@@ -29,7 +28,7 @@ public class BoardUserServiceImpl implements BoardUserService {
 
         return list.stream()
                 .sorted(Comparator.comparing(board -> board.getBoard().getDateCreation()))
-                .map((BoardUser board) -> new BoardWithDetailDTO(board.getBoard().getId(), board.getBoard().getName(), board.getRole().getCode().toString()))
+                .map((BoardUser board) -> new BoardWithDetailDTO(board.getBoard().getId(), board.getBoard().getName(), (board.getRole() != null ? board.getRole().getCode().name() : null)))
                 .collect(Collectors.toList());
     }
 }
