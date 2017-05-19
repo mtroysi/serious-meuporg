@@ -20,12 +20,20 @@
                 ctrl.editColonne = {};
                 ctrl.filter = { type: 'TOUT' };
                 ctrl.isAdmin = false;
-                ctrl.getBoard($stateParams.id);
-                ctrl.getTaskBoard($stateParams.id, AuthenticationService.getUserId());
+                ctrl.tableGlobal = false;
 
-                $scope.$watch('this.ctrl.filter.type', function() {
-                    ctrl.filterTask();
-                });
+                // Show table in global mode
+                if ($state.current.name === "app.board-preview-common") {
+                    ctrl.tableGlobal = true;
+                    ctrl.getTaskUser(AuthenticationService.getUserId());
+                } else {
+                    ctrl.getBoard($stateParams.id);
+                    ctrl.getTaskBoard($stateParams.id, AuthenticationService.getUserId());
+
+                    $scope.$watch('this.ctrl.filter.type', function() {
+                        ctrl.filterTask();
+                    });
+                }
             };
 
             /**
@@ -54,6 +62,18 @@
                         ctrl.listTask = angular.copy(fetchData);
                     });
                 }
+            };
+
+            /**
+             * WS Loard list of task by  user
+             */
+            ctrl.getTaskUser = function(user_id) {
+
+                TaskService.listTaskByUser(user_id).then(function(fetchData) {
+                    ctrl.listTaskDefault = angular.copy(fetchData);
+                    ctrl.listTask = angular.copy(fetchData);
+                });
+
             };
 
             /**

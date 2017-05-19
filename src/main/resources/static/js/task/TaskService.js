@@ -40,6 +40,12 @@
                 });
             };
 
+            svc.listTaskByUser = function(user_id) {
+                return TaskWS.listTaskByUser(user_id).then(function(response) {
+                    return response.data;
+                });
+            };
+
             return svc;
         })
 })();

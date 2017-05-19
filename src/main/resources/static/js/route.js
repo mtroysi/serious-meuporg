@@ -2,7 +2,7 @@
  * Created by Morgane TROYSI on 26/04/2017.
  */
 
-(function () {
+(function() {
     'use strict';
 
     angular.module('hello').config(routerConfig);
@@ -42,7 +42,7 @@
                 controller: 'SignupController',
                 controllerAs: 'signupCtrl'
             })
-             .state('app.signin', {
+            .state('app.signin', {
                 url: '/signin',
                 controller: 'SigninController'
             })
@@ -66,6 +66,12 @@
             })
             .state('app.board-preview', {
                 url: '/board/preview/{id}',
+                templateUrl: 'js/board/preview/board-preview.html',
+                controller: 'BoardPreviewController',
+                controllerAs: 'ctrl'
+            })
+            .state('app.board-preview-common', {
+                url: '/board/preview-common',
                 templateUrl: 'js/board/preview/board-preview.html',
                 controller: 'BoardPreviewController',
                 controllerAs: 'ctrl'

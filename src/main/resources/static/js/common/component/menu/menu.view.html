@@ -3,7 +3,7 @@
     <ul class="acc-menu">
         <li class="nav-separator"><span>Tableau</span></li>
         <li><a ui-sref="app.board-create"><i class="ti ti-plus"></i><span>Créer un tableau</span></a></li>
-        <li><a><i class="ti ti-world"></i><span>Tableau global</span></a></li>
+        <li><a ui-sref="app.board-preview-common"><i class="ti ti-world"></i><span>Tableau global</span></a></li>
         <li class="line-separator"></li>
         <li ng-repeat="board in vm.listBoard">
             <a href="javascript:;"><i class="ti ti-layout"></i><span>{{ board.name }}</span><span ng-show="board.role=='ADMIN'" class="badge badge-teal"><i class="ti ti-star"></i></span></a>
