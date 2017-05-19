@@ -33,10 +33,15 @@ public class TaskUserServiceImpl implements TaskUserService {
 	public List<TaskUserDTO> getTaskUserByUserIdAndBoardId(Long userId, Long boardId) {
 		return this.buildTaskWithPeriodicity(taskUserRepository.findAllByUserIdAndTaskBoardId(userId, boardId));
 	}
+	
+	@Override
+	public List<TaskUserDTO> getTaskUserByUserId(Long userId) {
+		return this.buildTaskWithPeriodicity(taskUserRepository.findAllByUserId(userId));
+	}
 
 	@Override
 	public List<TaskUserDTO> getTaskUserByBoardId(Long boardId) {
-		return this.buildTaskWithPeriodicity(taskUserRepository.findByTaskBoardId(boardId));
+		return this.buildTaskWithPeriodicity(taskUserRepository.findAllByTaskBoardId(boardId));
 	}
 	
 	
