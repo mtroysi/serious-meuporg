@@ -22,6 +22,10 @@
                 return $http.delete(constant.BASE_URI + '/comment/'+id);
             };
 
+            svc.updateComment = function(id, comment) {
+                return $http.put(constant.BASE_URI + '/comment/'+id, comment);
+            };
+
             return svc;
         })
 })();

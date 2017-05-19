@@ -10,12 +10,6 @@
         .service('CommonCommentService', function (CommonCommentWS) {
             var svc = {};
 
-            svc.deleteComment = function (id) {
-                return CommonCommentWS.deleteComment(id).then(function (response) {
-                    return response.data;
-                });
-            };
-
             return svc;
         });
 })();

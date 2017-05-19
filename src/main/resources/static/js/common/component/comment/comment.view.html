@@ -9,8 +9,8 @@
                 <b class="username col-sm-5">{{ctrl.comment.creator.firstName}} {{ctrl.comment.creator.lastName |
                     uppercase}}</b>
                 <div class="col-sm-1" style="text-align: center">
-                    <span ng-click="ctrl.toggleEditable()" class="glyphicon glyphicon-pencil col-sm-1"></span>
-                    <span ng-click="ctrl.deleteComment()" class="glyphicon glyphicon-trash col-sm-1"></span>
+                    <span ng-show="ctrl.isOwner()" ng-click="ctrl.toggleEditable()" class="glyphicon glyphicon-pencil col-sm-1"></span>
+                    <span ng-show="ctrl.isOwner()" ng-click="ctrl.deleteComment()" class="glyphicon glyphicon-trash col-sm-1"></span>
                 </div>
             </div>
             <div class="row">
@@ -19,8 +19,11 @@
                     <i class="row">Posté le {{ctrl.comment.dateCreation | date : "dd MMM à HH:mm"}}</i>
                 </div>
 
-                <div ng-show="ctrl.editable">
-                    <input type="text">{{ctrl.comment.content}}</input>
+                <div class="col-sm-6" ng-show="ctrl.editable">
+                    <form ng-submit="ctrl.updateComment()&&ctrl.toggleEditable()">
+                        <textarea class="form-control" type="text" ng-model="ctrl.comment.content"></textarea>
+                        <button class="btn btn-primary" type="submit">Modifier</button>
+                    </form>
                 </div>
             </div>
         </div>

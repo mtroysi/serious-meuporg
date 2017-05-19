@@ -7,13 +7,17 @@
     'use strict';
 
     /** @ngInject */
-    function ComponentCommentController() {
+    function ComponentCommentController(AuthenticationService) {
         var ctrl = this;
         ctrl.editable = false;
 
         ctrl.toggleEditable = function () {
             return ctrl.editable = !ctrl.editable;
         };
+
+        ctrl.isOwner = function () {
+            return ctrl.comment.creator.id === Number(AuthenticationService.getUserId());
+        }
     }
 
 
@@ -24,7 +28,8 @@
             templateUrl: 'js/common/component/comment/comment.view.html',
             bindings: {
                 comment: '=',
-                deleteComment:"&"
+                deleteComment: "&",
+                updateComment: '&'
             }
         });
 })();

@@ -34,7 +34,14 @@
 
             ctrl.deleteComment = function (idx) {
                 return TaskShowService.deleteComment(ctrl.task.taskComments[idx].id).then(function () {
-                    ctrl.task.taskComments.splice(idx,1);
+                    ctrl.task.taskComments.splice(idx, 1);
+                });
+            };
+
+            ctrl.updateComment = function (idx) {
+                return TaskShowService.updateComment(ctrl.task.taskComments[idx].id, ctrl.task.taskComments[idx]).then(function (data) {
+                    console.log(data);
+                    ctrl.task.taskComments[idx] = data;
                 });
             };
 

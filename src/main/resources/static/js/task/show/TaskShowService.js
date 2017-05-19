@@ -29,6 +29,11 @@
                 });
             };
 
+            svc.updateComment = function (id, comment) {
+                return TaskShowWS.updateComment(id, comment).then(function (response) {
+                    return response.data;
+                });
+            };
 
             return svc;
         })
