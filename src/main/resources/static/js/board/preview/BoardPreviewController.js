@@ -129,6 +129,13 @@
                 $timeout(function() { $('.bigPanelMatrice').fadeToggle(); }, 200);
                 ctrl.sizeKanban();
             };
+            
+            ctrl.editTaskAction = function (task) {
+                $('#editTask').modal('show');
+                ctrl.task = task;
+                $scope.$broadcast("showTask", task);
+            };
+            
 
             /**
              * Box size management
@@ -163,7 +170,7 @@
             ctrl.setColor = function(colonne) {
                 ctrl.editColonne = colonne;
                 ctrl.saveEditColonne();
-            };
+            }
 
 
             /**

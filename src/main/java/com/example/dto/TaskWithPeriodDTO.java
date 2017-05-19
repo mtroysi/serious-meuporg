@@ -31,14 +31,15 @@ public class TaskWithPeriodDTO{
     private Boolean isPeriodicity = false;
     private PeriodicityDTO periodicity;
     private ColonneKanbanDTO colonneKanban;
-        
-	public StatusEnum getStatus() {
-		return status;
-	}
+    private List<CommentDTO> taskComments = new ArrayList<>();
 
-	public void setStatus(StatusEnum status) {
-		this.status = status;
-	}
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+public void setStatus(StatusEnum status) {
+        this.status = status;
+    }
 
 	public Double getDurationReel() {
 		return durationReel;
