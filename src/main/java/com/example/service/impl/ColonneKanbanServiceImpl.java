@@ -49,11 +49,11 @@ public class ColonneKanbanServiceImpl implements ColonneKanbanService {
 	}
 
 	@Override
-	public ColonneKanbanDTO updateColonneKanban(Long id, Map<String, Object> values)
-			throws IllegalAccessException, InvocationTargetException {
+	public ColonneKanbanDTO updateColonneKanban(Long id, ColonneKanbanDTO colonneDTO) {
 		ColonneKanban colonne = colonneKanbanRepository.findOne(id);
-        BeanUtils.populate(colonne, values);
-        return (ColonneKanbanDTO) transformers.convertEntityToDto(colonneKanbanRepository.save(colonne), ColonneKanban.class);
+		colonne.setColor(colonneDTO.getColor());
+		colonne.setTitle(colonneDTO.getTitle());
+        return (ColonneKanbanDTO) transformers.convertEntityToDto(colonneKanbanRepository.save(colonne), ColonneKanbanDTO.class);
 	}
 
 	@Override

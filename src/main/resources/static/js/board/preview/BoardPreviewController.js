@@ -3,7 +3,7 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('BoardPreviewController', function($scope, $state, $stateParams, BoardService, $timeout, CommonMenuService, TaskService, AuthenticationService) {
+        .controller('BoardPreviewController', function($scope, $state, $stateParams, BoardService, $timeout, CommonMenuService, TaskService, AuthenticationService, CommonDialogService) {
             var ctrl = this;
 
             /**
@@ -16,6 +16,7 @@
                 ctrl.listTask = [];
                 ctrl.listTaskDefault = [];
                 ctrl.newColonne = {};
+                ctrl.editColonne = {};
                 ctrl.filter = { type: 'TOUT' };
                 ctrl.getBoard($stateParams.id);
                 ctrl.getTaskBoard($stateParams.id, AuthenticationService.getUserId());
@@ -94,6 +95,21 @@
             };
 
             /**
+             * Validation of deletion
+             */
+            ctrl.deleteColonneModal = function(idColonne) {
+                CommonDialogService.confirmation('Etes-vous sur de vouloir supprimer cette élément ?', function() { ctrl.deleteColonne(idColonne); }, null, 'modalDeleteColonne', "Suppression colonne Kanban", "Valider", "Annuler");
+            };
+
+            /**
+             * Modal edition
+             */
+            ctrl.editColonneAction = function(colonne) {
+                $('#editColonneKanban').modal("show");
+                ctrl.editColonne = angular.copy(colonne);
+            };
+
+            /**
              * Save new column Kanban
              */
             ctrl.saveNewColonne = function() {
@@ -107,6 +123,25 @@
                         ctrl.openPanelNewColonne = false;
                     }, 0);
                 });
+            };
+
+            /**
+             * Save edit column Kanban
+             */
+            ctrl.saveEditColonne = function() {
+                var index = ctrl.board.colonneKanbans.findIndex(function(element) { return element.id == ctrl.editColonne.id });
+                if (index !== -1) {
+                    BoardService.editColonneKanban(ctrl.editColonne).then(function(response) {
+                        ctrl.board.colonneKanbans[index] = response;
+                    });
+                }
+            };
+
+            /**
+             * Delete column Kanban
+             */
+            ctrl.deleteColonne = function(idColonne) {
+                alert(idColonne);
             };
 
             /**

@@ -11,7 +11,7 @@ public interface ColonneKanbanService {
 
 	ColonneKanbanDTO createColonneKanban(ColonneKanbanDTO colonneKanbanDTO, Long boardId);
 
-	ColonneKanbanDTO updateColonneKanban(Long id, Map<String, Object> values) throws IllegalAccessException, InvocationTargetException;
+	ColonneKanbanDTO updateColonneKanban(Long id, ColonneKanbanDTO colonne);
 
     void deleteColonneKanban(Long id);
 }

@@ -160,6 +160,12 @@
                                         <div class="panel-heading">
                                             <div class="panel-ctrls button-icon-bg">
                                                 <color-picker ng-model="colonne.color"></color-picker>
+                                                <span class="button-icon has-bg" ng-click="ctrl.editColonneAction(colonne)">
+                                                    <i class="ti ti-pencil"></i>
+                                                </span>
+                                                <span class="button-icon has-bg" ng-click="ctrl.deleteColonneModal(colonne.id)">
+                                                    <i class="ti ti-trash"></i>
+                                                </span>
                                             </div>
                                             <h2>{{ colonne.title }}</h2>
                                         </div>
@@ -218,6 +224,24 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editColonneKanban" tabindex="-1" role="dialog" aria-labelledby="titleModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-confirmation">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h5 class="modal-title" id="titleModal">Edition colonne</h5>
+            </div>
+            <div class="modal-body text-center clearfix">
+                <input class="form-control" ng-model="ctrl.editColonne.title" placeholder="Nom de la colonne" type="text">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning btn-top" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-success btn-top" ng-click="ctrl.saveEditColonne()" data-dismiss="modal">Valider</button>
             </div>
         </div>
     </div>

@@ -46,10 +46,10 @@ public class ColonneKanbanController {
      * @throws IllegalAccessException 
      */
     @RequestMapping(value = "/{kanban_id}", method = RequestMethod.PUT)
-    public ResponseEntity<ColonneKanbanDTO> editColonneKanban(@PathVariable(value = "kanban_id") Long kanban_id, @RequestBody Map<String, Object> values) throws IllegalAccessException, InvocationTargetException {
+    public ResponseEntity<ColonneKanbanDTO> editColonneKanban(@PathVariable(value = "kanban_id") Long kanban_id, @RequestBody ColonneKanbanDTO values) {
         logger.info("Calling ColonneKanbanController.editColonneKanban with {}", kanban_id);
 
-        Return list of board by user  ColonneKanbanDTO colonne = colonneKanbanService.updateColonneKanban(kanban_id, values);
+        ColonneKanbanDTO colonne = colonneKanbanService.updateColonneKanban(kanban_id, values);
 
         if (colonne == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
