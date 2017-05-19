@@ -21,6 +21,7 @@
                 ctrl.filter = { type: 'TOUT' };
                 ctrl.isAdmin = false;
                 ctrl.tableGlobal = false;
+                ctrl.task = {};
 
                 // Show table in global mode
                 if ($state.current.name === "app.board-preview-common") {

@@ -38,7 +38,7 @@
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'URGENT_IMPORTANT' }}:true">
-                                <div class="info-tile tile-success tile-perso" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                <div class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -61,7 +61,7 @@
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'URGENT_NOT_IMPORTANT'}}:true">
-                                <div class="info-tile tile-success tile-perso" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                <div class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -86,7 +86,7 @@
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'NOT_URGENT_IMPORTANT'}}:true">
-                                <div class="info-tile tile-success tile-perso" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                <div class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -109,7 +109,7 @@
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'NOT_URGENT_NOT_IMPORTANT'}}:true">
-                                <div class="info-tile tile-success tile-perso" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                <div class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -145,7 +145,7 @@
                                 </div>
                                 <ul class="listTache">
                                     <li ng-repeat="n in ctrl.listTask | filter:{task : {colonneKanban: null}}:true">
-                                        <div class="info-tile tile-success tile-perso" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                        <div class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                             <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                             <div class="tile-footer">
                                                 <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -174,7 +174,7 @@
                                 </div>
                                 <ul class="listTache">
                                     <li ng-repeat="n in ctrl.listTask | filter:{task : {colonneKanban: { id : colonne.id }}}:true">
-                                        <div class="info-tile tile-success tile-perso" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                        <div class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                             <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                             <div class="tile-footer">
                                                 <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>

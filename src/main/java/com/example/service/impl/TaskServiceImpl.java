@@ -15,9 +15,19 @@ import com.example.dto.TaskLiteDTO;
 import com.example.enumeration.PriorityEnum;
 import com.example.model.Tag;
 import com.example.model.Task;
+import com.example.repository.TagRepository;
 import com.example.repository.TaskRepository;
 import com.example.service.TaskService;
 import com.example.transformers.Transformers;
+import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Florentin NOËL on 11/05/17.

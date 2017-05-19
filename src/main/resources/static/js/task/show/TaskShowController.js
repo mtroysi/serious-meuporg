@@ -7,14 +7,16 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('TaskShowController', function (TaskShowService, $stateParams, constant, AuthenticationService) {
+        .controller('TaskShowController', function (TaskShowService,TaskUpdateService, $stateParams, constant, AuthenticationService, $scope) {
             var ctrl = this;
-            ctrl.priority = constant.priority;
 
+            $scope.$on("showTask", function (event, args) {
+               ctrl.task = args.task;
+            });
+
+            ctrl.priority = constant.priority;
             ctrl.init = function () {
-                ctrl.task = {};
                 ctrl.comment = {};
-                ctrl.showTask($stateParams.id);
             };
 
             ctrl.showTask = function (id) {
@@ -42,6 +44,13 @@
                 return TaskShowService.updateComment(ctrl.task.taskComments[idx].id, ctrl.task.taskComments[idx]).then(function (data) {
                     console.log(data);
                     ctrl.task.taskComments[idx] = data;
+                });
+            };
+
+            ctrl.updateTask = function () {
+                console.log("tesst");
+                TaskUpdateService.updateTask(ctrl.task.id, ctrl.task).then(function (data) {
+                    ctrl.task = data;
                 });
             };
 
