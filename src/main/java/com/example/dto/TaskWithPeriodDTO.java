@@ -14,6 +14,7 @@ import com.example.model.User;
 public class TaskWithPeriodDTO{
 	
 	private Long id;
+	private Long boardId;
     private String title;
     private String content;
     private PriorityEnum priority;
@@ -166,4 +167,13 @@ public class TaskWithPeriodDTO{
 	public void setColonneKanban(ColonneKanbanDTO colonneKanban) {
 		this.colonneKanban = colonneKanban;
 	}
+
+	public Long getBoardId() {
+		return boardId;
+	}
+
+	public void setBoardId(Long boardId) {
+		this.boardId = boardId;
+	}
+	
 }

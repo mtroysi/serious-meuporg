@@ -4,12 +4,14 @@ public class BoardWithDetailDTO {
 
 	private Long id;
     private String name;
+    private String color;
     private String role;
 
-    public BoardWithDetailDTO(Long id, String name, String code) {
+    public BoardWithDetailDTO(Long id, String name, String color, String code) {
         this.id = id;
         this.name = name;
         this.role = code;
+        this.color = color;
     }
     
     public Long getId() {
@@ -36,4 +38,12 @@ public class BoardWithDetailDTO {
 		this.role = role;
 	}
 
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+	
 }

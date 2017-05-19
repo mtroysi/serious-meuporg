@@ -50,6 +50,7 @@ public class TaskUserServiceImpl implements TaskUserService {
 			TaskUserDTO taskUserDTO = (TaskUserDTO)transformers.convertEntityToDto(tu, TaskUserDTO.class);
 			Periodicity period = tu.getTask().getPeriodicity();
 			TaskWithPeriodDTO  taskWithPeriod = taskUserDTO.getTask();
+			taskWithPeriod.setBoardId(tu.getTask().getBoard().getId());
 			taskWithPeriod.setDateEnd(tu.getDateEnd());
 			/* Si pas de periode alors la tache est classique */
 			if( period == null ){
