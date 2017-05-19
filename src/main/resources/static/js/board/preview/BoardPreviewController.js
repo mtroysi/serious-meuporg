@@ -3,7 +3,7 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('BoardPreviewController', function(AuthenticationService, $scope, $state, $stateParams, BoardService, $timeout, CommonMenuService, TaskService, AuthenticationService, CommonDialogService) {
+        .controller('BoardPreviewController', function($scope, $state, $stateParams, BoardService, $timeout, CommonMenuService, TaskService, AuthenticationService, CommonDialogService) {
             var ctrl = this;
 
             /**
@@ -18,8 +18,8 @@
                 ctrl.newColonne = {};
                 ctrl.editColonne = {};
                 ctrl.filter = { type: 'TOUT' };
-                ctrl.getBoard($stateParams.id);
                 ctrl.isAdmin = false;
+                ctrl.getBoard($stateParams.id);
                 ctrl.getTaskBoard($stateParams.id, AuthenticationService.getUserId());
 
                 $scope.$watch('this.ctrl.filter.type', function() {
@@ -27,7 +27,7 @@
                 });
             };
 
-            function typeOf (obj) {
+            function typeOf(obj) {
                 return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
             }
 
