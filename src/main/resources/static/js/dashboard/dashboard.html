@@ -13,27 +13,53 @@
     </div>
     <div class="col-md-12 boxMatrice">
         <div class="row">
-
             <div class="col-md-4 panelMatrice">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>Mon profil</h2>
+                        <div class="panel-ctrls button-icon-bg">
+                            <a ng-click="ctrl.enableEditor()"> <button class="btn btn-default-alt btn-lg"><i class="ti ti-pencil"></i></button></a>
+                        </div>
                     </div>
+
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content">
-                            <div class="col-md-12">
-                                <img ng-srcset= {{ctrl.user.avatar}} alt="avatar"/>
+                            <div ng-hide="ctrl.editorEnabled" class="col-md-12">
+                                <img ng-srcset="{{ctrl.user.avatar}}" alt="avatar" />
                                 <div> Nom : {{ctrl.user.firstName}} </div>
                                 <div> Prénom : {{ctrl.user.lastName}} </div>
                                 <div> E-mail : {{ctrl.user.email}} </div>
                                 <div> Date d'inscription : {{ctrl.user.dateCreation | date:'dd/MM/yyyy'}}</div>
+                            </div>
+
+                            <div ng-show="ctrl.editorEnabled" class="col-md-12">
+                                <img ng-srcset="{{ctrl.user.avatar}}" alt="avatar" />
+
+                                <form name="formEditor" ng-submit="ctrl.editUserAction()" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="firstName" class="col-md-4 control-label" >Nom :</label>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" id="firstName" ng-model="ctrl.user.firstName">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName" class="col-md-4 control-label">Prénom : </label>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" id="lastName" ng-model="ctrl.user.lastName">
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="submit" ng-disabled="ctrl.$invalid" class="btn btn-primary">Valider</button>
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-              <div class="col-md-4 panelMatrice">
+            <div class="col-md-4 panelMatrice">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>Mes tableaux</h2>
@@ -56,7 +82,7 @@
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content">
                             <div class="col-md-12">
-                               mes tâches
+                                mes tâches
                             </div>
                         </div>
                     </div>

@@ -28,6 +28,11 @@ public class UserController {
     public UserDTO createUser(@RequestBody UserDTO userDTO){
         return userService.createUser(userDTO);
     }
+    
+    @RequestMapping(method = RequestMethod.PUT)
+    public UserDTO editUser(@RequestBody UserDTO userDTO){
+        return userService.editUser(userDTO);
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public List<UserDTO> loadUsers(@RequestParam("query") String query) {
