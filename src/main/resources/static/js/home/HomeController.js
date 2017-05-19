@@ -10,7 +10,9 @@
     helloApp.controller('HomeController', function($location, $http, HomeService) {
         var ctrl = this;
 
-        ctrl.init = function() {};
+        ctrl.init = function() {
+            $('body').addClass('bg-white');
+        };
 
         ctrl.init();
     })

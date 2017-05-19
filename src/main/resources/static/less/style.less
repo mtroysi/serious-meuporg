@@ -141,7 +141,7 @@ body{
 
     .home-content{
         a.navbar-brand, a.navbar-brand:hover, a.navbar-brand:active, a.navbar-brand:link {
-            color: #FFF;
+            color: #3e466e;    
             text-decoration: none;
             padding: 0 25px;
             vertical-align: middle;
@@ -150,7 +150,7 @@ body{
             text-transform: uppercase;
         }
         .navbar{
-            background: rgba(0,121,191,0.6);
+            background: #F0F3F4;
 
             .navbar-nav {
                 padding: 5px;
@@ -231,5 +231,88 @@ body{
 
     .level {
         padding-bottom: 0 !important;
+    }
+
+    .bg-white{
+        background: #FFF !important;
+    }
+
+    .homePage{
+        .boxImage {
+            background-attachment: scroll;
+            background-clip: border-box;
+            background-color: rgba(0, 0, 0, 0);
+            background-image: url("../images/bg.png");
+            background-repeat: no-repeat;
+            background-size: 1291px auto;
+            background-position-x: center;
+            background-position-y: 0;
+            height: 710px;
+            top: 100px;
+            z-index: 2;
+            padding: 0;
+            position: relative;
+            text-align: center;
+            width: 100%;
+            font-family: "Roboto";
+
+            .container{
+                max-width: 600px;
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 14%;
+                width: 100%;
+            }
+            h1{
+                color: #3e466e;    
+                font-size: 45px !important;
+                line-height: 68px;
+                font-family: "Roboto";
+            }
+            p {
+              color: #3e466e;
+              font-family: 15px !important;
+            }
+        }
+        .div-separator{
+            background-color: #3e466e;
+            height: 2px;
+            width: 60%;
+            margin: 10px auto 80px auto;
+        }
+        .approach-container{
+            .container {
+                background: rgba(0, 0, 0, 0) url("../images/line.svg") no-repeat scroll 64px 320px;
+                height: 100%;
+                overflow: hidden;
+                padding-bottom: 240px;
+                margin: 0 auto;
+                max-width: 940px;
+                width: 98%;
+            }
+            .marginTop{
+                margin-top: 160px;
+            }
+            .approach-step1 {
+                margin-bottom: 90px;
+            }
+            .approach {
+                text-align: left;
+            }
+            .approach-step2 {
+                margin-left: 42px;
+            }
+            .approach-step2, .approach-step3 {
+                margin-bottom: 130px;
+            }
+            .approach-step4 {
+                margin-bottom: 150px;
+                margin-left: 132px;
+            }
+            .approach-step5 {
+                margin-left: 52px;
+            }
+        }
     }
 }
