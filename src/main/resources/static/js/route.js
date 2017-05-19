@@ -123,6 +123,12 @@
                 templateUrl: 'js/bid/preview/bid.preview.html',
                 controller: 'BidPreviewController',
                 controllerAs: 'ctrl'
+            })
+	    .state('app.shop', {
+                url: '/shop',
+                templateUrl: 'js/shop/shop.html',
+                controller: 'ShopController',
+                controllerAs: 'ctrl'
             });
 
         $urlRouterProvider.otherwise('/');
