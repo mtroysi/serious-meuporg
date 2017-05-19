@@ -93,6 +93,13 @@
             };
 
             /**
+             * Save new column Kanban
+             */
+            ctrl.saveNewColonne = function() {
+                //ctrl.board.colonneKanbans.push();
+            };
+
+            /**
              * Delete Board
              */
             ctrl.deleteBoard = function() {
