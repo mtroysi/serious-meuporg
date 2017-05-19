@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.example.enumeration.TypeNotifEnum;
+
 /**
  * Created by Adrien CASELLES on 11/05/17.
  */
@@ -28,6 +30,11 @@ public class Notification extends CommonEntity {
     @Column(name = "date_creation")
     private Date dateCreation;
 
+    @Column(name = "is_read")
+    private Boolean isRead;
+    
+    @Column(name = "type")
+    private TypeNotifEnum type;
 
     public String getTitle() {
         return title;
@@ -60,5 +67,21 @@ public class Notification extends CommonEntity {
 	public void setDateCreation(Date dateCreation) {
 		this.dateCreation = dateCreation;
 	}
-    
+
+	public Boolean getIsRead() {
+		return isRead;
+	}
+
+	public void setIsRead(Boolean isRead) {
+		this.isRead = isRead;
+	}
+
+	public TypeNotifEnum getType() {
+		return type;
+	}
+
+	public void setType(TypeNotifEnum type) {
+		this.type = type;
+	}
+	
 }

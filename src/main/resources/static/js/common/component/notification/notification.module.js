@@ -11,11 +11,11 @@
             });
 
             /**
-             * Watch the list of menu (list of board)
-             * Variable to watch : listBoard
+             * Watch the list of menu (list of notification)
+             * Variable to watch : listNotification
              */
-            $scope.$watch('this.vm.CommonNotificationService.listBoard', function(newValues) {
-                ctrl.listBoard = newValues;
+            $scope.$watch('this.vm.CommonNotificationService.listNotification', function(newValues) {
+                ctrl.listNotification = newValues;
             });
         };
 

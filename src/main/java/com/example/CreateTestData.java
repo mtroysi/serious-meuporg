@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.example.enumeration.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.init.ScriptException;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,10 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.enumeration.PeriodicityEnum;
 import com.example.enumeration.PriorityEnum;
+import com.example.enumeration.RoleEnum;
 import com.example.enumeration.StatusEnum;
+import com.example.enumeration.TypeNotifEnum;
 import com.example.model.Board;
 import com.example.model.BoardUser;
 import com.example.model.ColonneKanban;
+import com.example.model.Notification;
 import com.example.model.Periodicity;
 import com.example.model.Role;
 import com.example.model.Task;
@@ -26,6 +28,7 @@ import com.example.model.User;
 import com.example.repository.BoardRepository;
 import com.example.repository.BoardUserRepository;
 import com.example.repository.ColonneKanbanRepository;
+import com.example.repository.NotificationRepository;
 import com.example.repository.PeriodicityRepository;
 import com.example.repository.RoleRepository;
 import com.example.repository.TaskRepository;
@@ -58,7 +61,10 @@ public class CreateTestData {
 	
 	 @Autowired
 	 private BoardUserRepository boardUserRepository;
-	
+
+	 @Autowired
+	 private NotificationRepository notificationRepository;
+	 
 	 private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	 private Role role1;
@@ -94,6 +100,12 @@ public class CreateTestData {
 	private TaskUser taskUser2;
 
 	private TaskUser taskUser3;
+	
+	private Notification notif1;
+
+	private Notification notif2;
+
+	private Notification notif3;
 	
 	 
 	@RequestMapping("/tools/createTestData")
@@ -168,6 +180,39 @@ public class CreateTestData {
 		
 		
 		
+		/* CREATION NOTIFICATION */
+		Notification notif1 = new Notification();
+		notif1.setId(1L);
+		notif1.setContent("Title de la notification");
+		notif1.setTitle("Notfi 1");
+		notif1.setDateCreation(new Date());
+		notif1.setUser(this.user1);
+		notif1.setVersion(1);
+		notif1.setIsRead(false);
+		notif1.setType(TypeNotifEnum.ERROR);
+		this.notif1 = this.notificationRepository.save(notif1);
+		
+		Notification notif2 = new Notification();
+		notif2.setId(2L);
+		notif2.setContent("Title de la notification");
+		notif2.setTitle("Notfi 3");
+		notif2.setDateCreation(new Date());
+		notif2.setUser(this.user1);
+		notif2.setVersion(1);
+		notif2.setIsRead(true);
+		notif2.setType(TypeNotifEnum.INFORMATION);
+		this.notif2 = this.notificationRepository.save(notif2);
+		
+		Notification notif3 = new Notification();
+		notif3.setId(3L);
+		notif3.setContent("Title de la notification");
+		notif3.setTitle("Notfi 3");
+		notif3.setDateCreation(new Date());
+		notif3.setUser(this.user1);
+		notif3.setVersion(1);
+		notif3.setIsRead(true);
+		notif3.setType(TypeNotifEnum.ERROR);
+		this.notif3 = this.notificationRepository.save(notif3);
 		
 		
 		/* CREATION BOARD */

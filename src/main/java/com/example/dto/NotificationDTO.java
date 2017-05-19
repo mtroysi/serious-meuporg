@@ -2,13 +2,16 @@ package com.example.dto;
 
 import java.util.Date;
 
+import com.example.enumeration.TypeNotifEnum;
+
 public class NotificationDTO {
 	
     private Long id;
     private String title;
     private String content;
-    private Date date_creation;
-    
+    private Date dateCreation;
+    private Boolean isRead;
+    private TypeNotifEnum type;
     
 	public Long getId() {
 		return id;
@@ -28,10 +31,23 @@ public class NotificationDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getDate_creation() {
-		return date_creation;
+	public Date getDateCreation() {
+		return dateCreation;
 	}
-	public void setDate_creation(Date date_creation) {
-		this.date_creation = date_creation;
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
 	}
+	public Boolean getIsRead() {
+		return isRead;
+	}
+	public void setIsRead(Boolean isRead) {
+		this.isRead = isRead;
+	}
+	public TypeNotifEnum getType() {
+		return type;
+	}
+	public void setType(TypeNotifEnum type) {
+		this.type = type;
+	}
+	
 }
