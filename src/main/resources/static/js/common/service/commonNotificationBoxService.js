@@ -4,7 +4,7 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.service('CommonNotificationService', function() {
+    helloApp.service('CommonNotificationBoxService', function() {
         var svc = {};
 
         svc.info = function(title, message) {
