@@ -44,6 +44,12 @@ public class Task extends CommonEntity {
 
     @Column(name = "date_end_bid")
     private Date dateEndBid;
+
+    @Column(name = "money")
+    private Long money;
+
+    @Column(name = "xp")
+    private Long experience;
     
     @OneToOne
     @JoinColumn(name="periodicity_id", nullable = true)
@@ -197,4 +203,19 @@ public class Task extends CommonEntity {
 		this.periodicity = periodicity;
 	}
 
+    public Long getMoney() {
+        return money;
+    }
+
+    public void setMoney(Long money) {
+        this.money = money;
+    }
+
+    public Long getExperience() {
+        return experience;
+    }
+
+    public void setExperience(Long experience) {
+        this.experience = experience;
+    }
 }

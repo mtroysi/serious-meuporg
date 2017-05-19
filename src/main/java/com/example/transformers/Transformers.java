@@ -1,5 +1,6 @@
 package com.example.transformers;
 
+import com.example.ConstanteGameMaster;
 import com.example.dto.BoardDTO;
 import com.example.dto.UserDTO;
 import com.example.model.Board;
