@@ -14,14 +14,21 @@
         };
 
         svc.addListBoard = function(element) {
-            if(!svc.listBoard) {
+            if (!svc.listBoard) {
                 svc.listBoard = [];
             }
             svc.listBoard.push(element);
         };
 
+        svc.updateElementListBoard = function(newElement) {
+            var index = svc.listBoard.findIndex(function(element) { return element.id == newElement.id });
+            if (index != -1) {
+                svc.listBoard[index] = newElement;
+            }
+        };
+
         svc.removeListBoard = function(board_id) {
-            var index = _.findIndex(svc.listBoard, {id: board_id});
+            var index = _.findIndex(svc.listBoard, { id: board_id });
             svc.listBoard.splice(index, 1);
         };
 

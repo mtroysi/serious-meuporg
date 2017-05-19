@@ -84,4 +84,12 @@ public class TaskUser extends CommonEntity {
     public void setDurationReel(Double durationReel) {
         this.durationReel = durationReel;
     }
+
+	public ColonneKanban getColonneKanban() {
+		return colonneKanban;
+	}
+
+	public void setColonneKanban(ColonneKanban colonneKanban) {
+		this.colonneKanban = colonneKanban;
+	}
 }

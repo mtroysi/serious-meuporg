@@ -3,6 +3,8 @@ package com.example.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.model.ColonneKanban;
+
 /**
  * Created by Morgane TROYSI on 11/05/17.
  */
@@ -12,6 +14,7 @@ public class BoardDTO {
     private String color;
     private UserDTO creator;
     private List<UserDTO> users = new ArrayList<>();
+    private List<ColonneKanbanDTO> colonneKanbans = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -51,5 +54,13 @@ public class BoardDTO {
 
     public void setCreator(UserDTO creator) {
         this.creator = creator;
+    }
+
+    public List<ColonneKanbanDTO> getColonneKanbans() {
+	return colonneKanbans;
+    }
+
+    public void setColonneKanbans(List<ColonneKanbanDTO> colonneKanbans) {
+	this.colonneKanbans = colonneKanbans;
     }
 }

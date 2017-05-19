@@ -202,8 +202,7 @@ public class CreateTestData {
 		col1.setId(1L);
 		col1.setVersion(1);
 		col1.setBoard(this.board1);
-		col1.setColor("red");
-		col1.setIsDefault(true);
+		col1.setColor("gray");
 		col1.setStatus(StatusEnum.TODO);
 		col1.setTitle("TODO");
 		this.col1 = colonneKanbanRepository.save(col1);
@@ -212,8 +211,7 @@ public class CreateTestData {
 		col2.setId(2L);
 		col2.setVersion(1);
 		col2.setBoard(this.board1);
-		col2.setColor("red");
-		col2.setIsDefault(false);
+		col2.setColor("primary");
 		col2.setStatus(StatusEnum.IN_PROGRESS);
 		col2.setTitle("IN_PROGRESS");
 		this.col2 = colonneKanbanRepository.save(col2);
@@ -222,8 +220,7 @@ public class CreateTestData {
 		col3.setId(3L);
 		col3.setVersion(1);
 		col3.setBoard(this.board1);
-		col3.setColor("red");
-		col3.setIsDefault(false);
+		col3.setColor("bluegraylight");
 		col3.setStatus(StatusEnum.DONE);
 		col3.setTitle("DONE");
 		this.col3 = colonneKanbanRepository.save(col3);
@@ -309,6 +306,7 @@ public class CreateTestData {
 		taskUser1.setStatus(StatusEnum.IN_PROGRESS);
 		taskUser1.setTask(this.task1);
 		taskUser1.setUser(this.user1);
+		taskUser1.setColonneKanban(col1);
 		taskUser1.setVersion(1);
 		this.taskUser1 = taskUserRepository.save(taskUser1);
 		
@@ -320,6 +318,7 @@ public class CreateTestData {
 		taskUser2.setStatus(StatusEnum.IN_PROGRESS);
 		taskUser2.setTask(this.task2);
 		taskUser2.setUser(this.user1);
+		taskUser1.setColonneKanban(col1);
 		taskUser2.setVersion(1);
 		this.taskUser2 = taskUserRepository.save(taskUser2);
 		
