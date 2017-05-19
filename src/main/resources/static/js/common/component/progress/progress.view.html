@@ -1,0 +1,29 @@
+<div class="widget-heading">
+    Expérience
+</div>
+<div class="widget-body">
+    <div class="mini-progressbar level">
+        <div class="clearfix mb-sm">
+            <div class="pull-left">Niveau</div>
+            <div class="pull-right">{{ctrl.user.level}}</div>
+        </div>
+        <!--            <div class="progress">
+                        <div class="progress-bar progress-bar-lime" style="width: 50%"></div>
+                    </div>-->
+    </div>
+    <div class="mini-progressbar level">
+        <div class="clearfix mb-sm">
+            <div class="pull-left">Argent</div>
+            <div class="pull-right">{{ctrl.user.money}}</div>
+        </div>
+    </div>
+    <div class="mini-progressbar">
+        <div class="clearfix mb-sm">
+            <div class="pull-left">Expérience</div>
+            <div class="pull-right">{{ctrl.user.experience}} / {{ctrl.totalXp}}</div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-info" style="width: {{ctrl.getXpPercent()}}%"></div>
+        </div>
+    </div>
+</div>
