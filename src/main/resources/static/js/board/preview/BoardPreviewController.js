@@ -3,7 +3,7 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('BoardPreviewController', function(AuthenticationService, $state, $stateParams, BoardService, $timeout, CommonMenuService) {
+        .controller('BoardPreviewController', function($scope, $state, $stateParams, BoardService, $timeout, CommonMenuService, TaskService, AuthenticationService, CommonDialogService) {
             var ctrl = this;
             ctrl.isAdmin = false;
 
