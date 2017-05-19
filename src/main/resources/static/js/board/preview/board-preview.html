@@ -183,23 +183,23 @@
                             <div class="columnKanban">
                                 <div class="header">
                                     <div class="panel panel-deeporange">
-                                        <div class="panel-heading">
+                                        <div class="panel-heading" ng-click="ctrl.openPanelNewColonne=!ctrl.openPanelNewColonne">
                                             <h2>AJOUTER UNE COLONNE</h2>
                                             <div class="panel-ctrls button-icon-bg">
-                                                <span class="button-icon has-bg" ng-click="ctrl.openPanelNewColonne=!ctrl.openPanelNewColonne"><i class="ti ti-plus"></i></span>
+                                                <span class="button-icon has-bg"><i class="ti ti-plus"></i></span>
                                             </div>
                                         </div>
                                         <div class="panel-body" ng-show="ctrl.openPanelNewColonne">
                                             <form id="addTaskListForm" class="form-horizontal">
                                                 <div class="form-group">
                                                     <label for="taskColor" class="control-label">Liste des couleurs</label>
-                                                    <color-picker ng-model="colonne.color"></color-picker>
+                                                    <color-picker ng-model="ctrl.newColonne.color"></color-picker>
                                                 </div>
                                                 <div class="form-group is-empty">
                                                     <div class="input-group">
-                                                        <input class="form-control" id="newTaskListInput" placeholder="Nom de la colonne" type="text">
+                                                        <input class="form-control" ng-model="ctrl.newColonne.title" id="newTaskListInput" placeholder="Nom de la colonne" type="text">
                                                         <span class="input-group-btn">
-                                                            <button type="button" class="btn btn-primary" ng-click="ctrl.saveNewColonne()" data-task="save-task-list">
+                                                            <button type="button" class="btn btn-primary" ng-disabled="!ctrl.newColonne.title" ng-click="ctrl.saveNewColonne()" data-task="save-task-list">
                                                                 <i class="ti ti-check"></i>
                                                             </button>
                                                         </span>

@@ -31,11 +31,11 @@
             };
 
             svc.createColonneKanban = function(colonneKanban, boardId) {
-                return $http.post(constant.BASE_URI + '/colonneKanban/board/' + boardId);
+                return $http.post(constant.BASE_URI + '/colonneKanban/board/' + boardId, colonneKanban);
             };
 
             svc.editColonneKanban = function(colonneKanban) {
-                return $http.put(constant.BASE_URI + '/colonneKanban/' + colonneKanban.id);
+                return $http.put(constant.BASE_URI + '/colonneKanban/' + colonneKanban.id, colonneKanban);
             };
 
             return svc;

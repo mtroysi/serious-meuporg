@@ -15,6 +15,7 @@
                 ctrl.typeDisplayTeam = false;
                 ctrl.listTask = [];
                 ctrl.listTaskDefault = [];
+                ctrl.newColonne = {};
                 ctrl.filter = { type: 'TOUT' };
                 ctrl.getBoard($stateParams.id);
                 ctrl.getTaskBoard($stateParams.id, AuthenticationService.getUserId());
@@ -96,7 +97,16 @@
              * Save new column Kanban
              */
             ctrl.saveNewColonne = function() {
-                //ctrl.board.colonneKanbans.push();
+                var colonneKanban = { id: null, title: ctrl.newColonne.title, color: ctrl.newColonne.color };
+                BoardService.createColonneKanban(colonneKanban, ctrl.board.id).then(function(response) {
+                    ctrl.board.colonneKanbans.push(response);
+                    $timeout(function() {
+                        ctrl.sizeKanban();
+                        //Reset form
+                        ctrl.newColonne = {};
+                        ctrl.openPanelNewColonne = false;
+                    }, 0);
+                });
             };
 
             /**
