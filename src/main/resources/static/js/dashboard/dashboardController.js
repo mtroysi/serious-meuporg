@@ -15,6 +15,9 @@
             var id = AuthenticationService.getUserId();
             UserService.getUser(id).then(function(response){
                 ctrl.user = response;
+                if(ctrl.user.avatar==null){
+                    ctrl.user.avatar ="images/avatar/user.png";
+                }
             });
         };
 
