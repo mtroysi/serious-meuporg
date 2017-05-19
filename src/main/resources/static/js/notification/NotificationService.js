@@ -10,6 +10,12 @@
     helloApp.service('NotificationService', function(NotificationWS) {
         var svc = {};
 
+        svc.getNotificationByUser = function(id) {
+            return UserWS.getNotificationByUser(id).then(function(response) {
+                return response.data;
+            });
+        };
+
         return svc;
     })
 })();
