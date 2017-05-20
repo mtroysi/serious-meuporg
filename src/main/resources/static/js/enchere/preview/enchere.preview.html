@@ -7,6 +7,24 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12 sliderPanelBox text-right">
+    <div class="col-md-12 boxMatrice">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-body scroll-pane">
+                    <div class="row scroll-content">
+                        <div class="col-md-2" ng-repeat="item in ctrl.items">
+                            <div class="info-tile tile-success tile-perso">
+                                <div class="tile-heading"><span>{{ item.name }}</span></div>
+                                <div class="tile-body"><span>{{ item.description }}<br><br>aeaze<br><br></span></div>
+                                <div class="tile-footer">
+                                    <span class="pull-left strong" ng-class="ctrl.hasLevel(item)">Niveau requis : {{item.requiredLevel}}</span>
+                                    <span class="strong" ng-class="ctrl.hasMoney(item)">Prix : {{item.price}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

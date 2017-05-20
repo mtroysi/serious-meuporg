@@ -7,7 +7,9 @@
     helloApp.controller('EncherePreviewController', function($location, $http) {
         var ctrl = this;
 
-        ctrl.init = function() {};
+        ctrl.init = function() {
+            ctrl.items = [{ name: "test" }];
+        };
 
         ctrl.init();
     })
