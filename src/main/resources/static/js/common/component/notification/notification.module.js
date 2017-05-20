@@ -5,6 +5,9 @@
         var ctrl = this;
 
         ctrl.init = function() {
+            ctrl.listNotification = [];
+            ctrl.CommonNotificationService = CommonNotificationService;
+
             // Call WS for get the list of notification of the user
             NotificationService.getNotificationByUser(AuthenticationService.getUserId()).then(function(data) {
                 CommonNotificationService.initListNotification(angular.copy(data));
@@ -26,6 +29,7 @@
     angular.module('hello').component('mgNotification', {
         transclude: true,
         controller: ComponentNotificationController,
+        controllerAs: 'vm',
         templateUrl: 'js/common/component/notification/notification.view.html'
     });
 })();

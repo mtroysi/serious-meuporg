@@ -3,9 +3,9 @@ package com.example.enumeration;
 
 
 public enum TypeNotifEnum {
-    ERROR("Erreur"),
-    IMPORTANT("Important"),
-    INFORMATION("Information");
+    error("Erreur"),
+    important("Important"),
+    information("Information");
 
     private String name = "";
 

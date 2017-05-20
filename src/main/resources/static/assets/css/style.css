@@ -30366,6 +30366,22 @@ input.dial {
     color: #2196f3 !important;
 }
 
+.notification-error .notification-icon {
+    background: #e51c23 !important;
+}
+
+.notification-important .notification-icon {
+    background: #ff5722 !important;
+}
+
+.notification-information .notification-icon {
+    background: #2196f3 !important;
+}
+
+.read-false {
+    background: #EEE;
+}
+
 .inbox-mail-heading {
     margin: 0;
     padding: 8px;

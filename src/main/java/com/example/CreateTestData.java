@@ -189,7 +189,7 @@ public class CreateTestData {
 		notif1.setUser(this.user1);
 		notif1.setVersion(1);
 		notif1.setIsRead(false);
-		notif1.setType(TypeNotifEnum.ERROR);
+		notif1.setType(TypeNotifEnum.error);
 		this.notif1 = this.notificationRepository.save(notif1);
 		
 		Notification notif2 = new Notification();
@@ -200,7 +200,7 @@ public class CreateTestData {
 		notif2.setUser(this.user1);
 		notif2.setVersion(1);
 		notif2.setIsRead(true);
-		notif2.setType(TypeNotifEnum.INFORMATION);
+		notif2.setType(TypeNotifEnum.information);
 		this.notif2 = this.notificationRepository.save(notif2);
 		
 		Notification notif3 = new Notification();
@@ -211,7 +211,7 @@ public class CreateTestData {
 		notif3.setUser(this.user1);
 		notif3.setVersion(1);
 		notif3.setIsRead(true);
-		notif3.setType(TypeNotifEnum.ERROR);
+		notif3.setType(TypeNotifEnum.error);
 		this.notif3 = this.notificationRepository.save(notif3);
 		
 		
