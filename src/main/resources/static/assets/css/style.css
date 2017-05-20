@@ -30378,6 +30378,18 @@ input.dial {
     background: #2196f3 !important;
 }
 
+.label-information {
+    background: #2196f3 !important;
+}
+
+.label-error {
+    background: #e51c23 !important;
+}
+
+.label-important {
+    background: #ff5722 !important;
+}
+
 .read-false {
     background: #EEE;
 }
