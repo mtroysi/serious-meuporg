@@ -13,11 +13,16 @@
             return svc.listNotification;
         };
 
-        svc.addListNotification = function(element) {
+        svc.addListNotification = function(element, bdd) {
             if (!svc.listNotification) {
                 svc.listNotification = [];
             }
             svc.listNotification.push(element);
+
+            // The notification is saved in the database
+            if (bdd === true) {
+
+            }
         };
 
         svc.updateElementListNotification = function(newElement) {

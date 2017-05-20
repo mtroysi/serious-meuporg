@@ -12,6 +12,7 @@ public class NotificationDTO {
     private Date dateCreation;
     private Boolean isRead;
     private TypeNotifEnum type;
+    private Long user_id;
     
 	public Long getId() {
 		return id;
@@ -49,5 +50,10 @@ public class NotificationDTO {
 	public void setType(TypeNotifEnum type) {
 		this.type = type;
 	}
-	
+	public Long getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(Long user_id) {
+		this.user_id = user_id;
+	}
 }

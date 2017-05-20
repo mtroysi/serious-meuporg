@@ -12,5 +12,19 @@ public interface NotificationService {
 	 * @return
 	 */
 	List<NotificationDTO> getNotificationByUserId(Long userId);
+	
+	/**
+	 * Read all user notifications
+	 * @param userId
+	 */
+	void readAllNotification(Long userId);
+	
+	/**
+	 * Create notification
+	 * @param notif
+	 * @return
+	 */
+	NotificationDTO createNotification(NotificationDTO notif);
+	
  
 }

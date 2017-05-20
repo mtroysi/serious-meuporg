@@ -9,10 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.dto.BoardDTO;
 import com.example.dto.NotificationDTO;
 import com.example.service.NotificationService;
 
@@ -35,7 +37,7 @@ public class NotificationController {
      */
     @RequestMapping(value = "/user/{user_id}", method = RequestMethod.GET)
     public ResponseEntity<List<NotificationDTO>> getListByUser(@PathVariable(value = "user_id") Long user_id) {
-        logger.info("Calling BoardController.getListBoardByUser with {}", user_id);
+        logger.info("Calling NotificationController.getListBoardByUser with {}", user_id);
 
         List<NotificationDTO> list = notificationService.getNotificationByUserId(user_id);
 
@@ -45,5 +47,23 @@ public class NotificationController {
 
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
+    
+    /**
+     * Read all notification by user
+     * @param user_id
+     * @return list of NotificationDTO
+     */
+    @RequestMapping(value = "/user/{user_id}/read", method = RequestMethod.GET)
+    public void readAllNotification(@PathVariable(value = "user_id") Long user_id) {
+        logger.info("Calling NotificationController.readAllNotification with {}", user_id);
+        notificationService.readAllNotification(user_id);
+    }
+    
+    @RequestMapping(method = RequestMethod.POST)
+    public NotificationDTO createBoard(@RequestBody NotificationDTO notifDTO) {
+        return notificationService.createNotification(notifDTO);
+    }
+    
+    
 
 }
