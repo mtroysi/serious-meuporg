@@ -2,19 +2,27 @@
  * Created by sara on 18/05/17.
  */
 
-(function() {
+(function () {
     'use strict';
 
     /** @ngInject */
     angular.module('hello')
-        .service('UserService', function(UserWS) {
+        .service('UserService', function (UserWS) {
             var svc = {};
 
-            svc.getUser = function(id) {
-                return UserWS.getUser(id).then(function(response) {
+            svc.getUser = function (id) {
+                return UserWS.getUser(id).then(function (response) {
                     return response.data;
                 });
             };
+
+
+            svc.editUser = function (user) {
+                return UserWS.editUser(user).then(function (response) {
+                    return response.data;
+                });
+            };
+
             return svc;
         });
 })();
