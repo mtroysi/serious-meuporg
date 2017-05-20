@@ -321,7 +321,6 @@ $(document).ready(function() {
         Utility.toggle_fullscreen(document.documentElement);
     });
 
-
     // -------------------------------
     // For tabs inside dropdowns
     // -------------------------------

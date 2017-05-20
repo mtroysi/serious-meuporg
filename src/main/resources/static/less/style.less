@@ -369,4 +369,65 @@ body{
         margin: 0 auto;
         font-family: "Roboto";
     }
+    .encherePreview{
+        .responsive-carousel{
+            .slick-prev:before, .slick-next:before{
+                color: #444;
+            }
+            .tile-carousel{
+                border: 1px solid #DADADA;
+                box-shadow: 0 3px 5px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.23);
+                margin: 15px;
+                height: 150px;
+                position: relative;
+                opacity: 0.4;
+                cursor: pointer;
+
+                &.active{
+                    opacity: 1;
+                }
+
+                .tile-heading{
+                    margin: 20px;
+                    text-align: center;
+                    overflow: hidden;
+                    .date{
+                        font-size: 11px;
+                    }
+                }
+                .tile-footer {
+                    text-align: right;
+                    font-size: 12px;
+                    position: absolute;
+                    right: 0;
+                    bottom: 8px;
+                    padding: 0 16px;
+                    width: 100%;
+                    text-align: center;
+
+                    .estimation {
+                        background: #455a64;
+                        padding: 10px;
+                        display: inline-block;
+                        width: 80%;
+                        color: #FFF;
+                    }
+                }
+            }
+        }
+
+        .buttonTinder{
+            position: relative;
+            text-align: center;
+            bottom: -40px;
+            
+            button{
+                width: 50px;
+                height: 50px;
+                border-radius: 50px;
+                font-size: 20px;
+                margin: 0 25px;
+            }
+        }
+    }
 }
