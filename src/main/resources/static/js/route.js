@@ -114,13 +114,13 @@
             })
             .state('app.enchereValidation', {
                 url: '/enchere/{idBoard}/validation',
-                templateUrl: 'js/enchere/enchere.validation.html',
+                templateUrl: 'js/enchere/validation/enchere.validation.html',
                 controller: 'EnchereValidationController',
                 controllerAs: 'ctrl'
             })
             .state('app.encherePreview', {
                 url: '/enchere/{idBoard}',
-                templateUrl: 'js/enchere/enchere.preview.html',
+                templateUrl: 'js/enchere/preview/enchere.preview.html',
                 controller: 'EncherePreviewController',
                 controllerAs: 'ctrl'
             });

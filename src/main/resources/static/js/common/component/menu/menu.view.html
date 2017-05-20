@@ -9,7 +9,7 @@
             <a href="javascript:;"><i class="ti ti-layout text-custom-{{board.color}}"></i><span>{{ board.name }}</span></a>
             <ul class="acc-menu">
                 <li><a ui-sref="app.board-preview({ id: board.id})">Visualiser</a></li>
-                <li><a href="layout-static-leftbar.html">Enchères</a></li>
+                <li><a ui-sref="app.encherePreview({ idBoard: board.id})">Enchères</a></li>
             </ul>
         </li>
         <!--
