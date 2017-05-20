@@ -7,11 +7,12 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.controller('NotificationController', function($location, $http, NotificationService, CommonNotificationService) {
+    helloApp.controller('NotificationController', function($location, $http, NotificationService, CommonNotificationService, AuthenticationService) {
         var ctrl = this;
 
         ctrl.init = function() {
-
+            // The user has just seen all notifications
+            NotificationService.readAllNotification(AuthenticationService.getUserId());
         };
 
         ctrl.init();

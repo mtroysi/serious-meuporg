@@ -59,6 +59,11 @@ public class NotificationController {
         notificationService.readAllNotification(user_id);
     }
     
+    /**
+     * Create Notification
+     * @param notifDTO
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST)
     public NotificationDTO createBoard(@RequestBody NotificationDTO notifDTO) {
         return notificationService.createNotification(notifDTO);

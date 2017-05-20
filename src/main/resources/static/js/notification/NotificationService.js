@@ -7,7 +7,7 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.service('NotificationService', function(NotificationWS) {
+    helloApp.service('NotificationService', function(NotificationWS, $injector) {
         var svc = {};
 
         svc.getNotificationByUser = function(id) {
@@ -23,6 +23,9 @@
         };
 
         svc.readAllNotification = function(idUser) {
+            $injector.get('CommonNotificationService').getListNotification().forEach(function(notif) {
+                notif.isRead = true;
+            });
             return NotificationWS.readAllNotification(idUser);
         };
 

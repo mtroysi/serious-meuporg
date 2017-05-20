@@ -47,7 +47,7 @@ public class NotificationServiceImpl implements NotificationService {
 	@Override
 	public NotificationDTO createNotification(NotificationDTO notifDTO){
 		Notification notif = (Notification) transformers.convertDtoToEntity(notifDTO, NotificationDTO.class);
-		User user = userRepository.findOne(notifDTO.getUser_id());
+		User user = userRepository.findOne(notifDTO.getUserId());
 		notif.setId(null);
 		notif.setIsRead(true);
 		notif.setUser(user);

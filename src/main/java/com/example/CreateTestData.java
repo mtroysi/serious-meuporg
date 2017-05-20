@@ -101,12 +101,6 @@ public class CreateTestData {
 
 	private TaskUser taskUser3;
 	
-	private Notification notif1;
-
-	private Notification notif2;
-
-	private Notification notif3;
-	
 	 
 	@RequestMapping("/tools/createTestData")
 	public String run() throws ParseException, ScriptException, SQLException, ParseException {
@@ -190,7 +184,7 @@ public class CreateTestData {
 		notif1.setVersion(1);
 		notif1.setIsRead(false);
 		notif1.setType(TypeNotifEnum.error);
-		this.notif1 = this.notificationRepository.save(notif1);
+		this.notificationRepository.save(notif1);
 		
 		Notification notif2 = new Notification();
 		notif2.setId(2L);
@@ -201,7 +195,7 @@ public class CreateTestData {
 		notif2.setVersion(1);
 		notif2.setIsRead(true);
 		notif2.setType(TypeNotifEnum.information);
-		this.notif2 = this.notificationRepository.save(notif2);
+		this.notificationRepository.save(notif2);
 		
 		Notification notif3 = new Notification();
 		notif3.setId(3L);
@@ -212,7 +206,117 @@ public class CreateTestData {
 		notif3.setVersion(1);
 		notif3.setIsRead(true);
 		notif3.setType(TypeNotifEnum.error);
-		this.notif3 = this.notificationRepository.save(notif3);
+		this.notificationRepository.save(notif3);
+		
+		Notification notif4 = new Notification();
+		notif4.setId(4L);
+		notif4.setContent("Title de la notification");
+		notif4.setTitle("Notfi 4");
+		notif4.setDateCreation(new Date());
+		notif4.setUser(this.user1);
+		notif4.setVersion(1);
+		notif4.setIsRead(true);
+		notif4.setType(TypeNotifEnum.error);
+		this.notificationRepository.save(notif4);
+		
+		Notification notif5 = new Notification();
+		notif5.setId(5L);
+		notif5.setContent("Title de la notification");
+		notif5.setTitle("Notfi 5");
+		notif5.setDateCreation(new Date());
+		notif5.setUser(this.user1);
+		notif5.setVersion(1);
+		notif5.setIsRead(true);
+		notif5.setType(TypeNotifEnum.error);
+		this.notificationRepository.save(notif5);
+		
+		Notification notif6 = new Notification();
+		notif6.setId(6L);
+		notif6.setContent("Title de la notification");
+		notif6.setTitle("Notfi 6");
+		notif6.setDateCreation(new Date());
+		notif6.setUser(this.user1);
+		notif6.setVersion(1);
+		notif6.setIsRead(true);
+		notif6.setType(TypeNotifEnum.error);
+		this.notificationRepository.save(notif6);
+		
+		Notification notif7 = new Notification();
+		notif7.setId(7L);
+		notif7.setContent("Title de la notification");
+		notif7.setTitle("Notfi 7");
+		notif7.setDateCreation(new Date());
+		notif7.setUser(this.user1);
+		notif7.setVersion(1);
+		notif7.setIsRead(true);
+		notif7.setType(TypeNotifEnum.error);
+		this.notificationRepository.save(notif7);
+		
+		Notification notif8 = new Notification();
+		notif8.setId(8L);
+		notif8.setContent("Title de la notification");
+		notif8.setTitle("Notfi 8");
+		notif8.setDateCreation(new Date());
+		notif8.setUser(this.user1);
+		notif8.setVersion(1);
+		notif8.setIsRead(true);
+		notif8.setType(TypeNotifEnum.error);
+		this.notificationRepository.save(notif8);
+		
+		Notification notif9 = new Notification();
+		notif9.setId(9L);
+		notif9.setContent("Title de la notification");
+		notif9.setTitle("Notfi 9");
+		notif9.setDateCreation(new Date());
+		notif9.setUser(this.user1);
+		notif9.setVersion(1);
+		notif9.setIsRead(true);
+		notif9.setType(TypeNotifEnum.error);
+		this.notificationRepository.save(notif9);
+		
+		Notification notif10 = new Notification();
+		notif10.setId(10L);
+		notif10.setContent("Title de la notification");
+		notif10.setTitle("Notfi 10");
+		notif10.setDateCreation(new Date());
+		notif10.setUser(this.user1);
+		notif10.setVersion(1);
+		notif10.setIsRead(true);
+		notif10.setType(TypeNotifEnum.error);
+		this.notificationRepository.save(notif10);
+		
+		Notification notif11 = new Notification();
+		notif11.setId(11L);
+		notif11.setContent("Title de la notification");
+		notif11.setTitle("Notfi 11");
+		notif11.setDateCreation(new Date());
+		notif11.setUser(this.user1);
+		notif11.setVersion(1);
+		notif11.setIsRead(true);
+		notif11.setType(TypeNotifEnum.error);
+		this.notificationRepository.save(notif11);
+		
+		Notification notif12 = new Notification();
+		notif12.setId(12L);
+		notif12.setContent("Title de la notification");
+		notif12.setTitle("Notfi 12");
+		notif12.setDateCreation(new Date());
+		notif12.setUser(this.user1);
+		notif12.setVersion(1);
+		notif12.setIsRead(true);
+		notif12.setType(TypeNotifEnum.error);
+		this.notificationRepository.save(notif12);
+		
+		Notification notif13 = new Notification();
+		notif13.setId(13L);
+		notif13.setContent("Title de la notification");
+		notif13.setTitle("Notfi 13");
+		notif13.setDateCreation(new Date());
+		notif13.setUser(this.user1);
+		notif13.setVersion(1);
+		notif13.setIsRead(true);
+		notif13.setType(TypeNotifEnum.error);
+		this.notificationRepository.save(notif13);
 		
 		
 		/* CREATION BOARD */
@@ -383,6 +487,7 @@ public class CreateTestData {
 	
 	@Transactional
 	public void deleteAll() {
+		this.notificationRepository.deleteAll();
 		this.boardUserRepository.deleteAll();
 		this.taskUserRepository.deleteAll();
 		this.boardRepository.deleteAll();

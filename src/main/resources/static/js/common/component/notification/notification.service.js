@@ -4,7 +4,7 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.service('CommonNotificationService', function() {
+    helloApp.service('CommonNotificationService', function(NotificationService, AuthenticationService) {
         var svc = {};
 
         svc.listNotification = [];
@@ -17,11 +17,15 @@
             if (!svc.listNotification) {
                 svc.listNotification = [];
             }
-            svc.listNotification.push(element);
 
             // The notification is saved in the database
             if (bdd === true) {
-
+                element.idUser = AuthenticationService.getUserId();
+                NotificationService.createNotification().then(function(response) {
+                    svc.listNotification.push(response);
+                });
+            } else {
+                svc.listNotification.push(response);
             }
         };
 
