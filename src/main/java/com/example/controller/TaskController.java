@@ -49,18 +49,5 @@ public class TaskController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteTask(@PathVariable("id") Long id) {
         taskService.deleteTask(id);
-    }
-    	
-    @RequestMapping(value = "/withoutuser/board/{idBoard}", method = RequestMethod.GET)
-    public ResponseEntity<List<TaskLiteDTO>> getTaskWithoutUser(@PathVariable("idBoard") Long idBoard) {
-    	
-    	List<TaskLiteDTO> list = taskService.getTaskWithoutUser(idBoard);
-    	
-        if (CollectionUtils.isEmpty(list)) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-
-        return new ResponseEntity<>(list, HttpStatus.OK);
-    }
-    
+    }    
 }

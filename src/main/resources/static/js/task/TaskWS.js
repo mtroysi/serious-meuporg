@@ -35,7 +35,7 @@
             };
 
             svc.getTaskWithoutUser = function(boardId) {
-                return $http.get(constant.BASE_URI + '/task/withoutuser/board/' + boardId);
+                return $http.get(constant.BASE_URI + '/enchere/withoutuser/board/' + boardId);
             };
 
             return svc;

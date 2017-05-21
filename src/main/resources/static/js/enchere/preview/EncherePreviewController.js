@@ -74,8 +74,8 @@
          * Accepcted task
          */
         ctrl.acceptedTask = function() {
-            ctrl.taskShow.read = true;
-            ctrl.showTaskCarouselAndTinder();
+            $('#editDurationBid').modal('show');
+            ctrl.durationBid = 0;
         }
 
         /**
@@ -131,6 +131,12 @@
                 ]
             });
         };
+
+        ctrl.saveBid = function() {
+            ctrl.taskShow.read = true;
+            ctrl.showTaskCarouselAndTinder();
+            alert(ctrl.durationBid + "----" + ctrl.taskShow.task.title);
+        }
 
 
         ctrl.init();

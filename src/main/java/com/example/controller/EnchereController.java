@@ -11,10 +11,11 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.dto.TaskLiteDTO;
 import com.example.dto.TaskUserBidDTO;
+import com.example.service.TaskService;
 import com.example.service.TaskUserBidService;
 
 
@@ -26,6 +27,21 @@ public class EnchereController {
 
     @Autowired
     TaskUserBidService taskUserBidService;
+    
+    @Autowired
+    TaskService taskService;
+    	
+    @RequestMapping(value = "/withoutuser/board/{idBoard}", method = RequestMethod.GET)
+    public ResponseEntity<List<TaskLiteDTO>> getTaskWithoutUser(@PathVariable("idBoard") Long idBoard) {
+    	
+    	List<TaskLiteDTO> list = taskService.getTaskWithoutUser(idBoard);
+    	
+        if (CollectionUtils.isEmpty(list)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
     
     /**
      * Return list of taskUserBid by user and board
