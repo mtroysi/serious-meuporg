@@ -112,16 +112,16 @@
                 controller: 'NotificationController',
                 controllerAs: 'ctrl'
             })
-            .state('app.enchereValidation', {
-                url: '/enchere/{idBoard}/validation',
-                templateUrl: 'js/enchere/validation/enchere.validation.html',
-                controller: 'EnchereValidationController',
+            .state('app.bidValidation', {
+                url: '/bid/{idBoard}/validation',
+                templateUrl: 'js/bid/validation/bid.validation.html',
+                controller: 'BidValidationController',
                 controllerAs: 'ctrl'
             })
-            .state('app.encherePreview', {
-                url: '/enchere/{idBoard}',
-                templateUrl: 'js/enchere/preview/enchere.preview.html',
-                controller: 'EncherePreviewController',
+            .state('app.bidPreview', {
+                url: '/bid/{idBoard}',
+                templateUrl: 'js/bid/preview/bid.preview.html',
+                controller: 'BidPreviewController',
                 controllerAs: 'ctrl'
             });
 

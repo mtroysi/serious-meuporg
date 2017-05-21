@@ -20,8 +20,8 @@ import com.example.service.TaskUserBidService;
 
 
 @RestController
-@RequestMapping("/api/enchere")
-public class EnchereController {
+@RequestMapping("/api/bid")
+public class BidController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -49,8 +49,8 @@ public class EnchereController {
      * @return list of TaskUserBidDTO
      */
     @RequestMapping(value = "/board/{board_id}/user/{user_id}", method = RequestMethod.GET)
-    public ResponseEntity<List<TaskUserBidDTO>> getListEnchereByBoardAndUser(@PathVariable(value = "user_id") Long user_id, @PathVariable(value = "board_id") Long board_id) {
-        logger.info("Calling EnchereController.getListEnchereByBoardAndUser with {} {}", user_id, board_id);
+    public ResponseEntity<List<TaskUserBidDTO>> getListBidByBoardAndUser(@PathVariable(value = "user_id") Long user_id, @PathVariable(value = "board_id") Long board_id) {
+        logger.info("Calling BidController.getListBidByBoardAndUser with {} {}", user_id, board_id);
 
         List<TaskUserBidDTO> list = taskUserBidService.getTaskUserBidByBoardAndUser(board_id, user_id);
 

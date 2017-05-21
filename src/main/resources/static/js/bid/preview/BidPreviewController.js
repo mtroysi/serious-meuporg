@@ -4,13 +4,13 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.controller('EncherePreviewController', function($location, $http, BoardService, $stateParams, AuthenticationService, TaskService, EnchereService) {
+    helloApp.controller('BidPreviewController', function($location, $http, BoardService, $stateParams, AuthenticationService, TaskService, BidService) {
         var ctrl = this;
 
         ctrl.init = function() {
             ctrl.initCarousel();
             ctrl.getBoard($stateParams.idBoard);
-            ctrl.getListEnchereByBoardAndUser($stateParams.idBoard, AuthenticationService.getUserId());
+            ctrl.getListBidByBoardAndUser($stateParams.idBoard, AuthenticationService.getUserId());
             ctrl.date = null;
             // Admin
             ctrl.listTaskWithoutUserSelected = [];
@@ -39,8 +39,8 @@
         /**
          * Load TaskUserBid By Board and User
          */
-        ctrl.getListEnchereByBoardAndUser = function(boardId, userId) {
-            EnchereService.getListEnchereByBoardAndUser(boardId, userId).then(function(data) {
+        ctrl.getListBidByBoardAndUser = function(boardId, userId) {
+            BidService.getListBidByBoardAndUser(boardId, userId).then(function(data) {
                 ctrl.listTaskBid = data;
                 ctrl.showTaskCarouselAndTinder(true);
             });
@@ -133,9 +133,9 @@
         };
 
         ctrl.saveBid = function() {
+            alert(ctrl.durationBid + "----" + ctrl.taskShow.task.title);
             ctrl.taskShow.read = true;
             ctrl.showTaskCarouselAndTinder();
-            alert(ctrl.durationBid + "----" + ctrl.taskShow.task.title);
         }
 
 

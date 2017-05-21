@@ -1,15 +1,15 @@
-<div class="row encherePreview ">
+<div class="row bidPreview ">
     <div class="col-md-12 titleHeader panel">
         <div class="panel-heading">
             <h1>Enchère du tableau</h1>
             <div class="panel-ctrls button-icon-bg">
-                <button class="btn btn-default-alt btn-lg"><i class="ti ti-stamp "></i> Validation des enchères</button>
+                <button ui-sref="app.bidValidation({ idBoard: board.id})" class="btn btn-default-alt btn-lg"><i class="ti ti-stamp"></i> Validation des enchères</button>
             </div>
         </div>
     </div>
     <div class="col-md-3" ng-if="ctrl.isAdmin">
         <div class="row margin-t-20 margin-l-20 ">
-            <div class=" col-md-12 panel panel-default boxAdminEnchere">
+            <div class=" col-md-12 panel panel-default boxAdminBid">
                 <div class="panel-header">
                     Ajout de quête au enchère
                 </div>
