@@ -12,9 +12,12 @@
             ctrl.getBoard($stateParams.idBoard);
             ctrl.getListEnchereByBoardAndUser($stateParams.idBoard, AuthenticationService.getUserId());
             ctrl.date = null;
+            // Admin
             ctrl.listTaskWithoutUserSelected = [];
             ctrl.listTaskWithoutUser = [];
-
+            // User
+            ctrl.taskShow = {};
+            ctrl.listTaskBid = [];
         };
 
 
@@ -38,9 +41,52 @@
          */
         ctrl.getListEnchereByBoardAndUser = function(boardId, userId) {
             EnchereService.getListEnchereByBoardAndUser(boardId, userId).then(function(data) {
-                console.log("---------", data);
+                ctrl.listTaskBid = data;
+                ctrl.showTaskCarouselAndTinder(true);
             });
         }
+
+
+        ctrl.showTaskCarouselAndTinder = function(first) {
+            if (ctrl.listTaskBid.length > 0) {
+                if (first) {
+                    ctrl.taskShow = ctrl.listTaskBid[0];
+                    // Refresh carousel
+                    setTimeout(function() {
+                        $('.responsive-carousel')[0].slick.refresh();
+                    }, 10);
+                } else {
+                    ctrl.taskShow = ctrl.listTaskBid.find(function(element) {
+                        return !("read" in element);
+                    });
+                }
+            }
+        }
+
+        /**
+         * Change task
+         */
+        ctrl.changeTask = function(task) {
+            ctrl.taskShow = task;
+        }
+
+        /**
+         * Accepcted task
+         */
+        ctrl.acceptedTask = function() {
+            ctrl.taskShow.read = true;
+            ctrl.showTaskCarouselAndTinder();
+        }
+
+        /**
+         * refused task
+         */
+        ctrl.refusedTask = function() {
+            ctrl.taskShow.read = true;
+            ctrl.showTaskCarouselAndTinder();
+        }
+
+
 
         /**
          * Load Task without user (admin only)
