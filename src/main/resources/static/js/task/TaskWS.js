@@ -30,6 +30,14 @@
                 return $http.get(constant.BASE_URI + '/taskUser/board/' + board_id);
             };
 
+            svc.listTaskByUser = function(user_id) {
+                return $http.get(constant.BASE_URI + '/taskUser/user/' + user_id);
+            };
+
+            svc.getTaskWithoutUser = function(boardId) {
+                return $http.get(constant.BASE_URI + '/bid/withoutuser/board/' + boardId);
+            };
+
             return svc;
         })
 })();

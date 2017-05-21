@@ -1,22 +1,23 @@
 package com.example.service.impl;
 
-import com.example.dto.TaskDTO;
-import com.example.enumeration.PriorityEnum;
-import com.example.model.Tag;
-import com.example.model.Task;
-import com.example.repository.TagRepository;
-import com.example.repository.TaskRepository;
-import com.example.service.TaskService;
-import com.example.transformers.Transformers;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
+import com.example.dto.TaskDTO;
+import com.example.dto.TaskLiteDTO;
+import com.example.enumeration.PriorityEnum;
+import com.example.model.Tag;
+import com.example.model.Task;
+import com.example.repository.TaskRepository;
+import com.example.service.TaskService;
+import com.example.transformers.Transformers;
 
 /**
  * Created by Florentin NOËL on 11/05/17.
@@ -75,5 +76,12 @@ public class TaskServiceImpl implements TaskService {
         tagList.add(tag);
         task.setTags(tagList);
         taskRepository.save(task);
+    }
+    
+    @Override
+    public List<TaskLiteDTO> getTaskWithoutUser(Long boardId){
+    	List<Task> list = taskRepository.findTaskByUserIsNullAndBoardId(boardId);
+    	
+        return list.stream().map((Task task) -> (TaskLiteDTO)transformers.convertEntityToDto(task, TaskLiteDTO.class)).collect(Collectors.toList());
     }
 }

@@ -13,5 +13,7 @@ public interface TaskUserRepository extends PagingAndSortingRepository<TaskUser,
 	
 	List<TaskUser> findAllByUserIdAndTaskBoardId(Long userId, Long boardId);
 	
-	List<TaskUser> findByTaskBoardId(Long boardId);
+	List<TaskUser> findAllByTaskBoardId(Long boardId);
+	
+	List<TaskUser> findAllByUserId(Long boardId);
 }

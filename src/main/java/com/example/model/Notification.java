@@ -1,10 +1,14 @@
 package com.example.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.example.enumeration.TypeNotifEnum;
 
 /**
  * Created by Adrien CASELLES on 11/05/17.
@@ -23,9 +27,14 @@ public class Notification extends CommonEntity {
     @JoinColumn(name="user_id", nullable=false)
     private User user;
 
-    @Column(name = "is_read")
-    private Boolean isRead = false;
+    @Column(name = "date_creation")
+    private Date dateCreation;
 
+    @Column(name = "is_read")
+    private Boolean isRead;
+    
+    @Column(name = "type")
+    private TypeNotifEnum type;
 
     public String getTitle() {
         return title;
@@ -51,11 +60,28 @@ public class Notification extends CommonEntity {
         this.user = user;
     }
 
-    public Boolean getRead() {
-        return isRead;
-    }
+	public Date getDateCreation() {
+		return dateCreation;
+	}
 
-    public void setRead(Boolean read) {
-        isRead = read;
-    }
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+
+	public Boolean getIsRead() {
+		return isRead;
+	}
+
+	public void setIsRead(Boolean isRead) {
+		this.isRead = isRead;
+	}
+
+	public TypeNotifEnum getType() {
+		return type;
+	}
+
+	public void setType(TypeNotifEnum type) {
+		this.type = type;
+	}
+	
 }

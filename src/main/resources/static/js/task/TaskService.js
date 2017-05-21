@@ -40,6 +40,18 @@
                 });
             };
 
+            svc.listTaskByUser = function(user_id) {
+                return TaskWS.listTaskByUser(user_id).then(function(response) {
+                    return response.data;
+                });
+            };
+
+            svc.getTaskWithoutUser = function(boardId) {
+                return TaskWS.getTaskWithoutUser(boardId).then(function(response) {
+                    return response.data;
+                });
+            };
+
             return svc;
         })
 })();

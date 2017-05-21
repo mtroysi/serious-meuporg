@@ -22,14 +22,8 @@ public class TaskDTO {
     private Boolean isBid;
     private Date dateEndBid;
     private Periodicity periodicity;
-    private User creator;
-    private Board board;
-    private List<Tag> tags = new ArrayList<>();
-    private List<Link> links = new ArrayList<>();
-    private List<Checklist> checklists = new ArrayList<>();
-    private List<TaskUser> taskUsers = new ArrayList<>();
-    private List<TaskUserBid> taskUserBids = new ArrayList<>();
-    private List<Task> taskParents = new ArrayList<>();
+    private UserDTO creator;
+    private BoardDTO board;
 
     public Long getId() {
         return id;
@@ -102,67 +96,28 @@ public class TaskDTO {
         this.periodicity = periodicity;
     }
 
-    public User getCreator() {
+    public UserDTO getCreator() {
         return creator;
     }
 
-    public void setCreator(User creator) {
+    public void setCreator(UserDTO creator) {
         this.creator = creator;
     }
 
-    public Board getBoard() {
-        return board;
-    }
+	public Boolean getIsBid() {
+		return isBid;
+	}
 
-    public void setBoard(Board board) {
-        this.board = board;
-    }
+	public void setIsBid(Boolean isBid) {
+		this.isBid = isBid;
+	}
 
-    public List<Tag> getTags() {
-        return tags;
-    }
+	public BoardDTO getBoard() {
+		return board;
+	}
 
-    public void setTags(List<Tag> tags) {
-        this.tags = tags;
-    }
-
-    public List<Link> getLinks() {
-        return links;
-    }
-
-    public void setLinks(List<Link> links) {
-        this.links = links;
-    }
-
-    public List<Checklist> getChecklists() {
-        return checklists;
-    }
-
-    public void setChecklists(List<Checklist> checklists) {
-        this.checklists = checklists;
-    }
-
-    public List<TaskUser> getTaskUsers() {
-        return taskUsers;
-    }
-
-    public void setTaskUsers(List<TaskUser> taskUsers) {
-        this.taskUsers = taskUsers;
-    }
-
-    public List<TaskUserBid> getTaskUserBids() {
-        return taskUserBids;
-    }
-
-    public void setTaskUserBids(List<TaskUserBid> taskUserBids) {
-        this.taskUserBids = taskUserBids;
-    }
-
-    public List<Task> getTaskParents() {
-        return taskParents;
-    }
-
-    public void setTaskParents(List<Task> taskParents) {
-        this.taskParents = taskParents;
-    }
+	public void setBoard(BoardDTO board) {
+		this.board = board;
+	}
+    
 }

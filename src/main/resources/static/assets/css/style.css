@@ -30358,12 +30358,40 @@ input.dial {
     color: #e51c23 !important;
 }
 
-.inbox-menu a.list-group-item i.circle-green {
-    color: #8bc34a !important;
+.inbox-menu a.list-group-item i.circle-orange {
+    color: #ff5722 !important;
 }
 
-.inbox-menu a.list-group-item i.circle-purple {
-    color: #673ab7 !important;
+.inbox-menu a.list-group-item i.circle-blue {
+    color: #2196f3 !important;
+}
+
+.notification-error .notification-icon {
+    background: #e51c23 !important;
+}
+
+.notification-important .notification-icon {
+    background: #ff5722 !important;
+}
+
+.notification-information .notification-icon {
+    background: #2196f3 !important;
+}
+
+.label-information {
+    background: #2196f3 !important;
+}
+
+.label-error {
+    background: #e51c23 !important;
+}
+
+.label-important {
+    background: #ff5722 !important;
+}
+
+.read-false {
+    background: #EEE;
 }
 
 .inbox-mail-heading {

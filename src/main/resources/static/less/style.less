@@ -6,6 +6,9 @@ body{
     .strong{
         font-weight: bold;
     }
+    .font-white{
+        color: #FFF !important;
+    }
     .line-separator{
         height: 1px;
         margin: 5px 20px;
@@ -140,8 +143,11 @@ body{
     }
 
     .home-content{
+        .navbar-default .navbar-toggle .icon-bar{
+            background: #000;
+        }
         a.navbar-brand, a.navbar-brand:hover, a.navbar-brand:active, a.navbar-brand:link {
-            color: #FFF;
+            color: #3e466e;    
             text-decoration: none;
             padding: 0 25px;
             vertical-align: middle;
@@ -150,7 +156,7 @@ body{
             text-transform: uppercase;
         }
         .navbar{
-            background: rgba(0,121,191,0.6);
+            background: #F0F3F4;
 
             .navbar-nav {
                 padding: 5px;
@@ -231,5 +237,243 @@ body{
 
     .level {
         padding-bottom: 0 !important;
+    }
+
+    .bg-white{
+        background: #FFF !important;
+    }
+
+    .homePage{
+        .boxImage {
+            background-attachment: scroll;
+            background-clip: border-box;
+            background-color: rgba(0, 0, 0, 0);
+            background-image: url("../images/bg.png");
+            background-repeat: no-repeat;
+            background-size: 1291px auto;
+            background-position-x: center;
+            background-position-y: 0;
+            height: 710px;
+            top: 100px;
+            z-index: 2;
+            padding: 0;
+            position: relative;
+            text-align: center;
+            width: 100%;
+            font-family: "Roboto";
+
+            .container{
+                max-width: 600px;
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 14%;
+                width: 100%;
+            }
+            h1{
+                color: #3e466e;    
+                font-size: 45px !important;
+                line-height: 68px;
+                font-family: "Roboto";
+            }
+            p {
+              color: #3e466e;
+              font-family: 15px !important;
+            }
+        }
+        .div-separator{
+            background-color: #3e466e;
+            height: 2px;
+            width: 60%;
+            margin: 10px auto 80px auto;
+        }
+        .btn-custom-orange{
+            border-radius: 40px;
+            font-size: 12px;
+            height: 50px;
+            letter-spacing: .9px;
+            line-height: 50px;
+            margin-top: 11px;
+            padding: 0 40px;
+            background-color: #ef6e30;
+            border: 0;
+            color: #fff;
+        }
+        .approach-container{
+            .container {
+                background: rgba(0, 0, 0, 0) url("../images/line.svg") no-repeat scroll 64px 320px;
+                height: 100%;
+                overflow: hidden;
+                padding-bottom: 240px;
+                margin: 0 auto;
+                max-width: 940px;
+                width: 98%;
+            }
+            .marginTop{
+                margin-top: 160px;
+            }
+            .approach-step1 {
+                margin-bottom: 90px;
+            }
+            .approach {
+                text-align: left;
+            }
+            .approach-step2 {
+                margin-left: 42px;
+            }
+            .approach-step2, .approach-step3 {
+                margin-bottom: 130px;
+            }
+            .approach-step4 {
+                margin-bottom: 150px;
+                margin-left: 132px;
+            }
+            .approach-step5 {
+                margin-left: 52px;
+            }
+        }
+
+        @media only screen and (max-width: 992px) {
+            .approach-container{
+                .container {
+                    background: none;
+                }
+                .approach{
+                    margin: 0 !important;
+                }
+                img{
+                    display: none;
+                }
+                .marginTop{
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+
+    .pageLogin{
+        background-attachment: scroll;
+        background-clip: border-box;
+        background-color: rgba(0, 0, 0, 0);
+        background-image: url("../images/bfLogin.png");
+        background-repeat: no-repeat;
+        background-size: 1291px auto;
+        background-position-x: center;
+        background-position-y: 0;
+        height: 505px;
+        top: 100px;
+        z-index: 2;
+        padding: 0;
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        font-family: "Roboto";
+    }
+    .bidPreview{
+        .responsive-carousel{
+            .slick-prev:before, .slick-next:before{
+                color: #444;
+            }
+            .tile-carousel{
+                border: 1px solid #DADADA;
+                box-shadow: 0 3px 5px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.23);
+                margin: 15px;
+                height: 150px;
+                position: relative;
+                opacity: 0.4;
+                cursor: pointer;
+                max-width: 250px;
+
+                &.active{
+                    opacity: 1;
+                }
+
+                .tile-heading{
+                    margin: 20px;
+                    text-align: center;
+                    overflow: hidden;
+                    .date{
+                        font-size: 11px;
+                    }
+                }
+                .tile-footer {
+                    text-align: right;
+                    font-size: 12px;
+                    position: absolute;
+                    right: 0;
+                    bottom: 8px;
+                    padding: 0 16px;
+                    width: 100%;
+                    text-align: center;
+
+                    .estimation {
+                        background: #455a64;
+                        padding: 10px;
+                        display: inline-block;
+                        width: 80%;
+                        color: #FFF;
+                    }
+                }
+            }
+        }
+
+        .buttonTinder{
+            position: relative;
+            text-align: center;
+            bottom: -40px;
+            
+            button{
+                width: 50px;
+                height: 50px;
+                border-radius: 50px;
+                font-size: 20px;
+                margin: 0 25px;
+            }
+        }
+
+        .boxAdminBid{
+            border: 1px solid #455a64;
+            padding: 0;
+
+            .panel-header{
+                border-bottom: 1px solid #455a64;
+                font-family: "Roboto";
+                font-size: 18px;
+                padding: 5px;
+                text-align: center;
+                text-transform: uppercase;
+                color: #455a64;
+            }
+            .boxDatepicker{
+                background: #455a64;
+                color: #FFF;
+                padding: 10px 25px;
+                margin: 0 !important;
+
+                input{
+                    display: inline-block;
+                    width: 60%;
+                }
+                button{
+                    display: inline-block;
+                }
+            }
+            .box-tile-newLook ul{
+                padding: 0;
+                margin: 0;
+                list-style: none;
+            }
+            .tile-newLook{
+                margin: 15px;
+                padding: 10px;
+                border: 1px solid #455a64;
+                cursor: pointer;
+
+                &.active{
+                    background: #455a64;
+                    color: #FFF;
+                }
+            }
+        }
     }
 }

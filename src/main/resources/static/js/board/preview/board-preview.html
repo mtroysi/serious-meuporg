@@ -1,13 +1,14 @@
 <div class="row">
     <div class="col-md-12 titleHeader panel">
         <div class="panel-heading">
-            <h1><span class="label label-default">{{ ctrl.typeDisplayTeam == true ? "EQUIPE" : "INDIVIDUELLE" }}</span> {{ctrl.board.name}}</h1>
+            <h1 ng-if="ctrl.tableGlobal===false"><span class="label label-default">{{ ctrl.typeDisplayTeam == true ? "EQUIPE" : "INDIVIDUELLE" }}</span> {{ctrl.board.name}}</h1>
+            <h1 ng-if="ctrl.tableGlobal===true">Tableau Global</h1>
             <div class="panel-ctrls button-icon-bg">
-                <button class="btn btn-default-alt btn-lg" ng-click="ctrl.changeView()"><i class="ti ti-package"></i> Aller sur la vue {{ ctrl.typeDisplayTeam == false ? "équipe" : "individuelle" }}</button>
-                <button class="btn btn-default-alt btn-lg"><i class="ti ti-plus"></i> Ajouter une tâche</button>
+                <button ng-if="ctrl.tableGlobal===false" class="btn btn-default-alt btn-lg" ng-click="ctrl.changeView()"><i class="ti ti-package"></i> Aller sur la vue {{ ctrl.typeDisplayTeam == false ? "équipe" : "individuelle" }}</button>
+                <button ng-if="ctrl.tableGlobal===false" class="btn btn-default-alt btn-lg"><i class="ti ti-plus"></i> Ajouter une tâche</button>
                 <button class="btn btn-default-alt btn-lg" ng-click="ctrl.openPanelFilterAction('#boxFilter')"><i class="ti ti-panel"></i> Filtre</button>
-                <button class="btn btn-default-alt btn-lg" ui-sref="app.board-edit({ id: ctrl.board.id })" ng-if="ctrl.isAdmin"><i class="ti ti-settings"></i> Paramètres</button>
-                <button class="btn btn-default-alt btn-lg" ng-click="ctrl.deleteBoard()" ng-if="ctrl.isAdmin"><i class="ti ti-trash"></i></button>
+                <button ng-if="ctrl.tableGlobal===false || ctrl.isAdmin" class="btn btn-default-alt btn-lg" ui-sref="app.board-edit({ id: ctrl.board.id })"><i class="ti ti-settings"></i> Paramètres</button>
+                <button ng-if="ctrl.tableGlobal===false || ctrl.isAdmin" class="btn btn-default-alt btn-lg" ng-click="ctrl.deleteBoard()"><i class="ti ti-trash"></i></button>
             </div>
         </div>
     </div>
@@ -30,14 +31,14 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>Urgent / Important</h2>
-                        <div class="panel-ctrls button-icon-bg" ng-click="ctrl.zoomTask('URGENT_IMPORTANT')">
+                        <div class="panel-ctrls button-icon-bg" ng-click="ctrl.zoomTask('URGENT_IMPORTANT')" ng-if="ctrl.tableGlobal===false">
                             <span class="button-icon has-bg"><i class="ti ti-fullscreen"></i></span>
                         </div>
                     </div>
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'URGENT_IMPORTANT' }}:true">
-                                <div class="info-tile tile-success tile-perso">
+                                <div class="info-tile tile-success tile-perso" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -53,14 +54,14 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>Urgent / Pas Important</h2>
-                        <div class="panel-ctrls button-icon-bg" ng-click="ctrl.zoomTask('URGENT_NOT_IMPORTANT')">
+                        <div class="panel-ctrls button-icon-bg" ng-click="ctrl.zoomTask('URGENT_NOT_IMPORTANT')" ng-if="ctrl.tableGlobal===false">
                             <span class="button-icon has-bg"><i class="ti ti-fullscreen"></i></span>
                         </div>
                     </div>
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'URGENT_NOT_IMPORTANT'}}:true">
-                                <div class="info-tile tile-success tile-perso">
+                                <div class="info-tile tile-success tile-perso" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -78,14 +79,14 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>Pas Urgent / Important</h2>
-                        <div class="panel-ctrls button-icon-bg" ng-click="ctrl.zoomTask('NOT_URGENT_IMPORTANT')">
+                        <div class="panel-ctrls button-icon-bg" ng-click="ctrl.zoomTask('NOT_URGENT_IMPORTANT')" ng-if="ctrl.tableGlobal===false">
                             <span class="button-icon has-bg"><i class="ti ti-fullscreen"></i></span>
                         </div>
                     </div>
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'NOT_URGENT_IMPORTANT'}}:true">
-                                <div class="info-tile tile-success tile-perso">
+                                <div class="info-tile tile-success tile-perso" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -101,14 +102,14 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>Pas Urgent / Pas Important</h2>
-                        <div class="panel-ctrls button-icon-bg" ng-click="ctrl.zoomTask('NOT_URGENT_NOT_IMPORTANT')">
+                        <div class="panel-ctrls button-icon-bg" ng-click="ctrl.zoomTask('NOT_URGENT_NOT_IMPORTANT')" ng-if="ctrl.tableGlobal===false">
                             <span class="button-icon has-bg"><i class="ti ti-fullscreen"></i></span>
                         </div>
                     </div>
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'NOT_URGENT_NOT_IMPORTANT'}}:true">
-                                <div class="info-tile tile-success tile-perso">
+                                <div class="info-tile tile-success tile-perso" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -122,7 +123,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12 bigPanelMatrice">
+    <div class="col-md-12 bigPanelMatrice" ng-if="ctrl.tableGlobal===false">
         <div class="panel panel-bluegray">
             <div class="panel-heading">
                 <h2>Tableau Kanban</h2>
@@ -144,7 +145,7 @@
                                 </div>
                                 <ul class="listTache">
                                     <li ng-repeat="n in ctrl.listTask | filter:{task : {colonneKanban: null}}:true">
-                                        <div class="info-tile tile-success tile-perso">
+                                        <div class="info-tile tile-success tile-perso" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                             <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                             <div class="tile-footer">
                                                 <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -173,7 +174,7 @@
                                 </div>
                                 <ul class="listTache">
                                     <li ng-repeat="n in ctrl.listTask | filter:{task : {colonneKanban: { id : colonne.id }}}:true">
-                                        <div class="info-tile tile-success tile-perso">
+                                        <div class="info-tile tile-success tile-perso" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                             <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                             <div class="tile-footer">
                                                 <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>

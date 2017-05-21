@@ -20,12 +20,20 @@
                 ctrl.editColonne = {};
                 ctrl.filter = { type: 'TOUT' };
                 ctrl.isAdmin = false;
-                ctrl.getBoard($stateParams.id);
-                ctrl.getTaskBoard($stateParams.id, AuthenticationService.getUserId());
+                ctrl.tableGlobal = false;
 
-                $scope.$watch('this.ctrl.filter.type', function() {
-                    ctrl.filterTask();
-                });
+                // Show table in global mode
+                if ($state.current.name === "app.board-preview-common") {
+                    ctrl.tableGlobal = true;
+                    ctrl.getTaskUser(AuthenticationService.getUserId());
+                } else {
+                    ctrl.getBoard($stateParams.id);
+                    ctrl.getTaskBoard($stateParams.id, AuthenticationService.getUserId());
+
+                    $scope.$watch('this.ctrl.filter.type', function() {
+                        ctrl.filterTask();
+                    });
+                }
             };
 
             /**
@@ -54,6 +62,34 @@
                         ctrl.listTask = angular.copy(fetchData);
                     });
                 }
+            };
+
+            /**
+             * WS Loard list of task by  user 
+             */
+            ctrl.getTaskUser = function(user_id) {
+                TaskService.listTaskByUser(user_id).then(function(fetchData) {
+                    ctrl.listTaskDefault = angular.copy(ctrl.addColorTask(fetchData));
+                    ctrl.listTask = angular.copy(ctrl.listTaskDefault);
+                });
+
+            };
+
+            /**
+             * Adding the color of the associated board 
+             */
+            ctrl.addColorTask = function(data) {
+                var listBoard = CommonMenuService.getListBoard();
+                var listColorBoard = {};
+
+                listBoard.forEach(function(board) {
+                    listColorBoard[board.id] = board.color;
+                });
+
+                data.forEach(function(element) {
+                    element.colorBoard = listColorBoard[element.task.boardId];
+                });
+                return data;
             };
 
             /**

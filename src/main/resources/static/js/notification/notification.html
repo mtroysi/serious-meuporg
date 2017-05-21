@@ -1,0 +1,48 @@
+<div class="row margin-t-20">
+    <div class="col-sm-3">
+        <span class="btn btn-lg bg-custom-bluegray font-white btn-block mb-xl">NOTIFICATION</span>
+
+        <div class="list-group inbox-menu list-group-alternate">
+            <a class="list-group-item" ng-click="ctrl.filtreType('ALL')"><i class="ti ti-control-record"></i>Tout</a>
+            <a class="list-group-item" ng-click="ctrl.filtreType('error')"><i class="ti ti-control-record circle-red"></i>Erreur</a>
+            <a class="list-group-item" ng-click="ctrl.filtreType('important')"><i class="ti ti-control-record circle-orange"></i>Important</a>
+            <a class="list-group-item" ng-click="ctrl.filtreType('information')"><i class="ti ti-control-record circle-blue"></i>Information</a>
+        </div>
+    </div>
+
+    <div class="col-sm-9">
+        <div class="input-group mb-xl">
+            <input type="text" class="form-control input-lg" placeholder="Recherche" ng-model="ctrl.search">
+            <span class="input-group-btn">
+	        <button class="btn btn-default btn-lg" type="button" ng-click="ctrl.setPage(1)"><i class="ti ti-search"></i></button>
+	      </span>
+        </div>
+        <div class="panel panel-inbox">
+            <div class="panel-body">
+                <table class="table table-hover table-inbox table-vam">
+                    <tbody>
+                        <tr class="unread" ng-repeat="notif in ctrl.pager.listItems">
+                            <td class="inbox-msg-from hidden-xs hidden-sm" width="20%">
+                                <div>{{ notif.title }}</div>
+                            </td>
+                            <td class="inbox-msg-snip"><span class="label label-{{ notif.type }}" width="58%">{{ notif.type }}</span>{{ notif.content }}</td>
+                            <td class="inbox-msg-attach"><i class="ti ti-paperclip" width="5%"></i> </td>
+                            <td class="inbox-msg-time" width="12%">{{ notif.dateCreation | date:'dd/MM/yyyy' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="inbox-mail-footer">
+                    <div class="clearfix">
+                        <div class="pull-right">
+                            <strong>{{ ctrl.pager.currentPage }}</strong> sur <strong>{{ ctrl.pager.totalPages }}</strong>
+                            <div class="btn-group ml-sm">
+                                <a ng-click="ctrl.setPage(ctrl.pager.currentPage - 1)" ng-disabled="ctrl.pager.currentPage - 1 <= 0" class="btn btn-lg btn-default"><i class="ti ti-angle-left"></i></a>
+                                <a ng-click="ctrl.setPage(ctrl.pager.currentPage + 1)" class="btn btn-lg btn-default" ng-disabled="ctrl.pager.currentPage >= ctrl.pager.totalPages"><i class="ti ti-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

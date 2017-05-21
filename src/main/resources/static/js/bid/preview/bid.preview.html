@@ -1,0 +1,89 @@
+<div class="row bidPreview ">
+    <div class="col-md-12 titleHeader panel">
+        <div class="panel-heading">
+            <h1>Enchère du tableau</h1>
+            <div class="panel-ctrls button-icon-bg">
+                <button ui-sref="app.bidValidation({ idBoard: board.id})" class="btn btn-default-alt btn-lg"><i class="ti ti-stamp"></i> Validation des enchères</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3" ng-if="ctrl.isAdmin">
+        <div class="row margin-t-20 margin-l-20 ">
+            <div class=" col-md-12 panel panel-default boxAdminBid">
+                <div class="panel-header">
+                    Ajout de quête au enchère
+                </div>
+                <div class="text-center margin-t-30" ng-show="ctrl.listTaskWithoutUser.length == 0">Il n'y a pas de quête à rajouter</div>
+                <div class="form-group text-center boxDatepicker" ng-show="(ctrl.listTaskWithoutUserSelected | filter:true).length > 0">
+                    <label for="exampleInputEmail1">Date de fin enchère</label>
+                    <input type="text" class="form-control" datetime-picker="dd MMM yyyy HH:mm" ng-model="ctrl.date" />
+                    <button class="btn btn-default"><i class="ti ti-check"></i></button>
+                </div>
+                <div class="panel-body box-tile-newLook">
+                    <ul>
+                        <li ng-repeat="taskWithoutUser in ctrl.listTaskWithoutUser">
+                            <div ng-class="{active : ctrl.listTaskWithoutUserSelected[taskWithoutUser.id]}" class="tile-newLook text-center" ng-click="ctrl.listTaskWithoutUserSelected[taskWithoutUser.id] = !ctrl.listTaskWithoutUserSelected[taskWithoutUser.id]">
+                                <div class="tile-heading">{{ taskWithoutUser.title }}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-class="{'col-md-12' : ctrl.isAdmin === false, 'col-md-9' : ctrl.isAdmin}">
+        <div ng-show="ctrl.listTaskBid.length == 0">
+            <h2 class="text-center">Il n'y a aucune quête disponible
+                <h2>
+        </div>
+        <div ng-show="ctrl.listTaskBid.length > 0">
+            <div class="row margin-t-20 margin-h-20">
+                <div class=" col-md-12 panel panel-default">
+                    <div class="panel-body">
+                        <div class="responsive-carousel">
+                            <div ng-repeat="taskBid in ctrl.listTaskBid">
+                                <div class="tile-carousel" ng-class="{active : ctrl.taskShow.task.id == taskBid.task.id }" ng-click="ctrl.changeTask(taskBid)">
+                                    <div class="tile-heading"><span>{{ taskBid.task.title }}</span>
+                                        <br><strong class="date">fin le {{ taskBid.task.dateEndBid | date:'dd/MM/yyyy à HH:mm' }}</strong></div>
+                                    <div class="tile-footer">
+                                        <span class="estimation">{{ taskBid.duration ? taskBid.duration : '?' }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-h-20" ng-show="ctrl.taskShow">
+                <div class=" col-md-12 panel panel-default">
+                    <div class="panel-body boxTinder">
+                        <h2>{{ ctrl.taskShow.task.title }}</h2>
+                        <p>{{ ctrl.taskShow.task.content }}</p>
+                        <div class="buttonTinder">
+                            <button class="left btn btn-danger" ng-click="ctrl.refusedTask()"><i class="ti ti-close"></i></button>
+                            <button class="right btn btn-success" ng-click="ctrl.acceptedTask()"><i class="ti ti-check"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editDurationBid" tabindex="-1" role="dialog" aria-labelledby="titleModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-confirmation">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h5 class="modal-title" id="titleModal">Estimation temps</h5>
+            </div>
+            <div class="modal-body text-center clearfix">
+                <input class="form-control" ng-model="ctrl.durationBid" placeholder="Durée en point d'énergie'" type="text">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-top" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary btn-top" ng-click="ctrl.saveBid()" data-dismiss="modal">Valider</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -50,6 +50,25 @@ public class TaskUserController {
     }
     
     /**
+     * Return list of TaskUser By Board and User
+     * @param user_id
+     * @param board_id
+     * @return
+     */
+    @RequestMapping(value = "/user/{user_id}", method = RequestMethod.GET)
+    public ResponseEntity<List<TaskUserDTO>> listTaskByUser(@PathVariable(value = "user_id") Long user_id){
+        logger.info("Calling TaskUserController.listTaskByUser with {}", user_id);
+        
+        List<TaskUserDTO> list = taskUserService.getTaskUserByUserId(user_id);
+        
+        if (CollectionUtils.isEmpty(list)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+    
+    /**
      * Return list of TaskUser By Board
      * @param board_id
      * @return

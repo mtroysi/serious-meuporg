@@ -33,10 +33,15 @@ public class TaskUserServiceImpl implements TaskUserService {
 	public List<TaskUserDTO> getTaskUserByUserIdAndBoardId(Long userId, Long boardId) {
 		return this.buildTaskWithPeriodicity(taskUserRepository.findAllByUserIdAndTaskBoardId(userId, boardId));
 	}
+	
+	@Override
+	public List<TaskUserDTO> getTaskUserByUserId(Long userId) {
+		return this.buildTaskWithPeriodicity(taskUserRepository.findAllByUserId(userId));
+	}
 
 	@Override
 	public List<TaskUserDTO> getTaskUserByBoardId(Long boardId) {
-		return this.buildTaskWithPeriodicity(taskUserRepository.findByTaskBoardId(boardId));
+		return this.buildTaskWithPeriodicity(taskUserRepository.findAllByTaskBoardId(boardId));
 	}
 	
 	
@@ -45,6 +50,7 @@ public class TaskUserServiceImpl implements TaskUserService {
 			TaskUserDTO taskUserDTO = (TaskUserDTO)transformers.convertEntityToDto(tu, TaskUserDTO.class);
 			Periodicity period = tu.getTask().getPeriodicity();
 			TaskWithPeriodDTO  taskWithPeriod = taskUserDTO.getTask();
+			taskWithPeriod.setBoardId(tu.getTask().getBoard().getId());
 			taskWithPeriod.setDateEnd(tu.getDateEnd());
 			/* Si pas de periode alors la tache est classique */
 			if( period == null ){

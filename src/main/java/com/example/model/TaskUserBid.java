@@ -20,7 +20,7 @@ public class TaskUserBid extends CommonEntity {
 
     @Column(name = "duration")
     private Double duration;
-
+    
     public User getUser() {
         return user;
     }

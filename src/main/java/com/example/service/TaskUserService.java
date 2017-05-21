@@ -9,11 +9,18 @@ import com.example.model.TaskUser;
 public interface TaskUserService {
 	
 	/**
-	 * Get list of taskUser by user id 
+	 * Get list of taskUser by user id and board id
 	 * @param userId
 	 * @return
 	 */
 	List<TaskUserDTO> getTaskUserByUserIdAndBoardId(Long userId, Long boardId);
+	
+	/**
+	 * Get list of taskUser by user id 
+	 * @param userId
+	 * @return
+	 */
+	List<TaskUserDTO> getTaskUserByUserId(Long userId);
 	
 	/**
 	 * Get list of taskUser by board id
