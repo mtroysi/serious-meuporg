@@ -4,12 +4,13 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.controller('EncherePreviewController', function($location, $http, BoardService, $stateParams, AuthenticationService, TaskService) {
+    helloApp.controller('EncherePreviewController', function($location, $http, BoardService, $stateParams, AuthenticationService, TaskService, EnchereService) {
         var ctrl = this;
 
         ctrl.init = function() {
             ctrl.initCarousel();
             ctrl.getBoard($stateParams.idBoard);
+            ctrl.getListEnchereByBoardAndUser($stateParams.idBoard, AuthenticationService.getUserId());
             ctrl.date = null;
             ctrl.listTaskWithoutUserSelected = [];
             ctrl.listTaskWithoutUser = [];
@@ -35,7 +36,11 @@
         /**
          * Load TaskUserBid By Board and User
          */
-
+        ctrl.getListEnchereByBoardAndUser = function(boardId, userId) {
+            EnchereService.getListEnchereByBoardAndUser(boardId, userId).then(function(data) {
+                console.log("---------", data);
+            });
+        }
 
         /**
          * Load Task without user (admin only)

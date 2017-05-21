@@ -1,5 +1,6 @@
 package com.example.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.example.dto.TaskUserBidDTO;
@@ -7,5 +8,5 @@ import com.example.dto.TaskUserBidDTO;
 
 public interface TaskUserBidService {
 
-    List<TaskUserBidDTO> getTaskUserByBoardAndUser(Long idBoard, Long idUser);
+    List<TaskUserBidDTO> getTaskUserBidByBoardAndUser(Long idBoard, Long idUser);
 }
