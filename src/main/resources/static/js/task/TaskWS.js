@@ -34,6 +34,10 @@
                 return $http.get(constant.BASE_URI + '/taskUser/user/' + user_id);
             };
 
+            svc.getTaskWithoutUser = function(boardId) {
+                return $http.get(constant.BASE_URI + '/task/withoutuser/board/' + boardId);
+            };
+
             return svc;
         })
 })();

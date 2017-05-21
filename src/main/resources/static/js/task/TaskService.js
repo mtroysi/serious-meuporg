@@ -46,6 +46,12 @@
                 });
             };
 
+            svc.getTaskWithoutUser = function(boardId) {
+                return TaskWS.getTaskWithoutUser(boardId).then(function(response) {
+                    return response.data;
+                });
+            };
+
             return svc;
         })
 })();

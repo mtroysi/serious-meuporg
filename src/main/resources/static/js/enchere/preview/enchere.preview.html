@@ -1,4 +1,4 @@
-<div class="row encherePreview">
+<div class="row encherePreview ">
     <div class="col-md-12 titleHeader panel">
         <div class="panel-heading">
             <h1>Enchère du tableau</h1>
@@ -7,13 +7,36 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-3" ng-if="ctrl.isAdmin">
+        <div class="row margin-t-20 margin-l-20 ">
+            <div class=" col-md-12 panel panel-default boxAdminEnchere">
+                <div class="panel-header">
+                    Ajout de quête au enchère
+                </div>
+                <div class="form-group text-center boxDatepicker" ng-show="(ctrl.listTaskWithoutUserSelected | filter:true).length > 0">
+                    <label for="exampleInputEmail1">Date de fin enchère</label>
+                    <input type="text" class="form-control" datetime-picker="dd MMM yyyy HH:mm" ng-model="ctrl.date" />
+                    <button class="btn btn-default"><i class="ti ti-check"></i></button>
+                </div>
+                <div class="panel-body box-tile-newLook">
+                    <ul>
+                        <li ng-repeat="taskWithoutUser in ctrl.listTaskWithoutUser">
+                            <div ng-class="{active : ctrl.listTaskWithoutUserSelected[taskWithoutUser.id]}" class="tile-newLook text-center" ng-click="ctrl.listTaskWithoutUserSelected[taskWithoutUser.id] = !ctrl.listTaskWithoutUserSelected[taskWithoutUser.id]">
+                                <div class="tile-heading">{{ taskWithoutUser.title }}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-class="{'col-md-12' : ctrl.isAdmin === false, 'col-md-9' : ctrl.isAdmin}">
         <div class="row margin-t-20 margin-h-20">
             <div class=" col-md-12 panel panel-default">
                 <div class="panel-body">
                     <div class="responsive-carousel">
                         <div class="tile-carousel">
-                            <div class="tile-heading"><span>Ici se trouvera le titre de la tache</span><br><strong class="date">jusqu'au 10/06/2015 à 10h50</strong></div>
+                            <div class="tile-heading"><span>Ici se trouvera le titre de la tache</span><br><strong class="date">fin le 10/06/2015 à 10h50</strong></div>
                             <div class="tile-footer">
                                 <span class="estimation">?</span>
                             </div>

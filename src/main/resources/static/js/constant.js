@@ -2,7 +2,7 @@
  * Created by Morgane TROYSI on 28/04/2017.
  */
 
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -17,7 +17,8 @@
             },
             'color': ['info', 'primary', 'blue', 'indigo', 'deeppurple', 'purple', 'pink', 'danger', 'teal', 'green',
                 'success', 'lime', 'yellow', 'warning', 'orange', 'deeporange', 'midnightblue', 'bluegray',
-                'bluegraylight', 'black', 'gray', 'default', 'white', 'brown'],
+                'bluegraylight', 'black', 'gray', 'default', 'white', 'brown'
+            ],
             'XP': 50
         });
 })();

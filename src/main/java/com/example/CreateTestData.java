@@ -38,50 +38,50 @@ import com.example.repository.UserRepository;
 @RestController
 public class CreateTestData {
 
-	 @Autowired
-	 private UserRepository userRepository;
-	 
-	 @Autowired
-	 private RoleRepository roleRepository;
-	
-	 @Autowired
-	 private PeriodicityRepository periodicityRepository;
-	
-	 @Autowired
-	 private ColonneKanbanRepository colonneKanbanRepository;
-	
-	 @Autowired
-	 private TaskRepository taskRepository;
-	
-	 @Autowired
-	 private TaskUserRepository taskUserRepository;
-	
-	 @Autowired
-	 private BoardRepository boardRepository;
-	
-	 @Autowired
-	 private BoardUserRepository boardUserRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-	 @Autowired
-	 private NotificationRepository notificationRepository;
-	 
-	 private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	
-	 private Role role1;
-	 
-	 private Role role2;
-	 
-	 private User user1;
-	 
-	 private Periodicity period1;
-	 
-	 private Periodicity period2;
-	 
-	 private Periodicity period3;
-	 
-	 private Board board1;
-	 
-	 private BoardUser boardUser1;
+	@Autowired
+	private RoleRepository roleRepository;
+
+	@Autowired
+	private PeriodicityRepository periodicityRepository;
+
+	@Autowired
+	private ColonneKanbanRepository colonneKanbanRepository;
+
+	@Autowired
+	private TaskRepository taskRepository;
+
+	@Autowired
+	private TaskUserRepository taskUserRepository;
+
+	@Autowired
+	private BoardRepository boardRepository;
+
+	@Autowired
+	private BoardUserRepository boardUserRepository;
+
+	@Autowired
+	private NotificationRepository notificationRepository;
+
+	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+	private Role role1;
+
+	private Role role2;
+
+	private User user1;
+
+	private Periodicity period1;
+
+	private Periodicity period2;
+
+	private Periodicity period3;
+
+	private Board board1;
+
+	private BoardUser boardUser1;
 
 	private ColonneKanban col1;
 
@@ -100,30 +100,25 @@ public class CreateTestData {
 	private TaskUser taskUser2;
 
 	private TaskUser taskUser3;
-	
-	 
+
 	@RequestMapping("/tools/createTestData")
 	public String run() throws ParseException, ScriptException, SQLException, ParseException {
 		// Suppression de tous les éléments de la base
 		deleteAll();
-		
-		
+
 		/* CREATION ROLE */
 		Role role1 = new Role();
 		role1.setId(1L);
 		role1.setVersion(1);
 		role1.setCode(RoleEnum.ADMIN);
 		this.role1 = this.roleRepository.save(role1);
-		
-		
+
 		Role role2 = new Role();
 		role2.setId(2L);
 		role2.setVersion(1);
 		role2.setCode(RoleEnum.USER);
 		this.role2 = this.roleRepository.save(role2);
-		
-		
-		
+
 		/* CREATION UTILISATEUR */
 		User user1 = new User();
 		user1.setId(1L);
@@ -138,9 +133,6 @@ public class CreateTestData {
 		user1.setTaskUsers(null);
 		this.user1 = this.userRepository.save(user1);
 
-		
-		
-		
 		/* CREATION PERIODICITY */
 		Periodicity period1 = new Periodicity();
 		period1.setId(1L);
@@ -151,7 +143,7 @@ public class CreateTestData {
 		period1.setType(PeriodicityEnum.DAILY);
 		period1.setVersion(1);
 		this.period1 = this.periodicityRepository.save(period1);
-		
+
 		Periodicity period2 = new Periodicity();
 		period2.setId(2L);
 		period2.setDateBegin(new Date(sdf.parse("01/02/2016").getTime()));
@@ -161,7 +153,7 @@ public class CreateTestData {
 		period2.setType(PeriodicityEnum.DAILY);
 		period2.setVersion(1);
 		this.period2 = this.periodicityRepository.save(period2);
-		
+
 		Periodicity period3 = new Periodicity();
 		period3.setId(3L);
 		period3.setDateBegin(new Date(sdf.parse("01/02/2016").getTime()));
@@ -171,9 +163,7 @@ public class CreateTestData {
 		period3.setType(PeriodicityEnum.MONTHLY);
 		period3.setVersion(1);
 		this.period3 = this.periodicityRepository.save(period3);
-		
-		
-		
+
 		/* CREATION NOTIFICATION */
 		Notification notif1 = new Notification();
 		notif1.setId(1L);
@@ -185,7 +175,7 @@ public class CreateTestData {
 		notif1.setIsRead(false);
 		notif1.setType(TypeNotifEnum.error);
 		this.notificationRepository.save(notif1);
-		
+
 		Notification notif2 = new Notification();
 		notif2.setId(2L);
 		notif2.setContent("Title de la notification");
@@ -196,7 +186,7 @@ public class CreateTestData {
 		notif2.setIsRead(true);
 		notif2.setType(TypeNotifEnum.information);
 		this.notificationRepository.save(notif2);
-		
+
 		Notification notif3 = new Notification();
 		notif3.setId(3L);
 		notif3.setContent("Title de la notification");
@@ -207,7 +197,7 @@ public class CreateTestData {
 		notif3.setIsRead(true);
 		notif3.setType(TypeNotifEnum.error);
 		this.notificationRepository.save(notif3);
-		
+
 		Notification notif4 = new Notification();
 		notif4.setId(4L);
 		notif4.setContent("Title de la notification");
@@ -218,7 +208,7 @@ public class CreateTestData {
 		notif4.setIsRead(true);
 		notif4.setType(TypeNotifEnum.error);
 		this.notificationRepository.save(notif4);
-		
+
 		Notification notif5 = new Notification();
 		notif5.setId(5L);
 		notif5.setContent("Title de la notification");
@@ -229,7 +219,7 @@ public class CreateTestData {
 		notif5.setIsRead(true);
 		notif5.setType(TypeNotifEnum.error);
 		this.notificationRepository.save(notif5);
-		
+
 		Notification notif6 = new Notification();
 		notif6.setId(6L);
 		notif6.setContent("Title de la notification");
@@ -240,7 +230,7 @@ public class CreateTestData {
 		notif6.setIsRead(true);
 		notif6.setType(TypeNotifEnum.error);
 		this.notificationRepository.save(notif6);
-		
+
 		Notification notif7 = new Notification();
 		notif7.setId(7L);
 		notif7.setContent("Title de la notification");
@@ -251,7 +241,7 @@ public class CreateTestData {
 		notif7.setIsRead(true);
 		notif7.setType(TypeNotifEnum.error);
 		this.notificationRepository.save(notif7);
-		
+
 		Notification notif8 = new Notification();
 		notif8.setId(8L);
 		notif8.setContent("Title de la notification");
@@ -262,7 +252,7 @@ public class CreateTestData {
 		notif8.setIsRead(true);
 		notif8.setType(TypeNotifEnum.error);
 		this.notificationRepository.save(notif8);
-		
+
 		Notification notif9 = new Notification();
 		notif9.setId(9L);
 		notif9.setContent("Title de la notification");
@@ -273,7 +263,7 @@ public class CreateTestData {
 		notif9.setIsRead(true);
 		notif9.setType(TypeNotifEnum.error);
 		this.notificationRepository.save(notif9);
-		
+
 		Notification notif10 = new Notification();
 		notif10.setId(10L);
 		notif10.setContent("Title de la notification");
@@ -284,7 +274,7 @@ public class CreateTestData {
 		notif10.setIsRead(true);
 		notif10.setType(TypeNotifEnum.error);
 		this.notificationRepository.save(notif10);
-		
+
 		Notification notif11 = new Notification();
 		notif11.setId(11L);
 		notif11.setContent("Title de la notification");
@@ -295,7 +285,7 @@ public class CreateTestData {
 		notif11.setIsRead(true);
 		notif11.setType(TypeNotifEnum.error);
 		this.notificationRepository.save(notif11);
-		
+
 		Notification notif12 = new Notification();
 		notif12.setId(12L);
 		notif12.setContent("Title de la notification");
@@ -306,7 +296,7 @@ public class CreateTestData {
 		notif12.setIsRead(true);
 		notif12.setType(TypeNotifEnum.error);
 		this.notificationRepository.save(notif12);
-		
+
 		Notification notif13 = new Notification();
 		notif13.setId(13L);
 		notif13.setContent("Title de la notification");
@@ -317,8 +307,7 @@ public class CreateTestData {
 		notif13.setIsRead(true);
 		notif13.setType(TypeNotifEnum.error);
 		this.notificationRepository.save(notif13);
-		
-		
+
 		/* CREATION BOARD */
 		Board board1 = new Board();
 		board1.setId(1L);
@@ -331,11 +320,8 @@ public class CreateTestData {
 		board1.setTasks(null);
 		board1.setVersion(1);
 		this.board1 = this.boardRepository.save(board1);
-		
-		
-		
-		
-		/* CREATION BOARDUSER */	
+
+		/* CREATION BOARDUSER */
 		BoardUser boardUser1 = new BoardUser();
 		boardUser1.setId(1L);
 		boardUser1.setBoard(this.board1);
@@ -343,9 +329,7 @@ public class CreateTestData {
 		boardUser1.setUser(this.user1);
 		boardUser1.setVersion(1);
 		this.boardUser1 = this.boardUserRepository.save(boardUser1);
-		
-		
-		
+
 		/* CREATION COLONNE KANBAN */
 		ColonneKanban col1 = new ColonneKanban();
 		col1.setId(1L);
@@ -355,7 +339,7 @@ public class CreateTestData {
 		col1.setStatus(StatusEnum.TODO);
 		col1.setTitle("TODO");
 		this.col1 = colonneKanbanRepository.save(col1);
-		
+
 		ColonneKanban col2 = new ColonneKanban();
 		col2.setId(2L);
 		col2.setVersion(1);
@@ -364,7 +348,7 @@ public class CreateTestData {
 		col2.setStatus(StatusEnum.IN_PROGRESS);
 		col2.setTitle("IN_PROGRESS");
 		this.col2 = colonneKanbanRepository.save(col2);
-		
+
 		ColonneKanban col3 = new ColonneKanban();
 		col3.setId(3L);
 		col3.setVersion(1);
@@ -373,9 +357,7 @@ public class CreateTestData {
 		col3.setStatus(StatusEnum.DONE);
 		col3.setTitle("DONE");
 		this.col3 = colonneKanbanRepository.save(col3);
-		
-		
-		
+
 		/* CREATION TASK */
 		Task task1 = new Task();
 		task1.setId(1L);
@@ -398,7 +380,7 @@ public class CreateTestData {
 		task1.setTitle("Titre de la tache 1");
 		task1.setVersion(1);
 		this.task1 = taskRepository.save(task1);
-		
+
 		Task task2 = new Task();
 		task2.setId(2L);
 		task2.setBid(false);
@@ -420,7 +402,7 @@ public class CreateTestData {
 		task2.setTitle("Titre de la tache 2");
 		task2.setVersion(1);
 		this.task2 = taskRepository.save(task2);
-		
+
 		Task task3 = new Task();
 		task3.setId(3L);
 		task3.setBid(false);
@@ -442,10 +424,7 @@ public class CreateTestData {
 		task3.setTitle("Titre de la tache 3 (without)");
 		task3.setVersion(1);
 		this.task3 = taskRepository.save(task3);
-		
-		
-		
-		
+
 		/* CREATION TASKUSER */
 		TaskUser taskUser1 = new TaskUser();
 		taskUser1.setId(1L);
@@ -458,7 +437,7 @@ public class CreateTestData {
 		taskUser1.setColonneKanban(col1);
 		taskUser1.setVersion(1);
 		this.taskUser1 = taskUserRepository.save(taskUser1);
-		
+
 		TaskUser taskUser2 = new TaskUser();
 		taskUser2.setId(2L);
 		taskUser2.setDateBegin(new Date(sdf.parse("12/01/2016").getTime()));
@@ -470,7 +449,7 @@ public class CreateTestData {
 		taskUser1.setColonneKanban(col1);
 		taskUser2.setVersion(1);
 		this.taskUser2 = taskUserRepository.save(taskUser2);
-		
+
 		TaskUser taskUser3 = new TaskUser();
 		taskUser3.setId(3L);
 		taskUser3.setDateBegin(new Date(sdf.parse("12/01/2016").getTime()));
@@ -481,10 +460,10 @@ public class CreateTestData {
 		taskUser3.setUser(this.user1);
 		taskUser3.setVersion(1);
 		this.taskUser3 = taskUserRepository.save(taskUser3);
-		
+
 		return "FINI";
 	}
-	
+
 	@Transactional
 	public void deleteAll() {
 		this.notificationRepository.deleteAll();
