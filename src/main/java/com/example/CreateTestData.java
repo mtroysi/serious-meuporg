@@ -474,6 +474,7 @@ public class CreateTestData {
 	
 	@Transactional
 	public void deleteAll() {
+		this.itemRepository.deleteAll();
 		this.notificationRepository.deleteAll();
 		this.boardUserRepository.deleteAll();
 		this.taskUserRepository.deleteAll();
