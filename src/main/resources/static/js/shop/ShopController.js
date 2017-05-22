@@ -7,20 +7,26 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('ShopController', function(AuthenticationService, CommonDialogService, ShopService, UserService) {
+        .controller('ShopController', function($scope, AuthenticationService, CommonDialogService, ShopService, UserService) {
             var ctrl = this;
             ctrl.items = [];
+            ctrl.filteredItems = [];
             ctrl.user = {};
 
             ctrl.init = function() {
                 ShopService.getAllItems().then(function(data) {
                     ctrl.items = data;
+                    ctrl.filteredItems = data;
                 });
 
                 ctrl.user = {};
                 var id = AuthenticationService.getUserId();
                 UserService.getUser(id).then(function(response){
                     ctrl.user = response;
+                });
+
+                $scope.$watch('this.ctrl.filter.type', function() {
+                    ctrl.filterItems();
                 });
             };
 
@@ -50,6 +56,23 @@
                 } else {
                     CommonDialogService.error('Vous n\'avez pas le niveau ou l\'argent requis pour acheter cet objet.', 'Achat impossible', null);
                 }
+            };
+
+            /**
+             * Open panel FILTER
+             */
+            ctrl.openPanelFilterAction = function(element) {
+                $(element).slideToggle(500);
+            };
+
+            ctrl.filterItems = function () {
+                ctrl.filteredItems = ctrl.items.filter(function(e) {
+                    if(ctrl.filter.type === 'ACHETABLE') {
+                        return ctrl.canBeBought(e);
+                    } else {
+                        return e.type === ctrl.filter.type || ctrl.filter.type === 'TOUT';
+                    }
+                });
             };
 
             ctrl.init();
