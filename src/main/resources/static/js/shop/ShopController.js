@@ -7,7 +7,7 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('ShopController', function(AuthenticationService, ShopService, UserService) {
+        .controller('ShopController', function(AuthenticationService, CommonDialogService, ShopService, UserService) {
             var ctrl = this;
             ctrl.items = [];
             ctrl.user = {};
@@ -37,6 +37,18 @@
                     return 'text-success';
                 } else {
                     return 'text-danger';
+                }
+            };
+
+            ctrl.canBeBought = function (item) {
+                return (ctrl.hasLevel(item)==='text-success') && (ctrl.hasMoney(item)==='text-success');
+            };
+
+            ctrl.buyItem = function (item) {
+                if(ctrl.canBeBought(item)) {
+                    CommonDialogService.confirmation('Voulez-vous acheter ' + item.name + ' ?', null, null, 'modalBuyItem', "Achat d'un objet", "Valider", "Annuler");
+                } else {
+                    CommonDialogService.error('Vous n\'avez pas le niveau ou l\'argent requis pour acheter cet objet.', 'Achat impossible', null);
                 }
             };
 

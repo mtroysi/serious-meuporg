@@ -109,9 +109,9 @@
 
             this.action = null;
 
-            let suffix = 'confirm';
-            let title = 'Confirmation';
-            let id = 'messageModal';
+            var suffix = 'confirm';
+            var title = 'Confirmation';
+            var id = 'messageModal';
             if (options.type === 'error') {
                 suffix = 'error';
                 title = 'Erreur';
@@ -126,8 +126,8 @@
             title = options.title || title;
             id = options.id || id;
 
-            let buttons = '';
-            for (let i = 0; i < options.actions.length; i++) {
+            var buttons = '';
+            for (var i = 0; i < options.actions.length; i++) {
                 const action = options.actions[i];
                 buttons += '<button type="button" id="action' + i + '" class="btn ' + action.css + ' btn-top" >' + action.name + '</button>';
             }
@@ -160,7 +160,7 @@
             }.bind(this));
             $dialog.modal('show');
 
-            for (let i = 0; i < options.actions.length; i++) {
+            for (var i = 0; i < options.actions.length; i++) {
                 const action = options.actions[i];
                 $dialog.find('#action' + i)
                     .click(function() {

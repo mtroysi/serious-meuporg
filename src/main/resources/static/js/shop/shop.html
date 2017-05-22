@@ -29,7 +29,7 @@
                 <div class="panel-body scroll-pane">
                     <div class="row scroll-content">
                         <div class="col-md-2" ng-repeat="item in ctrl.items">
-                            <div class="info-tile tile-success tile-perso">
+                            <div class="info-tile tile-success tile-perso" ng-click="ctrl.buyItem(item)">
                                 <div class="tile-heading"><span>{{ item.name }}</span></div>
                                 <div class="tile-icon"><span><img src="{{item.image}}" height="100" width="100"/></span></div>
                                 <div class="tile-body"><span>{{ item.description }}</span></div>
