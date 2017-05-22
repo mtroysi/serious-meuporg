@@ -16,7 +16,7 @@
             var id = AuthenticationService.getUserId();
             UserService.getUser(id).then(function(response) {
                 ctrl.user = response;
-                if (ctrl.user.avatar == null) {
+                if (!ctrl.user.avatar) {
                     ctrl.user.avatar = "images/avatar/user.png";
                 }
             });
@@ -29,12 +29,12 @@
         ctrl.editUserAction = function() {
             var user = {
                 firstName: ctrl.user.firstName,
-                lastName: ctrl.user.lastName,
+                lastName: ctrl.user.lastName
             };
 
             UserService.editUser(ctrl.user).then(function(data) { /** appel aux methodes du services */
-                if (data != null) {
-                    CommonNotificationBoxService.success("Information", "vos informations ont bien été modifié");
+                if (data) {
+                    CommonNotificationBoxService.success("Information", "Vos informations ont bien été modifiées");
                     ctrl.editorEnabled = false;
                 }
             });

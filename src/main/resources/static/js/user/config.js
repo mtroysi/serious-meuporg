@@ -12,7 +12,7 @@
                 // connexion obligatoire
                 if (toState.data.requireLogin === true && !AuthenticationService.getAuthorization()) {
                     event.preventDefault();
-                    CommonDialogService.error("Désolé mais il faut être connecté pour arriver sur cette fonctionnalitée.", "Accès interdit");
+                    CommonDialogService.error("Connectez-vous pour avoir accès à cette fonctionnalité.", "Accès interdit");
                     $state.go('appSimple.home');
                 }
                 // pas le droit d'aller sur home/login/inscripion
