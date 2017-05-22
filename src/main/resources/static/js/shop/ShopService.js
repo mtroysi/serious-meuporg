@@ -16,6 +16,12 @@
                 });
             };
 
+            svc.addToInventory = function(idUser, item) {
+                return ShopWS.addToInventory(idUser, item).then(function(response) {
+                    return response.data;
+                });
+            };
+
             return svc;
         });
 })();

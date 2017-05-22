@@ -14,6 +14,10 @@
                 return $http.get(constant.BASE_URI + '/item');
             };
 
+            svc.addToInventory = function(idUser, item) {
+                return $http.put(constant.BASE_URI + '/user/' + idUser, item);
+            };
+
             return svc;
         })
 })();

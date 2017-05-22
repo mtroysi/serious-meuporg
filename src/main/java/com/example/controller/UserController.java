@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dto.ItemDto;
 import com.example.dto.UserDTO;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,10 @@ public class UserController {
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public UserDTO getUser(@PathVariable ("id") Long id){
         return userService.getUser(id);
+    }
+
+    @RequestMapping(value = "/{idUser}", method = RequestMethod.PUT)
+    public List<ItemDto> addToInventory(@PathVariable ("idUser") Long idUser, @RequestBody ItemDto item){
+        return userService.addToInventory(idUser, item);
     }
 }

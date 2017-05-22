@@ -9,6 +9,7 @@
     angular.module('hello')
         .controller('InventoryController', function($scope, AuthenticationService, InventoryService) {
             var ctrl = this;
+            ctrl.inventory = [];
 
             ctrl.init = function() {
                 InventoryService.getInventory(Number(AuthenticationService.getUserId())).then(function (data) {
