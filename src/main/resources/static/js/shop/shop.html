@@ -1,0 +1,46 @@
+<div class="col-md-12 titleHeader panel">
+    <div class="panel-heading">
+        <h1> Boutique </h1>
+        <div class="panel-ctrls button-icon-bg">
+            <button class="btn btn-default-alt btn-lg" ng-click="ctrl.openPanelFilterAction('#boxFilter')"><i class="ti ti-panel"></i> Filtre</button>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12 sliderPanelBox text-right" id="boxFilter">
+    <div class="btn-group">
+        <button type="button" class="btn btn-block btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <i class="ti ti-check-box"></i> Type : {{  ctrl.filter.type }}<span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu col-xs-12" role="menu">
+            <li><a ng-click="ctrl.filter.type = 'TOUT'">TOUT</a></li>
+            <li><a ng-click="ctrl.filter.type = 'ACHETABLE'">Objets achetables</a></li>
+            <li><a ng-click="ctrl.filter.type = 'WALLPAPER'">Fonds d'écran</a></li>
+            <li><a ng-click="ctrl.filter.type = 'AVATAR'">Avatars</a></li>
+            <li><a ng-click="ctrl.filter.type = 'SPELL'">Sorts</a></li>
+            <li><a ng-click="ctrl.filter.type = 'CURSE'">Malédictions</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="col-md-12 boxMatrice">
+    <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-body scroll-pane">
+                    <div class="row scroll-content">
+                        <div class="col-md-2" ng-repeat="item in ctrl.filteredItems">
+                            <div class="info-tile tile-success tile-perso" ng-click="ctrl.buyItem(item)">
+                                <div class="tile-heading"><span>{{ item.name }}</span></div>
+                                <div class="tile-icon"><span><img src="{{item.image}}" height="100" width="100"/></span></div>
+                                <div class="tile-body"><span>{{ item.description }}</span></div>
+                                <div class="tile-footer">
+                                    <span class="pull-left strong" ng-class="ctrl.hasLevel(item)">Niveau requis : {{item.requiredLevel}}</span>
+                                    <span class="strong" ng-class="ctrl.hasMoney(item)">Prix : {{item.price}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

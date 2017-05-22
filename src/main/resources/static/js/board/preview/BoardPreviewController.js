@@ -97,7 +97,7 @@
              */
             ctrl.filterTask = function() {
                 ctrl.listTask = ctrl.listTaskDefault.filter(function(e) {
-                    return e.task.status == ctrl.filter.type || ctrl.filter.type == 'TOUT';
+                    return e.task.status === ctrl.filter.type || ctrl.filter.type === 'TOUT';
                 });
             };
 
@@ -162,7 +162,7 @@
             ctrl.setColor = function(colonne) {
                 ctrl.editColonne = colonne;
                 ctrl.saveEditColonne();
-            }
+            };
 
 
             /**

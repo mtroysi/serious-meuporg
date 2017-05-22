@@ -5,83 +5,66 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.example.enumeration.RoleEnum;
+import com.example.enumeration.*;
+import com.example.model.*;
+import com.example.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.init.ScriptException;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.enumeration.PeriodicityEnum;
-import com.example.enumeration.PriorityEnum;
-import com.example.enumeration.RoleEnum;
-import com.example.enumeration.StatusEnum;
-import com.example.enumeration.TypeNotifEnum;
-import com.example.model.Board;
-import com.example.model.BoardUser;
-import com.example.model.ColonneKanban;
-import com.example.model.Notification;
-import com.example.model.Periodicity;
-import com.example.model.Role;
-import com.example.model.Task;
-import com.example.model.TaskUser;
-import com.example.model.User;
-import com.example.repository.BoardRepository;
-import com.example.repository.BoardUserRepository;
-import com.example.repository.ColonneKanbanRepository;
-import com.example.repository.NotificationRepository;
-import com.example.repository.PeriodicityRepository;
-import com.example.repository.RoleRepository;
-import com.example.repository.TaskRepository;
-import com.example.repository.TaskUserRepository;
-import com.example.repository.UserRepository;
-
 @RestController
 public class CreateTestData {
 
-	@Autowired
-	private UserRepository userRepository;
-
-	@Autowired
-	private RoleRepository roleRepository;
-
-	@Autowired
-	private PeriodicityRepository periodicityRepository;
-
-	@Autowired
-	private ColonneKanbanRepository colonneKanbanRepository;
-
-	@Autowired
-	private TaskRepository taskRepository;
-
-	@Autowired
-	private TaskUserRepository taskUserRepository;
-
-	@Autowired
-	private BoardRepository boardRepository;
-
-	@Autowired
-	private BoardUserRepository boardUserRepository;
+	 @Autowired
+	 private UserRepository userRepository;
+	 
+	 @Autowired
+	 private RoleRepository roleRepository;
+	
+	 @Autowired
+	 private PeriodicityRepository periodicityRepository;
+	
+	 @Autowired
+	 private ColonneKanbanRepository colonneKanbanRepository;
+	
+	 @Autowired
+	 private TaskRepository taskRepository;
+	
+	 @Autowired
+	 private TaskUserRepository taskUserRepository;
+	
+	 @Autowired
+	 private BoardRepository boardRepository;
+	
+	 @Autowired
+	 private BoardUserRepository boardUserRepository;
 
 	@Autowired
 	private NotificationRepository notificationRepository;
 
-	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-	private Role role1;
-
-	private Role role2;
-
-	private User user1;
-
-	private Periodicity period1;
-
-	private Periodicity period2;
-
-	private Periodicity period3;
-
-	private Board board1;
-
-	private BoardUser boardUser1;
+	@Autowired
+	 private ItemRepository itemRepository;
+	
+	 private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	
+	 private Role role1;
+	 
+	 private Role role2;
+	 
+	 private User user1;
+	 
+	 private Periodicity period1;
+	 
+	 private Periodicity period2;
+	 
+	 private Periodicity period3;
+	 
+	 private Board board1;
+	 
+	 private BoardUser boardUser1;
 
 	private ColonneKanban col1;
 
@@ -133,6 +116,9 @@ public class CreateTestData {
 		user1.setTaskUsers(null);
 		this.user1 = this.userRepository.save(user1);
 
+		
+		
+		
 		/* CREATION PERIODICITY */
 		Periodicity period1 = new Periodicity();
 		period1.setId(1L);
@@ -143,7 +129,7 @@ public class CreateTestData {
 		period1.setType(PeriodicityEnum.DAILY);
 		period1.setVersion(1);
 		this.period1 = this.periodicityRepository.save(period1);
-
+		
 		Periodicity period2 = new Periodicity();
 		period2.setId(2L);
 		period2.setDateBegin(new Date(sdf.parse("01/02/2016").getTime()));
@@ -153,7 +139,7 @@ public class CreateTestData {
 		period2.setType(PeriodicityEnum.DAILY);
 		period2.setVersion(1);
 		this.period2 = this.periodicityRepository.save(period2);
-
+		
 		Periodicity period3 = new Periodicity();
 		period3.setId(3L);
 		period3.setDateBegin(new Date(sdf.parse("01/02/2016").getTime()));
@@ -339,7 +325,7 @@ public class CreateTestData {
 		col1.setStatus(StatusEnum.TODO);
 		col1.setTitle("TODO");
 		this.col1 = colonneKanbanRepository.save(col1);
-
+		
 		ColonneKanban col2 = new ColonneKanban();
 		col2.setId(2L);
 		col2.setVersion(1);
@@ -348,7 +334,7 @@ public class CreateTestData {
 		col2.setStatus(StatusEnum.IN_PROGRESS);
 		col2.setTitle("IN_PROGRESS");
 		this.col2 = colonneKanbanRepository.save(col2);
-
+		
 		ColonneKanban col3 = new ColonneKanban();
 		col3.setId(3L);
 		col3.setVersion(1);
@@ -380,7 +366,7 @@ public class CreateTestData {
 		task1.setTitle("Titre de la tache 1");
 		task1.setVersion(1);
 		this.task1 = taskRepository.save(task1);
-
+		
 		Task task2 = new Task();
 		task2.setId(2L);
 		task2.setBid(false);
@@ -402,7 +388,7 @@ public class CreateTestData {
 		task2.setTitle("Titre de la tache 2");
 		task2.setVersion(1);
 		this.task2 = taskRepository.save(task2);
-
+		
 		Task task3 = new Task();
 		task3.setId(3L);
 		task3.setBid(false);
@@ -437,7 +423,7 @@ public class CreateTestData {
 		taskUser1.setColonneKanban(col1);
 		taskUser1.setVersion(1);
 		this.taskUser1 = taskUserRepository.save(taskUser1);
-
+		
 		TaskUser taskUser2 = new TaskUser();
 		taskUser2.setId(2L);
 		taskUser2.setDateBegin(new Date(sdf.parse("12/01/2016").getTime()));
@@ -449,7 +435,7 @@ public class CreateTestData {
 		taskUser1.setColonneKanban(col1);
 		taskUser2.setVersion(1);
 		this.taskUser2 = taskUserRepository.save(taskUser2);
-
+		
 		TaskUser taskUser3 = new TaskUser();
 		taskUser3.setId(3L);
 		taskUser3.setDateBegin(new Date(sdf.parse("12/01/2016").getTime()));
@@ -461,9 +447,31 @@ public class CreateTestData {
 		taskUser3.setVersion(1);
 		this.taskUser3 = taskUserRepository.save(taskUser3);
 
+		/* CREATION OBJETS */
+		Item item1 = new Item();
+		item1.setName("Joli fond d'écran");
+		item1.setDescription("Fond d'écran pour la page de guilde représentant la ville de Toulouse");
+		item1.setPrice(250L);
+		item1.setRequiredLevel(1L);
+		item1.setReusable(Boolean.TRUE);
+		item1.setType(ItemEnum.WALLPAPER);
+		item1.setUrl("https://wallpaperscraft.com/image/toulouse_city_square_night_france_58716_3840x2160.jpg");
+		item1.setImage("https://wallpaperscraft.com/image/toulouse_city_square_night_france_58716_3840x2160.jpg");
+		itemRepository.save(item1);
+
+		Item item2 = new Item();
+		item2.setName("Sort de bonne humeur");
+		item2.setDescription("Génère aléatoirement des notifications pour vous mettre de bonne humeur");
+		item2.setPrice(175L);
+		item2.setRequiredLevel(2L);
+		item2.setReusable(Boolean.FALSE);
+		item2.setType(ItemEnum.SPELL);
+		item2.setImage("https://previews.123rf.com/images/anastasiiam/anastasiiam1605/anastasiiam160500090/57128892-Simple-flat-like-icon-in-pink-color-Like-counter-notification-emblem-isolated-on-white-background--Stock-Vector.jpg");
+		itemRepository.save(item2);
+		
 		return "FINI";
 	}
-
+	
 	@Transactional
 	public void deleteAll() {
 		this.notificationRepository.deleteAll();
