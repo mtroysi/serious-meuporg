@@ -10,11 +10,11 @@
         .service('InventoryService', function(InventoryWS) {
             var svc = {};
 
-            // svc.getBoard = function(id) {
-            //     return BoardWS.getBoard(id).then(function(response) {
-            //         return response.data;
-            //     });
-            // };
+            svc.getInventory = function(id) {
+                return InventoryWS.getInventory(id).then(function(response) {
+                    return response.data;
+                });
+            };
 
             return svc;
         });

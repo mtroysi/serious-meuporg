@@ -10,9 +10,9 @@
         .service('InventoryWS', function($http, constant) {
             var svc = this;
 
-            // svc.getBoard = function(id) {
-            //     return $http.get(constant.BASE_URI + '/board/' + id);
-            // };
+            svc.getInventory = function(id) {
+                return $http.get(constant.BASE_URI + '/inventory/' + id);
+            };
 
             return svc;
         })

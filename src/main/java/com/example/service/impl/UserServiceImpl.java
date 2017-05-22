@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import com.example.dto.ItemDto;
+import com.example.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -82,4 +84,11 @@ public class UserServiceImpl implements UserService {
         return (UserDTO)transformers.convertEntityToDto(user, UserDTO.class);
     }
 
+    @Override
+    public List<ItemDto> getUserInventory(Long id) {
+        User user = userRepository.findOne(id);
+        List<ItemDto> itemDtoList = new ArrayList<>();
+        user.getInventory().stream().forEach(item -> itemDtoList.add((ItemDto)this.transformers.convertEntityToDto(item, ItemDto.class)));
+        return itemDtoList;
+    }
 }
