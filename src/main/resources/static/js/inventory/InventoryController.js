@@ -7,13 +7,30 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('InventoryController', function(AuthenticationService, InventoryService) {
+        .controller('InventoryController', function($scope, AuthenticationService, InventoryService) {
             var ctrl = this;
 
             ctrl.init = function() {
                 InventoryService.getInventory(Number(AuthenticationService.getUserId())).then(function (data) {
                     ctrl.inventory = data;
-                })
+                    ctrl.filteredInventory = data;
+                });
+                $scope.$watch('this.ctrl.filter.type', function() {
+                    ctrl.filterItems();
+                });
+            };
+
+            /**
+             * Open panel FILTER
+             */
+            ctrl.openPanelFilterAction = function(element) {
+                $(element).slideToggle(500);
+            };
+
+            ctrl.filterItems = function () {
+                ctrl.filteredInventory = ctrl.inventory.filter(function(e) {
+                    return e.type === ctrl.filter.type || ctrl.filter.type === 'TOUT';
+                });
             };
 
             ctrl.init();
