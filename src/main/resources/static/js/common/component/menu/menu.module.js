@@ -28,7 +28,7 @@
     }
 
 
-    angular.module('hello', ['ui.router', 'ngTagsInput', 'ngCookies'])
+    angular.module('hello', ['ui.router', 'ngTagsInput', 'ngCookies', 'ui.bootstrap'])
         .component('mgMenu', {
             controller: ComponentMenuController,
             controllerAs: 'vm',
