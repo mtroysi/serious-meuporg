@@ -23,6 +23,12 @@
                 });
             };
 
+            svc.getStats = function(id){
+                return UserWS.getStats(id).then(function (response) {
+                    return response.data;
+                });
+            }
+
             return svc;
         });
 })();

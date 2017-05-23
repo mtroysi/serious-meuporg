@@ -12,6 +12,7 @@
 
         ctrl.init = function() {
             ctrl.user = {};
+            ctrl.stats=0;
             ctrl.editorEnabled = false;
             var id = AuthenticationService.getUserId();
             UserService.getUser(id).then(function(response) {
@@ -20,6 +21,7 @@
                     ctrl.user.avatar = "images/avatar/user.png";
                 }
             });
+            ctrl.getStats();
         };
 
         ctrl.enableEditor = function() {
@@ -37,6 +39,12 @@
                     CommonNotificationBoxService.success("Information", "Vos informations ont bien été modifiées");
                     ctrl.editorEnabled = false;
                 }
+            });
+        };
+
+        ctrl.getStats= function(){
+            UserService.getStats(AuthenticationService.getUserId()).then(function(response) {
+                ctrl.stats = response;
             });
         };
 

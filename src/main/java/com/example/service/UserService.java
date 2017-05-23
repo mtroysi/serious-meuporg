@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.dto.ItemDto;
 import com.example.dto.UserDTO;
+import com.example.dto.UserStatsDTO;
 import com.example.model.User;
 
 import java.util.List;
@@ -24,7 +25,11 @@ public interface UserService {
 
     UserDTO getUser(long id);
 
+    UserStatsDTO getstats(long id);
+
+
     List<ItemDto> getUserInventory(Long id);
 
     List<ItemDto> updateInventory(List<ItemDto> items);
+
 }
