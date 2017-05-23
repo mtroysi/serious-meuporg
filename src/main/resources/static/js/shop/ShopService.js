@@ -16,12 +16,6 @@
                 });
             };
 
-            svc.updateInventory = function(inventory) {
-                return ShopWS.updateInventory(inventory).then(function(response) {
-                    return response.data;
-                });
-            };
-
             return svc;
         });
 })();

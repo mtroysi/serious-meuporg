@@ -66,7 +66,7 @@
                 if (ctrl.canBeBought(item)) {
                     ctrl.inventory.push(item);
                     CommonDialogService.confirmation('Voulez-vous acheter ' + item.name + ' ?', function () {
-                        ShopService.updateInventory(ctrl.inventory).then(function (data) {
+                        InventoryService.updateInventory(ctrl.inventory).then(function (data) {
                             ctrl.inventory = data;
                         });
                     }, function () {

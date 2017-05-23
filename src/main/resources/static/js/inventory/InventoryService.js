@@ -16,6 +16,12 @@
                 });
             };
 
+            svc.updateInventory = function(inventory) {
+                return InventoryWS.updateInventory(inventory).then(function(response) {
+                    return response.data;
+                });
+            };
+
             return svc;
         });
 })();
