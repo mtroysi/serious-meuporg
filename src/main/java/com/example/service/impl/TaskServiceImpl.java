@@ -57,7 +57,8 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public TaskDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         Task task = taskRepository.findOne(id);
-        BeanUtils.setProperty(task,"priority", PriorityEnum.valueOf((String) values.get("priority")));
+
+        task.setPriority(PriorityEnum.valueOf((String) values.get("priority")));
         values.remove("priority");
         BeanUtils.populate(task, values);
         return (TaskDTO) transformers.convertEntityToDto(taskRepository.save(task), TaskDTO.class);
