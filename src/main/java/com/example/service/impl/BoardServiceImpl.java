@@ -35,11 +35,21 @@ public class BoardServiceImpl implements BoardService {
     @Autowired
     private Transformers transformers;
 
+    /**
+     * Retourne le tabbleau dont l'id est passé en paramètre
+     * @param id l'id du tableau
+     * @return le DTO du tableau correspondant
+     */
     @Override
     public BoardDTO getBoard(Long id) {
         return transformers.transformBoardToBoardDto(boardRepository.findOne(id));
     }
 
+    /**
+     * Crée un tableau
+     * @param boardDTO informations nécessaires à la création du tableau
+     * @return le DTO du tableau créé
+     */
     @Override
     public BoardDTO createBoard(BoardDTO boardDTO) {
         Board board = new Board();
@@ -63,6 +73,11 @@ public class BoardServiceImpl implements BoardService {
         }
     }*/
 
+    /**
+     * Met à jour un tableau
+     * @param boardDTO données du tableau modifié
+     * @return le DTO du tableau modifié
+     */
     @Override
     public BoardDTO updateBoard(BoardDTO boardDTO) {
         Board board = boardRepository.findOne(boardDTO.getId());
@@ -78,6 +93,10 @@ public class BoardServiceImpl implements BoardService {
         }
     }
 
+    /**
+     * Supprime un tableau
+     * @param id l'id du tableau à supprimer
+     */
     @Override
     public void deleteBoard(Long id) {
         boardRepository.delete(id);

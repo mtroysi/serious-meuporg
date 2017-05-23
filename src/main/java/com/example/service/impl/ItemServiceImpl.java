@@ -24,6 +24,10 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private Transformers transformers;
 
+    /**
+     * Retourne la liste de tous les items
+     * @return la liste de tous les items
+     */
     @Override
     public List<ItemDto> getAllItems() {
         List<Item> items = (List<Item>)itemRepository.findAll();

@@ -32,6 +32,13 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     private Transformers transformers;
 
+    /**
+     * Crée une tâche
+     * @param values données de la tâche à créer
+     * @return DTO de la tâche créée
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
     @Override
     public TaskDTO createTask(Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         Task task = new Task();
@@ -41,6 +48,10 @@ public class TaskServiceImpl implements TaskService {
         return (TaskDTO) transformers.convertEntityToDto(taskRepository.save(task), TaskDTO.class);
     }
 
+    /**
+     * Retourne toutes les tâches en base de données
+     * @return liste de toutes les tâches en base de données
+     */
     @Override
     public List<TaskDTO> listAllTask() {
         Iterable<Task> res = taskRepository.findAll();
@@ -52,11 +63,24 @@ public class TaskServiceImpl implements TaskService {
         return list;
     }
 
+    /**
+     * Retourne la tâche dont l'id est passé en paramètre
+     * @param id l'id de la tâche
+     * @return la tâche correspondante
+     */
     @Override
     public TaskDTO listTask(Long id) {
         return (TaskDTO) transformers.convertEntityToDto(taskRepository.findOne(id), TaskDTO.class);
     }
 
+    /**
+     * Modifie une tâche
+     * @param id l'id de la tâche à modifier
+     * @param values données modifiées
+     * @return DTO de la tâche modifiée
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
     @Override
     public TaskDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         Task task = taskRepository.findOne(id);
@@ -71,11 +95,22 @@ public class TaskServiceImpl implements TaskService {
         return (TaskDTO) transformers.convertEntityToDto(taskRepository.save(task), TaskDTO.class);
     }
 
+    /**
+     * Supprime une tâche
+     * @param id l'id de la tâche à supprimer
+     */
     @Override
     public void deleteTask(Long id) {
         taskRepository.delete(id);
     }
 
+    /**
+     * Ajoute un tag à une tâche
+     * @param id l'id de la tâche
+     * @param values données du tag à créer
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
     @Override
     public void addTagToTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         Tag tag = new Tag();
@@ -87,6 +122,11 @@ public class TaskServiceImpl implements TaskService {
         taskRepository.save(task);
     }
 
+    /**
+     * Retourne toutes les tâches non-assignées d'un tableau
+     * @param boardId id du tableau
+     * @return tâches non-assignées du tableau
+     */
     @Override
     public List<TaskLiteDTO> getTaskWithoutUser(Long boardId){
         List<Task> list = taskRepository.findTaskByUserIsNullAndBoardId(boardId);

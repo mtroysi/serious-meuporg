@@ -36,6 +36,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private ItemRepository itemRepository;
 
+    /**
+     * Retourne les utilisateurs dont le nom + prénom contiennent la chaîne en paramètre, utilisateur connecté exclu
+     * @param query chaîne à chercher
+     * @return liste des utilisateurs dont le nom + prénom contiennent la chaîne en paramètre, utilisateur connecté exclu
+     */
     @Override
     public List<UserDTO> loadUsers(String query) {
         User currentUser = this.getCurrentUser();
@@ -48,6 +53,11 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    /**
+     * Crée un utilisateur
+     * @param userDTO données de l'utilisateur à créer
+     * @return
+     */
     @Override
     public UserDTO createUser(UserDTO userDTO){
         User user = (User)transformers.convertDtoToEntity(userDTO, User.class);
@@ -63,16 +73,31 @@ public class UserServiceImpl implements UserService {
         return (UserDTO)transformers.convertEntityToDto(user, UserDTO.class);
     }
 
+    /**
+     * Retourne l'utilisateur connecté
+     * @return l'utilisateur connecté
+     */
     @Override
     public User getCurrentUser() {
         String mail = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return userRepository.findByEmail(mail);
     }
+
+    /**
+     * Retourne l'utilisateur dont l'id est passé en paramètre
+     * @param id l'id de l'utilisateur
+     * @return l'utilisateur correspondant
+     */
     @Override
     public UserDTO getUser(long id){
     	 return (UserDTO) transformers.convertEntityToDto(userRepository.findOne(id), UserDTO.class);
     }
-    
+
+    /**
+     * Modifie un utilisateur
+     * @param userDTO données de l'utilisateur à modifier
+     * @return DTO de l'utilisateur modifié
+     */
     @Override
     public UserDTO editUser(UserDTO userDTO){
         User user = userRepository.findOne(userDTO.getId());
@@ -88,6 +113,11 @@ public class UserServiceImpl implements UserService {
         return (UserDTO)transformers.convertEntityToDto(user, UserDTO.class);
     }
 
+    /**
+     * Retourne l'inventaire d'un utilisateur
+     * @param id l'id de l'utilisateur
+     * @return liste des items possédés par l'utilisateur
+     */
     @Override
     public List<ItemDto> getUserInventory(Long id) {
         User user = userRepository.findOne(id);
@@ -96,16 +126,11 @@ public class UserServiceImpl implements UserService {
         return itemDtoList;
     }
 
-/*    @Override
-    public List<ItemDto> addToInventory(Long idUser, ItemDto itemDto) {
-        User user = userRepository.findOne(idUser);
-        user.getInventory().add(itemRepository.findOne(itemDto.getId()));
-        user = userRepository.save(user);
-        List<ItemDto> itemDtoList = new ArrayList<>();
-        user.getInventory().stream().forEach(item -> itemDtoList.add((ItemDto)this.transformers.convertEntityToDto(item, ItemDto.class)));
-        return itemDtoList;
-    }*/
-
+    /**
+     * Modifie l'inventaire d'un utilisateur
+     * @param itemDtoList liste des objets possédés par l'utilisateur
+     * @return inventaire mis à jour
+     */
     @Override
     public List<ItemDto> updateInventory(List<ItemDto> itemDtoList) {
         User user = this.getCurrentUser();
