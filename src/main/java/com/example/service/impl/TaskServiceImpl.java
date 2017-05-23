@@ -63,6 +63,10 @@ public class TaskServiceImpl implements TaskService {
 
         task.setPriority(PriorityEnum.valueOf((String) values.get("priority")));
         values.remove("priority");
+
+        values.remove("taskComments");
+
+        BeanUtilsBean.getInstance().getConvertUtils().register(false, true, 0);
         BeanUtils.populate(task, values);
         return (TaskDTO) transformers.convertEntityToDto(taskRepository.save(task), TaskDTO.class);
     }

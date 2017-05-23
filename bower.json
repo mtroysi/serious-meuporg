@@ -15,20 +15,16 @@
     "tests"
   ],
   "dependencies": {
-        "angular": "^1.6.4",
-        "angular-ui-router": "^0.4.2",
-        "jquery": "1.10.2",
-        "bootstrap": "^3.3.7",
-        "angular-bootstrap": "^2.5.0",
-        "enquire": "2.1.6",
-        "pnotify": "3.2.0",
-        "ng-tags-input": "^3.2.0",
-        "angular-cookies": "^1.6.4",
-        "underscore": "^1.8.3",
-        "slick-carousel": "^1.6.0"
-<<<<<<< b6604f0751b6f6a898fe18debcbb4d21f4952e51
-    }
-=======
+    "angular": "^1.6.4",
+    "angular-ui-router": "^0.4.2",
+    "jquery": "1.10.2",
+    "bootstrap": "^3.3.7",
+    "angular-bootstrap": "^2.5.0",
+    "enquire": "2.1.6",
+    "pnotify": "3.2.0",
+    "ng-tags-input": "^3.2.0",
+    "angular-cookies": "^1.6.4",
+    "underscore": "^1.8.3",
+    "slick-carousel": "^1.6.0"
   }
->>>>>>> gestion commentaire ui
 }
