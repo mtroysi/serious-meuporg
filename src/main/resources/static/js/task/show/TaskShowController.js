@@ -57,6 +57,10 @@
                 });
             };
 
+            ctrl.confirmDeleteTask = function () {
+
+            };
+
             ctrl.init();
         })
 })();
