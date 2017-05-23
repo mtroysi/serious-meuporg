@@ -3,6 +3,7 @@ package com.example;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 
 import com.example.enumeration.RoleEnum;
@@ -102,6 +103,18 @@ public class CreateTestData {
 		role2.setCode(RoleEnum.USER);
 		this.role2 = this.roleRepository.save(role2);
 
+		/* INVENTAIRE UTILISATEUR */
+		Item item = new Item();
+		item.setType(ItemEnum.AVATAR);
+		item.setName("Avatar chevalier");
+		item.setDescription("Avatar chevalier");
+		item.setImage("https://d10tatjf967fp1.cloudfront.net/image/upload/s--ols54Dc3--/c_fill,d_avatar:v2:bronze.jpg,g_face,h_240,w_240/v1435077462/user/cqfyuufj5l85u/avatar.jpg");
+		item.setUrl("https://d10tatjf967fp1.cloudfront.net/image/upload/s--ols54Dc3--/c_fill,d_avatar:v2:bronze.jpg,g_face,h_240,w_240/v1435077462/user/cqfyuufj5l85u/avatar.jpg");
+		item.setReusable(Boolean.TRUE);
+		item.setPrice(1000L);
+		item.setRequiredLevel(10L);
+		item = itemRepository.save(item);
+
 		/* CREATION UTILISATEUR */
 		User user1 = new User();
 		user1.setId(1L);
@@ -111,12 +124,13 @@ public class CreateTestData {
 		user1.setFirstName("User");
 		user1.setLastName("UserLastName");
 		user1.setPassword("user");
+		user1.setExperience(35L);
+		user1.setMoney(175L);
 		user1.setBoardUsers(null);
 		user1.setTaskUserBids(null);
 		user1.setTaskUsers(null);
+		user1.setInventory(Collections.singletonList(item));
 		this.user1 = this.userRepository.save(user1);
-
-		
 		
 		
 		/* CREATION PERIODICITY */

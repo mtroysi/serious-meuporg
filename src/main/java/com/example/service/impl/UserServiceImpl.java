@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import com.example.dto.ItemDto;
+import com.example.model.Item;
+import com.example.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -29,6 +32,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ItemRepository itemRepository;
 
     @Override
     public List<UserDTO> loadUsers(String query) {
@@ -82,4 +88,35 @@ public class UserServiceImpl implements UserService {
         return (UserDTO)transformers.convertEntityToDto(user, UserDTO.class);
     }
 
+    @Override
+    public List<ItemDto> getUserInventory(Long id) {
+        User user = userRepository.findOne(id);
+        List<ItemDto> itemDtoList = new ArrayList<>();
+        user.getInventory().stream().forEach(item -> itemDtoList.add((ItemDto)this.transformers.convertEntityToDto(item, ItemDto.class)));
+        return itemDtoList;
+    }
+
+/*    @Override
+    public List<ItemDto> addToInventory(Long idUser, ItemDto itemDto) {
+        User user = userRepository.findOne(idUser);
+        user.getInventory().add(itemRepository.findOne(itemDto.getId()));
+        user = userRepository.save(user);
+        List<ItemDto> itemDtoList = new ArrayList<>();
+        user.getInventory().stream().forEach(item -> itemDtoList.add((ItemDto)this.transformers.convertEntityToDto(item, ItemDto.class)));
+        return itemDtoList;
+    }*/
+
+    @Override
+    public List<ItemDto> updateInventory(List<ItemDto> itemDtoList) {
+        User user = this.getCurrentUser();
+        List<Item> items = new ArrayList<>();
+
+        itemDtoList.stream().forEach(itemDto -> items.add((Item)this.transformers.convertDtoToEntity(itemDto, Item.class)));
+        user.setInventory(items);
+        user = userRepository.save(user);
+
+        itemDtoList.clear();
+        user.getInventory().stream().forEach(item -> itemDtoList.add((ItemDto)this.transformers.convertEntityToDto(item, ItemDto.class)));
+        return itemDtoList;
+    }
 }

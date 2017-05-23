@@ -7,6 +7,9 @@ import com.example.enumeration.ItemEnum;
  */
 
 public class ItemDto {
+
+    private Long id;
+
     private String name;
 
     private ItemEnum type;
@@ -85,5 +88,13 @@ public class ItemDto {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
