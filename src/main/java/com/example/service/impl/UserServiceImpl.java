@@ -11,7 +11,12 @@ import org.springframework.stereotype.Service;
 import com.example.ConstanteGameMaster;
 import com.example.dto.TagDTO;
 import com.example.dto.UserDTO;
+import com.example.dto.UserStatsDTO;
+import com.example.enumeration.StatusEnum;
 import com.example.exception.GameMasterException;
+import com.example.model.BoardUser;
+import com.example.model.TaskUser;
+import com.example.model.TaskUserBid;
 import com.example.model.User;
 import com.example.repository.UserRepository;
 import com.example.service.UserService;
@@ -80,6 +85,33 @@ public class UserServiceImpl implements UserService {
         }
       
         return (UserDTO)transformers.convertEntityToDto(user, UserDTO.class);
+    }
+    
+    @Override
+    public UserStatsDTO getstats(long id){
+    	User user = userRepository.findOne(id);
+    	UserStatsDTO userStatsDTO = new UserStatsDTO();
+    	Long nbrTaskDone = 0L;
+    	Long nbrTaskCreated = 0L;
+    	int nbrBoardCreated = 0;
+    	Long nbrTaskBid = 0L;
+    	
+    	User currentUser;
+    	
+    	List<TaskUser> listTaskUser = user.getTaskUsers();
+    	List<BoardUser> listBoardUser= user.getBoardUsers();
+    	List<TaskUserBid> listTaskBidUser= user.getTaskUserBids();
+    	
+    	nbrTaskDone = listTaskUser.stream().filter((TaskUser t)-> StatusEnum.DONE.equals(t.getStatus())).count();
+    	nbrTaskCreated =listTaskUser.stream().filter((TaskUser t)-> t.getTask().getCreator().getId().equals(id)).count();
+    	nbrBoardCreated = listBoardUser.size();
+    	nbrTaskBid = listTaskBidUser.stream().count();
+    	userStatsDTO.setNbrTaskCreated(nbrTaskCreated);
+    	userStatsDTO.setNbrTaskDone(nbrTaskDone);
+    	userStatsDTO.setNbrBoardCreated(nbrBoardCreated);
+    	userStatsDTO.setNbrTaskBid(nbrTaskBid);
+    	
+    	return userStatsDTO;
     }
 
 }

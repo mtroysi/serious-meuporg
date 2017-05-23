@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.dto.UserDTO;
+import com.example.dto.UserStatsDTO;
 import com.example.model.User;
 
 import java.util.List;
@@ -17,4 +18,5 @@ public interface UserService {
     List<UserDTO> loadUsers(String query);
     User getCurrentUser();
     UserDTO getUser(long id);
+    UserStatsDTO getstats(long id);
 }
