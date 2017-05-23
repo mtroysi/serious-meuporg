@@ -60,5 +60,16 @@ public class BidController {
 
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
+    
+    @RequestMapping(value = "/task/{task_id}", method = RequestMethod.POST)
+    public ResponseEntity<TaskUserBidDTO> addOrUpdateTaskUserBid(@PathVariable(value = "task_id") Long task_id) {
+        logger.info("Calling BidController.addOrUpdateTaskUserBid with {}", task_id);
+
+        TaskUserBidDTO tub = taskUserBidService.getTaskUserBidByBoardAndUser(task_id, );
+
+
+
+        return new ResponseEntity<>(tub, HttpStatus.OK);
+    }
 
 }

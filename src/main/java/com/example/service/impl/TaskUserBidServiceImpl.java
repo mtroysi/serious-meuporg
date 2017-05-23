@@ -8,15 +8,19 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.ConstanteGameMaster;
 import com.example.dto.TaskDTO;
 import com.example.dto.TaskUserBidDTO;
 import com.example.dto.UserDTO;
+import com.example.exception.GameMasterException;
 import com.example.model.Task;
 import com.example.model.TaskUserBid;
 import com.example.model.User;
 import com.example.repository.TaskRepository;
+import com.example.repository.TaskUserBidRepository;
 import com.example.repository.UserRepository;
 import com.example.service.TaskUserBidService;
+import com.example.service.UserService;
 import com.example.transformers.Transformers;
 
 
@@ -25,10 +29,16 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
     
     @Autowired
     private TaskRepository taskRepo;
+
+    @Autowired
+    private TaskUserBidRepository taskUserBidRepo;
     
     @Autowired
     private UserRepository userRepo;
-
+    
+    @Autowired
+    private UserService userService;
+    
     @Autowired
     private Transformers transformers;
 
@@ -54,6 +64,31 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 		else{
 			return null;	
 		}
+	}
+
+	@Override
+	public TaskUserBidDTO addOrUpdateTaskUserBid(Long idTask, Double duration) {
+        User user = userService.getCurrentUser();
+        
+        TaskUserBid tub = taskUserBidRepo.findByTaskIdAndUserId(idTask, user.getId());
+        
+        if(tub != null){
+        	tub.setDuration(duration);
+        	tub = taskUserBidRepo.save(tub);
+        }else{
+        	Task task = taskRepo.findOne(idTask);
+        	if( task != null){
+        		TaskUserBid tub_new = new TaskUserBid();
+	        	tub_new.setDuration(duration);
+	        	tub_new.setTask(task);
+	        	tub_new.setUser(user);
+	        	tub = taskUserBidRepo.save(tub);
+        	}else{
+            	throw new GameMasterException(ConstanteGameMaster.TASK_NOT_FOUND_ERROR);
+        	}
+        }
+        
+		return (TaskUserBidDTO) transformers.convertEntityToDto(tub, TaskUserBidDTO.class);
 	}
 
   
