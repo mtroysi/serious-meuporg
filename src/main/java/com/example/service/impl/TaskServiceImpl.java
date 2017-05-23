@@ -1,25 +1,15 @@
 package com.example.service.impl;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import org.apache.commons.beanutils.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.example.dto.TaskDTO;
-import com.example.dto.TaskLiteDTO;
 import com.example.enumeration.PriorityEnum;
 import com.example.model.Tag;
 import com.example.model.Task;
-import com.example.repository.TagRepository;
 import com.example.repository.TaskRepository;
 import com.example.service.TaskService;
 import com.example.transformers.Transformers;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
+import org.apache.commons.beanutils.converters.DateConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,7 +56,6 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public TaskDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
-        //TODO: vérifier si l'utilisateur connecté a le droit de modification sur le tableau
         Task task = taskRepository.findOne(id);
         BeanUtils.setProperty(task,"priority", PriorityEnum.valueOf((String) values.get("priority")));
         values.remove("priority");

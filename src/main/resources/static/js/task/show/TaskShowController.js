@@ -51,6 +51,7 @@
                 console.log("tesst");
                 TaskUpdateService.updateTask(ctrl.task.id, ctrl.task).then(function (data) {
                     ctrl.task = data;
+                    $("#editTask").modal('toggle');
                 });
             };
 

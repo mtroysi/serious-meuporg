@@ -234,16 +234,28 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header modal-header-confirmation">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
                 <h5 class="modal-title" id="titleModal">Edition colonne</h5>
             </div>
             <div class="modal-body text-center clearfix">
-                <input class="form-control" ng-model="ctrl.editColonne.title" placeholder="Nom de la colonne" type="text">
+                <input class="form-control" ng-model="ctrl.editColonne.title" placeholder="Nom de la colonne"
+                       type="text">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-warning btn-top" data-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-success btn-top" ng-click="ctrl.saveEditColonne()" data-dismiss="modal">Valider</button>
+                <button type="button" class="btn btn-success btn-top" ng-click="ctrl.saveEditColonne()"
+                        data-dismiss="modal">Valider
+                </button>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editTask" tabindex="-1" role="dialog" aria-labelledby="titleModal">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div ng-include="'js/task/show/task-show.html'" ng-controller="TaskShowController as ctrl"></div>
         </div>
     </div>
 </div>
