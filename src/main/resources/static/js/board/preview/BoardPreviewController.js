@@ -66,7 +66,7 @@
             };
 
             /**
-             * WS Loard list of task by  user 
+             * WS Loard list of task by  user
              */
             ctrl.getTaskUser = function(user_id) {
                 TaskService.listTaskByUser(user_id).then(function(fetchData) {
@@ -77,7 +77,7 @@
             };
 
             /**
-             * Adding the color of the associated board 
+             * Adding the color of the associated board
              */
             ctrl.addColorTask = function(data) {
                 var listBoard = CommonMenuService.getListBoard();
@@ -129,13 +129,13 @@
                 $timeout(function() { $('.bigPanelMatrice').fadeToggle(); }, 200);
                 ctrl.sizeKanban();
             };
-            
+
             ctrl.editTaskAction = function (task) {
                 $('#editTask').modal('show');
                 ctrl.task = task;
                 $scope.$broadcast("showTask", task);
             };
-            
+
 
             /**
              * Box size management
