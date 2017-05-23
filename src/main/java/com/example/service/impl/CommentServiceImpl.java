@@ -33,11 +33,25 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private Transformers transformers;
 
+    /**
+     * Retourne le commentaire dont l'id est passé en paramètre
+     * @param id l'id du commentaire
+     * @return le commentaire correspondant
+     */
     @Override
     public CommentDTO findComment(Long id) {
         return (CommentDTO) transformers.convertEntityToDto(commentRepository.findOne(id), CommentDTO.class);
     }
 
+    /**
+     * Ajoute un commentaire à une tâche
+     * @param id l'id de la tâche
+     * @param values données du commentaire à créer
+     * @param idUser l'id de l'utilisateur
+     * @return
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
     @Override
     public CommentDTO addCommentToTask(Long id, Map<String, Object> values, Long idUser) throws InvocationTargetException, IllegalAccessException {
         Comment comment = new Comment();
@@ -52,11 +66,23 @@ public class CommentServiceImpl implements CommentService {
         return (CommentDTO) transformers.convertEntityToDto(commentRepository.save(comment), CommentDTO.class);
     }
 
+    /**
+     * Supprime un commentaire
+     * @param id l'id du commentaire à supprimer
+     */
     @Override
     public void deleteComment(Long id) {
         commentRepository.delete(id);
     }
 
+    /**
+     * Modifie un commentaire
+     * @param id l'id du commentaire à modifier
+     * @param values données à modifier
+     * @return DTO du commentaire modifié
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
     @Override
     public CommentDTO updateComment(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         Comment comment = commentRepository.findOne(id);
