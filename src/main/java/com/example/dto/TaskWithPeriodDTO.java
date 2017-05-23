@@ -176,5 +176,12 @@ public void setStatus(StatusEnum status) {
 	public void setBoardId(Long boardId) {
 		this.boardId = boardId;
 	}
-	
+
+	public List<CommentDTO> getTaskComments() {
+		return taskComments;
+	}
+
+	public void setTaskComments(List<CommentDTO> taskComments) {
+		this.taskComments = taskComments;
+	}
 }

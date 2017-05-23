@@ -103,18 +103,18 @@ public class TaskDTO {
     }
 
     public BoardDTO getBoard() {
-		return board;
-	}
+        return board;
+    }
 
     public void setBoard(BoardDTO board) {
-		this.board = board;
-	}
+        this.board = board;
+    }
 
-    public List<Tag> getTags() {
+    public List<TagDTO> getTags() {
         return tags;
     }
 
-    public void setTags(List<Tag> tags) {
+    public void setTags(List<TagDTO> tags) {
         this.tags = tags;
     }
 

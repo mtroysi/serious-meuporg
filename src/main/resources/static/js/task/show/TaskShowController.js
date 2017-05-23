@@ -12,6 +12,7 @@
 
             $scope.$on("showTask", function (event, args) {
                ctrl.task = args.task;
+               console.log(ctrl.task);
             });
 
             ctrl.priority = constant.priority;
