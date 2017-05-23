@@ -29,13 +29,19 @@
                 <div class="row scroll-content">
                     <div class="col-md-2" ng-repeat="item in ctrl.filteredInventory">
                         <div class="info-tile tile-success tile-perso">
-                            <div class="tile-heading"><span>{{ item.name }}</span></div>
+                            <div class="tile-heading">
+                                <span>{{ item.name }}</span>
+                                <div class="panel-ctrls button-icon-bg">
+                                    <span class="button-icon">
+                                        <i class="ti ti-trash"></i>
+                                    </span>
+                                </div>
+                            </div>
                             <div class="tile-icon"><span><img src="{{item.image}}" height="100" width="100"/></span></div>
-                            <div class="tile-body"><span>{{ item.description }}</span></div>
-                            <!--<div class="tile-footer">-->
-                                <!--<span class="pull-left strong" ng-class="ctrl.hasLevel(item)">Niveau requis : {{item.requiredLevel}}</span>-->
-                                <!--<span class="strong" ng-class="ctrl.hasMoney(item)">Prix : {{item.price}}</span>-->
-                            <!--</div>-->
+                            <div class="tile-body"><p class="tile-text" title="{{ item.description }}">{{ item.description }}</p></div>
+                            <div class="tile-footer">
+                                <span class="strong">UTILISER</span>
+                            </div>
                         </div>
                     </div>
                 </div>
