@@ -16,8 +16,8 @@
                 });
             };
 
-            svc.addToInventory = function(idUser, item) {
-                return ShopWS.addToInventory(idUser, item).then(function(response) {
+            svc.updateInventory = function(inventory) {
+                return ShopWS.updateInventory(inventory).then(function(response) {
                     return response.data;
                 });
             };

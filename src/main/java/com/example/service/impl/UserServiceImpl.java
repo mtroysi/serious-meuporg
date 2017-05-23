@@ -96,12 +96,26 @@ public class UserServiceImpl implements UserService {
         return itemDtoList;
     }
 
-    @Override
+/*    @Override
     public List<ItemDto> addToInventory(Long idUser, ItemDto itemDto) {
         User user = userRepository.findOne(idUser);
         user.getInventory().add(itemRepository.findOne(itemDto.getId()));
         user = userRepository.save(user);
         List<ItemDto> itemDtoList = new ArrayList<>();
+        user.getInventory().stream().forEach(item -> itemDtoList.add((ItemDto)this.transformers.convertEntityToDto(item, ItemDto.class)));
+        return itemDtoList;
+    }*/
+
+    @Override
+    public List<ItemDto> updateInventory(List<ItemDto> itemDtoList) {
+        User user = this.getCurrentUser();
+        List<Item> items = new ArrayList<>();
+
+        itemDtoList.stream().forEach(itemDto -> items.add((Item)this.transformers.convertDtoToEntity(itemDto, Item.class)));
+        user.setInventory(items);
+        user = userRepository.save(user);
+
+        itemDtoList.clear();
         user.getInventory().stream().forEach(item -> itemDtoList.add((ItemDto)this.transformers.convertEntityToDto(item, ItemDto.class)));
         return itemDtoList;
     }

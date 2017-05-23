@@ -63,23 +63,19 @@
             };
 
             ctrl.buyItem = function (item) {
-                if(ctrl.canBeBought(item)) {
-                ctrl.itemToBuy = item;
-                    CommonDialogService.confirmation('Voulez-vous acheter ' + item.name + ' ?', function() {
-                        ShopService.addToInventory(ctrl.user.id, ctrl.itemToBuy).then(function (data) {
+                if (ctrl.canBeBought(item)) {
+                    ctrl.inventory.push(item);
+                    CommonDialogService.confirmation('Voulez-vous acheter ' + item.name + ' ?', function () {
+                        ShopService.updateInventory(ctrl.inventory).then(function (data) {
                             ctrl.inventory = data;
                         });
-                    }, null, 'modalBuyItem', "Achat d'un objet", "Valider", "Annuler");
+                    }, function () {
+                        ctrl.inventory.pop();
+                    }, 'modalBuyItem', "Achat d'un objet", "Valider", "Annuler");
                 } else {
                     CommonDialogService.error('Vous n\'avez pas le niveau ou l\'argent requis pour acheter cet objet.', 'Achat impossible', null);
                 }
             };
-
-/*            ctrl.addToInventory = function (item) {
-                ShopService.addToInventory(ctrl.user.id, item).then(function (data) {
-                    ctrl.inventory = data;
-                })
-            };*/
 
             ctrl.objectAlreadyBought = function (item) {
                 return _.findWhere(ctrl.inventory, {'id':item.id}) !== undefined;

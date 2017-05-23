@@ -26,5 +26,5 @@ public interface UserService {
 
     List<ItemDto> getUserInventory(Long id);
 
-    List<ItemDto> addToInventory(Long idUser, ItemDto item);
+    List<ItemDto> updateInventory(List<ItemDto> items);
 }

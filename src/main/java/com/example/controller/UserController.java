@@ -38,9 +38,4 @@ public class UserController {
     public UserDTO getUser(@PathVariable ("id") Long id){
         return userService.getUser(id);
     }
-
-    @RequestMapping(value = "/{idUser}", method = RequestMethod.PUT)
-    public List<ItemDto> addToInventory(@PathVariable ("idUser") Long idUser, @RequestBody ItemDto item){
-        return userService.addToInventory(idUser, item);
-    }
 }
