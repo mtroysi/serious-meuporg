@@ -22,12 +22,23 @@ public class TagServiceImpl implements TagService {
     @Autowired
     private Transformers transformers;
 
-
+    /**
+     * Retourne le tag dont l'id est passé en paramètre
+     * @param id l'id du tag
+     * @return le tg correspondant
+     */
     @Override
     public TagDTO listTag(Long id) {
         return (TagDTO) transformers.convertEntityToDto(tagRepository.findOne(id), TagDTO.class);
     }
 
+    /**
+     * Crée un tag.
+     * @param values donnés du tag à créer
+     * @return le DTO du tag créé
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
     @Override
     public TagDTO createTag(Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         Tag tag = new Tag();
@@ -35,11 +46,23 @@ public class TagServiceImpl implements TagService {
         return (TagDTO) transformers.convertEntityToDto(tagRepository.save(tag), TagDTO.class);
     }
 
+    /**
+     * Modifie un tag existant.
+     * @param id l'id du tag à modifier
+     * @param values les données à modifier
+     * @return le DTO du tag modifié
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
     @Override
     public TagDTO updateTag(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         return null;
     }
 
+    /**
+     * Supprime un tag
+     * @param id l'id du tag à supprimer
+     */
     @Override
     public void deleteTag(Long id) {
 

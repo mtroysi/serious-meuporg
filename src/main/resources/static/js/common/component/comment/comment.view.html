@@ -1,0 +1,31 @@
+<div class="container-fluid comment" ng-cloak>
+    <div class="row">
+        <div class="col-sm-1">
+            <img class="profile-picture"
+                 src="http://img.clubic.com/-117906-photo-crop-pf9cb0a3c6c7ca128eeb96db337298517-android-logo-illus.jpg?options=eNoryywqKU3N0TU0NLc0MAMAJx0EcQ%3D%3D&width=800&height=500"/>
+        </div>
+        <div class="col-sm-11">
+            <div class="row">
+                <b class="username col-sm-9">{{ctrl.comment.creator.firstName}} {{ctrl.comment.creator.lastName |
+                    uppercase}}</b>
+                <div class="col-sm-3" style="text-align: center">
+                    <span ng-show="ctrl.isOwner()" ng-click="ctrl.toggleEditable()" class="glyphicon glyphicon-pencil col-sm-1"></span>
+                    <span ng-show="ctrl.isOwner()" ng-click="ctrl.deleteComment()" class="glyphicon glyphicon-trash col-sm-1"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" ng-hide="ctrl.editable">
+                    <p class="content col-sm-12">{{ctrl.comment.content}}</p>
+                    <i class="row">Posté le {{ctrl.comment.dateCreation | date : "dd MMM à HH:mm" }}</i>
+                </div>
+
+                <div class="col-sm-12" ng-show="ctrl.editable">
+                    <form ng-submit="ctrl.updateComment()&&ctrl.toggleEditable()">
+                        <textarea class="form-control" type="text" ng-model="ctrl.comment.content"></textarea>
+                        <button class="btn btn-primary" type="submit">Modifier</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

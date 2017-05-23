@@ -21,6 +21,7 @@
                 ctrl.filter = { type: 'TOUT' };
                 ctrl.isAdmin = false;
                 ctrl.tableGlobal = false;
+                ctrl.task = {};
 
                 // Show table in global mode
                 if ($state.current.name === "app.board-preview-common") {
@@ -65,7 +66,7 @@
             };
 
             /**
-             * WS Loard list of task by  user 
+             * WS Loard list of task by  user
              */
             ctrl.getTaskUser = function(user_id) {
                 TaskService.listTaskByUser(user_id).then(function(fetchData) {
@@ -76,7 +77,7 @@
             };
 
             /**
-             * Adding the color of the associated board 
+             * Adding the color of the associated board
              */
             ctrl.addColorTask = function(data) {
                 var listBoard = CommonMenuService.getListBoard();
@@ -129,6 +130,13 @@
                 ctrl.sizeKanban();
             };
 
+            ctrl.editTaskAction = function (task) {
+                $('#editTask').modal('show');
+                ctrl.task = task;
+                $scope.$broadcast("showTask", task);
+            };
+
+
             /**
              * Box size management
              */
@@ -162,7 +170,7 @@
             ctrl.setColor = function(colonne) {
                 ctrl.editColonne = colonne;
                 ctrl.saveEditColonne();
-            };
+            }
 
 
             /**

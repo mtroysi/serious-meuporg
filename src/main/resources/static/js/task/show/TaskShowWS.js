@@ -14,6 +14,17 @@
                 return $http.get(constant.BASE_URI + '/task/'+id);
             };
 
+            svc.addComment = function (id, comment) {
+                return $http.post(constant.BASE_URI + '/task/'+id, comment);
+            };
+
+            svc.deleteComment = function(id) {
+                return $http.delete(constant.BASE_URI + '/comment/'+id);
+            };
+
+            svc.updateComment = function(id, comment) {
+                return $http.put(constant.BASE_URI + '/comment/'+id, comment);
+            };
 
             return svc;
         })

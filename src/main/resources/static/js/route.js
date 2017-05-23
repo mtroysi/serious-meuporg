@@ -129,6 +129,18 @@
                 templateUrl: 'js/shop/shop.html',
                 controller: 'ShopController',
                 controllerAs: 'ctrl'
+            })
+		.state('app.inventory', {
+                url: '/inventory',
+                templateUrl: 'js/inventory/inventory.html',
+                controller: 'InventoryController',
+                controllerAs: 'ctrl'
+            })
+		.state('app.comment', {
+                url: '/comment/{id}',
+                templateUrl: 'js/comment/show/comment-show.html',
+                controller: 'CommentController',
+                controllerAs: 'ctrl'
             });
 
         $urlRouterProvider.otherwise('/');

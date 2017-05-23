@@ -4,11 +4,14 @@ import java.util.Date;
 
 import com.example.enumeration.PriorityEnum;
 import com.example.model.Task;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 /**
  * Created by Florentin NOËL on 11/05/17.
  */
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 public class TaskUserDTO {
 
 	private TaskWithPeriodDTO task;
@@ -26,6 +29,4 @@ public class TaskUserDTO {
 	public void setUser(UserDTO user) {
 		this.user = user;
 	}
-	
-	
 }

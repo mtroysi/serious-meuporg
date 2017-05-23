@@ -28,6 +28,11 @@ public class NotificationServiceImpl implements NotificationService {
     @Autowired
     private Transformers transformers;
 
+	/**
+	 * Retourne la liste des notifications d'un utilisateur donné
+	 * @param userId id de l'utilisateur
+	 * @return la liste des notifications d'un utilisateur donné
+	 */
 	@Override
 	public List<NotificationDTO> getNotificationByUserId(Long userId) {
 		  List<Notification> list = notificationRepository.findAllByUserIdOrderByDateCreation(userId);
@@ -38,12 +43,21 @@ public class NotificationServiceImpl implements NotificationService {
                 .collect(Collectors.toList());
 	}
 
+	/**
+	 * Marque toutes les notifications de l'utilisateur comme lues.
+	 * @param userId l'id de l'utilisateur
+	 */
 	@Override
 	public void readAllNotification(Long userId) {
 		notificationRepository.updateReadNotificationByUser(userId);
 	}
-	
 
+
+	/**
+	 * Crée une notifications
+	 * @param notifDTO données de la notification
+	 * @return DTO de la notification créée
+	 */
 	@Override
 	public NotificationDTO createNotification(NotificationDTO notifDTO){
 		Notification notif = (Notification) transformers.convertDtoToEntity(notifDTO, NotificationDTO.class);

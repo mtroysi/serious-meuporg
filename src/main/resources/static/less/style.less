@@ -90,6 +90,21 @@ body{
             padding: 0 16px;
             width: 100%;
         }
+        .panel-ctrls {
+            width: auto;
+            float: right;
+            padding: 0;
+            margin: 0;
+            line-height: 0;
+        }
+        .button-icon-bg {
+            margin-top: -10px;
+        }
+        .tile-text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
      }
     
     .modal-header-error {
@@ -255,7 +270,60 @@ body{
             border-radius: 50%;
         }
     }
+    .inline-block {
+        display: inline-block;
+    }
+    .tags {
+        display: inline-block;
+        .spanTag {
+            border-radius: 3px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            display: inline-block;
+            vertical-align: super;
+            margin: 5px;
+        }
+        span:not(.fa-plus) {
+            text-shadow: 0 0 5px rgba(0, 0, 0, .2), 0 0 2px #000;
+            color: white;
+            font-weight: 700;
+            padding: 0px 10px;
+        }
+        span.fa-plus {
+            background-color: #DCDDDE;
+            width: 30px;
+            cursor: pointer;
+            color: #8c8c8c;
+        }
+        span.fa-plus:hover {
+            background-color: #c9cdcf;
+        }
+    }
+    .comment {
+        margin:5px 0;
+        border-bottom: 1px solid lightgrey;
 
+      .profile-picture {
+        border-radius: 50%;
+        width: 50px !important;
+        display: inline-block;
+        float: right;
+      }
+      .username {
+        vertical-align: text-top;
+      }
+      .content{
+        min-height:50px;
+        background-color: white;
+      }
+        .glyphicon {
+          cursor : pointer;
+        }
+    }
+ .comments.comment:first-of-type{
+        border-bottom:none;
+    }
     .level {
         padding-bottom: 0 !important;
     }
