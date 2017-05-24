@@ -45,6 +45,19 @@ public class BidController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
     
+    
+    @RequestMapping(value = "/end/board/{idBoard}", method = RequestMethod.GET)
+    public ResponseEntity<List<TaskUserBidDTO>> getTaskBidEnd(@PathVariable("idBoard") Long idBoard) {
+    	
+    	List<TaskUserBidDTO> list = taskUserBidService.getTaskUserBidEndByBoard(idBoard);
+    	
+        if (CollectionUtils.isEmpty(list)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+    
     /**
      * Return list of taskUserBid by user and board
      * @param user_id

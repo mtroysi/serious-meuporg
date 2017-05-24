@@ -19,6 +19,21 @@
             });
         };
 
+        svc.getListBidEndByBoard = function(boardId) {
+            return BidWS.getListBidEndByBoard(boardId).then(function(response) {
+                var list = [];
+                if (response.data) {
+                    response.data.forEach(function(element) {
+                        if (!(element.task.id in list)) {
+                            list[element.task.id] = [];
+                        }
+                        list[element.task.id].push(element);
+                    });
+                }
+                return list;
+            });
+        };
+
         svc.addBid = function(date, listTaskId) {
             return BidWS.addBid(date, listTaskId).then(function(response) {
                 return response.data;

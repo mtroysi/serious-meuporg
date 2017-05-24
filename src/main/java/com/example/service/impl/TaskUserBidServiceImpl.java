@@ -66,6 +66,13 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 			return null;	
 		}
 	}
+	
+	@Override
+	public List<TaskUserBidDTO> getTaskUserBidEndByBoard(Long idBoard) {
+		return taskUserBidRepo.findByTaskBoardIdAndTaskDateEndBidBefore(idBoard, new Date()).stream().map((TaskUserBid tub) -> {
+			return (TaskUserBidDTO)transformers.convertEntityToDto(tub, TaskUserBidDTO.class);
+		}).collect(Collectors.toList());
+	}
 
 	@Override
 	public TaskUserBidDTO addOrUpdateTaskUserBid(Long idTask, Double duration) {
