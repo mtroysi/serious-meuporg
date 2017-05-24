@@ -9,8 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.dto.TaskLiteDTO;
@@ -53,6 +55,30 @@ public class BidController {
         logger.info("Calling BidController.getListBidByBoardAndUser with {} {}", user_id, board_id);
 
         List<TaskUserBidDTO> list = taskUserBidService.getTaskUserBidByBoardAndUser(board_id, user_id);
+
+        if (CollectionUtils.isEmpty(list)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/task/{task_id}", method = RequestMethod.POST)
+    public ResponseEntity<TaskUserBidDTO> addOrUpdateTaskUserBid(@PathVariable(value = "task_id") Long task_id, @RequestBody Double duration) {
+        logger.info("Calling BidController.addOrUpdateTaskUserBid with {}", task_id);
+
+        TaskUserBidDTO tub = taskUserBidService.addOrUpdateTaskUserBid(task_id, duration);
+
+        return new ResponseEntity<>(tub, HttpStatus.OK);
+    }
+    
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<List<TaskUserBidDTO>> addBid(@RequestParam(value = "dateend") Long datetime, @RequestBody List<Long> listIdTasks) {
+        logger.info("Calling BidController.addBid with {}", datetime);
+        
+        
+        List<TaskUserBidDTO> list = taskUserBidService.addNewTaskInBid(listIdTasks, datetime);
+
 
         if (CollectionUtils.isEmpty(list)) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

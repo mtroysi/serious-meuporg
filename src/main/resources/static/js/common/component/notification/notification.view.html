@@ -6,7 +6,7 @@
         </div>
         <div class="scroll-pane">
             <ul class="media-list scroll-content">
-                <li class="media" ng-repeat="notif in vm.listNotifications | orderBy: '-dateCreation' | limitTo: 10">
+                <li class="media" ng-repeat="notif in vm.listNotification | orderBy: '-dateCreation' | limitTo: 10">
                     <div class="notification-{{notif.type}} read-{{notif.isRead }}">
                         <a href="#">
                             <div class="media-left">
