@@ -7,18 +7,19 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('TaskShowController', function (TaskShowService,TaskUpdateService, $stateParams, constant, AuthenticationService, $scope) {
+        .controller('TaskShowController', function (TaskShowService, TaskUpdateService, $stateParams, constant, AuthenticationService, TagListService, $scope) {
             var ctrl = this;
 
             $scope.$on("showTask", function (event, args) {
-               ctrl.task = args.task;
-               console.log(ctrl.task);
+                ctrl.task = args.task;
+                ctrl.listTags();
             });
 
             ctrl.priority = constant.priority;
 
             ctrl.init = function () {
                 ctrl.comment = {};
+                ctrl.tags = [];
             };
 
             ctrl.showTask = function (id) {
@@ -44,21 +45,39 @@
 
             ctrl.updateComment = function (idx) {
                 return TaskShowService.updateComment(ctrl.task.taskComments[idx].id, ctrl.task.taskComments[idx]).then(function (data) {
-                    console.log(data);
                     ctrl.task.taskComments[idx] = data;
                 });
             };
 
             ctrl.updateTask = function () {
-                console.log("tesst");
                 TaskUpdateService.updateTask(ctrl.task.id, ctrl.task).then(function (data) {
                     ctrl.task = data;
                     $("#editTask").modal('toggle');
                 });
             };
 
-            ctrl.confirmDeleteTask = function () {
+            ctrl.listTags = function () {
+                TagListService.listTags().then(function (data) {
+                    ctrl.tags = data;
+                    ctrl.setSelectedTask();
+                });
+            };
 
+            ctrl.setSelectedTask = function () {
+                ctrl.task.tags.forEach(function (element) {
+                    ctrl.tags.forEach(function (bis) {
+                        if (element.color === bis.color) {
+                            bis.selected = true;
+                        }
+                    });
+                });
+            };
+
+            ctrl.toggleTag = function (tag) {
+                TaskUpdateService.toggleTag(ctrl.task.id, tag.id).then(function (data) {
+                    ctrl.task = data;
+                    tag.selected = !tag.selected;
+                });
             };
 
             ctrl.init();

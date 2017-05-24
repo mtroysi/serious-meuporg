@@ -2,7 +2,7 @@
  * Created by Morgane TROYSI on 26/04/2017.
  */
 
-(function() {
+(function () {
     'use strict';
 
     angular.module('hello').config(routerConfig);
@@ -94,18 +94,6 @@
                 controller: 'TaskUpdateController',
                 controllerAs: 'ctrl'
             })
-            .state('app.tag-create', {
-                url: '/tag/create',
-                templateUrl: 'js/tag/create/tag-create.html',
-                controller: 'TagCreateController',
-                controllerAs: 'ctrl'
-            })
-            .state('app.tag-update', {
-                url: '/tag/update/{id}',
-                templateUrl: 'js/tag/update/tag-update.html',
-                controller: 'TagUpdateController',
-                controllerAs: 'ctrl'
-            })
             .state('app.notification', {
                 url: '/notification',
                 templateUrl: 'js/notification/notification.html',
@@ -124,19 +112,19 @@
                 controller: 'BidPreviewController',
                 controllerAs: 'ctrl'
             })
-	    .state('app.shop', {
+            .state('app.shop', {
                 url: '/shop',
                 templateUrl: 'js/shop/shop.html',
                 controller: 'ShopController',
                 controllerAs: 'ctrl'
             })
-		.state('app.inventory', {
+            .state('app.inventory', {
                 url: '/inventory',
                 templateUrl: 'js/inventory/inventory.html',
                 controller: 'InventoryController',
                 controllerAs: 'ctrl'
             })
-		.state('app.comment', {
+            .state('app.comment', {
                 url: '/comment/{id}',
                 templateUrl: 'js/comment/show/comment-show.html',
                 controller: 'CommentController',

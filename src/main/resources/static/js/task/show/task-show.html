@@ -4,8 +4,9 @@
                 aria-hidden="true">&times;</span></button>
         <h5 class="modal-title" style="display: inline-block">{{ctrl.task.title}}</h5>
         <div class="tags inline-block">
-            <span class="spanTag inline-block" ng-repeat="tag in ctrl.task.tags" style="background-color: {{tag.color}}">{{tag.name}}</span>
-            <span class="spanTag fa fa-plus"></span>
+            <span class="spanTag inline-block" ng-repeat="tag in ctrl.task.tags"
+                  data-style="panel-{{tag.color}}">{{tag.name}}</span>
+            <span class="spanTag fa fa-plus" ng-click="ctrl.listTags()" uib-popover-template="tagPopover.templateUrl" popover-placement="bottom"></span>
         </div>
     </div>
 
@@ -49,11 +50,13 @@
                                  update-comment="ctrl.updateComment($index)"></comment-div>
                 </div>
                 <div class="col-sm-12">
-                    <div class="form-group">
+                    <div>
                     <textarea class="form-control" ng-model="ctrl.comment.content" style="min-width: 100%"
                               placeholder="Ecrire un commentaire"></textarea>
                     </div>
-                    <button ng-click="ctrl.addComment()" class="form-control btn btn-primary">Envoyer</button>
+                    <button ng-click="ctrl.addComment()" style="color:white" class="form-control btn btn-success">
+                        Envoyer
+                    </button>
                 </div>
             </div>
         </div>

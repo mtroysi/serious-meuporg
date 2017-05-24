@@ -1,7 +1,6 @@
 package com.example.controller;
 
-import com.example.dto.CommentDTO;
-import com.example.dto.TaskDTO;
+import com.example.dto.*;
 import com.example.model.Comment;
 import com.example.service.CommentService;
 import com.example.service.TaskService;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.dto.TaskDTO;
-import com.example.dto.TaskLiteDTO;
 import com.example.service.TaskService;
 
 /**
@@ -36,6 +34,11 @@ public class TaskController {
     TaskService taskService;
     @Autowired
     CommentService commentService;
+
+    @RequestMapping(value = "/{idTask}/tag/{idTag}", method = RequestMethod.PUT)
+    public TaskWithPeriodDTO toggleTaskTag(@PathVariable("idTask") Long idTask, @PathVariable("idTag") Long idTag) throws InvocationTargetException, IllegalAccessException {
+        return taskService.updateTaskTag(idTask, idTag);
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public TaskDTO listTask(@PathVariable("id") Long id) {

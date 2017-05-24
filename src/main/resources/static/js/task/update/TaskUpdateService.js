@@ -22,6 +22,12 @@
                 });
             };
 
+            svc.toggleTag = function (idTask, idTag) {
+                return TaskUpdateWS.toggleTag(idTask, idTag).then(function (response) {
+                    return response.data;
+                });
+            };
+
             return svc;
         })
 })();

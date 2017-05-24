@@ -13,6 +13,7 @@
             ctrl.priority = constant.priority;
             ctrl.duree = constant.duree;
 
+
             ctrl.init = function () {
                 ctrl.task = {};
                 TaskShowService.showTask($stateParams.id).then(function (data) {
