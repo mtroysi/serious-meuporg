@@ -76,7 +76,7 @@
          */
         ctrl.acceptedTask = function() {
             $('#editDurationBid').modal('show');
-            ctrl.durationBid = 0;
+            ctrl.durationBid = ctrl.taskShow.duration;
         }
 
         /**
