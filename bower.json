@@ -25,6 +25,8 @@
         "ng-tags-input": "^3.2.0",
         "angular-cookies": "^1.6.4",
         "underscore": "^1.8.3",
-        "slick-carousel": "^1.6.0"
+        "slick-carousel": "^1.6.0",
+        "angular-ui-bootstrap-datetimepicker": "^2.5.0",
+        "moment": "^2.18.1"
     }
 }

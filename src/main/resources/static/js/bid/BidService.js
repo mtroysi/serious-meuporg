@@ -13,6 +13,12 @@
             });
         };
 
+        svc.addOrUpdateTaskUserBid = function(taskId, duration) {
+            return BidWS.addOrUpdateTaskUserBid(taskId, duration).then(function(response) {
+                return response.data;
+            });
+        };
+
         return svc;
     })
 })();

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -62,12 +63,10 @@ public class BidController {
     }
     
     @RequestMapping(value = "/task/{task_id}", method = RequestMethod.POST)
-    public ResponseEntity<TaskUserBidDTO> addOrUpdateTaskUserBid(@PathVariable(value = "task_id") Long task_id) {
+    public ResponseEntity<TaskUserBidDTO> addOrUpdateTaskUserBid(@PathVariable(value = "task_id") Long task_id, @RequestBody Double duration) {
         logger.info("Calling BidController.addOrUpdateTaskUserBid with {}", task_id);
 
-        TaskUserBidDTO tub = taskUserBidService.getTaskUserBidByBoardAndUser(task_id, );
-
-
+        TaskUserBidDTO tub = taskUserBidService.addOrUpdateTaskUserBid(task_id, duration);
 
         return new ResponseEntity<>(tub, HttpStatus.OK);
     }

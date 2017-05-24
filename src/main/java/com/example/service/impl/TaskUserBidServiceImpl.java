@@ -82,7 +82,7 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 	        	tub_new.setDuration(duration);
 	        	tub_new.setTask(task);
 	        	tub_new.setUser(user);
-	        	tub = taskUserBidRepo.save(tub);
+	        	tub = taskUserBidRepo.save(tub_new);
         	}else{
             	throw new GameMasterException(ConstanteGameMaster.TASK_NOT_FOUND_ERROR);
         	}

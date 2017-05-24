@@ -132,10 +132,16 @@
             });
         };
 
+
+        /**
+         * Sauvegarde de l'estimation de utilisateur pour une tache
+         */
         ctrl.saveBid = function() {
-            alert(ctrl.durationBid + "----" + ctrl.taskShow.task.title);
-            ctrl.taskShow.read = true;
-            ctrl.showTaskCarouselAndTinder();
+            BidService.addOrUpdateTaskUserBid(ctrl.taskShow.task.id, ctrl.durationBid).then(function() {
+                ctrl.taskShow.read = true;
+                ctrl.taskShow.duration = angular.copy(ctrl.durationBid);
+                ctrl.showTaskCarouselAndTinder();
+            });
         }
 
 
