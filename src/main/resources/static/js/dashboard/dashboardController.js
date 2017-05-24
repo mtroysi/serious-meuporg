@@ -13,6 +13,7 @@
         ctrl.init = function () {
             ctrl.user = {};
             ctrl.stats = 0;
+            ctrl.rankin = 0;
             ctrl.listTask = [];
             ctrl.listTaskDefault = [];
             ctrl.editorEnabled = false;
@@ -25,6 +26,7 @@
                 }
             });
             ctrl.getStats();
+            ctrl.getRankin();
             ctrl.getTaskUser(AuthenticationService.getUserId());
         };
 
@@ -52,6 +54,12 @@
             });
         };
 
+        ctrl.getRankin = function () {
+            UserService.getRankin(AuthenticationService.getUserId()).then(function (response) {
+                ctrl.rankin = response;
+            });
+        };
+
          ctrl.getTaskUser = function(user_id) {
                 TaskService.listTaskByUser(user_id).then(function(fetchData) {
                    /** ctrl.listTaskDefault = angular.copy(ctrl.addColorTask(fetchData));*/
@@ -62,6 +70,7 @@
 
              ctrl.taskAction = function (task) {
                  $state.go('app.board-preview', {id:task.task.boardId,idtask:task.task.id});
+
              };
 
         ctrl.init();

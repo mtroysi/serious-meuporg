@@ -3,6 +3,7 @@ package com.example.service.impl;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.example.dto.ItemDto;
 import com.example.model.Item;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.example.ConstanteGameMaster;
 import com.example.dto.TagDTO;
 import com.example.dto.UserDTO;
+import com.example.dto.UserRankinDTO;
 import com.example.dto.UserStatsDTO;
 import com.example.enumeration.StatusEnum;
 import com.example.exception.GameMasterException;
@@ -73,6 +75,9 @@ public class UserServiceImpl implements UserService {
             // TODO : chiffrer le password
         	user.setId(null);
             user.setDateCreation(Calendar.getInstance().getTime());
+            user.setExperience(0L);
+            user.setLevel(0L);
+            user.setMoney(0L);
             userRepository.save(user);
         }
         return (UserDTO)transformers.convertEntityToDto(user, UserDTO.class);
@@ -143,6 +148,31 @@ public class UserServiceImpl implements UserService {
     	userStatsDTO.setNbrTaskBid(nbrTaskBid);
     	
     	return userStatsDTO;
+    }
+    
+    @Override
+    public UserRankinDTO getRankin(long id){
+    	
+    	User user = userRepository.findOne(id);
+    	UserRankinDTO userRankinDto = new UserRankinDTO();
+    	Long rankLevel = 0L;
+    	Long rankMoney = 0L;
+    	Long rankExperience = 0L;
+    	Long nbrUsers = 0L;
+    	List<User> listUser = (List<User>) userRepository.findAll();
+
+    	
+    	nbrUsers= (long) listUser.size();
+    	rankLevel = listUser.stream().filter((User u)-> u.getLevel()>user.getLevel()).count()+1;
+    	rankMoney = listUser.stream().filter((User u)-> u.getMoney()>user.getMoney()).count()+1;
+    	rankExperience = listUser.stream().filter((User u)-> u.getExperience()>user.getExperience()).count()+1;
+    	userRankinDto.setNbrUsers(nbrUsers);
+    	userRankinDto.setRankExperience(rankExperience);
+    	userRankinDto.setRankLevel(rankLevel);
+    	userRankinDto.setRankMoney(rankMoney);
+    	
+    	return userRankinDto;
+    	
     }
 
     /**

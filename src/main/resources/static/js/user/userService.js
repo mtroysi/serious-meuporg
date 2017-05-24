@@ -29,6 +29,11 @@
                 });
             }
 
+            svc.getRankin = function(id){
+                 return UserWS.getRankin(id).then(function (response) {
+                    return response.data;
+                });
+            }
             return svc;
         });
 })();
