@@ -14,28 +14,28 @@
           <div class="col-md-3">
                 <div class="info-tile tile-success" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
                     <div class="tile-icon"><i class="ti ti-bar-chart"></i></div>
-                    <div class="tile-heading"><span>Les tâches en enchére</span></div>
+                    <div class="tile-heading"><span>Les tâches en enchère</span></div>
                     <div class="tile-body"><span>{{ctrl.stats.nbrTaskBid}}</span></div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="info-tile tile-success" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
                     <div class="tile-icon"><i class="ti ti-bar-chart"></i></div>
-                    <div class="tile-heading"><span>nombre de tâche creées</span></div>
+                    <div class="tile-heading"><span>nombre de tâches créées</span></div>
                     <div class="tile-body"><span>{{ctrl.stats.nbrTaskCreated}}</span></div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="info-tile tile-info" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
                     <div class="tile-icon"><i class="ti ti-stats-up"></i></div>
-                    <div class="tile-heading"><span>nombre de tâche térmiées</span></div>
+                    <div class="tile-heading"><span>nombre de tâches terminées</span></div>
                     <div class="tile-body"><span>{{ctrl.stats.nbrTaskDone}}</span></div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="info-tile tile-danger" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
                     <div class="tile-icon"><i class="ti ti-bar-chart-alt"></i></div>
-                    <div class="tile-heading"><span>nombre de tableaux creés</span></div>
+                    <div class="tile-heading"><span>nombre de tableaux créés</span></div>
                     <div class="tile-body"><span>{{ctrl.stats.nbrBoardCreated}}</span></div>
                 </div>
             </div>
@@ -57,11 +57,11 @@
                                 <table>
                                     <tr>
                                         <th> Nom :</th>
-                                        <th>{{ctrl.user.firstName}}</th>
+                                        <th>{{ctrl.user.lastName}}</th>
                                     </tr>
                                     <tr>
                                         <th> Prénom :</th>
-                                        <th>{{ctrl.user.lastName}}</th>
+                                        <th>{{ctrl.user.firstName}}</th>
                                     </tr>
                                     <tr>
                                         <th> E-mail :</th>
@@ -79,15 +79,15 @@
 
                                 <form name="formEditor" ng-submit="ctrl.editUserAction()" class="form-horizontal">
                                     <div class="form-group">
-                                        <label for="firstName" class="col-md-4 control-label">Nom :</label>
+                                        <label for="lastName" class="col-md-4 control-label">Nom :</label>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" id="firstName" ng-model="ctrl.user.firstName">
+                                            <input type="text" class="form-control" id="lastName" ng-model="ctrl.user.lastName">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="lastName" class="col-md-4 control-label">Prénom : </label>
+                                        <label for="firstName" class="col-md-4 control-label">Prénom : </label>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" id="lastName" ng-model="ctrl.user.lastName">
+                                            <input type="text" class="form-control" id="firstName" ng-model="ctrl.user.firstName">
                                         </div>
                                     </div>
                                     <div class="form-actions">
