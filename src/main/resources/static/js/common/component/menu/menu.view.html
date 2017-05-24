@@ -1,9 +1,9 @@
 <nav role="navigation" class="widget-body">
 
     <ul class="acc-menu">
-        <li class="nav-separator"><span>Tableau</span></li>
-        <li><a ui-sref="app.board-create"><i class="ti ti-plus"></i><span>Créer un tableau</span></a></li>
-        <li><a ui-sref="app.board-preview-common"><i class="ti ti-world"></i><span>Tableau global</span></a></li>
+        <li class="nav-separator"><span>Guildes</span></li>
+        <li><a ui-sref="app.board-create"><i class="ti ti-plus"></i><span>Créer une guilde</span></a></li>
+        <li><a ui-sref="app.board-preview-common"><i class="ti ti-world"></i><span>Vue d'ensemble</span></a></li>
         <li class="line-separator"></li>
         <li ng-repeat="board in vm.listBoard">
             <a href="javascript:;"><i class="ti ti-layout text-custom-{{board.color}}"></i><span>{{ board.name }}</span></a>

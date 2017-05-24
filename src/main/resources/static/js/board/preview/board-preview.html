@@ -2,7 +2,7 @@
     <div class="col-md-12 titleHeader panel">
         <div class="panel-heading">
             <h1 ng-if="ctrl.tableGlobal===false"><span class="label label-default">{{ ctrl.typeDisplayTeam == true ? "EQUIPE" : "INDIVIDUELLE" }}</span> {{ctrl.board.name}}</h1>
-            <h1 ng-if="ctrl.tableGlobal===true">Tableau Global</h1>
+            <h1 ng-if="ctrl.tableGlobal===true">Vue d'ensemble</h1>
             <div class="panel-ctrls button-icon-bg">
                 <button ng-if="ctrl.tableGlobal===false" class="btn btn-default-alt btn-lg" ng-click="ctrl.changeView()"><i class="ti ti-package"></i> Aller sur la vue {{ ctrl.typeDisplayTeam == false ? "équipe" : "individuelle" }}</button>
                 <button ng-if="ctrl.tableGlobal===false" class="btn btn-default-alt btn-lg"><i class="ti ti-plus"></i> Ajouter une tâche</button>
