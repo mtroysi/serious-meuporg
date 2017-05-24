@@ -65,7 +65,7 @@
                 controllerAs: 'ctrl'
             })
             .state('app.board-preview', {
-                url: '/board/preview/{id}',
+                url: '/board/preview/{id}?idtask',
                 templateUrl: 'js/board/preview/board-preview.html',
                 controller: 'BoardPreviewController',
                 controllerAs: 'ctrl'

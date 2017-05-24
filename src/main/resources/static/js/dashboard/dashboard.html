@@ -104,12 +104,18 @@
             <div class="col-md-4 panelMatrice">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h2>Mes Tableaux</h2>
+                        <h2>Mes Tâches</h2>
                     </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div> mes tableaux</div>                           
+                    <div class="panel-body scroll-pane">
+                        <div class="row scroll-content">
+                            <div class="col-md-12" ng-repeat="n in ctrl.listTask">
+                                <div class="info-tile tile-success tile-perso" ng-click="ctrl.taskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                    <div class="tile-heading"><span>{{ n.task.title }}hhhh</span></div>
+                                    <div class="tile-footer">
+                                        <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
+                                        <span class="strong">{{ n.task.dateBeginTask | date:'dd/MM/yyyy'  }}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
