@@ -25,7 +25,7 @@
                 if (response.data) {
                     response.data.forEach(function(element) {
                         if (!("task_" + element.task.id in list)) {
-                            list["task_" + element.task.id] = { task: element.task, listTask: [] };
+                            list["task_" + element.task.id] = { task: element.task, value: element.task.duration, listTask: [] };
                         }
                         list["task_" + element.task.id].listTask.push({
                             "userId": element.user.id,
