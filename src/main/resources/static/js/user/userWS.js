@@ -17,6 +17,9 @@
             svc.editUser = function(user){
                  return $http.put(constant.BASE_URI + '/user', user);
             };
+            svc.getStats = function(id){
+                return $http.get(constant.BASE_URI + '/user/' + id + '/stats');
+            }
 
             return svc;
         })

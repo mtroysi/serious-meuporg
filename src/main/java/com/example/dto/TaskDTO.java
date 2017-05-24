@@ -24,6 +24,12 @@ public class TaskDTO {
     private Periodicity periodicity;
     private UserDTO creator;
     private BoardDTO board;
+    private List<TagDTO> tags = new ArrayList<>();
+    private List<Link> links = new ArrayList<>();
+    private List<Checklist> checklists = new ArrayList<>();
+    private List<Task> taskParents = new ArrayList<>();
+    private List<CommentDTO> taskComments = new ArrayList<>();
+
 
     public Long getId() {
         return id;
@@ -72,14 +78,6 @@ public class TaskDTO {
         this.duration = duration;
     }
 
-    public Boolean getBid() {
-        return isBid;
-    }
-
-    public void setBid(Boolean bid) {
-        isBid = bid;
-    }
-
     public Date getDateEndBid() {
         return dateEndBid;
     }
@@ -104,6 +102,54 @@ public class TaskDTO {
         this.creator = creator;
     }
 
+    public BoardDTO getBoard() {
+        return board;
+    }
+
+    public void setBoard(BoardDTO board) {
+        this.board = board;
+    }
+
+    public List<TagDTO> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<TagDTO> tags) {
+        this.tags = tags;
+    }
+
+    public List<Link> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<Link> links) {
+        this.links = links;
+    }
+
+    public List<Checklist> getChecklists() {
+        return checklists;
+    }
+
+    public void setChecklists(List<Checklist> checklists) {
+        this.checklists = checklists;
+    }
+
+    public List<Task> getTaskParents() {
+        return taskParents;
+    }
+
+    public void setTaskParents(List<Task> taskParents) {
+        this.taskParents = taskParents;
+    }
+
+    public List<CommentDTO> getTaskComments() {
+        return taskComments;
+    }
+
+    public void setTaskComments(List<CommentDTO> taskComments) {
+        this.taskComments = taskComments;
+    }
+
 	public Boolean getIsBid() {
 		return isBid;
 	}
@@ -112,12 +158,4 @@ public class TaskDTO {
 		this.isBid = isBid;
 	}
 
-	public BoardDTO getBoard() {
-		return board;
-	}
-
-	public void setBoard(BoardDTO board) {
-		this.board = board;
-	}
-    
 }

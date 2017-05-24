@@ -1,33 +1,69 @@
 <div class="container-fluid" ng-cloak>
-    <div class="row">
-        <h1 class="inline-block">Détail de la quête</h1>
-        <div class="tags">
-            <span ng-repeat="tag in ctrl.task.tags" style="background-color: {{tag.color}}">{{tag.name}}</span>
+    <div class="modal-header modal-header-confirmation">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <h5 class="modal-title" style="display: inline-block">{{ctrl.task.title}}</h5>
+        <div class="tags inline-block">
+            <span class="spanTag inline-block" ng-repeat="tag in ctrl.task.tags" style="background-color: {{tag.color}}">{{tag.name}}</span>
+            <span class="spanTag fa fa-plus"></span>
         </div>
     </div>
-    <div class="row">
-        <b class="col-sm-3 col-sm-offset-1">Nom</b>
-        <p class="col-sm-8">{{ctrl.task.title}}</p>
-    </div>
-    <div class="row">
-        <b class="col-sm-3 col-sm-offset-1">Description</b>
-        <p class="col-sm-8">{{ctrl.task.content}}</p>
-    </div>
-    <div class="row">
-        <b class="col-sm-3 col-sm-offset-1">Priorité</b>
-        <p class="col-sm-8">{{ctrl.priority[ctrl.task.priority]}}</p>
-    </div>
-    <div class="row">
-        <b class="col-sm-3 col-sm-offset-1">Date de création</b>
-        <p class="col-sm-8">{{ctrl.task.dateCreation | date : "dd/MM/yyyy HH:mm"}}</p>
-    </div>
-    <div class="row">
-        <b class="col-sm-3 col-sm-offset-1">Durée</b>
-        <p class="col-sm-8">{{ctrl.task.duration}} points d'énergie</p>
-    </div>
-    <div class="row">
-        <b class="col-sm-3 col-sm-offset-1">Est aux enchères</b>
-        <p class="col-sm-8" ng-show="ctrl.task.isBid">Oui</p>
-        <p class="col-sm-8" ng-hide="ctrl.task.isBid">Non</p>
-    </div>
+
+    <form class="form-horizontal" ng-submit="ctrl.updateTask()">
+        <div class="modal-body clearfix">
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="taskContent">Description</label>
+                <div class="col-sm-8">
+                <textarea type="text" class="form-control" id="taskContent"
+                          ng-model="ctrl.task.content"
+                          placeholder="Description"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="priorityTask">Priorité</label>
+                <div class="col-sm-8">
+                    <select id="priorityTask" class="form-control" ng-model="ctrl.task.priority"
+                            ng-options="idx as priority for (idx, priority) in ctrl.priority"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="taskDuration">Durée</label>
+                <div class="col-sm-7">
+                    <input type="number" class="form-control" id="taskDuration"
+                           ng-model="ctrl.task.duration"
+                           placeholder="Durée"/>
+                </div>
+                <label class="col-sm-2"> points d'énergie</label>
+            </div>
+            <div class="row">
+                <label class="col-sm-2">Est aux enchères</label>
+                <p class="col-sm-8" ng-show="ctrl.task.isBid">Oui</p>
+                <p class="col-sm-8" ng-hide="ctrl.task.isBid">Non</p>
+            </div>
+            <div class="row">
+                <b class="col-sm-11 col-sm-offset-1">Commentaires</b>
+                <div class="col-sm-11 col-sm-offset-1 comments" style="overflow: auto;height: 300px;">
+                    <comment-div ng-repeat="c in ctrl.task.taskComments | orderBy: 'dateCreation' track by $index"
+                                 class="row"
+                                 comment="c" delete-comment="ctrl.deleteComment($index)"
+                                 update-comment="ctrl.updateComment($index)"></comment-div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                    <textarea class="form-control" ng-model="ctrl.comment.content" style="min-width: 100%"
+                              placeholder="Ecrire un commentaire"></textarea>
+                    </div>
+                    <button ng-click="ctrl.addComment()" class="form-control btn btn-primary">Envoyer</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-danger" ng-click="ctrl.deleteTask()">Supprimer</button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="submit" class="btn btn-primary">Modifier</button>
+            </div>
+        </div>
+    </form>
 </div>

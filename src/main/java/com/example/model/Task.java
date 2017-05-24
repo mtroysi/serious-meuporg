@@ -50,13 +50,13 @@ public class Task extends CommonEntity {
 
     @Column(name = "xp")
     private Long experience;
-    
+
     @OneToOne
-    @JoinColumn(name="periodicity_id", nullable = true)
+    @JoinColumn(name = "periodicity_id", nullable = true)
     private Periodicity periodicity;
-        
+
     @ManyToOne
-    @JoinColumn(name="creator_id")
+    @JoinColumn(name = "creator_id")
     private User creator;
 
     @ManyToOne
@@ -80,8 +80,9 @@ public class Task extends CommonEntity {
 
     @ManyToMany
     private List<Task> taskParents = new ArrayList<>();
- 
 
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+    private List<Comment> taskComments = new ArrayList<>();
 
     public String getTitle() {
         return title;
@@ -171,37 +172,61 @@ public class Task extends CommonEntity {
         this.taskUserBids = taskUserBids;
     }
 
-    public Date getDateEndBid() { return dateEndBid; }
+    public Date getDateEndBid() {
+        return dateEndBid;
+    }
 
-    public void setDateEndBid(Date dateEndBid) { this.dateEndBid = dateEndBid; }
+    public void setDateEndBid(Date dateEndBid) {
+        this.dateEndBid = dateEndBid;
+    }
 
-    public User getCreator() { return creator; }
+    public User getCreator() {
+        return creator;
+    }
 
-    public void setCreator(User creator) { this.creator = creator; }
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
 
-    public Board getBoard() { return board; }
+    public Board getBoard() {
+        return board;
+    }
 
-    public void setBoard(Board board) { this.board = board; }
+    public void setBoard(Board board) {
+        this.board = board;
+    }
 
-    public List<Task> getTaskParents() { return taskParents; }
+    public List<Task> getTaskParents() {
+        return taskParents;
+    }
 
-    public void setTaskParents(List<Task> taskParents) { this.taskParents = taskParents; }
+    public void setTaskParents(List<Task> taskParents) {
+        this.taskParents = taskParents;
+    }
 
-	public Boolean getIsBid() {
-		return isBid;
-	}
+    public Boolean getIsBid() {
+        return isBid;
+    }
 
-	public void setIsBid(Boolean isBid) {
-		this.isBid = isBid;
-	}
+    public void setIsBid(Boolean isBid) {
+        this.isBid = isBid;
+    }
 
-	public Periodicity getPeriodicity() {
-		return periodicity;
-	}
+    public Periodicity getPeriodicity() {
+        return periodicity;
+    }
 
-	public void setPeriodicity(Periodicity periodicity) {
-		this.periodicity = periodicity;
-	}
+    public void setPeriodicity(Periodicity periodicity) {
+        this.periodicity = periodicity;
+    }
+
+    public List<Comment> getTaskComments() {
+        return taskComments;
+    }
+
+    public void setTaskComments(List<Comment> taskComments) {
+        this.taskComments = taskComments;
+    }
 
     public Long getMoney() {
         return money;

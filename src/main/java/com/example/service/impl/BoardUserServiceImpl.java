@@ -21,6 +21,11 @@ public class BoardUserServiceImpl implements BoardUserService {
     @Autowired
     private BoardUserRepository boardUserRepository;
 
+    /**
+     * Retourne les tableaux d'un utilisateur donné
+     * @param user_id l'id de l'utilisateur
+     * @return la liste des tableaux de l'utilisateur
+     */
     @Override
     public List<BoardWithDetailDTO> getListBoardByUserId(Long user_id) {
         List<BoardUser> list = boardUserRepository.findAllByUserId(user_id);

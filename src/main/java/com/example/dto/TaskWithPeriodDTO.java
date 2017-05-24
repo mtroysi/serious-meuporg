@@ -12,9 +12,9 @@ import com.example.model.User;
 
 
 public class TaskWithPeriodDTO{
-	
-	private Long id;
-	private Long boardId;
+
+    private Long id;
+    private Long boardId;
     private String title;
     private String content;
     private PriorityEnum priority;
@@ -31,149 +31,157 @@ public class TaskWithPeriodDTO{
     private Boolean isPeriodicity = false;
     private PeriodicityDTO periodicity;
     private ColonneKanbanDTO colonneKanban;
-        
-	public StatusEnum getStatus() {
-		return status;
-	}
+    private List<CommentDTO> taskComments = new ArrayList<>();
 
-	public void setStatus(StatusEnum status) {
-		this.status = status;
-	}
+    public StatusEnum getStatus() {
+        return status;
+    }
 
-	public Double getDurationReel() {
-		return durationReel;
-	}
+    public void setStatus(StatusEnum status) {
+        this.status = status;
+    }
 
-	public void setDurationReel(Double durationReel) {
-		this.durationReel = durationReel;
-	}
+    public Double getDurationReel() {
+        return durationReel;
+    }
 
-	public Date getDateBegin() {
-		return dateBegin;
-	}
+    public void setDurationReel(Double durationReel) {
+        this.durationReel = durationReel;
+    }
 
-	public void setDateBegin(Date dateBegin) {
-		this.dateBegin = dateBegin;
-	}
+    public Date getDateBegin() {
+        return dateBegin;
+    }
 
-	public Date getDateEnd() {
-		return dateEnd;
-	}
+    public void setDateBegin(Date dateBegin) {
+        this.dateBegin = dateBegin;
+    }
 
-	public void setDateEnd(Date dateEnd) {
-		this.dateEnd = dateEnd;
-	}
+    public Date getDateEnd() {
+        return dateEnd;
+    }
 
-	public Date getDateBeginTask() {
-		return dateBeginTask;
-	}
+    public void setDateEnd(Date dateEnd) {
+        this.dateEnd = dateEnd;
+    }
 
-	public void setDateBeginTask(Date dateBeginTask) {
-		this.dateBeginTask = dateBeginTask;
-	}
+    public Date getDateBeginTask() {
+        return dateBeginTask;
+    }
 
-	public Date getDateEndTask() {
-		return dateEndTask;
-	}
+    public void setDateBeginTask(Date dateBeginTask) {
+        this.dateBeginTask = dateBeginTask;
+    }
 
-	public void setDateEndTask(Date dateEndTask) {
-		this.dateEndTask = dateEndTask;
-	}
+    public Date getDateEndTask() {
+        return dateEndTask;
+    }
 
-	public Boolean getIsPeriodicity() {
-		return isPeriodicity;
-	}
+    public void setDateEndTask(Date dateEndTask) {
+        this.dateEndTask = dateEndTask;
+    }
 
-	public void setIsPeriodicity(Boolean isPeriodicity) {
-		this.isPeriodicity = isPeriodicity;
-	}
+    public Boolean getIsPeriodicity() {
+        return isPeriodicity;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public void setIsPeriodicity(Boolean isPeriodicity) {
+        this.isPeriodicity = isPeriodicity;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public PriorityEnum getPriority() {
-		return priority;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public void setPriority(PriorityEnum priority) {
-		this.priority = priority;
-	}
+    public PriorityEnum getPriority() {
+        return priority;
+    }
 
-	public Date getDateCreation() {
-		return dateCreation;
-	}
+    public void setPriority(PriorityEnum priority) {
+        this.priority = priority;
+    }
 
-	public void setDateCreation(Date dateCreation) {
-		this.dateCreation = dateCreation;
-	}
+    public Date getDateCreation() {
+        return dateCreation;
+    }
 
-	public Double getDuration() {
-		return duration;
-	}
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
 
-	public void setDuration(Double duration) {
-		this.duration = duration;
-	}
+    public Double getDuration() {
+        return duration;
+    }
 
-	public Boolean getIsBid() {
-		return isBid;
-	}
+    public void setDuration(Double duration) {
+        this.duration = duration;
+    }
 
-	public void setIsBid(Boolean isBid) {
-		this.isBid = isBid;
-	}
+    public Boolean getIsBid() {
+        return isBid;
+    }
 
-	public Date getDateEndBid() {
-		return dateEndBid;
-	}
+    public void setIsBid(Boolean isBid) {
+        this.isBid = isBid;
+    }
 
-	public void setDateEndBid(Date dateEndBid) {
-		this.dateEndBid = dateEndBid;
-	}
+    public Date getDateEndBid() {
+        return dateEndBid;
+    }
 
-	public PeriodicityDTO getPeriodicity() {
-		return periodicity;
-	}
+    public void setDateEndBid(Date dateEndBid) {
+        this.dateEndBid = dateEndBid;
+    }
 
-	public void setPeriodicity(PeriodicityDTO periodicity) {
-		this.periodicity = periodicity;
-	}
+    public PeriodicityDTO getPeriodicity() {
+        return periodicity;
+    }
 
-	public ColonneKanbanDTO getColonneKanban() {
-		return colonneKanban;
-	}
+    public void setPeriodicity(PeriodicityDTO periodicity) {
+        this.periodicity = periodicity;
+    }
 
-	public void setColonneKanban(ColonneKanbanDTO colonneKanban) {
-		this.colonneKanban = colonneKanban;
-	}
+    public ColonneKanbanDTO getColonneKanban() {
+        return colonneKanban;
+    }
 
-	public Long getBoardId() {
-		return boardId;
-	}
+    public void setColonneKanban(ColonneKanbanDTO colonneKanban) {
+        this.colonneKanban = colonneKanban;
+    }
 
-	public void setBoardId(Long boardId) {
-		this.boardId = boardId;
-	}
-	
+    public Long getBoardId() {
+        return boardId;
+    }
+
+    public void setBoardId(Long boardId) {
+        this.boardId = boardId;
+    }
+
+    public List<CommentDTO> getTaskComments() {
+        return taskComments;
+    }
+
+    public void setTaskComments(List<CommentDTO> taskComments) {
+        this.taskComments = taskComments;
+    }
 }

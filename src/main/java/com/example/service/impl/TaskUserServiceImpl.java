@@ -27,18 +27,33 @@ public class TaskUserServiceImpl implements TaskUserService {
 	
     @Autowired
     Transformers transformers;
-    
-    
+
+	/**
+	 * Retourne les tâches d'un utilisateur donné pour un tableau donné
+	 * @param userId id de l'utilisateur
+	 * @param boardId id du tableau
+	 * @return liste des tâches
+	 */
 	@Override
 	public List<TaskUserDTO> getTaskUserByUserIdAndBoardId(Long userId, Long boardId) {
 		return this.buildTaskWithPeriodicity(taskUserRepository.findAllByUserIdAndTaskBoardId(userId, boardId));
 	}
-	
+
+	/**
+	 * Retourne toutes les tâches d'un utilisateur donné
+	 * @param userId id de l'utilisateur
+	 * @return liste des tâches d'un utilisateur donné
+	 */
 	@Override
 	public List<TaskUserDTO> getTaskUserByUserId(Long userId) {
 		return this.buildTaskWithPeriodicity(taskUserRepository.findAllByUserId(userId));
 	}
 
+	/**
+	 * Retourne toutes les tâches d'un tableau donné
+	 * @param boardId id du tableau
+	 * @return liste des tâches d'un tableau donné
+	 */
 	@Override
 	public List<TaskUserDTO> getTaskUserByBoardId(Long boardId) {
 		return this.buildTaskWithPeriodicity(taskUserRepository.findAllByTaskBoardId(boardId));
