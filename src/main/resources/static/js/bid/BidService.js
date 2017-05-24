@@ -21,15 +21,22 @@
 
         svc.getListBidEndByBoard = function(boardId) {
             return BidWS.getListBidEndByBoard(boardId).then(function(response) {
-                var list = [];
+                var list = {};
                 if (response.data) {
                     response.data.forEach(function(element) {
-                        if (!(element.task.id in list)) {
-                            list[element.task.id] = [];
+                        if (!("task_" + element.task.id in list)) {
+                            list["task_" + element.task.id] = { task: element.task, listTask: [] };
                         }
-                        list[element.task.id].push(element);
+                        list["task_" + element.task.id].listTask.push({
+                            "userId": element.user.id,
+                            "userName": element.user.lastName + ' ' + element.user.firstName,
+                            "duration": element.duration,
+                            "etat": false,
+                            "value": 0
+                        });
                     });
                 }
+                console.log(list);
                 return list;
             });
         };
