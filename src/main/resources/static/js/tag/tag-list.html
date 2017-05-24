@@ -1,0 +1,8 @@
+<div class="container-fluid">
+
+    <ul class="list-unstyled row">
+        <li class="col-sm-12" ng-repeat="tag in ctrl.tags" ng-click="ctrl.toggleTag(tag)">
+            <span class="tags spanTag col-sm-12" data-selected="{{tag.selected}}" data-style="panel-{{tag.color}}">{{tag.name}}</span>
+        </li>
+    </ul>
+</div>

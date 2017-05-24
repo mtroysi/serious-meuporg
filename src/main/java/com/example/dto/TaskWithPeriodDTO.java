@@ -11,7 +11,7 @@ import com.example.model.Periodicity;
 import com.example.model.User;
 
 
-public class TaskWithPeriodDTO{
+public class TaskWithPeriodDTO {
 
     private Long id;
     private Long boardId;
@@ -31,6 +31,7 @@ public class TaskWithPeriodDTO{
     private Boolean isPeriodicity = false;
     private PeriodicityDTO periodicity;
     private ColonneKanbanDTO colonneKanban;
+    private List<TagDTO> tags = new ArrayList<>();
     private List<CommentDTO> taskComments = new ArrayList<>();
 
     public StatusEnum getStatus() {
@@ -183,5 +184,13 @@ public class TaskWithPeriodDTO{
 
     public void setTaskComments(List<CommentDTO> taskComments) {
         this.taskComments = taskComments;
+    }
+
+    public List<TagDTO> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<TagDTO> tags) {
+        this.tags = tags;
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,6 +18,11 @@ import java.util.Map;
 public class TagController {
     @Autowired
     TagService tagService;
+
+    @RequestMapping(method = RequestMethod.GET)
+    public List<TagDTO> listAllTags() {
+        return tagService.listAllTags();
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public TagDTO listTag(@PathVariable("id") Long id) {

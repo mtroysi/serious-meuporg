@@ -18,10 +18,17 @@
                 ctrl.listTaskDefault = [];
                 ctrl.newColonne = {};
                 ctrl.editColonne = {};
-                ctrl.filter = { type: 'TOUT' };
+                ctrl.filter = {type: 'TOUT'};
                 ctrl.isAdmin = false;
                 ctrl.tableGlobal = false;
                 ctrl.task = {};
+                ctrl.tags = {};
+
+                $scope.tagPopover = {
+                    content: 'Hello, World!',
+                    templateUrl: 'js/tag/tag-list.html',
+                    title: 'Ajouter un tag'
+                };
 
                 // Show table in global mode
                 if ($state.current.name === "app.board-preview-common") {
@@ -30,11 +37,11 @@
                 } else {
                     ctrl.getBoard($stateParams.id);
                     ctrl.getTaskBoard($stateParams.id, AuthenticationService.getUserId());
-                }
 
-                $scope.$watch('this.ctrl.filter.type', function () {
-                    ctrl.filterTask();
-                });
+                    $scope.$watch('this.ctrl.filter.type', function () {
+                        ctrl.filterTask();
+                    });
+                }
             };
 
             /**
@@ -137,7 +144,9 @@
                 $($('.boxMatrice .panelMatrice').get().reverse()).each(function (index) {
                     $(this).fadeToggle(150);
                 });
-                $timeout(function () { $('.bigPanelMatrice').fadeToggle(); }, 200);
+                $timeout(function () {
+                    $('.bigPanelMatrice').fadeToggle();
+                }, 200);
                 ctrl.sizeKanban();
             };
 
@@ -163,7 +172,9 @@
              * Validation of deletion
              */
             ctrl.deleteColonneModal = function (idColonne) {
-                CommonDialogService.confirmation('Etes-vous sur de vouloir supprimer cette élément ?', function () { ctrl.deleteColonne(idColonne); }, null, 'modalDeleteColonne', "Suppression colonne Kanban", "Valider", "Annuler");
+                CommonDialogService.confirmation('Etes-vous sur de vouloir supprimer cette élément ?', function () {
+                    ctrl.deleteColonne(idColonne);
+                }, null, 'modalDeleteColonne', "Suppression colonne Kanban", "Valider", "Annuler");
             };
 
             /**
@@ -187,7 +198,7 @@
              * Save new column Kanban
              */
             ctrl.saveNewColonne = function () {
-                var colonneKanban = { id: null, title: ctrl.newColonne.title, color: ctrl.newColonne.color };
+                var colonneKanban = {id: null, title: ctrl.newColonne.title, color: ctrl.newColonne.color};
                 BoardService.createColonneKanban(colonneKanban, ctrl.board.id).then(function (response) {
                     ctrl.board.colonneKanbans.push(response);
                     $timeout(function () {
@@ -203,7 +214,9 @@
              * Save edit column Kanban
              */
             ctrl.saveEditColonne = function () {
-                var index = ctrl.board.colonneKanbans.findIndex(function (element) { return element.id == ctrl.editColonne.id });
+                var index = ctrl.board.colonneKanbans.findIndex(function (element) {
+                    return element.id == ctrl.editColonne.id
+                });
                 if (index !== -1) {
                     BoardService.editColonneKanban(ctrl.editColonne).then(function (response) {
                         ctrl.board.colonneKanbans[index] = response;
@@ -215,7 +228,9 @@
              * Delete column Kanban
              */
             ctrl.deleteColonne = function (idColonne) {
-                var index = ctrl.board.colonneKanbans.findIndex(function (element) { return element.id == idColonne });
+                var index = ctrl.board.colonneKanbans.findIndex(function (element) {
+                    return element.id == idColonne
+                });
                 if (index !== -1) {
                     BoardService.deleteColonneKanban(idColonne).then(function (response) {
                         ctrl.board.colonneKanbans.splice(index, 1);

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.example.dto.TaskDTO;
 import com.example.dto.TaskLiteDTO;
+import com.example.dto.TaskWithPeriodDTO;
 
 /**
  * Created by Florentin NOËL on 11/05/17.
@@ -20,5 +21,5 @@ public interface TaskService {
     TaskDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
     void deleteTask(Long id);
 
-    void addTagToTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
+    TaskWithPeriodDTO updateTaskTag(Long idTask, Long idTag) throws InvocationTargetException, IllegalAccessException;
 }

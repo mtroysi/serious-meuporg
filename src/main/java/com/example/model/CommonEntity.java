@@ -79,17 +79,17 @@ public class CommonEntity implements Serializable {
         return new StringBuilder(this.getClass().getSimpleName()).append(" #").append(this.getId()).toString();
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CommonEntity)) return false;
-
-        CommonEntity that = (CommonEntity) o;
-
-        return (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) ;
-
-    }
+//
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof CommonEntity)) return false;
+//
+//        CommonEntity that = (CommonEntity) o;
+//
+//        return (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) ;
+//
+//    }
 
     @Override
     public int hashCode() {

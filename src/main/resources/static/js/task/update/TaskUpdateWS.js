@@ -11,11 +11,15 @@
             var svc = this;
 
             svc.updateTask = function (id, task) {
-                return $http.put(constant.BASE_URI + '/task/'+id, task);
+                return $http.put(constant.BASE_URI + '/task/' + id, task);
             };
 
             svc.deleteTask = function (id) {
-                return $http.delete(constant.BASE_URI + '/task/'+id);
+                return $http.delete(constant.BASE_URI + '/task/' + id);
+            };
+
+            svc.toggleTag = function (idTask, idTag) {
+                return $http.put(constant.BASE_URI + '/task/' + idTask + '/tag/' + idTag);
             };
 
             return svc;
