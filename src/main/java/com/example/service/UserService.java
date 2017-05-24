@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.dto.ItemDto;
 import com.example.dto.UserDTO;
+import com.example.dto.UserRankinDTO;
 import com.example.dto.UserStatsDTO;
 import com.example.model.User;
 
@@ -26,6 +27,8 @@ public interface UserService {
     UserDTO getUser(long id);
 
     UserStatsDTO getstats(long id);
+    
+    UserRankinDTO getRankin(long id);
 
 
     List<ItemDto> getUserInventory(Long id);

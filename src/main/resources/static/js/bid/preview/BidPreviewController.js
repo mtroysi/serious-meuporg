@@ -4,7 +4,7 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.controller('BidPreviewController', function($location, $http, BoardService, $stateParams, AuthenticationService, TaskService, BidService) {
+    helloApp.controller('BidPreviewController', function(moment, $location, $http, BoardService, $stateParams, AuthenticationService, TaskService, BidService) {
         var ctrl = this;
 
         ctrl.init = function() {
@@ -15,6 +15,7 @@
             // Admin
             ctrl.listTaskWithoutUserSelected = [];
             ctrl.listTaskWithoutUser = [];
+            ctrl.dateAdmin = moment().add(1, 'day');
             // User
             ctrl.taskShow = {};
             ctrl.listTaskBid = [];
@@ -41,7 +42,7 @@
          */
         ctrl.getListBidByBoardAndUser = function(boardId, userId) {
             BidService.getListBidByBoardAndUser(boardId, userId).then(function(data) {
-                ctrl.listTaskBid = data;
+                ctrl.listTaskBid = data || [];
                 ctrl.showTaskCarouselAndTinder(true);
             });
         }
@@ -75,7 +76,7 @@
          */
         ctrl.acceptedTask = function() {
             $('#editDurationBid').modal('show');
-            ctrl.durationBid = 0;
+            ctrl.durationBid = ctrl.taskShow.duration;
         }
 
         /**
@@ -132,10 +133,45 @@
             });
         };
 
+
+        /**
+         * Saving the user's estimate for a task
+         */
         ctrl.saveBid = function() {
-            alert(ctrl.durationBid + "----" + ctrl.taskShow.task.title);
-            ctrl.taskShow.read = true;
-            ctrl.showTaskCarouselAndTinder();
+            BidService.addOrUpdateTaskUserBid(ctrl.taskShow.task.id, ctrl.durationBid).then(function() {
+                ctrl.taskShow.read = true;
+                ctrl.taskShow.duration = angular.copy(ctrl.durationBid);
+                ctrl.showTaskCarouselAndTinder();
+            });
+        }
+
+
+        /**
+         * Saving new tasks in bids
+         */
+        ctrl.saveNewTaskBid = function() {
+            console.log();
+
+            var listTaskId = [];
+            for (var k in ctrl.listTaskWithoutUserSelected) {
+                if (ctrl.listTaskWithoutUserSelected[k] === true) {
+                    listTaskId.push(k);
+                }
+            }
+
+            BidService.addBid(moment(ctrl.dateAdmin).valueOf(), listTaskId).then(function(data) {
+                ctrl.listTaskBid = ctrl.listTaskBid.concat(data);
+                ctrl.showTaskCarouselAndTinder(true);
+                for (var k in ctrl.listTaskWithoutUserSelected) {
+                    if (ctrl.listTaskWithoutUserSelected[k] === true) {
+                        var index = ctrl.listTaskWithoutUser.findIndex(function(element) { return element.id == k });
+                        if (index > -1) {
+                            ctrl.listTaskWithoutUser.splice(index, 1)
+                        }
+                    }
+                }
+                ctrl.listTaskWithoutUserSelected = [];
+            });
         }
 
 

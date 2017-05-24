@@ -12,6 +12,14 @@
             return $http.get(constant.BASE_URI + '/bid/board/' + boardId + '/user/' + userId);
         };
 
+        svc.addOrUpdateTaskUserBid = function(taskId, duration) {
+            return $http.post(constant.BASE_URI + '/bid/task/' + taskId, duration);
+        };
+
+        svc.addBid = function(date, listTaskId) {
+            return $http.post(constant.BASE_URI + '/bid/?dateend=' + date, listTaskId);
+        };
+
         return svc;
     })
 })();

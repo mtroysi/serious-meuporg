@@ -85,6 +85,12 @@ public class CreateTestData {
 
 	private TaskUser taskUser3;
 
+	private Task task4;
+
+	private Task task5;
+
+	private Task task6;
+
 	@RequestMapping("/tools/createTestData")
 	public String run() throws ParseException, ScriptException, SQLException, ParseException {
 		// Suppression de tous les éléments de la base
@@ -424,6 +430,72 @@ public class CreateTestData {
 		task3.setTitle("Titre de la tache 3 (without)");
 		task3.setVersion(1);
 		this.task3 = taskRepository.save(task3);
+		
+		Task task4 = new Task();
+		task4.setId(4L);
+		task4.setBid(false);
+		task4.setBoard(this.board1);
+		task4.setChecklists(null);
+		task4.setContent("Description de la tache 4");
+		task4.setCreator(this.user1);
+		task4.setDateCreation(new Date(sdf.parse("01/01/2016").getTime()));
+		task4.setDateEndBid(new Date(sdf.parse("07/07/2017").getTime()));
+		task4.setDuration(5.00);
+		task4.setIsBid(true);
+		task4.setLinks(null);
+		task4.setPeriodicity(null);
+		task4.setPriority(PriorityEnum.NOT_URGENT_IMPORTANT);
+		task4.setTags(null);
+		task4.setTaskParents(null);
+		task4.setTaskUserBids(null);
+		task4.setTaskUsers(null);
+		task4.setTitle("Titre de la tache 4 (sans user et au enchere)");
+		task4.setVersion(1);
+		this.task4 = taskRepository.save(task4);
+		
+		Task task5 = new Task();
+		task5.setId(5L);
+		task5.setBid(false);
+		task5.setBoard(this.board1);
+		task5.setChecklists(null);
+		task5.setContent("Description de la tache 5");
+		task5.setCreator(this.user1);
+		task5.setDateCreation(new Date(sdf.parse("01/01/2016").getTime()));
+		task5.setDateEndBid(new Date(sdf.parse("07/07/2017").getTime()));
+		task5.setDuration(5.00);
+		task5.setIsBid(true);
+		task5.setLinks(null);
+		task5.setPeriodicity(null);
+		task5.setPriority(PriorityEnum.NOT_URGENT_IMPORTANT);
+		task5.setTags(null);
+		task5.setTaskParents(null);
+		task5.setTaskUserBids(null);
+		task5.setTaskUsers(null);
+		task5.setTitle("Titre de la tache 5 (bid witout user)");
+		task5.setVersion(1);
+		this.task5 = taskRepository.save(task5);
+		
+		Task task6 = new Task();
+		task6.setId(6L);
+		task6.setBid(false);
+		task6.setBoard(this.board1);
+		task6.setChecklists(null);
+		task6.setContent("Description de la tache6");
+		task6.setCreator(this.user1);
+		task6.setDateCreation(new Date(sdf.parse("01/01/2016").getTime()));
+		task6.setDateEndBid(null);
+		task6.setDuration(5.00);
+		task6.setIsBid(false);
+		task6.setLinks(null);
+		task6.setPeriodicity(null);
+		task6.setPriority(PriorityEnum.NOT_URGENT_IMPORTANT);
+		task6.setTags(null);
+		task6.setTaskParents(null);
+		task6.setTaskUserBids(null);
+		task6.setTaskUsers(null);
+		task6.setTitle("Titre de la tache 6 (bid witout user)");
+		task6.setVersion(1);
+		this.task6 = taskRepository.save(task6);
 
 		/* CREATION TASKUSER */
 		TaskUser taskUser1 = new TaskUser();

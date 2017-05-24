@@ -7,6 +7,7 @@
 
     angular
         .module('hello')
+        .constant('moment', moment)
         .constant('constant', {
             'BASE_URI': '/api',
             'priority': {

@@ -16,8 +16,10 @@
                 <div class="text-center margin-t-30" ng-show="ctrl.listTaskWithoutUser.length == 0">Il n'y a pas de quête à rajouter</div>
                 <div class="form-group text-center boxDatepicker" ng-show="(ctrl.listTaskWithoutUserSelected | filter:true).length > 0">
                     <label for="exampleInputEmail1">Date de fin enchère</label>
-                    <input type="text" class="form-control" datetime-picker="dd MMM yyyy HH:mm" ng-model="ctrl.date" />
-                    <button class="btn btn-default"><i class="ti ti-check"></i></button>
+                    <datetimepicker ng-model="ctrl.dateAdmin" date-format="dd/MM/yyyy HH:mm" show-meridian="false" show-button-bar="false" date-options="{
+                    showWeeks: false}" class="datetimepicker">
+                    </datetimepicker>
+                    <button class="btn btn-primary" ng-disabled="!ctrl.dateAdmin" ng-click="ctrl.saveNewTaskBid()"><i class="ti ti-check"></i></button>
                 </div>
                 <div class="panel-body box-tile-newLook">
                     <ul>

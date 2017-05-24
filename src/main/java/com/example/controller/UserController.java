@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.dto.ItemDto;
 import com.example.dto.UserDTO;
+import com.example.dto.UserRankinDTO;
 import com.example.dto.UserStatsDTO;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,10 @@ public class UserController {
     @RequestMapping(value = "/{id}/stats",method = RequestMethod.GET)
     public UserStatsDTO getstats(@PathVariable ("id") Long id){
         return userService.getstats(id);
+    }
+    
+    @RequestMapping(value = "/{id}/rankin",method = RequestMethod.GET)
+    public UserRankinDTO getRankin(@PathVariable ("id") Long id){
+        return userService.getRankin(id);
     }
 }
