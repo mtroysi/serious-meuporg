@@ -10,4 +10,6 @@ public interface TaskUserBidService {
     List<TaskUserBidDTO> getTaskUserBidByBoardAndUser(Long idBoard, Long idUser);
     
     TaskUserBidDTO addOrUpdateTaskUserBid(Long idTask, Double duration);
+    
+    List<TaskUserBidDTO> addNewTaskInBid(List<Long> listTaskId, Long dateEnd);
 }

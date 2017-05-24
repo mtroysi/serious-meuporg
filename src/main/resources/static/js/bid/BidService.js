@@ -19,6 +19,12 @@
             });
         };
 
+        svc.addBid = function(date, listTaskId) {
+            return BidWS.addBid(date, listTaskId).then(function(response) {
+                return response.data;
+            });
+        };
+
         return svc;
     })
 })();

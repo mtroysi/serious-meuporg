@@ -1,5 +1,6 @@
 package com.example.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -89,6 +90,20 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
         }
         
 		return (TaskUserBidDTO) transformers.convertEntityToDto(tub, TaskUserBidDTO.class);
+	}
+	
+
+	@Override
+    public List<TaskUserBidDTO> addNewTaskInBid(List<Long> listTaskId, Long dateEnd){
+		List<TaskUserBidDTO> list = new ArrayList<>();
+		
+		listTaskId.stream().forEach((Long id) -> {
+			Task task = taskRepo.findOne(id);
+			task.setBid(true);
+			task.setDateEndBid(new Date(dateEnd));
+			list.add(new TaskUserBidDTO((TaskDTO)transformers.convertEntityToDto(taskRepo.save(task), TaskDTO.class), null, null));
+		});
+		return list;
 	}
 
   
