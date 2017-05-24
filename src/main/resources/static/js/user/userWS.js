@@ -21,6 +21,9 @@
                 return $http.get(constant.BASE_URI + '/user/' + id + '/stats');
             }
 
+            svc.getRankin = function(id){
+                return $http.get(constant.BASE_URI + '/user/' + id + '/rankin');
+            }
             return svc;
         })
 })();
