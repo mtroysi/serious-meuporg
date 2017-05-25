@@ -33,6 +33,28 @@
                 ctrl.listBidEnd = fetchData;
             });
         }
+
+
+        ctrl.validAffectation = function() {
+            var listFinal = [];
+            $.each(ctrl.listBidEnd, function(index, value) {
+                // returns the id list when the state is true
+                var listUser = [];
+                if (value.listTask) {
+                    value.listTask.forEach(function(element) {
+                        if (element.etat === true) {
+                            listUser.push(element.userId);
+                        }
+                    });
+                }
+
+                listFinal.push({ idTask: value.task.id, duration: value.value, listUserId: listUser });
+            });
+
+            BidService.validBid($stateParams.idBoard, listFinal);
+        }
+
+
         ctrl.init();
     })
 })();

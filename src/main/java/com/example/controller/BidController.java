@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.dto.BidDTO;
 import com.example.dto.TaskLiteDTO;
 import com.example.dto.TaskUserBidDTO;
 import com.example.service.TaskService;
@@ -99,5 +100,12 @@ public class BidController {
 
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
+    
+    
+    @RequestMapping(value = "/valid/board/{board_id}", method = RequestMethod.POST)
+    public void validBidByBoard(@PathVariable(value = "board_id") Long board_id, @RequestBody List<BidDTO> listBidDTO) {
+        logger.info("Calling BidController.validBidByBoard with  {}", board_id);
 
+        taskUserBidService.validBidByBoard(board_id, listBidDTO);
+    }
 }

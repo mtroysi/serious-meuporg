@@ -24,6 +24,10 @@
             return $http.post(constant.BASE_URI + '/bid/?dateend=' + date, listTaskId);
         };
 
+        svc.validBid = function(boardId, json) {
+            return $http.post(constant.BASE_URI + '/bid/valid/board/' + boardId, json);
+        };
+
         return svc;
     })
 })();

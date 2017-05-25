@@ -36,13 +36,18 @@
                         });
                     });
                 }
-                console.log(list);
                 return list;
             });
         };
 
         svc.addBid = function(date, listTaskId) {
             return BidWS.addBid(date, listTaskId).then(function(response) {
+                return response.data;
+            });
+        };
+
+        svc.validBid = function(boardId, json) {
+            return BidWS.validBid(boardId, json).then(function(response) {
                 return response.data;
             });
         };
