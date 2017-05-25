@@ -325,6 +325,10 @@ public class CreateTestData {
 		board1.setName("Tableau Rouge");
 		board1.setTasks(null);
 		board1.setVersion(1);
+		board1.setMoneyDoneTask(1);
+		board1.setMoneyWinBid(1);
+		board1.setExpDoneTask(15);
+		board1.setExpWinBid(15);
 		this.board1 = this.boardRepository.save(board1);
 
 		/* CREATION BOARDUSER */

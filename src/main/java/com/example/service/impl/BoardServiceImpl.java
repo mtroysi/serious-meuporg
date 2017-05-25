@@ -56,7 +56,11 @@ public class BoardServiceImpl implements BoardService {
         board.setName(boardDTO.getName());
         board.setColor(boardDTO.getColor());
         board.setDateCreation(Calendar.getInstance().getTime());
-
+        board.setMoneyDoneTask(boardDTO.getMoneyDoneTask());
+        board.setMoneyWinBid(boardDTO.getMoneyWinBid());
+        board.setExpDoneTask(boardDTO.getExpDoneTask());
+        board.setExpWinBid(boardDTO.getExpWinBid());
+        
         inviteUsers(board, boardDTO);
 
         return transformers.transformBoardToBoardDto(boardRepository.save(board));
@@ -83,6 +87,11 @@ public class BoardServiceImpl implements BoardService {
         Board board = boardRepository.findOne(boardDTO.getId());
         if(board.getCreator().getId().equals(userService.getCurrentUser().getId())) {
             board.setColor(boardDTO.getColor());
+            board.setDateCreation(Calendar.getInstance().getTime());
+            board.setMoneyDoneTask(boardDTO.getMoneyDoneTask());
+            board.setMoneyWinBid(boardDTO.getMoneyWinBid());
+            board.setExpDoneTask(boardDTO.getExpDoneTask());
+            board.setExpWinBid(boardDTO.getExpWinBid());
             board.setName(boardDTO.getName());
 //            board.getBoardUsers().stream().forEach(boardUser -> boardUserRepository.delete(boardUser.getId()));
             board.getBoardUsers().clear();

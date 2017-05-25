@@ -3,6 +3,8 @@ package com.example.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+
 import com.example.model.ColonneKanban;
 
 /**
@@ -13,6 +15,11 @@ public class BoardDTO {
     private String name;
     private String color;
     private UserDTO creator;
+    private Integer moneyWinBid;
+    private Integer expWinBid;
+    private Integer moneyDoneTask;
+    private Integer expDoneTask;
+    
     private List<UserDTO> users = new ArrayList<>();
     private List<ColonneKanbanDTO> colonneKanbans = new ArrayList<>();
 
@@ -57,10 +64,42 @@ public class BoardDTO {
     }
 
     public List<ColonneKanbanDTO> getColonneKanbans() {
-	return colonneKanbans;
+    	return colonneKanbans;
     }
 
     public void setColonneKanbans(List<ColonneKanbanDTO> colonneKanbans) {
-	this.colonneKanbans = colonneKanbans;
+    	this.colonneKanbans = colonneKanbans;
     }
+
+	public Integer getMoneyWinBid() {
+		return moneyWinBid;
+	}
+
+	public void setMoneyWinBid(Integer moneyWinBid) {
+		this.moneyWinBid = moneyWinBid;
+	}
+
+	public Integer getExpWinBid() {
+		return expWinBid;
+	}
+
+	public void setExpWinBid(Integer expWinBid) {
+		this.expWinBid = expWinBid;
+	}
+
+	public Integer getMoneyDoneTask() {
+		return moneyDoneTask;
+	}
+
+	public void setMoneyDoneTask(Integer moneyDoneTask) {
+		this.moneyDoneTask = moneyDoneTask;
+	}
+
+	public Integer getExpDoneTask() {
+		return expDoneTask;
+	}
+
+	public void setExpDoneTask(Integer expDoneTask) {
+		this.expDoneTask = expDoneTask;
+	}
 }

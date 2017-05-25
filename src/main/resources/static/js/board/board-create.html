@@ -25,6 +25,31 @@
             </div>
 
             <div class="form-group">
+                <label class="col-sm-6 control-label">Argent en plus par avoir gagné une enchère  : </label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="board_moneyWinBid" ng-model="ctrl.board.moneyWinBid" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-6 control-label">Expérience en plus par avoir gagné une enchère  : </label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="board_expWinBid" ng-model="ctrl.board.expWinBid" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-6 control-label">Argent en plus pour avoir fini une quête (valeur pour 1 point d'énergie)  : </label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="board_moneyDoneTask" ng-model="ctrl.board.moneyDoneTask" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-6 control-label">Experience en plus pour avoir fini une quête (valeur pour 1 point d'énergie)  : </label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="board_expDoneTask" ng-model="ctrl.board.expDoneTask" />
+                </div>
+            </div>
+
+            <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="button" class="btn btn-primary" ng-click="ctrl.createBoard()">Créer</button>
                 </div>
