@@ -206,4 +206,14 @@ public class UserServiceImpl implements UserService {
         user.getInventory().stream().forEach(item -> itemDtoList.add((ItemDto)this.transformers.convertEntityToDto(item, ItemDto.class)));
         return itemDtoList;
     }
+    
+    public void manageMoneyExpUser(User user, Integer money, Integer exp){
+    	user.setMoney(user.getMoney() + money);
+    	user.setExperience(user.getExperience() + exp);
+    	
+    	// Calculation of the next level
+    	if((user.getLevel()+1) * ConstanteGameMaster.XP <= user.getExperience()){
+    		user.setLevel(user.getLevel() + 1);
+    	}
+    }
 }

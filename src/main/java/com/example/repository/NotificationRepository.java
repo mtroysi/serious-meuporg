@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface NotificationRepository extends PagingAndSortingRepository<Notification, Long> {
 
-	List<Notification> findAllByUserIdOrderByDateCreation(Long userId);
+	List<Notification> findAllByUserIdOrderByDateCreationDesc(Long userId);
 
 	@Modifying
 	@Transactional

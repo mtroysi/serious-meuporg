@@ -2,12 +2,11 @@
 <div ng-cloak class="ng-cloak">
     <div class="row col-md-12">
 
-        <form class="form-horizontal">
-
-            <div class="form-group">
-                <label for="board_name" class="col-sm-2 control-label">Nom de la guilde : </label>
+        <form class="form-horizontal" name="formCreateBoard" novalidate>
+            <div class="form-group" ng-class="{'has-error': formCreateBoard.$submitted && formCreateBoard.nameBoard.$invalid}">
+                <label for="board_name" class="col-sm-2 control-label">Nom de la guilde<span class="required">*</span> : </label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" id="board_name" ng-model="ctrl.board.name" />
+                    <input type="text" class="form-control" id="board_name" name="nameBoard" ng-model="ctrl.board.name" ng-required="true" />
                 </div>
 
                 <div class="palette col-sm-1">
@@ -24,9 +23,34 @@
                 </div>
             </div>
 
+            <div class="form-group" ng-class="{'has-error': formCreateBoard.$submitted && formCreateBoard.argentBid.$invalid}">
+                <label class="col-sm-6 control-label">Argent en plus par avoir gagné une enchère<span class="required">*</span> : </label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control" id="board_moneyWinBid" name="argentBid" ng-model="ctrl.board.moneyWinBid" ng-required="true" />
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': formCreateBoard.$submitted && formCreateBoard.expBid.$invalid}">
+                <label class="col-sm-6 control-label">Expérience en plus par avoir gagné une enchère<span class="required">*</span> : </label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control" id="board_expWinBid" name="expBid" ng-model="ctrl.board.expWinBid" ng-required="true" />
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': formCreateBoard.$submitted && formCreateBoard.argentTask.$invalid}">
+                <label class="col-sm-6 control-label">Argent en plus pour avoir fini une quête (valeur pour 1 point d'énergie)<span class="required">*</span> : </label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control" id="board_moneyDoneTask" name="argentTask" ng-model="ctrl.board.moneyDoneTask" ng-required="true" />
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': formCreateBoard.$submitted && formCreateBoard.expTask.$invalid}">
+                <label class="col-sm-6 control-label">Experience en plus pour avoir fini une quête (valeur pour 1 point d'énergie)<span class="required">*</span> : </label>
+                <div class="col-sm-3">
+                    <input type="number" class="form-control" id="board_expDoneTask" name="expTask" ng-model="ctrl.board.expDoneTask" ng-required="true" />
+                </div>
+            </div>
+
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="button" class="btn btn-primary" ng-click="ctrl.createBoard()">Créer</button>
+                    <button type="submit" class="btn btn-primary" ng-click="formCreateBoard.$valid && ctrl.createBoard()">Créer</button>
                 </div>
             </div>
 

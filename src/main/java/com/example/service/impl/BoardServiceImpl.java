@@ -3,9 +3,11 @@ package com.example.service.impl;
 import com.example.ConstanteGameMaster;
 import com.example.dto.BoardDTO;
 import com.example.enumeration.RoleEnum;
+import com.example.enumeration.StatusEnum;
 import com.example.exception.GameMasterException;
 import com.example.model.Board;
 import com.example.model.BoardUser;
+import com.example.model.ColonneKanban;
 import com.example.model.User;
 import com.example.repository.BoardRepository;
 import com.example.repository.RoleRepository;
@@ -15,6 +17,7 @@ import com.example.transformers.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -56,9 +59,32 @@ public class BoardServiceImpl implements BoardService {
         board.setName(boardDTO.getName());
         board.setColor(boardDTO.getColor());
         board.setDateCreation(Calendar.getInstance().getTime());
-
+        board.setMoneyDoneTask(boardDTO.getMoneyDoneTask());
+        board.setMoneyWinBid(boardDTO.getMoneyWinBid());
+        board.setExpDoneTask(boardDTO.getExpDoneTask());
+        board.setExpWinBid(boardDTO.getExpWinBid());
+        
         inviteUsers(board, boardDTO);
-
+        
+        //Add column Kanban
+        ArrayList<ColonneKanban> list = new ArrayList<>();
+        ColonneKanban col1 = new ColonneKanban();
+        col1.setBoard(board);
+        col1.setTitle(StatusEnum.TODO.name());
+        col1.setStatus(StatusEnum.TODO);
+        list.add(col1);
+        ColonneKanban col2 = new ColonneKanban();
+        col2.setBoard(board);
+        col2.setTitle(StatusEnum.IN_PROGRESS.name());
+        col2.setStatus(StatusEnum.IN_PROGRESS);
+        list.add(col2);
+        ColonneKanban col3 = new ColonneKanban();
+        col3.setBoard(board);
+        col3.setTitle(StatusEnum.DONE.name());
+        col3.setStatus(StatusEnum.DONE);
+        list.add(col3);
+        board.setColonneKanbans(list);
+        
         return transformers.transformBoardToBoardDto(boardRepository.save(board));
     }
 
@@ -83,6 +109,11 @@ public class BoardServiceImpl implements BoardService {
         Board board = boardRepository.findOne(boardDTO.getId());
         if(board.getCreator().getId().equals(userService.getCurrentUser().getId())) {
             board.setColor(boardDTO.getColor());
+            board.setDateCreation(Calendar.getInstance().getTime());
+            board.setMoneyDoneTask(boardDTO.getMoneyDoneTask());
+            board.setMoneyWinBid(boardDTO.getMoneyWinBid());
+            board.setExpDoneTask(boardDTO.getExpDoneTask());
+            board.setExpWinBid(boardDTO.getExpWinBid());
             board.setName(boardDTO.getName());
 //            board.getBoardUsers().stream().forEach(boardUser -> boardUserRepository.delete(boardUser.getId()));
             board.getBoardUsers().clear();

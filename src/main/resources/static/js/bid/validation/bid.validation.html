@@ -1,1 +1,47 @@
-ENCHERE VALIDATION
+<div class="row bidPreview ">
+    <div class="col-md-12 titleHeader panel">
+        <div class="panel-heading">
+            <h1>Validation des enchères</h1>
+            <div class="panel-ctrls button-icon-bg">
+                <button ui-sref="app.bidPreview({ idBoard: ctrl.board.id})" class="btn btn-default-alt btn-lg"><i class="ti ti-arrow-left"></i> Retourner sur les enchères</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row margin-v-10 margin-h-10 margin-t-30">
+    <div class="col-md-12" ng-repeat="task in ctrl.listBidEnd">
+        <div class=" panel panel-bluegray">
+            <div class="panel-heading">
+                <h2>{{ task.task.title }}</h2>
+            </div>
+            <div class="panel-body">
+                <table class="table table-inbox table-vam">
+                    <tr>
+                        <th>Utilisateur</th>
+                        <th>Durée</th>
+                        <th>Affectation</th>
+                    </tr>
+                    <tr ng-repeat="item in task.listTask">
+                        <td>{{ item.userName }}</td>
+                        <td class="width125">{{ item.duration }}</td>
+                        <td class="width125"><button class="btn btn-danger" ng-click="item.etat=false" ng-class="{'btn-opacity': item.etat === true}"><i class="ti ti-close"></i></button>
+                            <button class="btn btn-success" ng-click="item.etat=true;task.value=item.duration" ng-class="{'btn-opacity': item.etat === false}"><i class="ti ti-check"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="text" ng-model="task.value" class="inputSexy" /></td>
+                        <td>{{ (task.listTask | filter:{etat:true}).length }} utilisateur(s)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="margin-t-20 col-md-12 text-center margin-b-10" ng-hide="(ctrl.listBidEnd | json) != '{}'">
+        Il n'y a pas d'enchère terminée
+    </div>
+    <div class="margin-t-20 col-md-12 text-center margin-b-10" ng-show="(ctrl.listBidEnd | json) != '{}'">
+        <button class="btn btn-success" ng-click="ctrl.validAffectation()">Valider affectation</button>
+    </div>
+</div>

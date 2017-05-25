@@ -29,9 +29,6 @@ public class TaskUser extends CommonEntity {
     @Column(name = "date_begin")
     private Date dateBegin;
 
-    @Column(name = "date_end")
-    private Date dateEnd;
-
     @Column(name = "duration_reel")
     private Double durationReel;
     
@@ -69,14 +66,6 @@ public class TaskUser extends CommonEntity {
 
     public void setDateBegin(Date dateBegin) {
         this.dateBegin = dateBegin;
-    }
-
-    public Date getDateEnd() {
-        return dateEnd;
-    }
-
-    public void setDateEnd(Date dateEnd) {
-        this.dateEnd = dateEnd;
     }
 
     public Double getDurationReel() {

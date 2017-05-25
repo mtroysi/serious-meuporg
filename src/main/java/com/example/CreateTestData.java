@@ -325,6 +325,10 @@ public class CreateTestData {
 		board1.setName("Tableau Rouge");
 		board1.setTasks(null);
 		board1.setVersion(1);
+		board1.setMoneyDoneTask(1);
+		board1.setMoneyWinBid(1);
+		board1.setExpDoneTask(15);
+		board1.setExpWinBid(15);
 		this.board1 = this.boardRepository.save(board1);
 
 		/* CREATION BOARDUSER */
@@ -373,6 +377,7 @@ public class CreateTestData {
 		task1.setContent("Description de la tache");
 		task1.setCreator(this.user1);
 		task1.setDateCreation(new Date(sdf.parse("01/01/2016").getTime()));
+		task1.setDateEnd(new Date(sdf.parse("31/06/2016").getTime()));
 		task1.setDateEndBid(null);
 		task1.setDuration(5.00);
 		task1.setIsBid(false);
@@ -395,6 +400,7 @@ public class CreateTestData {
 		task2.setContent("Description de la tache 2");
 		task2.setCreator(this.user1);
 		task2.setDateCreation(new Date(sdf.parse("01/01/2016").getTime()));
+		task2.setDateEnd(new Date(sdf.parse("31/06/2016").getTime()));
 		task2.setDateEndBid(null);
 		task2.setDuration(5.00);
 		task2.setIsBid(false);
@@ -417,6 +423,7 @@ public class CreateTestData {
 		task3.setContent("Description de la tache 3");
 		task3.setCreator(this.user1);
 		task3.setDateCreation(new Date(sdf.parse("01/01/2016").getTime()));
+		task3.setDateEnd(new Date(sdf.parse("31/06/2016").getTime()));
 		task3.setDateEndBid(null);
 		task3.setDuration(5.00);
 		task3.setIsBid(false);
@@ -440,6 +447,7 @@ public class CreateTestData {
 		task4.setCreator(this.user1);
 		task4.setDateCreation(new Date(sdf.parse("01/01/2016").getTime()));
 		task4.setDateEndBid(new Date(sdf.parse("07/07/2017").getTime()));
+		task4.setDateEnd(new Date(sdf.parse("31/06/2016").getTime()));
 		task4.setDuration(5.00);
 		task4.setIsBid(true);
 		task4.setLinks(null);
@@ -462,6 +470,7 @@ public class CreateTestData {
 		task5.setCreator(this.user1);
 		task5.setDateCreation(new Date(sdf.parse("01/01/2016").getTime()));
 		task5.setDateEndBid(new Date(sdf.parse("07/07/2017").getTime()));
+		task5.setDateEnd(new Date(sdf.parse("31/06/2016").getTime()));
 		task5.setDuration(5.00);
 		task5.setIsBid(true);
 		task5.setLinks(null);
@@ -483,6 +492,7 @@ public class CreateTestData {
 		task6.setContent("Description de la tache6");
 		task6.setCreator(this.user1);
 		task6.setDateCreation(new Date(sdf.parse("01/01/2016").getTime()));
+		task6.setDateEnd(new Date(sdf.parse("31/06/2016").getTime()));
 		task6.setDateEndBid(null);
 		task6.setDuration(5.00);
 		task6.setIsBid(false);
@@ -501,7 +511,6 @@ public class CreateTestData {
 		TaskUser taskUser1 = new TaskUser();
 		taskUser1.setId(1L);
 		taskUser1.setDateBegin(new Date(sdf.parse("12/01/2016").getTime()));
-		taskUser1.setDateEnd(new Date(sdf.parse("31/03/2016").getTime()));
 		taskUser1.setDurationReel(null);
 		taskUser1.setStatus(StatusEnum.IN_PROGRESS);
 		taskUser1.setTask(this.task1);
@@ -513,7 +522,6 @@ public class CreateTestData {
 		TaskUser taskUser2 = new TaskUser();
 		taskUser2.setId(2L);
 		taskUser2.setDateBegin(new Date(sdf.parse("12/01/2016").getTime()));
-		taskUser2.setDateEnd(new Date(sdf.parse("28/05/2017").getTime()));
 		taskUser2.setDurationReel(null);
 		taskUser2.setStatus(StatusEnum.IN_PROGRESS);
 		taskUser2.setTask(this.task2);
@@ -525,7 +533,6 @@ public class CreateTestData {
 		TaskUser taskUser3 = new TaskUser();
 		taskUser3.setId(3L);
 		taskUser3.setDateBegin(new Date(sdf.parse("12/01/2016").getTime()));
-		taskUser3.setDateEnd(new Date(sdf.parse("30/06/2017").getTime()));
 		taskUser3.setDurationReel(null);
 		taskUser3.setStatus(StatusEnum.IN_PROGRESS);
 		taskUser3.setTask(this.task3);

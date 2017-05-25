@@ -35,7 +35,10 @@ public class Task extends CommonEntity {
 
     @Column(name = "date_creation")
     private Date dateCreation;
-
+    
+    @Column(name = "date_end")
+    private Date dateEnd;
+    
     @Column(name = "duration")
     private Double duration;
 
@@ -243,4 +246,12 @@ public class Task extends CommonEntity {
     public void setExperience(Long experience) {
         this.experience = experience;
     }
+
+	public Date getDateEnd() {
+		return dateEnd;
+	}
+
+	public void setDateEnd(Date dateEnd) {
+		this.dateEnd = dateEnd;
+	}
 }

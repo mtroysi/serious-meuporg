@@ -28,7 +28,19 @@ public class Board extends CommonEntity {
 
     @Column(name = "date_creation")
     private Date dateCreation;
+    
+    @Column(name = "money_win_bid")
+    private Integer moneyWinBid;
 
+    @Column(name = "exp_win_bid")
+    private Integer expWinBid;
+    
+    @Column(name = "money_done_task")
+    private Integer moneyDoneTask;
+
+    @Column(name = "exp_done_task")
+    private Integer expDoneTask;
+    
     @ManyToOne
     @JoinColumn(name="creator", nullable=false)
     private User creator;
@@ -96,5 +108,37 @@ public class Board extends CommonEntity {
 
 	public void setColonneKanbans(List<ColonneKanban> colonneKanbans) {
 		this.colonneKanbans = colonneKanbans;
+	}
+
+	public Integer getMoneyWinBid() {
+		return moneyWinBid;
+	}
+
+	public void setMoneyWinBid(Integer moneyWinBid) {
+		this.moneyWinBid = moneyWinBid;
+	}
+
+	public Integer getExpWinBid() {
+		return expWinBid;
+	}
+
+	public void setExpWinBid(Integer expWinBid) {
+		this.expWinBid = expWinBid;
+	}
+
+	public Integer getMoneyDoneTask() {
+		return moneyDoneTask;
+	}
+
+	public void setMoneyDoneTask(Integer moneyDoneTask) {
+		this.moneyDoneTask = moneyDoneTask;
+	}
+
+	public Integer getExpDoneTask() {
+		return expDoneTask;
+	}
+
+	public void setExpDoneTask(Integer expDoneTask) {
+		this.expDoneTask = expDoneTask;
 	}
 }
