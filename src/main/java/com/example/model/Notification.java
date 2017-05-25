@@ -35,7 +35,7 @@ public class Notification extends CommonEntity {
     
     @Column(name = "type")
     private TypeNotifEnum type;
-
+    
     public String getTitle() {
         return title;
     }

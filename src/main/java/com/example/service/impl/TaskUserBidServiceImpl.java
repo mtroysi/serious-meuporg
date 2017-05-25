@@ -15,13 +15,16 @@ import com.example.dto.TaskDTO;
 import com.example.dto.TaskUserBidDTO;
 import com.example.dto.UserDTO;
 import com.example.enumeration.StatusEnum;
+import com.example.enumeration.TypeNotifEnum;
 import com.example.exception.GameMasterException;
 import com.example.model.Board;
+import com.example.model.Notification;
 import com.example.model.Task;
 import com.example.model.TaskUser;
 import com.example.model.TaskUserBid;
 import com.example.model.User;
 import com.example.repository.BoardRepository;
+import com.example.repository.NotificationRepository;
 import com.example.repository.TaskRepository;
 import com.example.repository.TaskUserBidRepository;
 import com.example.repository.UserRepository;
@@ -37,6 +40,9 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 	
 	@Autowired
 	private BoardRepository boardRepo;
+
+	@Autowired
+	private NotificationRepository notifRepo;
 	
 	@Autowired
 	private TaskUserBidRepository taskUserBidRepo;
@@ -136,6 +142,8 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 					if(user != null){
 						// Add Exp + Level + Money
 						userService.manageMoneyExpUser(user, board.getMoneyWinBid(), board.getExpWinBid());
+						// Add notif
+						this.createNotifWinBid(task, user);
 						
 						//Create TaskUser
 						TaskUser taskUser = new TaskUser();
@@ -165,6 +173,22 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 				taskRepo.save(task);
 			}
 		});
+	}
+	
+	/**
+	 * Create notif (win bid)
+	 * @param task
+	 * @param user
+	 */
+	private void createNotifWinBid(Task task, User user){
+		Notification notif = new Notification();
+		notif.setContent(ConstanteGameMaster.WIN_BID_CONTENT + " " + task.getTitle());
+		notif.setTitle(ConstanteGameMaster.WIN_BID_TITLE);
+		notif.setDateCreation(new Date());
+		notif.setIsRead(false);
+		notif.setType(TypeNotifEnum.information);
+		notif.setUser(user);
+		notifRepo.save(notif);
 	}
 
 }
