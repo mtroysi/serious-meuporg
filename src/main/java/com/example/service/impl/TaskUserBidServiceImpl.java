@@ -16,10 +16,12 @@ import com.example.dto.TaskUserBidDTO;
 import com.example.dto.UserDTO;
 import com.example.enumeration.StatusEnum;
 import com.example.exception.GameMasterException;
+import com.example.model.Board;
 import com.example.model.Task;
 import com.example.model.TaskUser;
 import com.example.model.TaskUserBid;
 import com.example.model.User;
+import com.example.repository.BoardRepository;
 import com.example.repository.TaskRepository;
 import com.example.repository.TaskUserBidRepository;
 import com.example.repository.UserRepository;
@@ -32,6 +34,9 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 
 	@Autowired
 	private TaskRepository taskRepo;
+	
+	@Autowired
+	private BoardRepository boardRepo;
 	
 	@Autowired
 	private TaskUserBidRepository taskUserBidRepo;
@@ -119,6 +124,8 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 
 	@Override
 	public void validBidByBoard(Long idBoard, List<BidDTO> listBidDTO) {
+		Board board = boardRepo.findOne(idBoard);
+		
 		listBidDTO.stream().forEach((BidDTO bid) -> {
 			Task task = taskRepo.findOne(bid.getIdTask());
 
@@ -128,6 +135,7 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 					User user = userRepo.findOne(idUser);
 					if(user != null){
 						// Add Exp + Level + Money
+						userService.manageMoneyExpUser(user, board.getMoneyWinBid(), board.getExpWinBid());
 						
 						//Create TaskUser
 						TaskUser taskUser = new TaskUser();
@@ -135,7 +143,7 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 						taskUser.setDateBegin(new Date());
 						taskUser.setDateEnd(null);
 						taskUser.setDurationReel(null);
-						taskUser.setStatus(StatusEnum.TODO);
+						taskUser.setStatus(StatusEnum.TODO); 
 						taskUser.setTask(task);
 						taskUser.setUser(user);
 						return taskUser;

@@ -4,7 +4,7 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.controller('BidValidationController', function($stateParams, $location, $http, BoardService, AuthenticationService, BidService) {
+    helloApp.controller('BidValidationController', function($stateParams, $location, $http, BoardService, AuthenticationService, BidService, $state, CommonNotificationBoxService) {
         var ctrl = this;
 
         ctrl.init = function() {
@@ -51,7 +51,10 @@
                 listFinal.push({ idTask: value.task.id, duration: value.value, listUserId: listUser });
             });
 
-            BidService.validBid($stateParams.idBoard, listFinal);
+            BidService.validBid($stateParams.idBoard, listFinal).then(function() {
+                CommonNotificationBoxService.info("Les enchères ont été validées.", "");
+                $state.go("app.bidPreview", { idBoard: $stateParams.idBoard });
+            });
         }
 
 

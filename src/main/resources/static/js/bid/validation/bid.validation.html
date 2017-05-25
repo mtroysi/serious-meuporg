@@ -9,6 +9,7 @@
     </div>
 </div>
 
+
 <div class="row margin-v-10 margin-h-10 margin-t-30">
     <div class="col-md-12" ng-repeat="task in ctrl.listBidEnd">
         <div class=" panel panel-bluegray">
@@ -37,7 +38,10 @@
             </div>
         </div>
     </div>
-    <div class="margin-t-20 col-md-12 text-center margin-b-10">
+    <div class="margin-t-20 col-md-12 text-center margin-b-10" ng-hide="(ctrl.listBidEnd | json) != '{}'">
+        Il n'y a pas d'enchère terminée
+    </div>
+    <div class="margin-t-20 col-md-12 text-center margin-b-10" ng-show="(ctrl.listBidEnd | json) != '{}'">
         <button class="btn btn-success" ng-click="ctrl.validAffectation()">Valider affectation</button>
     </div>
 </div>

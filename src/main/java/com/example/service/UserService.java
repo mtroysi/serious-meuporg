@@ -27,9 +27,9 @@ public interface UserService {
 
     UserStatsDTO getstats(long id);
 
-
     List<ItemDto> getUserInventory(Long id);
 
     List<ItemDto> updateInventory(List<ItemDto> items);
-
+    
+    void manageMoneyExpUser(User user, Integer money, Integer exp);
 }
