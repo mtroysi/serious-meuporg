@@ -66,7 +66,7 @@ public class TaskUserServiceImpl implements TaskUserService {
 			Periodicity period = tu.getTask().getPeriodicity();
 			TaskWithPeriodDTO  taskWithPeriod = taskUserDTO.getTask();
 			taskWithPeriod.setBoardId(tu.getTask().getBoard().getId());
-			taskWithPeriod.setDateEnd(tu.getDateEnd());
+			taskWithPeriod.setDateEnd(tu.getTask().getDateEnd());
 			/* Si pas de periode alors la tache est classique */
 			if( period == null ){
 				taskWithPeriod.setDateBeginTask(taskWithPeriod.getDateBegin());

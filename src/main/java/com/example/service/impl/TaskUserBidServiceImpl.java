@@ -149,7 +149,6 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 						TaskUser taskUser = new TaskUser();
 						taskUser.setColonneKanban(null);
 						taskUser.setDateBegin(new Date());
-						taskUser.setDateEnd(null);
 						taskUser.setDurationReel(null);
 						taskUser.setStatus(StatusEnum.TODO); 
 						taskUser.setTask(task);
