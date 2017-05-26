@@ -109,18 +109,6 @@ public class CreateTestData {
 		role2.setCode(RoleEnum.USER);
 		this.role2 = this.roleRepository.save(role2);
 
-		/* INVENTAIRE UTILISATEUR */
-		Item item = new Item();
-		item.setType(ItemEnum.AVATAR);
-		item.setName("Avatar chevalier");
-		item.setDescription("Avatar chevalier");
-		item.setImage("https://d10tatjf967fp1.cloudfront.net/image/upload/s--ols54Dc3--/c_fill,d_avatar:v2:bronze.jpg,g_face,h_240,w_240/v1435077462/user/cqfyuufj5l85u/avatar.jpg");
-		item.setUrl("https://d10tatjf967fp1.cloudfront.net/image/upload/s--ols54Dc3--/c_fill,d_avatar:v2:bronze.jpg,g_face,h_240,w_240/v1435077462/user/cqfyuufj5l85u/avatar.jpg");
-		item.setReusable(Boolean.TRUE);
-		item.setPrice(1000L);
-		item.setRequiredLevel(10L);
-		item = itemRepository.save(item);
-
 		/* CREATION UTILISATEUR */
 		User user1 = new User();
 		user1.setId(1L);
@@ -550,16 +538,39 @@ public class CreateTestData {
 		item1.setUrl("https://wallpaperscraft.com/image/toulouse_city_square_night_france_58716_3840x2160.jpg");
 		item1.setImage("https://wallpaperscraft.com/image/toulouse_city_square_night_france_58716_3840x2160.jpg");
 		itemRepository.save(item1);
-
+		
 		Item item2 = new Item();
-		item2.setName("Sort de bonne humeur");
-		item2.setDescription("Génère aléatoirement des notifications pour vous mettre de bonne humeur");
-		item2.setPrice(175L);
-		item2.setRequiredLevel(2L);
-		item2.setReusable(Boolean.FALSE);
-		item2.setType(ItemEnum.SPELL);
-		item2.setImage("https://previews.123rf.com/images/anastasiiam/anastasiiam1605/anastasiiam160500090/57128892-Simple-flat-like-icon-in-pink-color-Like-counter-notification-emblem-isolated-on-white-background--Stock-Vector.jpg");
-		itemRepository.save(item2);
+		item2.setType(ItemEnum.AVATAR);
+		item2.setName("Avatar chevalier");
+		item2.setDescription("Avatar chevalier");
+		item2.setImage("https://d10tatjf967fp1.cloudfront.net/image/upload/s--ols54Dc3--/c_fill,d_avatar:v2:bronze.jpg,g_face,h_240,w_240/v1435077462/user/cqfyuufj5l85u/avatar.jpg");
+		item2.setUrl("https://d10tatjf967fp1.cloudfront.net/image/upload/s--ols54Dc3--/c_fill,d_avatar:v2:bronze.jpg,g_face,h_240,w_240/v1435077462/user/cqfyuufj5l85u/avatar.jpg");
+		item2.setReusable(Boolean.TRUE);
+		item2.setPrice(1000L);
+		item2.setRequiredLevel(10L);
+		item2 = itemRepository.save(item2);
+		
+		Item item3 = new Item();
+		item3.setType(ItemEnum.AVATAR);
+		item3.setName("Avatar Mechant");
+		item3.setDescription("Avatar Mechant");
+		item3.setImage("http://www.snut.fr/wp-content/uploads/2015/12/image-de-souris-5-150x150.png");
+		item3.setUrl("http://www.snut.fr/wp-content/uploads/2015/12/image-de-souris-5-150x150.png");
+		item3.setReusable(Boolean.TRUE);
+		item3.setPrice(1000L);
+		item3.setRequiredLevel(10L);
+		item3 = itemRepository.save(item3);
+		
+		Item item4 = new Item();
+		item4.setName("Malediction de la neige");
+		item4.setDescription("Génère de la neige sur l'ecran de l'utilisateur pendant 7 jours");
+		item4.setPrice(175L);
+		item4.setRequiredLevel(2L);
+		item4.setDuration(7);
+		item4.setReusable(Boolean.TRUE);
+		item4.setType(ItemEnum.CURSE);
+		item4.setImage("https://scontent.cdninstagram.com/t51.2885-19/s150x150/13130013_1681586922105019_1341226456_a.jpg");
+		itemRepository.save(item4);
 		
 		return "FINI";
 	}
