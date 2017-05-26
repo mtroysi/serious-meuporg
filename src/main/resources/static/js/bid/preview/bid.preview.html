@@ -1,7 +1,7 @@
 <div class="row bidPreview ">
     <div class="col-md-12 titleHeader panel">
         <div class="panel-heading">
-            <h1>Enchère du tableau</h1>
+            <h1>Enchères de la guilde</h1>
             <div class="panel-ctrls button-icon-bg">
                 <button ui-sref="app.bidValidation({ idBoard: ctrl.board.id})" class="btn btn-default-alt btn-lg"><i class="ti ti-stamp"></i> Validation des enchères</button>
             </div>
@@ -11,7 +11,7 @@
         <div class="row margin-t-20 margin-l-20 ">
             <div class=" col-md-12 panel panel-default boxAdminBid">
                 <div class="panel-header">
-                    Ajout de quête au enchère
+                    Ajout de quête aux enchères
                 </div>
                 <div class="text-center margin-t-30" ng-show="ctrl.listTaskWithoutUser.length == 0">Il n'y a pas de quête à rajouter</div>
                 <div class="form-group text-center boxDatepicker" ng-show="(ctrl.listTaskWithoutUserSelected | filter:true).length > 0">
