@@ -19,8 +19,8 @@ public class InventoryController {
     UserService userService;
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public List<ItemDto> getInventory(@PathVariable("id") Long id){
-        return userService.getUserInventory(id);
+    public List<ItemDto> getInventory(@PathVariable("id") Long idUser){
+        return userService.getUserInventory(idUser);
     }
 
     @RequestMapping(method = RequestMethod.PUT)

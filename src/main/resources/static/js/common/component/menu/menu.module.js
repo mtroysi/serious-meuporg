@@ -25,7 +25,6 @@
         };
 
         ctrl.getClass = function(arrayRoute, idBoard) {
-            console.log($state.current.name, arrayRoute.indexOf($state.current.name) > -1, (idBoard === undefined || $state.params.idBoard == idBoard));
             return arrayRoute.indexOf($state.current.name) > -1 && (idBoard === undefined || $state.params.idBoard == idBoard) ? 'active' : '';
         };
 

@@ -15,70 +15,70 @@
             ctrl.inventory = [];
 
             ctrl.init = function() {
-                var id = AuthenticationService.getUserId();
+                var idUser = AuthenticationService.getUserId();
 
-                InventoryService.getInventory(id).then(function (data) {
-                    ctrl.inventory = data;
-
-                    ShopService.getAllItems().then(function(data) {
-                        ctrl.items = data;
-                        ctrl.filteredItems = _.filter(ctrl.items, function (item) {
-                            return !(_.findWhere(ctrl.inventory, {'id':item.id}));
-                        });
-                    });
+                ShopService.getAllItemsByUserId(idUser).then(function(data) {
+                    ctrl.items = data;
+                    ctrl.filteredItems = angular.copy(data);
                 });
 
                 ctrl.user = {};
-                UserService.getUser(id).then(function(response){
+                UserService.getUser(idUser).then(function(response) {
                     ctrl.user = response;
+                });
+
+                ctrl.listUsers = {};
+                ctrl.userSelected = {};
+                UserService.getAllUser().then(function(response) {
+                    ctrl.listUsers = response;
+                    ctrl.userSelected = ctrl.listUsers ? ctrl.listUsers[0] : {};
                 });
 
                 $scope.$watch('this.ctrl.filter.type', function() {
                     ctrl.filterItems();
                 });
 
-                $scope.$watch('this.ctrl.inventory', function() {
-                    ctrl.filterItems();
-                });
             };
 
-            ctrl.hasLevel = function (item) {
-                if(ctrl.user.level >= item.requiredLevel) {
+            ctrl.hasLevel = function(item) {
+                if (ctrl.user.level >= item.requiredLevel) {
                     return 'text-success';
                 } else {
                     return 'text-danger';
                 }
             };
 
-            ctrl.hasMoney = function (item) {
-                if(ctrl.user.money >= item.price) {
+            ctrl.hasMoney = function(item) {
+                if (ctrl.user.money >= item.price) {
                     return 'text-success';
                 } else {
                     return 'text-danger';
                 }
             };
 
-            ctrl.canBeBought = function (item) {
-                return (ctrl.hasLevel(item)==='text-success') && (ctrl.hasMoney(item)==='text-success');
+            ctrl.canBeBought = function(item) {
+                return (ctrl.hasLevel(item) === 'text-success') && (ctrl.hasMoney(item) === 'text-success');
             };
 
-            ctrl.buyItem = function (item) {
+            ctrl.buyItem = function(item) {
                 if (ctrl.canBeBought(item)) {
-                    ctrl.inventory.push(item);
-                    CommonDialogService.confirmation('Voulez-vous acheter ' + item.name + ' ?', function () {
-                        InventoryService.updateInventory(ctrl.inventory).then(function (data) {
-                            ctrl.inventory = data;
-                        });
-                    }, function () {
-                        ctrl.inventory.pop();
-                    }, 'modalBuyItem', "Achat d'un objet", "Valider", "Annuler");
+                    ctrl.itemSelected = item;
+                    $('#modalBuyItem').modal('show');
+
                 } else {
                     CommonDialogService.error('Vous n\'avez pas le niveau ou l\'argent requis pour acheter cet objet.', 'Achat impossible', null);
                 }
             };
 
-            ctrl.objectAlreadyBought = function (item) {
-                return _.findWhere(ctrl.inventory, {'id':item.id}) !== undefined;
+            ctrl.validBuyItem = function(idItem) {
+                InventoryService.buyItem(item.id).then(function(data) {
+                    //Notif pour dire que c'est acheter
+                    //Supprimer si c'est pas un sort ou une malediction
+                });
+            }
+
+            ctrl.objectAlreadyBought = function(item) {
+                return _.findWhere(ctrl.inventory, { 'id': item.id }) !== undefined;
             };
 
             /**
@@ -88,16 +88,15 @@
                 $(element).slideToggle(500);
             };
 
-            ctrl.filterItems = function () {
+            ctrl.filterItems = function() {
                 ctrl.filteredItems = ctrl.items.filter(function(e) {
-                    if(ctrl.filter.type === 'ACHETABLE') {
+                    if (ctrl.filter.type === 'ACHETABLE') {
                         return ctrl.canBeBought(e);
                     } else {
-                        if(e.type === 'AVATAR' || e.type === 'WALLPAPER') {
+                        if (e.type === 'AVATAR' || e.type === 'WALLPAPER') {
                             // return !(ctrl.objectAlreadyBought(e)) && e.type === ctrl.filter.type || !(ctrl.objectAlreadyBought(e)) && ctrl.filter.type === 'TOUT';
                             return !(ctrl.objectAlreadyBought(e)) & (e.type === ctrl.filter.type | ctrl.filter.type === 'TOUT');
-                        }
-                        else return e.type === ctrl.filter.type || ctrl.filter.type === 'TOUT';
+                        } else return e.type === ctrl.filter.type || ctrl.filter.type === 'TOUT';
                     }
                 });
             };

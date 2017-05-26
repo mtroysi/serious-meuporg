@@ -135,7 +135,6 @@ public class CreateTestData {
 		user1.setBoardUsers(null);
 		user1.setTaskUserBids(null);
 		user1.setTaskUsers(null);
-		user1.setInventory(Collections.singletonList(item));
 		this.user1 = this.userRepository.save(user1);
 		
 		

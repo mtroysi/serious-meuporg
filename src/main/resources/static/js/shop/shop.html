@@ -25,22 +25,56 @@
 
 <div class="col-md-12 boxMatrice">
     <div class="row">
-            <div class="panel panel-default">
-                <div class="panel-body scroll-pane">
-                    <div class="row scroll-content">
-                        <div class="col-md-2" ng-repeat="item in ctrl.filteredItems">
-                            <div class="info-tile tile-success tile-perso" ng-click="ctrl.buyItem(item)">
-                                <div class="tile-heading"><span>{{ item.name }}</span></div>
-                                <div class="tile-icon"><span><img src="{{item.image}}" height="100" width="100"/></span></div>
-                                <div class="tile-body"><p class="tile-text" title="{{ item.description }}">{{ item.description }}</p></div>
-                                <div class="tile-footer">
-                                    <span class="pull-left strong" ng-class="ctrl.hasLevel(item)">Niveau requis : {{item.requiredLevel}}</span>
-                                    <span class="strong" ng-class="ctrl.hasMoney(item)">Prix : {{item.price}}</span>
-                                </div>
+        <div class="panel panel-default">
+            <div class="panel-body scroll-pane">
+                <div class="row scroll-content">
+                    <div class="col-md-2" ng-repeat="item in ctrl.filteredItems">
+                        <div class="info-tile tile-success tile-perso" ng-click="ctrl.buyItem(item)">
+                            <div class="tile-heading"><span>{{ item.name }}</span></div>
+                            <div class="tile-icon"><span><img src="{{item.image}}" height="100" width="100"/></span></div>
+                            <div class="tile-body">
+                                <p class="tile-text" title="{{ item.description }}">{{ item.description }}</p>
+                            </div>
+                            <div class="tile-footer">
+                                <span class="pull-left strong" ng-class="ctrl.hasLevel(item)">Niveau requis : {{item.requiredLevel}}</span>
+                                <span class="strong" ng-class="ctrl.hasMoney(item)">Prix : {{item.price}}</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalBuyItem" tabindex="-1" role="dialog" aria-labelledby="titleModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-confirmation">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="titleModal">Achat d'un objet : {{ ctrl.itemSelected.name }}</h5>
+            </div>
+            <div class="modal-body text-center clearfix">
+                <div class="tile-icon"><span><img src="{{ctrl.itemSelected.image}}" height="100" width="100"/></span></div>
+                <div class="tile-body">
+                    <p class="tile-text padding-v-20 padding-h-20" title="{{ ctrl.itemSelected.description }}">{{ ctrl.itemSelected.description }}</p>
+                    <div class="form-horizontal">
+                        <div class="form-group" ng-show="ctrl.itemSelected.type === 'CURSE'">
+                            <label for="inputEmail3" class="col-md-offset-2 col-md-4 control-label">Utilisateur qui aura le sort :</label>
+                            <div class="col-md-4">
+                                <select ng-model="ctrl.userSelected" class="form-control" ng-options="user as user.firstName for user in ctrl.listUsers track by user.id">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning btn-top" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-success btn-top" ng-click="ctrl.buyItem(ctrl.itemSelected.id)" data-dismiss="modal">Valider
+                </button>
+            </div>
+        </div>
     </div>
 </div>

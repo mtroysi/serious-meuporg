@@ -36,6 +36,11 @@ public class UserController {
         return userService.loadUsers(query);
     }
     
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public List<UserDTO> getAllUser() {
+        return userService.getAllUser();
+    }
+    
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public UserDTO getUser(@PathVariable ("id") Long id){
         return userService.getUser(id);

@@ -9,19 +9,23 @@
     angular.module('hello')
         .service('UserWS', function($http, constant) {
             var svc = this;
-            
+
             svc.getUser = function(id) {
                 return $http.get(constant.BASE_URI + '/user/' + id);
             };
 
-            svc.editUser = function(user){
-                 return $http.put(constant.BASE_URI + '/user', user);
+            svc.getAllUser = function() {
+                return $http.get(constant.BASE_URI + '/user/list');
             };
-            svc.getStats = function(id){
+
+            svc.editUser = function(user) {
+                return $http.put(constant.BASE_URI + '/user', user);
+            };
+            svc.getStats = function(id) {
                 return $http.get(constant.BASE_URI + '/user/' + id + '/stats');
             }
 
-            svc.getRankin = function(id){
+            svc.getRankin = function(id) {
                 return $http.get(constant.BASE_URI + '/user/' + id + '/rankin');
             }
             return svc;

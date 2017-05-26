@@ -52,8 +52,8 @@ public class User extends CommonEntity {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Notification> notifications = new ArrayList<>();
     
-    @ManyToMany
-    private List<Item> inventory = new ArrayList<>();
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ItemUser> itemUser = new ArrayList<>();
 
     public String getFirstName() {
         return firstName;
@@ -151,14 +151,6 @@ public class User extends CommonEntity {
         this.experience = experience;
     }
 
-    public List<Item> getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(List<Item> inventory) {
-        this.inventory = inventory;
-    }
-
 	public List<Notification> getNotifications() {
 		return notifications;
 	}
@@ -169,6 +161,14 @@ public class User extends CommonEntity {
 
 	public boolean add(Notification arg0) {
 		return notifications.add(arg0);
+	}
+
+	public List<ItemUser> getItemUser() {
+		return itemUser;
+	}
+
+	public void setItemUser(List<ItemUser> itemUser) {
+		this.itemUser = itemUser;
 	}
     
 }

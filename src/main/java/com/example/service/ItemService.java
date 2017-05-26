@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface ItemService {
 
-    List<ItemDto> getAllItems();
+    List<ItemDto> getAllItemsByUser(Long idUser);
 }

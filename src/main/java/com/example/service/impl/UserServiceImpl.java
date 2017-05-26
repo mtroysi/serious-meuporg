@@ -102,6 +102,16 @@ public class UserServiceImpl implements UserService {
     public UserDTO getUser(long id){
     	 return (UserDTO) transformers.convertEntityToDto(userRepository.findOne(id), UserDTO.class);
     }
+    
+    /**
+     * Retourne la liste de tous les utilisateurs
+     * @return liste des utilisateurs
+     */
+    @Override
+    public List<UserDTO> getAllUser(){
+    	List<User> listUser = (List<User>) userRepository.findAll();
+    	return listUser.stream().map((User user) -> (UserDTO) this.transformers.convertEntityToDto(user, UserDTO.class)).collect(Collectors.toList());
+    }
 
     /**
      * Modifie un utilisateur
@@ -184,7 +194,7 @@ public class UserServiceImpl implements UserService {
     public List<ItemDto> getUserInventory(Long id) {
         User user = userRepository.findOne(id);
         List<ItemDto> itemDtoList = new ArrayList<>();
-        user.getInventory().stream().forEach(item -> itemDtoList.add((ItemDto)this.transformers.convertEntityToDto(item, ItemDto.class)));
+        // user.getInventory().stream().forEach(item -> itemDtoList.add((ItemDto)this.transformers.convertEntityToDto(item, ItemDto.class)));
         return itemDtoList;
     }
 
@@ -199,11 +209,11 @@ public class UserServiceImpl implements UserService {
         List<Item> items = new ArrayList<>();
 
         itemDtoList.stream().forEach(itemDto -> items.add((Item)this.transformers.convertDtoToEntity(itemDto, Item.class)));
-        user.setInventory(items);
+        //user.setInventory(items);
         user = userRepository.save(user);
 
         itemDtoList.clear();
-        user.getInventory().stream().forEach(item -> itemDtoList.add((ItemDto)this.transformers.convertEntityToDto(item, ItemDto.class)));
+        //user.getInventory().stream().forEach(item -> itemDtoList.add((ItemDto)this.transformers.convertEntityToDto(item, ItemDto.class)));
         return itemDtoList;
     }
     
