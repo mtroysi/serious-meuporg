@@ -38,8 +38,10 @@
                                 </div>
                             </div>
                             <div class="tile-icon"><span><img src="{{item.image}}" height="100" width="100"/></span></div>
-                            <div class="tile-body"><p class="tile-text" title="{{ item.description }}">{{ item.description }}</p></div>
-                            <div class="tile-footer">
+                            <div class="tile-body">
+                                <p class="tile-text" title="{{ item.description }}">{{ item.description }}</p>
+                            </div>
+                            <div class="tile-footer" ng-click="ctrl.activeElement(item.id)">
                                 <span class="strong">UTILISER</span>
                             </div>
                         </div>
