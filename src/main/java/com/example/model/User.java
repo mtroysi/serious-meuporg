@@ -159,8 +159,12 @@ public class User extends CommonEntity {
 		this.notifications = notifications;
 	}
 
-	public boolean add(Notification arg0) {
+	public boolean addNotification(Notification arg0) {
 		return notifications.add(arg0);
+	}
+	
+	public boolean addItemUser(ItemUser arg0) {
+		return itemUser.add(arg0);
 	}
 
 	public List<ItemUser> getItemUser() {

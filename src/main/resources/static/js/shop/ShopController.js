@@ -70,12 +70,13 @@
                 }
             };
 
-            ctrl.validBuyItem = function(idItem) {
-                ShopService.buyItem(item.id).then(function(data) {
-                    // Supprimer si c'est pas un sort ou une malediction
-                    if (!(item.type === "SPELL" ||  item.type === "CURSE")) {
+            ctrl.validBuyItem = function() {
+                var idUserMal = ctrl.itemSelected.type === "CURSE" ? ctrl.userSelected.id : null;
+                InventoryService.buyItem(ctrl.itemSelected.id, idUserMal).then(function(data) {
+                    // Supprimer si c'est pas une malediction
+                    if (ctrl.itemSelected.type !== "CURSE") {
                         var index = ctrl.items.findIndex(function(element) {
-                            return element.id == item.id
+                            return element.id == ctrl.itemSelected.id
                         });
                         if (index !== -1) {
                             ctrl.items.splice(index, 1);

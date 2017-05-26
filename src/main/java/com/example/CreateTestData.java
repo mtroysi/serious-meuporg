@@ -121,7 +121,8 @@ public class CreateTestData {
 		user1.setLastName("UserLastName");
 		user1.setPassword("user");
 		user1.setExperience(35L);
-		user1.setMoney(175L);
+		user1.setMoney(1750L);
+		user1.setLevel(5L);
 		user1.setBoardUsers(null);
 		user1.setTaskUserBids(null);
 		user1.setTaskUsers(null);

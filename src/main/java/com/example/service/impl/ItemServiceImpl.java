@@ -44,8 +44,8 @@ public class ItemServiceImpl implements ItemService {
         
         return items.stream().map(item -> {
         	ItemUser itemU = itemsUser.stream().filter((ItemUser element) -> element.getItem().getId().equals(item.getId())).findFirst().orElse(null);
-        	// We only retrieve items that the user did not buy or the sorts
-        	if(itemU == null || ItemEnum.SPELL.equals(itemU.getItem().getType()) || ItemEnum.CURSE.equals(itemU.getItem().getType())){
+        	// Nous ne récupérons que les objets que l'utilisateur n'a pas achetés ou les malédictions
+        	if(itemU == null || ItemEnum.CURSE.equals(itemU.getItem().getType())){
         		return (ItemDTO)transformers.convertEntityToDto(item, ItemDTO.class);
         	}else{
         		return null;

@@ -38,7 +38,7 @@ public class InventoryController {
     }
     
     @RequestMapping(value = "/{idItem}", method = RequestMethod.POST)
-    public ItemDTO buyItem(@PathVariable("idItem") Long idItem, @RequestBody Long idUser) {
+    public ItemDTO buyItem(@PathVariable("idItem") Long idItem, @RequestBody(required=false) Long idUser) {
         return itemUserService.buyItem(idItem, idUser);
     }
 }
