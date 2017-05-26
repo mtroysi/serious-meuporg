@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="taskDuration">Durée</label>
-                <div class="col-sm-7">
+                <div class="col-sm-6">
                     <input type="number" class="form-control" id="taskDuration"
                            ng-model="ctrl.task.duration"
                            placeholder="Durée"/>
@@ -42,7 +42,7 @@
                 <p class="col-sm-8" ng-hide="ctrl.task.isBid">Non</p>
             </div>
             <div class="row">
-                <b class="col-sm-11 col-sm-offset-1">Commentaires</b>
+                <b class="col-sm-2" style="text-align: right">Commentaires</b>
                 <div class="col-sm-11 col-sm-offset-1 comments" style="overflow: auto;height: 300px;">
                     <comment-div ng-repeat="c in ctrl.task.taskComments | orderBy: 'dateCreation' track by $index"
                                  class="row"
