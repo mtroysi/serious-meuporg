@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function ComponentMenuController(BoardService, CommonMenuService, $scope, AuthenticationService) {
+    function ComponentMenuController(BoardService, CommonMenuService, $scope, AuthenticationService, $state) {
         var ctrl = this;
 
         // Constructor
@@ -22,6 +22,11 @@
             $scope.$watch('this.vm.CommonMenuService.listBoard', function(newValues) {
                 ctrl.listBoard = newValues;
             });
+        };
+
+        ctrl.getClass = function(arrayRoute, idBoard) {
+            console.log($state.current.name, arrayRoute.indexOf($state.current.name) > -1, (idBoard === undefined || $state.params.idBoard == idBoard));
+            return arrayRoute.indexOf($state.current.name) > -1 && (idBoard === undefined || $state.params.idBoard == idBoard) ? 'active' : '';
         };
 
         ctrl.init();

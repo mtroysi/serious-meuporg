@@ -11,11 +11,11 @@
             var ctrl = this;
 
             ctrl.init = function() {
-                if (!$stateParams.id) {
+                if (!$stateParams.idBoard) {
                     ctrl.board = {};
                     ctrl.board.users = [];
                 } else {
-                    BoardService.getBoard($stateParams.id).then(function(data) {
+                    BoardService.getBoard($stateParams.idBoard).then(function(data) {
                         ctrl.board = data;
                         //On ne veut pas que le créateur(= admin) du tableau n'apparaisse dans les utilisateurs invités.
                         //A voir si ça pose pb plus tard ?
@@ -31,7 +31,7 @@
                 BoardService.createBoard(ctrl.board).then(function(data) {
                     ctrl.board = data;
                     CommonMenuService.addListBoard(angular.copy(data));
-                    $state.go('app.board-preview', { id: ctrl.board.id });
+                    $state.go('app.board-preview', { idBoard: ctrl.board.id });
                 });
             };
 
@@ -47,7 +47,7 @@
             ctrl.updateBoard = function() {
                 BoardService.updateBoard(ctrl.board).then(function(data) {
                     CommonMenuService.updateElementListBoard(angular.copy(ctrl.board));
-                    $state.go('app.board-preview', { id: data.id });
+                    $state.go('app.board-preview', { idBoard: data.id });
                 });
             };
 

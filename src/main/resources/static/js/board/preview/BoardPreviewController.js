@@ -35,8 +35,8 @@
                     ctrl.tableGlobal = true;
                     ctrl.getTaskUser(AuthenticationService.getUserId());
                 } else {
-                    ctrl.getBoard($stateParams.id);
-                    ctrl.getTaskBoard($stateParams.id, AuthenticationService.getUserId());
+                    ctrl.getBoard($stateParams.idBoard);
+                    ctrl.getTaskBoard($stateParams.idBoard, AuthenticationService.getUserId());
                 }
 
                 $scope.$watch('this.ctrl.filter.type', function() {
@@ -127,7 +127,7 @@
                 ctrl.typeDisplayTeam = !ctrl.typeDisplayTeam;
                 ctrl.listTask = [];
                 ctrl.listTaskDefault = [];
-                ctrl.getTaskBoard($stateParams.id, AuthenticationService.getUserId());
+                ctrl.getTaskBoard($stateParams.idBoard, AuthenticationService.getUserId());
             };
 
             /**

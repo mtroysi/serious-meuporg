@@ -2,13 +2,13 @@
 
     <ul class="acc-menu">
         <li class="nav-separator"><span>Guildes</span></li>
-        <li><a ui-sref="app.board-create"><i class="ti ti-plus"></i><span>Créer une guilde</span></a></li>
-        <li><a ui-sref="app.board-preview-common"><i class="ti ti-world"></i><span>Vue d'ensemble</span></a></li>
+        <li ng-class="vm.getClass(['app.board-create'])"><a ui-sref="app.board-create"><i class="ti ti-plus"></i><span>Créer une guilde</span></a></li>
+        <li ng-class="vm.getClass(['app.board-preview-common'])"><a ui-sref="app.board-preview-common"><i class="ti ti-world"></i><span>Vue d'ensemble</span></a></li>
         <li class="line-separator"></li>
-        <li ng-repeat="board in vm.listBoard">
+        <li ng-class="vm.getClass(['app.board-preview', 'app.bidPreview', 'app.board-edit'], board.id)" ng-repeat="board in vm.listBoard">
             <a href="javascript:;"><i class="ti ti-layout text-custom-{{board.color}}"></i><span>{{ board.name }}</span></a>
             <ul class="acc-menu">
-                <li><a ui-sref="app.board-preview({ id: board.id})">Visualiser</a></li>
+                <li><a ui-sref="app.board-preview({ idBoard: board.id})">Visualiser</a></li>
                 <li><a ui-sref="app.bidPreview({ idBoard: board.id})">Enchères</a></li>
             </ul>
         </li>
