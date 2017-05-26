@@ -4,14 +4,14 @@
             <div class="col-md-12 titleHeader panel">
                 <div class="panel-heading">
                     <h1><span class="label label-default">Bonjour {{ctrl.user.firstName}}</span></h1>
-                   
+
                 </div>
             </div>
         </div>
     </div>
     <div class="col-md-12 boxMatrice">
-         <div class="row">
-          <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-3">
                 <div class="info-tile tile-success" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
                     <div class="tile-icon"><i class="ti ti-bar-chart"></i></div>
                     <div class="tile-heading"><span>Les tâches en enchère</span></div>
@@ -138,38 +138,32 @@
             </div>
 
         </div>
-        <div class="col-md-12">
-			<div class="panel panel-teal" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
-				<div class="panel-heading">
-					<h2>Classement</h2>
-					
-				</div>
-				<div class="panel-body no-padding">
-                    
-					<table class="table browsers m-n">
-						<tbody>
-							<tr>
-								<td>Votre classement par niveau</td>
-								<td class="text-right">{{ctrl.rankin.rankLevel}}/{{ctrl.rankin.nbrUsers}}</td>
-								<td class="vam" style="width: 56px;">	
-	                            </td>
-							</tr>	
-                            <tr>
-								<td>Votre classement par argent</td>
-								<td class="text-right">{{ctrl.rankin.rankMoney}}/{{ctrl.rankin.nbrUsers}}</td>
-								<td class="vam" style="width: 56px;">
-	                            </td>
-							</tr>	
-                            <tr>
-								<td>Votre classement par expérience</td>
-								<td class="text-right">{{ctrl.rankin.rankExperience}}/{{ctrl.rankin.nbrUsers}}</td>
-								<td class="vam" style="width: 56px;">
-	                            </td>
-							</tr>						
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-teal">
+                    <div class="panel-heading">
+                        <h2>Classement</h2>
+                    </div>
+                    <div class="panel-body no-padding heightAuto">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Votre classement par niveau</td>
+                                    <td class="text-right">{{ctrl.rankin.rankLevel}}/{{ctrl.rankin.nbrUsers}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Votre classement par argent</td>
+                                    <td class="text-right">{{ctrl.rankin.rankMoney}}/{{ctrl.rankin.nbrUsers}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Votre classement par expérience</td>
+                                    <td class="text-right">{{ctrl.rankin.rankExperience}}/{{ctrl.rankin.nbrUsers}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
