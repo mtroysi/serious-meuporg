@@ -6,7 +6,7 @@ import com.example.enumeration.ItemEnum;
  * Created by Morgane TROYSI on 19/05/17.
  */
 
-public class ItemDto {
+public class ItemDTO {
 
     private Long id;
 

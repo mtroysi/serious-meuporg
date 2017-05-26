@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.dto.ItemDto;
+import com.example.dto.ItemDTO;
 import com.example.dto.UserDTO;
 import com.example.dto.UserRankinDTO;
 import com.example.dto.UserStatsDTO;
@@ -32,9 +32,9 @@ public interface UserService {
     
     UserRankinDTO getRankin(long id);
 
-    List<ItemDto> getUserInventory(Long id);
+    List<ItemDTO> getUserInventory(Long id);
 
-    List<ItemDto> updateInventory(List<ItemDto> items);
+    List<ItemDTO> updateInventory(List<ItemDTO> items);
     
     void manageMoneyExpUser(User user, Integer money, Integer exp);
 }

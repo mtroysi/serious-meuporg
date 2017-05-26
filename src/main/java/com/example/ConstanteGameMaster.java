@@ -12,4 +12,7 @@ public final class ConstanteGameMaster {
 
 	public static final String WIN_BID_TITLE= "Tu as gagné une enchère";
 	public static final String WIN_BID_CONTENT= "Tu as gagné une enchère importante : ";
+	
+	public static final String ITEM_NO_RESSOURCE = "Vous n'avez pas assez de ressource";
+	public static final String ITEM_NO_FOUND = "Item n'a pas été trouvé dans la base de données";
 }

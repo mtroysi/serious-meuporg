@@ -91,6 +91,8 @@ public class CreateTestData {
 
 	private Task task6;
 
+	private User user2;
+
 	@RequestMapping("/tools/createTestData")
 	public String run() throws ParseException, ScriptException, SQLException, ParseException {
 		// Suppression de tous les éléments de la base
@@ -124,6 +126,21 @@ public class CreateTestData {
 		user1.setTaskUserBids(null);
 		user1.setTaskUsers(null);
 		this.user1 = this.userRepository.save(user1);
+		
+		User user2 = new User();
+		user2.setId(2L);
+		user2.setVersion(1);
+		user2.setDateCreation(new Date());
+		user2.setEmail("user@user.fr");
+		user2.setFirstName("User2");
+		user2.setLastName("user2");
+		user2.setPassword("user");
+		user2.setExperience(35L);
+		user2.setMoney(175L);
+		user2.setBoardUsers(null);
+		user2.setTaskUserBids(null);
+		user2.setTaskUsers(null);
+		this.user2 = this.userRepository.save(user2);
 		
 		
 		/* CREATION PERIODICITY */

@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.dto.ItemDto;
+import com.example.dto.ItemDTO;
 import com.example.enumeration.ItemEnum;
 import com.example.model.Item;
 import com.example.model.ItemUser;
@@ -38,7 +38,7 @@ public class ItemServiceImpl implements ItemService {
      * @return la liste de tous les items
      */
     @Override
-    public List<ItemDto> getAllItemsByUser(Long userId) {
+    public List<ItemDTO> getAllItemsByUser(Long userId) {
         List<Item> items = (List<Item>)itemRepository.findAll();
         List<ItemUser> itemsUser = itemUserRepository.findByUserId(userId);
         
@@ -46,7 +46,7 @@ public class ItemServiceImpl implements ItemService {
         	ItemUser itemU = itemsUser.stream().filter((ItemUser element) -> element.getItem().getId().equals(item.getId())).findFirst().orElse(null);
         	// We only retrieve items that the user did not buy or the sorts
         	if(itemU == null || ItemEnum.SPELL.equals(itemU.getItem().getType()) || ItemEnum.CURSE.equals(itemU.getItem().getType())){
-        		return (ItemDto)transformers.convertEntityToDto(item, ItemDto.class);
+        		return (ItemDTO)transformers.convertEntityToDto(item, ItemDTO.class);
         	}else{
         		return null;
         	}

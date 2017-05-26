@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.dto.ItemDto;
+import com.example.dto.ItemDTO;
 import com.example.dto.UserDTO;
 import com.example.dto.UserRankinDTO;
 import com.example.dto.UserStatsDTO;

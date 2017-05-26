@@ -1,6 +1,6 @@
 package com.example.service.impl;
 
-import com.example.dto.ItemDto;
+import com.example.dto.ItemDTO;
 import com.example.dto.TagDTO;
 import com.example.model.Item;
 import com.example.model.Tag;

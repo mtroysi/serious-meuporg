@@ -71,9 +71,18 @@
             };
 
             ctrl.validBuyItem = function(idItem) {
-                InventoryService.buyItem(item.id).then(function(data) {
-                    //Notif pour dire que c'est acheter
-                    //Supprimer si c'est pas un sort ou une malediction
+                ShopService.buyItem(item.id).then(function(data) {
+                    // Supprimer si c'est pas un sort ou une malediction
+                    if (!(item.type === "SPELL" ||  item.type === "CURSE")) {
+                        var index = ctrl.items.findIndex(function(element) {
+                            return element.id == item.id
+                        });
+                        if (index !== -1) {
+                            ctrl.items.splice(index, 1);
+                            ctrl.filteredItems = angular.copy(ctrl.items);
+                            ctrl.filterItems();
+                        }
+                    }
                 });
             }
 

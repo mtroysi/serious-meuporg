@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.example.dto.ItemDto;
+import com.example.dto.ItemDTO;
 import com.example.model.Item;
 import com.example.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -191,9 +191,9 @@ public class UserServiceImpl implements UserService {
      * @return liste des items possédés par l'utilisateur
      */
     @Override
-    public List<ItemDto> getUserInventory(Long id) {
+    public List<ItemDTO> getUserInventory(Long id) {
         User user = userRepository.findOne(id);
-        List<ItemDto> itemDtoList = new ArrayList<>();
+        List<ItemDTO> itemDtoList = new ArrayList<>();
         // user.getInventory().stream().forEach(item -> itemDtoList.add((ItemDto)this.transformers.convertEntityToDto(item, ItemDto.class)));
         return itemDtoList;
     }
@@ -204,7 +204,7 @@ public class UserServiceImpl implements UserService {
      * @return inventaire mis à jour
      */
     @Override
-    public List<ItemDto> updateInventory(List<ItemDto> itemDtoList) {
+    public List<ItemDTO> updateInventory(List<ItemDTO> itemDtoList) {
         User user = this.getCurrentUser();
         List<Item> items = new ArrayList<>();
 
