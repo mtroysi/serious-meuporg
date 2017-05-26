@@ -3,18 +3,40 @@ package com.example;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.Date;
 
-import com.example.enumeration.RoleEnum;
-import com.example.enumeration.*;
-import com.example.model.*;
-import com.example.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.init.ScriptException;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.enumeration.ItemEnum;
+import com.example.enumeration.PeriodicityEnum;
+import com.example.enumeration.PriorityEnum;
+import com.example.enumeration.RoleEnum;
+import com.example.enumeration.StatusEnum;
+import com.example.enumeration.TypeNotifEnum;
+import com.example.model.Board;
+import com.example.model.BoardUser;
+import com.example.model.ColonneKanban;
+import com.example.model.Item;
+import com.example.model.Notification;
+import com.example.model.Periodicity;
+import com.example.model.Role;
+import com.example.model.Task;
+import com.example.model.TaskUser;
+import com.example.model.User;
+import com.example.repository.BoardRepository;
+import com.example.repository.BoardUserRepository;
+import com.example.repository.ColonneKanbanRepository;
+import com.example.repository.ItemRepository;
+import com.example.repository.NotificationRepository;
+import com.example.repository.PeriodicityRepository;
+import com.example.repository.RoleRepository;
+import com.example.repository.TaskRepository;
+import com.example.repository.TaskUserRepository;
+import com.example.repository.UserRepository;
 
 @RestController
 public class CreateTestData {
@@ -121,7 +143,7 @@ public class CreateTestData {
 		user1.setLastName("UserLastName");
 		user1.setPassword("user");
 		user1.setExperience(35L);
-		user1.setMoney(1750L);
+		user1.setMoney(1750L);  
 		user1.setLevel(5L);
 		user1.setBoardUsers(null);
 		user1.setTaskUserBids(null);
@@ -132,7 +154,7 @@ public class CreateTestData {
 		user2.setId(2L);
 		user2.setVersion(1);
 		user2.setDateCreation(new Date());
-		user2.setEmail("user@user.fr");
+		user2.setEmail("useeer@user.fr");
 		user2.setFirstName("User2");
 		user2.setLastName("user2");
 		user2.setPassword("user");

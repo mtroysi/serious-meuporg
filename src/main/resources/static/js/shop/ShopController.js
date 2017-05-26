@@ -7,7 +7,7 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('ShopController', function($scope, AuthenticationService, CommonDialogService, ShopService, UserService, InventoryService) {
+        .controller('ShopController', function(CommonProgressService, CommonNotificationBoxService, $scope, AuthenticationService, CommonDialogService, ShopService, UserService, InventoryService) {
             var ctrl = this;
             ctrl.items = [];
             ctrl.filteredItems = [];
@@ -73,6 +73,10 @@
             ctrl.validBuyItem = function() {
                 var idUserMal = ctrl.itemSelected.type === "CURSE" ? ctrl.userSelected.id : null;
                 InventoryService.buyItem(ctrl.itemSelected.id, idUserMal).then(function(data) {
+                    CommonNotificationBoxService.info("L'objet a été acheté", "");
+                    ctrl.user.money = ctrl.user.money - ctrl.itemSelected.price;
+                    CommonProgressService.setMoney(ctrl.user.money);
+
                     // Supprimer si c'est pas une malediction
                     if (ctrl.itemSelected.type !== "CURSE") {
                         var index = ctrl.items.findIndex(function(element) {
@@ -87,9 +91,6 @@
                 });
             }
 
-            ctrl.objectAlreadyBought = function(item) {
-                return _.findWhere(ctrl.inventory, { 'id': item.id }) !== undefined;
-            };
 
             /**
              * Open panel FILTER
@@ -103,10 +104,7 @@
                     if (ctrl.filter.type === 'ACHETABLE') {
                         return ctrl.canBeBought(e);
                     } else {
-                        if (e.type === 'AVATAR' || e.type === 'WALLPAPER') {
-                            // return !(ctrl.objectAlreadyBought(e)) && e.type === ctrl.filter.type || !(ctrl.objectAlreadyBought(e)) && ctrl.filter.type === 'TOUT';
-                            return !(ctrl.objectAlreadyBought(e)) & (e.type === ctrl.filter.type | ctrl.filter.type === 'TOUT');
-                        } else return e.type === ctrl.filter.type || ctrl.filter.type === 'TOUT';
+                        return e.type === ctrl.filter.type || ctrl.filter.type === 'TOUT';
                     }
                 });
             };
