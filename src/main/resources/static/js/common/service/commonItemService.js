@@ -56,7 +56,7 @@
                 if (svc.interval) {
                     $interval.cancel(svc.interval);
                 }
-                svc.interval = $interval(svc.spellHappyAction, 30000);
+                svc.interval = $interval(svc.spellHappyAction, 20000);
 
                 svc.spellHappy = true;
 
