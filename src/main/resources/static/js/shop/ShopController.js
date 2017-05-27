@@ -16,6 +16,7 @@
 
             ctrl.init = function() {
                 var idUser = AuthenticationService.getUserId();
+                ctrl.filter = { type: "TOUT" };
 
                 ShopService.getAllItemsByUserId(idUser).then(function(data) {
                     ctrl.items = data;

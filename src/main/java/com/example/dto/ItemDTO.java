@@ -25,6 +25,8 @@ public class ItemDTO {
     private Boolean isReusable;
 
     private String image;
+    
+    private String keyItem;
 
     public String getName() {
         return name;
@@ -97,4 +99,21 @@ public class ItemDTO {
     public void setId(Long id) {
         this.id = id;
     }
+
+	public Boolean getIsReusable() {
+		return isReusable;
+	}
+
+	public void setIsReusable(Boolean isReusable) {
+		this.isReusable = isReusable;
+	}
+
+	public String getKeyItem() {
+		return keyItem;
+	}
+
+	public void setKeyItem(String keyItem) {
+		this.keyItem = keyItem;
+	}
+    
 }

@@ -143,8 +143,8 @@ public class CreateTestData {
 		user1.setLastName("UserLastName");
 		user1.setPassword("user");
 		user1.setExperience(35L);
-		user1.setMoney(1750L);  
-		user1.setLevel(5L);
+		user1.setMoney(51750L);  
+		user1.setLevel(50L);
 		user1.setBoardUsers(null);
 		user1.setTaskUserBids(null);
 		user1.setTaskUsers(null);
@@ -570,17 +570,19 @@ public class CreateTestData {
 		/* CREATION OBJETS */
 		Item item1 = new Item();
 		item1.setName("Joli fond d'écran");
+		item1.setKeyItem("FOND_TOULOUSE");
 		item1.setDescription("Fond d'écran pour la page de guilde représentant la ville de Toulouse");
 		item1.setPrice(250L);
 		item1.setRequiredLevel(1L);
 		item1.setReusable(Boolean.TRUE);
 		item1.setType(ItemEnum.WALLPAPER);
-		item1.setUrl("https://wallpaperscraft.com/image/toulouse_city_square_night_france_58716_3840x2160.jpg");
-		item1.setImage("https://wallpaperscraft.com/image/toulouse_city_square_night_france_58716_3840x2160.jpg");
+		item1.setUrl("https://wallpaperscraft.com/image/toulouse_city_square_night_france_58716_1920x1080.jpg");
+		item1.setImage("https://wallpaperscraft.com/image/toulouse_city_square_night_france_58716_1920x1080.jpg");
 		itemRepository.save(item1);
 		
 		Item item2 = new Item();
 		item2.setType(ItemEnum.AVATAR);
+		item2.setKeyItem("AVATAR_CHEVALIER");
 		item2.setName("Avatar chevalier");
 		item2.setDescription("Avatar chevalier");
 		item2.setImage("https://secure.gravatar.com/avatar/2ccebdcad2bc218b8ac2f9e8cdecea98?s=200&d=identicon&r=g");
@@ -593,6 +595,7 @@ public class CreateTestData {
 		Item item3 = new Item();
 		item3.setType(ItemEnum.AVATAR);
 		item3.setName("Avatar Mechant");
+		item3.setKeyItem("AVATAR_MECHANT");
 		item3.setDescription("Avatar Mechant");
 		item3.setImage("http://www.snut.fr/wp-content/uploads/2015/12/image-de-souris-5-150x150.png");
 		item3.setUrl("http://www.snut.fr/wp-content/uploads/2015/12/image-de-souris-5-150x150.png");
@@ -603,6 +606,7 @@ public class CreateTestData {
 		
 		Item item4 = new Item();
 		item4.setName("Malediction de la neige");
+		item4.setKeyItem("CURSE_SNOW");
 		item4.setDescription("Génère de la neige sur l'ecran de l'utilisateur pendant 7 jours");
 		item4.setPrice(175L);
 		item4.setRequiredLevel(2L);
@@ -613,6 +617,7 @@ public class CreateTestData {
 		itemRepository.save(item4);
 		
 		Item item5 = new Item();
+		item5.setKeyItem("SPELL_HAPPY");
 		item5.setName("Sort de bonne humeur");
 		item5.setDescription("Génère aléatoirement des notifications pour vous mettre de bonne humeur");
 		item5.setPrice(175L);

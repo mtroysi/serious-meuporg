@@ -40,6 +40,9 @@ public class Item extends CommonEntity {
     @Column(name = "duration")
     private Integer duration;
     
+    @Column(name = "key_item")
+    private String keyItem;
+    
     public String getName() {
         return name;
     }
@@ -118,5 +121,13 @@ public class Item extends CommonEntity {
 
 	public void setDuration(Integer duration) {
 		this.duration = duration;
+	}
+
+	public String getKeyItem() {
+		return keyItem;
+	}
+
+	public void setKeyItem(String keyItem) {
+		this.keyItem = keyItem;
 	}
 }

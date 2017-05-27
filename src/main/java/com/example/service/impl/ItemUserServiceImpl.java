@@ -51,7 +51,7 @@ public class ItemUserServiceImpl implements ItemUserService {
         	//On regarde si l'utilisateur a les moyens d'acheter l'item
     		if(item.getPrice() > user.getMoney() || item.getRequiredLevel() > user.getLevel()){
             	throw new GameMasterException(ConstanteGameMaster.ITEM_NO_RESSOURCE);
-    		}else{
+    		}else{ 
     			user.setMoney(user.getMoney() - item.getPrice());
     			
     			ItemUser itemUser = new ItemUser();
