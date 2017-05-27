@@ -15,23 +15,41 @@ import java.util.Date;
 @Table(name = "task_user")
 public class TaskUser extends CommonEntity {
 
+    /**
+     * Utilisateur
+     */
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    /**
+     * Tâche
+     */
     @ManyToOne
     @JoinColumn(name = "task_id")
     private Task task;
 
+    /**
+     * Statut
+     */
     @Column(name = "status")
     private StatusEnum status;
 
+    /**
+     * Date de début
+     */
     @Column(name = "date_begin")
     private Date dateBegin;
 
+    /**
+     * Durée réelle de réalisation
+     */
     @Column(name = "duration_reel")
     private Double durationReel;
-    
+
+    /**
+     * Colonne Kanban
+     */
     @ManyToOne
     @JoinColumn(name = "colonne_kanban_id", nullable= true)
     private ColonneKanban colonneKanban;

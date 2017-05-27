@@ -12,28 +12,52 @@ import javax.persistence.*;
 @Table(name = "item")
 public class Item extends CommonEntity {
 
+    /**
+     * Nom de l'objet
+     */
     @Column(name = "name")
     private String name;
 
+    /**
+     * Type de l'objet
+     */
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
     private ItemEnum type;
 
+    /**
+     * Prix
+     */
     @Column(name = "price")
     private Long price = 0L;
 
+    /**
+     * Niveau requis
+     */
     @Column(name = "requiredLevel")
     private Long requiredLevel = 1L;
 
+    /**
+     * Image à afficher
+     */
     @Column(name = "image")
     private String image;
 
+    /**
+     * URL de l'image (pour les avatars et les fonds d'écran)
+     */
     @Column(name = "url")
     private String url;
 
+    /**
+     * Description
+     */
     @Column(name = "description")
     private String description;
 
+    /**
+     * est ré-utilisable (disparaît ou non de l'inventaire après utilisation)
+     */
     @Column(name = "is_reusable")
     private Boolean isReusable = Boolean.FALSE;
 

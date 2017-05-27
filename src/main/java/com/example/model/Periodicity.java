@@ -17,12 +17,21 @@ import com.example.enumeration.PeriodicityEnum;
 @Table(name = "periodicity")
 public class Periodicity extends CommonEntity {
 
+	/**
+	 * Type de fréquence journalier / mensuel / annuel
+	 */
 	@Column(name = "type")
 	private PeriodicityEnum type;
 
+	/**
+	 * Fréquence
+	 */
 	@Column(name = "frequency")
 	private Integer frequency = 1;
 
+	/**
+	 * Date de début
+	 */
 	@Column(name = "date_begin")
 	private Date dateBegin;
 	

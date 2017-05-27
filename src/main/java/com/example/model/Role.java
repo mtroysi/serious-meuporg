@@ -12,6 +12,9 @@ import javax.persistence.*;
 @Table(name = "role")
 public class Role extends CommonEntity {
 
+    /**
+     * Role.
+     */
     @Column(name = "code")
     @Enumerated(EnumType.STRING)
     private RoleEnum code;

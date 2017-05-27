@@ -13,45 +13,87 @@ import java.util.List;
 @Table(name = "user")
 public class User extends CommonEntity {
 
+    /**
+     * Prénom
+     */
     @Column(name = "first_name")
     private String firstName;
 
+    /**
+     * Nom
+     */
     @Column(name = "last_name")
     private String lastName;
 
+    /**
+     * Adresse e-mail
+     */
     @Column(name = "email", unique = true)
     private String email;
 
+    /**
+     * Mot de passe
+     */
     @Column(name = "password")
     private String password;
 
+    /**
+     * Date d'inscription
+     */
     @Column(name = "date_creation")
     private Date dateCreation;
-    
+
+    /**
+     * Avatar
+     */
     @Column(name = "avatar")
     private String avatar;
 
+    /**
+     * Argent
+     */
     @Column(name = "money")
     private Long money = 0L;
 
+    /**
+     * Niveau
+     */
     @Column(name = "level")
     private Long level = 1L;
 
+    /**
+     * Expérience
+     */
     @Column(name = "xp")
     private Long experience = 0L;
 
+    /**
+     * Tableaux
+     */
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<BoardUser> boardUsers = new ArrayList<>();
 
+    /**
+     * Tâches
+     */
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TaskUser> taskUsers = new ArrayList<>();
 
+    /**
+     * Tâches en enchères
+     */
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TaskUserBid> taskUserBids = new ArrayList<>();
-    
+
+    /**
+     * Notifications
+     */
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Notification> notifications = new ArrayList<>();
-    
+
+    /**
+     * Inventaire
+     */
     @ManyToMany
     private List<Item> inventory = new ArrayList<>();
 

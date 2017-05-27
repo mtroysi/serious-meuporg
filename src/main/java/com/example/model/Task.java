@@ -24,66 +24,126 @@ import com.example.enumeration.PriorityEnum;
 @Table(name = "task")
 public class Task extends CommonEntity {
 
+    /**
+     * Titre
+     */
     @Column(name = "title")
     private String title;
 
+    /**
+     * Contenu
+     */
     @Column(name = "content")
     private String content;
 
+    /**
+     * Priorité
+     */
     @Column(name = "priority")
     private PriorityEnum priority;
 
+    /**
+     * Date de création
+     */
     @Column(name = "date_creation")
     private Date dateCreation;
-    
+
+    /**
+     * Echéance
+     */
     @Column(name = "date_end")
     private Date dateEnd;
-    
+
+    /**
+     * Durée
+     */
     @Column(name = "duration")
     private Double duration;
 
+    /**
+     * Est aux enchères
+     */
     @Column(name = "is_bid")
     private Boolean isBid;
 
+    /**
+     * Date fin enchère
+     */
     @Column(name = "date_end_bid")
     private Date dateEndBid;
 
+    /**
+     * Argent rapporté par la tâche
+     */
     @Column(name = "money")
     private Long money;
 
+    /**
+     * Expérience rapportée par la tâche
+     */
     @Column(name = "xp")
     private Long experience;
 
+    /**
+     * Fréquence
+     */
     @OneToOne
     @JoinColumn(name = "periodicity_id", nullable = true)
     private Periodicity periodicity;
 
+    /**
+     * Créateur
+     */
     @ManyToOne
     @JoinColumn(name = "creator_id")
     private User creator;
 
+    /**
+     * Tableau
+     */
     @ManyToOne
     @JoinColumn(name = "board_id")
     private Board board;
 
+    /**
+     * Tags
+     */
     @ManyToMany
     private List<Tag> tags = new ArrayList<>();
 
+    /**
+     * Liens
+     */
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<Link> links = new ArrayList<>();
 
+    /**
+     * Checklists
+     */
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<Checklist> checklists = new ArrayList<>();
 
+    /**
+     * Destinataires de la tâches
+     */
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<TaskUser> taskUsers = new ArrayList<>();
 
+    /**
+     * Enchèrissements des utilisateurs
+     */
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<TaskUserBid> taskUserBids = new ArrayList<>();
 
+    /**
+     * Tâches parentes
+     */
     @ManyToMany
     private List<Task> taskParents = new ArrayList<>();
 
+    /**
+     * Commentaires
+     */
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<Comment> taskComments = new ArrayList<>();
 

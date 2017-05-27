@@ -12,12 +12,21 @@ import java.util.List;
 @Table(name = "checklist")
 public class Checklist extends CommonEntity {
 
+    /**
+     * Nom de la checklist
+     */
     @Column(name = "name")
     private String name;
 
+    /**
+     * Checkbox de la checklist
+     */
     @OneToMany(mappedBy = "checklist", cascade = CascadeType.ALL)
     private List<ChecklistItem> checklistItems = new ArrayList<>();
 
+    /**
+     * Tâche
+     */
     @ManyToOne
     @JoinColumn(name = "task_id")
     private Task task;
