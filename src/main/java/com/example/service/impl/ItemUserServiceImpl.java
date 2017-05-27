@@ -131,11 +131,17 @@ public class ItemUserServiceImpl implements ItemUserService {
     	ItemUser itemUser = user.getItemUser().stream().filter((ItemUser iu) -> iu.getItem().getId().equals(idItem)).findFirst().orElse(null);
     	
     	if(item != null && itemUser != null && !ItemEnum.CURSE.equals(item.getType())){
+    		// Si c'est un avatar on va modifier l'utilisateur.
+    		if(ItemEnum.AVATAR.equals(item.getType())){
+    			user.setAvatar(active==false ? null : item.getImage());
+    			userRepository.save(user);
+    		}
+    		
     		//Si c'est pas un Sort alors c'est un type unique, on va donc passer tous les autres en non active
     		if(!ItemEnum.SPELL.equals(item.getType())){ 
         		itemUserRepository.updateNoActiveByType(item.getType().name());
     		}
-    		itemUserRepository.updateActiveByIdItem(item.getId(), active);
+    		itemUserRepository.updateActiveByIdItem(item.getId(), active);    			
     	}else{
     		throw new GameMasterException(ConstanteGameMaster.ITEM_NO_FOUND);
     	}

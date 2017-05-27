@@ -583,8 +583,8 @@ public class CreateTestData {
 		item2.setType(ItemEnum.AVATAR);
 		item2.setName("Avatar chevalier");
 		item2.setDescription("Avatar chevalier");
-		item2.setImage("https://d10tatjf967fp1.cloudfront.net/image/upload/s--ols54Dc3--/c_fill,d_avatar:v2:bronze.jpg,g_face,h_240,w_240/v1435077462/user/cqfyuufj5l85u/avatar.jpg");
-		item2.setUrl("https://d10tatjf967fp1.cloudfront.net/image/upload/s--ols54Dc3--/c_fill,d_avatar:v2:bronze.jpg,g_face,h_240,w_240/v1435077462/user/cqfyuufj5l85u/avatar.jpg");
+		item2.setImage("https://secure.gravatar.com/avatar/2ccebdcad2bc218b8ac2f9e8cdecea98?s=200&d=identicon&r=g");
+		item2.setUrl("https://secure.gravatar.com/avatar/2ccebdcad2bc218b8ac2f9e8cdecea98?s=200&d=identicon&r=g");
 		item2.setReusable(Boolean.TRUE);
 		item2.setPrice(1000L);
 		item2.setRequiredLevel(10L);
