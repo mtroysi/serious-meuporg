@@ -17,16 +17,28 @@ import com.example.enumeration.StatusEnum;
 @Table(name = "colonnekanban")
 public class ColonneKanban extends CommonEntity {
 
+	/**
+	 * Titre de la colonne
+	 */
     @Column(name = "title")
     private String title;
 
-    @Column(name = "color")
+	/**
+	 * Couleur de la colonne
+	 */
+	@Column(name = "color")
     private String color;
 
+	/**
+	 * Correspondance de la colonne avec les valeurs Kanban todo / in progress / done
+	 */
     @Column(name = "status", nullable = true)
     private StatusEnum status;
-    
-    @ManyToOne
+
+	/**
+	 * Tableau
+	 */
+	@ManyToOne
     @JoinColumn(name = "board", nullable = true)
     private Board board;
 

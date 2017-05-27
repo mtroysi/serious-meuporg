@@ -10,14 +10,23 @@ import javax.persistence.*;
 @Table(name = "task_user_bid")
 public class TaskUserBid extends CommonEntity {
 
+    /**
+     * Utilisateur
+     */
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    /**
+     * Tâche
+     */
     @ManyToOne
     @JoinColumn(name = "task_id")
     private Task task;
 
+    /**
+     * Durée (enchère)
+     */
     @Column(name = "duration")
     private Double duration;
     

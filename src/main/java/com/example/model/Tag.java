@@ -11,12 +11,22 @@ import javax.persistence.Table;
 @Entity(name = "tag")
 @Table(name = "tag")
 public class Tag extends CommonEntity {
+
+    /**
+     * Code
+     */
     @Column(name = "code")
     private String code;
 
+    /**
+     * Nom
+     */
     @Column(name = "name")
     private String name;
 
+    /**
+     * Couleur
+     */
     @Column(name = "color")
     private String color;
 

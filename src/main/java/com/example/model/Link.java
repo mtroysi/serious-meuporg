@@ -10,12 +10,21 @@ import javax.persistence.*;
 @Table(name = "link")
 public class Link extends CommonEntity {
 
+    /**
+     * URL
+     */
     @Column(name = "link")
     private String link;
 
+    /**
+     * Titre du lien
+     */
     @Column(name = "title")
     private String title;
 
+    /**
+     * Tâche
+     */
     @ManyToOne
     @JoinColumn(name = "task_id")
     private Task task;

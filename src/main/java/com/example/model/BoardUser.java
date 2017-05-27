@@ -10,14 +10,23 @@ import javax.persistence.*;
 @Table(name = "board_user")
 public class BoardUser extends CommonEntity {
 
+    /**
+     * Utilisateur.
+     */
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    /**
+     * Tableau.
+     */
     @ManyToOne
     @JoinColumn(name = "board_id")
     private Board board;
 
+    /**
+     * Rôle de l'utilisateur sur le tableau.
+     */
     @ManyToOne
     @JoinColumn(name="role_id")
     private Role role;

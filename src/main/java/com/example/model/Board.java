@@ -20,39 +20,62 @@ import javax.persistence.Table;
 @Table(name = "board")
 public class Board extends CommonEntity {
 
+    /**
+     * Nom du tableau.
+     */
     @Column(name = "name")
     private String name;
-    
+
+    /**
+     * Couleur du tableau.
+     */
     @Column(name = "color")
     private String color;
 
+    /**
+     * Date de création du tableau.
+     */
     @Column(name = "date_creation")
     private Date dateCreation;
-    
+
     @Column(name = "money_win_bid")
     private Integer moneyWinBid;
 
     @Column(name = "exp_win_bid")
     private Integer expWinBid;
-    
+
     @Column(name = "money_done_task")
     private Integer moneyDoneTask;
 
     @Column(name = "exp_done_task")
     private Integer expDoneTask;
-    
+
+    /**
+     * Créateur du tableau
+     */
     @ManyToOne
     @JoinColumn(name="creator", nullable=false)
     private User creator;
 
+    /**
+     * Tâches du tableau
+     */
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
     private List<Task> tasks = new ArrayList<>();
 
+    /**
+     * Utilisateurs du tableau
+     */
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BoardUser> boardUsers = new ArrayList<>();
-    
+
+    /**
+     * Colonnes du tableau en vue Kanban
+     */
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
     private List<ColonneKanban> colonneKanbans = new ArrayList<>();
+
+    /** Getters & setters */
 
     public String getName() {
         return name;

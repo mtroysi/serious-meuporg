@@ -10,12 +10,21 @@ import javax.persistence.*;
 @Table(name = "checklist_item")
 public class ChecklistItem extends CommonEntity {
 
+    /**
+     * Nom de la checkbox
+     */
     @Column(name = "name")
     private String name;
 
+    /**
+     * Valeur de la checkbox (true / false)
+     */
     @Column(name = "value")
     private Boolean value;
 
+    /**
+     * Checklist
+     */
     @ManyToOne
     @JoinColumn(name = "checklist_id")
     private Checklist checklist;

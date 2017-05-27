@@ -17,22 +17,40 @@ import com.example.enumeration.TypeNotifEnum;
 @Table(name = "notification")
 public class Notification extends CommonEntity {
 
+    /**
+     * Titre
+     */
     @Column(name = "title")
     private String title;
 
+    /**
+     * Contenu
+     */
     @Column(name = "content")
     private String content;
 
+    /**
+     * Destinataire de la notification
+     */
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
     private User user;
 
+    /**
+     * Date de création
+     */
     @Column(name = "date_creation")
     private Date dateCreation;
 
+    /**
+     * A été lue ou non par l'utilisateur
+     */
     @Column(name = "is_read")
     private Boolean isRead;
-    
+
+    /**
+     * Type de la notification
+     */
     @Column(name = "type")
     private TypeNotifEnum type;
     
