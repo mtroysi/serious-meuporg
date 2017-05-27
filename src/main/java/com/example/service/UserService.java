@@ -1,14 +1,13 @@
 package com.example.service;
 
+import java.util.List;
+
 import com.example.dto.ItemDTO;
+import com.example.dto.ItemUserDTO;
 import com.example.dto.UserDTO;
 import com.example.dto.UserRankinDTO;
 import com.example.dto.UserStatsDTO;
 import com.example.model.User;
-
-import java.util.List;
-
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * Created by Morgane TROYSI on 16/05/17.
@@ -32,7 +31,7 @@ public interface UserService {
     
     UserRankinDTO getRankin(long id);
 
-    List<ItemDTO> getUserInventory(Long id);
+    List<ItemUserDTO> getUserInventory(Long id);
 
     List<ItemDTO> updateInventory(List<ItemDTO> items);
     

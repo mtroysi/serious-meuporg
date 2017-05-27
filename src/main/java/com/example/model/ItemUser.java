@@ -24,6 +24,8 @@ public class ItemUser extends CommonEntity {
     @Column(name = "date_end")
     private Date dateEnd;
 
+    @Column(name = "active")
+    private Boolean active;
     
 	public User getUser() {
 		return user;

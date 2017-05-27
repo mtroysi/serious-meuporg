@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.dto.ItemDTO;
+import com.example.dto.ItemUserDTO;
 import com.example.service.ItemUserService;
 import com.example.service.UserService;
 
@@ -28,7 +29,7 @@ public class InventoryController {
     ItemUserService itemUserService;
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public List<ItemDTO> getInventory(@PathVariable("id") Long idUser){
+    public List<ItemUserDTO> getInventory(@PathVariable("id") Long idUser){
         return userService.getUserInventory(idUser);
     }
 

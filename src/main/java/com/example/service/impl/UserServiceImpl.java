@@ -5,24 +5,25 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.example.dto.ItemDTO;
-import com.example.model.Item;
-import com.example.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.example.ConstanteGameMaster;
-import com.example.dto.TagDTO;
+import com.example.dto.ItemDTO;
+import com.example.dto.ItemUserDTO;
 import com.example.dto.UserDTO;
 import com.example.dto.UserRankinDTO;
 import com.example.dto.UserStatsDTO;
 import com.example.enumeration.StatusEnum;
 import com.example.exception.GameMasterException;
 import com.example.model.BoardUser;
+import com.example.model.Item;
+import com.example.model.ItemUser;
 import com.example.model.TaskUser;
 import com.example.model.TaskUserBid;
 import com.example.model.User;
+import com.example.repository.ItemRepository;
 import com.example.repository.UserRepository;
 import com.example.service.UserService;
 import com.example.transformers.Transformers;
@@ -191,11 +192,13 @@ public class UserServiceImpl implements UserService {
      * @return liste des items possédés par l'utilisateur
      */
     @Override
-    public List<ItemDTO> getUserInventory(Long id) {
+    public List<ItemUserDTO> getUserInventory(Long id) {
         User user = userRepository.findOne(id);
-        List<ItemDTO> itemDtoList = new ArrayList<>();
-        // user.getInventory().stream().forEach(item -> itemDtoList.add((ItemDto)this.transformers.convertEntityToDto(item, ItemDto.class)));
-        return itemDtoList;
+        return user.getItemUser().stream().map((ItemUser item) -> {
+        	ItemUserDTO itemuserdto = (ItemUserDTO) this.transformers.convertEntityToDto(item.getItem(), ItemUserDTO.class);
+        	itemuserdto.setDateEnd(item.getDateEnd());
+        	return itemuserdto;
+        }).collect(Collectors.toList());
     }
 
     /**
