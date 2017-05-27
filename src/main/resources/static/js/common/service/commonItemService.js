@@ -16,7 +16,7 @@
                 // ACTIVATION DES ITEMS
                 if (item.active === true) {
                     if (item.type === 'CURSE') {
-
+                        svc.addCurse(item);
                     }
                     if (item.type === 'SPELL') {
                         svc.addSpell(item);
@@ -60,6 +60,12 @@
 
                 svc.spellHappy = true;
 
+            }
+        };
+
+        svc.addCurse = function(item) {
+            if (item.keyItem === 'CURSE_SNOW') {
+                $.fn.snow();
             }
         };
 
