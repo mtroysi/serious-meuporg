@@ -17,11 +17,23 @@ public class CommentController {
     @Autowired
     CommentService commentService;
 
+    /**
+     * delete a comment.
+     * @param id id of the comment to delete
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteTask(@PathVariable("id") Long id) {
+    public void deleteComment(@PathVariable("id") Long id) {
         commentService.deleteComment(id);
     }
 
+    /**
+     * update a comment.
+     * @param id id of the comment to update
+     * @param values updated datas of the comment
+     * @return updated comment
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public CommentDTO updateTask(@PathVariable("id") Long id, @RequestBody Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         return commentService.updateComment(id,values);

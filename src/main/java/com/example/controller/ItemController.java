@@ -23,8 +23,21 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
+    /**
+     * Retourne la liste de tous les items par utilisateur.
+     * @return liste de tous les items.
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public List<ItemDTO> getAllItems(@PathVariable("id") Long idUser) {
         return itemService.getAllItemsByUser(idUser);
+    }
+    
+    /**
+     * Retourne la liste de tous les items.
+     * @return liste de tous les items.
+     */
+    @RequestMapping(method = RequestMethod.GET)
+    public List<ItemDto> getAllItems() {
+        return itemService.getAllItems();
     }
 }

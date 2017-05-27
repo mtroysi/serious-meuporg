@@ -81,7 +81,7 @@ public class TaskServiceImpl implements TaskService {
      * @return la tâche correspondante
      */
     @Override
-    public TaskDTO listTask(Long id) {
+    public TaskDTO getTask(Long id) {
         return (TaskDTO) transformers.convertEntityToDto(taskRepository.findOne(id), TaskDTO.class);
     }
 
@@ -130,7 +130,7 @@ public class TaskServiceImpl implements TaskService {
      * @throws IllegalAccessException
      */
     @Override
-    public TaskWithPeriodDTO updateTaskTag(Long idTask, Long idTag) throws InvocationTargetException, IllegalAccessException {
+    public TaskWithPeriodDTO addTaskTag(Long idTask, Long idTag) throws InvocationTargetException, IllegalAccessException {
         Task task = taskRepository.findOne(idTask);
         Tag tag = tagRepository.findOne(idTag);
 

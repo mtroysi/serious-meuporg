@@ -35,35 +35,75 @@ public class TaskController {
     @Autowired
     CommentService commentService;
 
+    /**
+     * Ajoute un tag à une tâche.
+     * @param idTask id de la tâche
+     * @param idTag id du tag
+     * @return tâche mise à jour
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
     @RequestMapping(value = "/{idTask}/tag/{idTag}", method = RequestMethod.PUT)
-    public TaskWithPeriodDTO toggleTaskTag(@PathVariable("idTask") Long idTask, @PathVariable("idTag") Long idTag) throws InvocationTargetException, IllegalAccessException {
-        return taskService.updateTaskTag(idTask, idTag);
+    public TaskWithPeriodDTO addTaskTag(@PathVariable("idTask") Long idTask, @PathVariable("idTag") Long idTag) throws InvocationTargetException, IllegalAccessException {
+        return taskService.addTaskTag(idTask, idTag);
     }
 
+    /**
+     * Retourne la tâche dont l'id est passé en paramètre
+     * @param id id de la tâche
+     * @return la tâche correspondante
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public TaskDTO listTask(@PathVariable("id") Long id) {
-        return taskService.listTask(id);
+    public TaskDTO getTask(@PathVariable("id") Long id) {
+        return taskService.getTask(id);
     }
 
     public List<TaskDTO> listAllTask() {
         return taskService.listAllTask();
     }
 
+    /**
+     * Crée une tâche.
+     * @param values données de la tĉhe à créer
+     * @return TaskDTO
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
     @RequestMapping(method = RequestMethod.POST)
     public TaskDTO createTask(@RequestBody Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         return taskService.createTask(values);
     }
 
+    /**
+     * Modifie une tâche.
+     * @param id id de la tâche à modifier
+     * @param values données modifiées de la tâche
+     * @return
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public TaskDTO updateTask(@PathVariable("id") Long id, @RequestBody Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         return taskService.updateTask(id, values);
     }
 
+    /**
+     * Supprime une tâche
+     * @param id id de la tâche à supprimer
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteTask(@PathVariable("id") Long id) {
         taskService.deleteTask(id);
     }
 
+    /**
+     * Ajoute un commentaire à une tâche
+     * @param id id de la tâche
+     * @param comment commentaire à ajouter
+     * @return CommentDTO
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public CommentDTO addCommentToTask(@PathVariable("id") Long id, @RequestBody Map<String, Object> comment) throws InvocationTargetException, IllegalAccessException {
         Long idUser = Long.parseLong((String) comment.get("creator"));

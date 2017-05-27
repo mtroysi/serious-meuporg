@@ -17,9 +17,9 @@ public interface TaskService {
     
     List<TaskLiteDTO> getTaskWithoutUser(Long boardId);
     
-    TaskDTO listTask(Long id);
+    TaskDTO getTask(Long id);
     TaskDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
     void deleteTask(Long id);
 
-    TaskWithPeriodDTO updateTaskTag(Long idTask, Long idTag) throws InvocationTargetException, IllegalAccessException;
+    TaskWithPeriodDTO addTaskTag(Long idTask, Long idTag) throws InvocationTargetException, IllegalAccessException;
 }

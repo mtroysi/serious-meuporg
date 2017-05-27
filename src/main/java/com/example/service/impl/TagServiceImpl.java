@@ -33,7 +33,7 @@ public class TagServiceImpl implements TagService {
      * @return le tg correspondant
      */
     @Override
-    public TagDTO listTag(Long id) {
+    public TagDTO getTag(Long id) {
         return (TagDTO) transformers.convertEntityToDto(tagRepository.findOne(id), TagDTO.class);
     }
 

@@ -28,11 +28,21 @@ public class InventoryController {
     @Autowired
     ItemUserService itemUserService;
 
+    /**
+     * Retourne l'inventaire d'un utilisateur.
+     * @param id id de l'utilisateur
+     * @return liste des objets possédés par l'utilisateur
+     */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public List<ItemUserDTO> getInventory(@PathVariable("id") Long idUser){
         return userService.getUserInventory(idUser);
     }
 
+    /**
+     * Modifie l'inventaire d'un utilisateur
+     * @param items contenu mis à jour de l'inventaire
+     * @return inventaire mis à jour
+     */
     @RequestMapping(method = RequestMethod.PUT)
     public List<ItemDTO> updateInventory(@RequestBody List<ItemDTO> items){
         return userService.updateInventory(items);

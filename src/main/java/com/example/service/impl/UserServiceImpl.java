@@ -144,7 +144,7 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
-    public UserStatsDTO getstats(long id){
+    public UserStatsDTO getStats(long id){
     	User user = userRepository.findOne(id);
     	UserStatsDTO userStatsDTO = new UserStatsDTO();
     	Long nbrTaskDone = 0L;
