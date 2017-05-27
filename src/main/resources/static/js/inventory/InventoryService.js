@@ -28,6 +28,12 @@
                 });
             };
 
+            svc.activeItem = function(idItem, active) {
+                return InventoryWS.activeItem(idItem, active).then(function(response) {
+                    return response.data;
+                });
+            };
+
             svc.buyItem = function(idItem, idUser) {
                 return InventoryWS.buyItem(idItem, idUser).then(function(response) {
                     return response.data;

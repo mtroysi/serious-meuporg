@@ -197,6 +197,7 @@ public class UserServiceImpl implements UserService {
         return user.getItemUser().stream().map((ItemUser item) -> {
         	ItemUserDTO itemuserdto = (ItemUserDTO) this.transformers.convertEntityToDto(item.getItem(), ItemUserDTO.class);
         	itemuserdto.setDateEnd(item.getDateEnd());
+        	itemuserdto.setActive(item.getActive());
         	return itemuserdto;
         }).collect(Collectors.toList());
     }

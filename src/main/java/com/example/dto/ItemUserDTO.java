@@ -2,8 +2,6 @@ package com.example.dto;
 
 import java.util.Date;
 
-import com.example.enumeration.ItemEnum;
-
 /**
  * Created by Morgane TROYSI on 19/05/17.
  */

@@ -13,12 +13,17 @@
 
             ctrl.init = function() {
                 ctrl.filter = { type: "TOUT" };
+                ctrl.getListItem();
+                $scope.$watch('this.ctrl.filter.type', function() {
+                    ctrl.filterItems();
+                });
+            };
+
+
+            ctrl.getListItem = function() {
                 InventoryService.getInventory(Number(AuthenticationService.getUserId())).then(function(data) {
                     ctrl.inventory = data;
                     ctrl.filteredInventory = data;
-                });
-                $scope.$watch('this.ctrl.filter.type', function() {
-                    ctrl.filterItems();
                 });
             };
 
@@ -44,7 +49,9 @@
             };
 
             ctrl.activeElement = function(idItem, active) {
-                alert(idItem);
+                InventoryService.activeItem(idItem, !active).then(function() {
+                    ctrl.getListItem();
+                });
             };
 
             ctrl.removeItem = function(item) {

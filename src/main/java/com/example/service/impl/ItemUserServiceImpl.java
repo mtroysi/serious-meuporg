@@ -122,4 +122,23 @@ public class ItemUserServiceImpl implements ItemUserService {
     	
     	return true;
 	}
+	
+
+	@Override
+	public Boolean activeItem(Long idItem, Boolean active){
+		User user = userService.getCurrentUser();
+    	Item item = itemRepository.findOne(idItem);
+    	ItemUser itemUser = user.getItemUser().stream().filter((ItemUser iu) -> iu.getItem().getId().equals(idItem)).findFirst().orElse(null);
+    	
+    	if(item != null && itemUser != null && !ItemEnum.CURSE.equals(item.getType())){
+    		//Si c'est pas un Sort alors c'est un type unique, on va donc passer tous les autres en non active
+    		if(!ItemEnum.SPELL.equals(item.getType())){ 
+        		itemUserRepository.updateNoActiveByType(item.getType().name());
+    		}
+    		itemUserRepository.updateActiveByIdItem(item.getId(), active);
+    	}else{
+    		throw new GameMasterException(ConstanteGameMaster.ITEM_NO_FOUND);
+    	}
+    	return true;
+	}
 }

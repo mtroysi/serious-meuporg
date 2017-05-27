@@ -43,6 +43,11 @@ public class InventoryController {
         return itemUserService.removeItem(idItem);
     }
     
+    @RequestMapping(value = "/{idItem}/active", method = RequestMethod.PUT)
+    public Boolean activeItem(@PathVariable("idItem") Long idItem, @RequestBody Boolean active) {
+        return itemUserService.activeItem(idItem, active);
+    }
+    
     @RequestMapping(value = "/{idItem}", method = RequestMethod.POST)
     public ItemDTO buyItem(@PathVariable("idItem") Long idItem, @RequestBody(required=false) Long idUser) {
         return itemUserService.buyItem(idItem, idUser);
