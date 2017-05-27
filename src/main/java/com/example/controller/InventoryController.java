@@ -1,11 +1,18 @@
 package com.example.controller;
 
-import com.example.dto.ItemDto;
-import com.example.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.dto.ItemDTO;
+import com.example.dto.ItemUserDTO;
+import com.example.service.ItemUserService;
+import com.example.service.UserService;
 
 /**
  * Created by Morgane TROYSI on 22/05/17.
@@ -18,14 +25,17 @@ public class InventoryController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    ItemUserService itemUserService;
+
     /**
      * Retourne l'inventaire d'un utilisateur.
      * @param id id de l'utilisateur
      * @return liste des objets possédés par l'utilisateur
      */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public List<ItemDto> getInventory(@PathVariable("id") Long id){
-        return userService.getUserInventory(id);
+    public List<ItemUserDTO> getInventory(@PathVariable("id") Long idUser){
+        return userService.getUserInventory(idUser);
     }
 
     /**
@@ -34,7 +44,22 @@ public class InventoryController {
      * @return inventaire mis à jour
      */
     @RequestMapping(method = RequestMethod.PUT)
-    public List<ItemDto> updateInventory(@RequestBody List<ItemDto> items){
+    public List<ItemDTO> updateInventory(@RequestBody List<ItemDTO> items){
         return userService.updateInventory(items);
+    }
+    
+    @RequestMapping(value = "/{idItem}", method = RequestMethod.DELETE)
+    public Boolean removeItem(@PathVariable("idItem") Long idItem) {
+        return itemUserService.removeItem(idItem);
+    }
+    
+    @RequestMapping(value = "/{idItem}/active", method = RequestMethod.PUT)
+    public Boolean activeItem(@PathVariable("idItem") Long idItem, @RequestBody Boolean active) {
+        return itemUserService.activeItem(idItem, active);
+    }
+    
+    @RequestMapping(value = "/{idItem}", method = RequestMethod.POST)
+    public ItemDTO buyItem(@PathVariable("idItem") Long idItem, @RequestBody(required=false) Long idUser) {
+        return itemUserService.buyItem(idItem, idUser);
     }
 }

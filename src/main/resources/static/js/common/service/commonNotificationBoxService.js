@@ -23,13 +23,17 @@
             svc.message(title, message, 'error');
         };
 
-        svc.message = function(title, message, type) {
+        svc.messageAdore = function(title) {
+            svc.message(title, '', 'info', 7000);
+        };
+
+        svc.message = function(title, message, type, delay) {
             new PNotify({
                 title: title,
                 text: message,
                 type: type,
                 icon: false,
-                delay: 3000,
+                delay: delay || 3000,
                 styling: 'fontawesome'
             });
         };

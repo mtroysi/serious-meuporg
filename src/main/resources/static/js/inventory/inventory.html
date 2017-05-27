@@ -30,17 +30,20 @@
                     <div class="col-md-2" ng-repeat="item in ctrl.filteredInventory">
                         <div class="info-tile tile-success tile-perso">
                             <div class="tile-heading">
-                                <span>{{ item.name }}</span>
-                                <div class="panel-ctrls button-icon-bg">
+                                <p><span class="petitBadge" ng-class="{ 'badge badge-success': item.active, 'badge badge-danger': !item.active}">&nbsp;</span>{{ item.name }}</p>
+                                <div class="panel-ctrls button-icon-bg" ng-show="item.type!=='CURSE'">
                                     <span class="button-icon" ng-click="ctrl.removeFromInventory(item)">
                                         <i class="ti ti-trash"></i>
                                     </span>
                                 </div>
                             </div>
                             <div class="tile-icon"><span><img src="{{item.image}}" height="100" width="100"/></span></div>
-                            <div class="tile-body"><p class="tile-text" title="{{ item.description }}">{{ item.description }}</p></div>
+                            <div class="tile-body">
+                                <p class="tile-text" title="{{ item.description }}">{{ item.description }}</p>
+                            </div>
                             <div class="tile-footer">
-                                <span class="strong">UTILISER</span>
+                                <span class="strong" ng-show="item.dateEnd">Fin : {{ item.dateEnd | date:'dd/MM/yyyy' }}</span>
+                                <span class="strong" ng-show="item.type !== 'CURSE'" ng-click="ctrl.activeElement(item.id, item.active)">{{ item.active === false ? 'ACTIVER' : 'DESACTIVER' }}</span>
                             </div>
                         </div>
                     </div>

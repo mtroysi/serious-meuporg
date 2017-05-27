@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.dto.ItemDto;
+import com.example.dto.ItemDTO;
 
 import java.util.List;
 
@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface ItemService {
 
-    List<ItemDto> getAllItems();
+    List<ItemDTO> getAllItemsByUser(Long idUser);
 }

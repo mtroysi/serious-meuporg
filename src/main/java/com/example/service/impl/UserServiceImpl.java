@@ -5,24 +5,26 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.example.dto.ItemDto;
-import com.example.model.Item;
-import com.example.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.example.ConstanteGameMaster;
-import com.example.dto.TagDTO;
+import com.example.dto.ItemDTO;
+import com.example.dto.ItemUserDTO;
 import com.example.dto.UserDTO;
 import com.example.dto.UserRankinDTO;
 import com.example.dto.UserStatsDTO;
+import com.example.dto.UserWithItemDTO;
 import com.example.enumeration.StatusEnum;
 import com.example.exception.GameMasterException;
 import com.example.model.BoardUser;
+import com.example.model.Item;
+import com.example.model.ItemUser;
 import com.example.model.TaskUser;
 import com.example.model.TaskUserBid;
 import com.example.model.User;
+import com.example.repository.ItemRepository;
 import com.example.repository.UserRepository;
 import com.example.service.UserService;
 import com.example.transformers.Transformers;
@@ -99,8 +101,26 @@ public class UserServiceImpl implements UserService {
      * @return l'utilisateur correspondant
      */
     @Override
-    public UserDTO getUser(long id){
-    	 return (UserDTO) transformers.convertEntityToDto(userRepository.findOne(id), UserDTO.class);
+    public UserWithItemDTO getUser(long id){
+    	 User user = userRepository.findOne(id);
+    	 UserWithItemDTO userWithItemDto = (UserWithItemDTO) transformers.convertEntityToDto(user, UserWithItemDTO.class);
+    	 userWithItemDto.setItemUser(user.getItemUser().stream().map((ItemUser iu) -> {
+         	ItemUserDTO itemuserdto = (ItemUserDTO) this.transformers.convertEntityToDto(iu.getItem(), ItemUserDTO.class);
+         	itemuserdto.setDateEnd(iu.getDateEnd());
+         	itemuserdto.setActive(iu.getActive());
+         	return itemuserdto;
+         }).collect(Collectors.toList()));
+    	 return userWithItemDto;
+    }
+    
+    /**
+     * Retourne la liste de tous les utilisateurs
+     * @return liste des utilisateurs
+     */
+    @Override
+    public List<UserDTO> getAllUser(){
+    	List<User> listUser = (List<User>) userRepository.findAll();
+    	return listUser.stream().map((User user) -> (UserDTO) this.transformers.convertEntityToDto(user, UserDTO.class)).collect(Collectors.toList());
     }
 
     /**
@@ -124,7 +144,7 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
-    public UserStatsDTO getStats(long id){
+    public UserStatsDTO getStats(Long id){
     	User user = userRepository.findOne(id);
     	UserStatsDTO userStatsDTO = new UserStatsDTO();
     	Long nbrTaskDone = 0L;
@@ -181,11 +201,14 @@ public class UserServiceImpl implements UserService {
      * @return liste des items possédés par l'utilisateur
      */
     @Override
-    public List<ItemDto> getUserInventory(Long id) {
+    public List<ItemUserDTO> getUserInventory(Long id) {
         User user = userRepository.findOne(id);
-        List<ItemDto> itemDtoList = new ArrayList<>();
-        user.getInventory().stream().forEach(item -> itemDtoList.add((ItemDto)this.transformers.convertEntityToDto(item, ItemDto.class)));
-        return itemDtoList;
+        return user.getItemUser().stream().map((ItemUser item) -> {
+        	ItemUserDTO itemuserdto = (ItemUserDTO) this.transformers.convertEntityToDto(item.getItem(), ItemUserDTO.class);
+        	itemuserdto.setDateEnd(item.getDateEnd());
+        	itemuserdto.setActive(item.getActive());
+        	return itemuserdto;
+        }).collect(Collectors.toList());
     }
 
     /**
@@ -194,16 +217,16 @@ public class UserServiceImpl implements UserService {
      * @return inventaire mis à jour
      */
     @Override
-    public List<ItemDto> updateInventory(List<ItemDto> itemDtoList) {
+    public List<ItemDTO> updateInventory(List<ItemDTO> itemDtoList) {
         User user = this.getCurrentUser();
         List<Item> items = new ArrayList<>();
 
         itemDtoList.stream().forEach(itemDto -> items.add((Item)this.transformers.convertDtoToEntity(itemDto, Item.class)));
-        user.setInventory(items);
+        //user.setInventory(items);
         user = userRepository.save(user);
 
         itemDtoList.clear();
-        user.getInventory().stream().forEach(item -> itemDtoList.add((ItemDto)this.transformers.convertEntityToDto(item, ItemDto.class)));
+        //user.getInventory().stream().forEach(item -> itemDtoList.add((ItemDto)this.transformers.convertEntityToDto(item, ItemDto.class)));
         return itemDtoList;
     }
     

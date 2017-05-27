@@ -1,15 +1,21 @@
 package com.example.service.impl;
 
-import com.example.dto.ItemDto;
-import com.example.model.Item;
-import com.example.repository.ItemRepository;
-import com.example.service.ItemService;
-import com.example.transformers.Transformers;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.dto.ItemDTO;
+import com.example.enumeration.ItemEnum;
+import com.example.model.Item;
+import com.example.model.ItemUser;
+import com.example.repository.ItemRepository;
+import com.example.repository.ItemUserRepository;
+import com.example.service.ItemService;
+import com.example.transformers.Transformers;
 
 /**
  * Created by Morgane TROYSI on 19/05/17.
@@ -22,6 +28,9 @@ public class ItemServiceImpl implements ItemService {
     private ItemRepository itemRepository;
 
     @Autowired
+    private ItemUserRepository itemUserRepository;
+
+    @Autowired
     private Transformers transformers;
 
     /**
@@ -29,10 +38,20 @@ public class ItemServiceImpl implements ItemService {
      * @return la liste de tous les items
      */
     @Override
-    public List<ItemDto> getAllItems() {
+    public List<ItemDTO> getAllItemsByUser(Long userId) {
         List<Item> items = (List<Item>)itemRepository.findAll();
-        List<ItemDto> itemDtoList = new ArrayList<>();
-        items.stream().forEach(item -> itemDtoList.add((ItemDto)transformers.convertEntityToDto(item, ItemDto.class)));
-        return itemDtoList;
+        List<ItemUser> itemsUser = itemUserRepository.findByUserId(userId);
+        
+        return items.stream().map(item -> {
+        	ItemUser itemU = itemsUser.stream().filter((ItemUser element) -> element.getItem().getId().equals(item.getId())).findFirst().orElse(null);
+        	// Nous ne récupérons que les objets que l'utilisateur n'a pas achetés ou les malédictions
+        	if(itemU == null || ItemEnum.CURSE.equals(itemU.getItem().getType())){
+        		return (ItemDTO)transformers.convertEntityToDto(item, ItemDTO.class);
+        	}else{
+        		return null;
+        	}
+        })
+        .filter(Objects::nonNull)
+        .collect(Collectors.toList());
     }
 }

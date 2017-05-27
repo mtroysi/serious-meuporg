@@ -10,8 +10,8 @@
         .service('ShopWS', function($http, constant) {
             var svc = this;
 
-            svc.getAllItems = function() {
-                return $http.get(constant.BASE_URI + '/item');
+            svc.getAllItemsByUserId = function(idUser) {
+                return $http.get(constant.BASE_URI + '/item/' + idUser);
             };
 
             return svc;

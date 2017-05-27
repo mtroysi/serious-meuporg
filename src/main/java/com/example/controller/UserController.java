@@ -1,9 +1,10 @@
 package com.example.controller;
 
-import com.example.dto.ItemDto;
+import com.example.dto.ItemDTO;
 import com.example.dto.UserDTO;
 import com.example.dto.UserRankinDTO;
 import com.example.dto.UserStatsDTO;
+import com.example.dto.UserWithItemDTO;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -50,14 +51,21 @@ public class UserController {
     public List<UserDTO> loadUsers(@RequestParam("query") String query) {
         return userService.loadUsers(query);
     }
+    
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public List<UserDTO> getAllUser() {
+        return userService.getAllUser();
+    }
+    
 
     /**
      * Retourne l'utilisateur dont l'id est passé en paramètre.
      * @param id id de l'utilisateur
      * @return l'utilisateur correspondant
      */
+     
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public UserDTO getUser(@PathVariable ("id") Long id){
+    public UserWithItemDTO getUser(@PathVariable ("id") Long id){
         return userService.getUser(id);
     }
 

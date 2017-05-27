@@ -61,6 +61,12 @@ public class Item extends CommonEntity {
     @Column(name = "is_reusable")
     private Boolean isReusable = Boolean.FALSE;
 
+    @Column(name = "duration")
+    private Integer duration;
+    
+    @Column(name = "key_item")
+    private String keyItem;
+    
     public String getName() {
         return name;
     }
@@ -124,4 +130,28 @@ public class Item extends CommonEntity {
     public void setImage(String image) {
         this.image = image;
     }
+
+	public Boolean getIsReusable() {
+		return isReusable;
+	}
+
+	public void setIsReusable(Boolean isReusable) {
+		this.isReusable = isReusable;
+	}
+
+	public Integer getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Integer duration) {
+		this.duration = duration;
+	}
+
+	public String getKeyItem() {
+		return keyItem;
+	}
+
+	public void setKeyItem(String keyItem) {
+		this.keyItem = keyItem;
+	}
 }

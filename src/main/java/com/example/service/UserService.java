@@ -1,14 +1,14 @@
 package com.example.service;
 
-import com.example.dto.ItemDto;
+import java.util.List;
+
+import com.example.dto.ItemDTO;
+import com.example.dto.ItemUserDTO;
 import com.example.dto.UserDTO;
 import com.example.dto.UserRankinDTO;
 import com.example.dto.UserStatsDTO;
+import com.example.dto.UserWithItemDTO;
 import com.example.model.User;
-
-import java.util.List;
-
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * Created by Morgane TROYSI on 16/05/17.
@@ -24,15 +24,17 @@ public interface UserService {
 
     User getCurrentUser();
 
-    UserDTO getUser(long id);
+    UserWithItemDTO getUser(long id);
 
-    UserStatsDTO getStats(long id);
+    List<UserDTO> getAllUser();
+    
+    UserStatsDTO getStats(Long id);
     
     UserRankinDTO getRankin(long id);
 
-    List<ItemDto> getUserInventory(Long id);
+    List<ItemUserDTO> getUserInventory(Long id);
 
-    List<ItemDto> updateInventory(List<ItemDto> items);
+    List<ItemDTO> updateInventory(List<ItemDTO> items);
     
     void manageMoneyExpUser(User user, Integer money, Integer exp);
 }

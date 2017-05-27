@@ -10,8 +10,8 @@
         .service('ShopService', function(ShopWS) {
             var svc = {};
 
-            svc.getAllItems = function() {
-                return ShopWS.getAllItems().then(function(response) {
+            svc.getAllItemsByUserId = function(idUser) {
+                return ShopWS.getAllItemsByUserId(idUser).then(function(response) {
                     return response.data;
                 });
             };
