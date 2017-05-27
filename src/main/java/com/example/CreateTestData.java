@@ -33,6 +33,9 @@ public class CreateTestData {
     private ColonneKanbanRepository colonneKanbanRepository;
 
     @Autowired
+    private CommentRepository commentRepository;
+
+    @Autowired
     private TaskRepository taskRepository;
 
     @Autowired
@@ -98,6 +101,10 @@ public class CreateTestData {
     private Tag tag1;
 
     private Tag tag2;
+
+    private Comment comment1;
+
+    private Comment comment2;
 
     @RequestMapping("/tools/createTestData")
     public String run() throws ParseException, ScriptException, SQLException, ParseException {
@@ -533,6 +540,25 @@ public class CreateTestData {
         task6.setTitle("Titre de la tache 6 (bid witout user)");
         task6.setVersion(1);
         this.task6 = taskRepository.save(task6);
+
+        /* CREATION COMMENTAIRE */
+        Comment comment1 = new Comment();
+        comment1.setId(1L);
+        comment1.setVersion(1);
+        comment1.setCreator(user1);
+        comment1.setContent("First !");
+        comment1.setDateCreation(new Date(sdf.parse("01/01/2017").getTime()));
+        comment1.setTask(task1);
+        this.comment1 = commentRepository.save(comment1);
+
+        Comment comment2 = new Comment();
+        comment2.setId(2L);
+        comment2.setVersion(1);
+        comment2.setCreator(user1);
+        comment2.setContent("Tro cool !");
+        comment2.setDateCreation(new Date(sdf.parse("02/01/2017").getTime()));
+        comment2.setTask(task1);
+        this.comment2 = commentRepository.save(comment2);
 
 		/* CREATION TASKUSER */
         TaskUser taskUser1 = new TaskUser();
