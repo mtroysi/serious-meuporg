@@ -6,7 +6,7 @@
     'use strict';
 
     /** @ngInject */
-    function ComponentProgressController(CommonProgressService, $scope, AuthenticationService, UserService, constant) {
+    function ComponentProgressController(CommonProgressService, $scope, AuthenticationService, UserService, constant, CommonItemService) {
         var ctrl = this;
         ctrl.CommonProgressService = CommonProgressService;
 
@@ -15,6 +15,7 @@
             var id = AuthenticationService.getUserId();
             UserService.getUser(id).then(function(response) {
                 ctrl.user = response;
+                CommonItemService.setItems(angular.copy(ctrl.user.itemUser));
                 ctrl.totalXp = ctrl.user.level * constant.XP;
                 CommonProgressService.setMoney(ctrl.user.money);
             });

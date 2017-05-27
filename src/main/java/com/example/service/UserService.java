@@ -7,6 +7,7 @@ import com.example.dto.ItemUserDTO;
 import com.example.dto.UserDTO;
 import com.example.dto.UserRankinDTO;
 import com.example.dto.UserStatsDTO;
+import com.example.dto.UserWithItemDTO;
 import com.example.model.User;
 
 /**
@@ -23,7 +24,7 @@ public interface UserService {
 
     User getCurrentUser();
 
-    UserDTO getUser(long id);
+    UserWithItemDTO getUser(long id);
 
     List<UserDTO> getAllUser();
     

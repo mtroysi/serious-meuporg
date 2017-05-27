@@ -7,7 +7,7 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('InventoryController', function($scope, AuthenticationService, InventoryService, CommonDialogService, CommonNotificationBoxService) {
+        .controller('InventoryController', function($scope, AuthenticationService, InventoryService, CommonDialogService, CommonNotificationBoxService, CommonItemService) {
             var ctrl = this;
             ctrl.inventory = [];
 
@@ -24,6 +24,7 @@
                 InventoryService.getInventory(Number(AuthenticationService.getUserId())).then(function(data) {
                     ctrl.inventory = data;
                     ctrl.filteredInventory = data;
+                    CommonItemService.setItems(angular.copy(data));
                 });
             };
 

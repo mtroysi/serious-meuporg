@@ -15,6 +15,7 @@ import com.example.dto.ItemUserDTO;
 import com.example.dto.UserDTO;
 import com.example.dto.UserRankinDTO;
 import com.example.dto.UserStatsDTO;
+import com.example.dto.UserWithItemDTO;
 import com.example.enumeration.StatusEnum;
 import com.example.exception.GameMasterException;
 import com.example.model.BoardUser;
@@ -100,8 +101,16 @@ public class UserServiceImpl implements UserService {
      * @return l'utilisateur correspondant
      */
     @Override
-    public UserDTO getUser(long id){
-    	 return (UserDTO) transformers.convertEntityToDto(userRepository.findOne(id), UserDTO.class);
+    public UserWithItemDTO getUser(long id){
+    	 User user = userRepository.findOne(id);
+    	 UserWithItemDTO userWithItemDto = (UserWithItemDTO) transformers.convertEntityToDto(user, UserWithItemDTO.class);
+    	 userWithItemDto.setItemUser(user.getItemUser().stream().map((ItemUser iu) -> {
+         	ItemUserDTO itemuserdto = (ItemUserDTO) this.transformers.convertEntityToDto(iu.getItem(), ItemUserDTO.class);
+         	itemuserdto.setDateEnd(iu.getDateEnd());
+         	itemuserdto.setActive(iu.getActive());
+         	return itemuserdto;
+         }).collect(Collectors.toList()));
+    	 return userWithItemDto;
     }
     
     /**

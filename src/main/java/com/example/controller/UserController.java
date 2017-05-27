@@ -4,6 +4,7 @@ import com.example.dto.ItemDTO;
 import com.example.dto.UserDTO;
 import com.example.dto.UserRankinDTO;
 import com.example.dto.UserStatsDTO;
+import com.example.dto.UserWithItemDTO;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +43,7 @@ public class UserController {
     }
     
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public UserDTO getUser(@PathVariable ("id") Long id){
+    public UserWithItemDTO getUser(@PathVariable ("id") Long id){
         return userService.getUser(id);
     }
     @RequestMapping(value = "/{id}/stats",method = RequestMethod.GET)

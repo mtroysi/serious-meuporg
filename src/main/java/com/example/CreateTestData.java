@@ -612,6 +612,16 @@ public class CreateTestData {
 		item4.setImage("https://scontent.cdninstagram.com/t51.2885-19/s150x150/13130013_1681586922105019_1341226456_a.jpg");
 		itemRepository.save(item4);
 		
+		Item item5 = new Item();
+		item5.setName("Sort de bonne humeur");
+		item5.setDescription("Génère aléatoirement des notifications pour vous mettre de bonne humeur");
+		item5.setPrice(175L);
+		item5.setRequiredLevel(2L);
+		item5.setReusable(Boolean.FALSE);
+		item5.setType(ItemEnum.SPELL);
+		item5.setImage("https://previews.123rf.com/images/anastasiiam/anastasiiam1605/anastasiiam160500090/57128892-Simple-flat-like-icon-in-pink-color-Like-counter-notification-emblem-isolated-on-white-background--Stock-Vector.jpg");
+		itemRepository.save(item5);
+		
 		return "FINI";
 	}
 	

@@ -4,7 +4,11 @@
     var helloApp = angular.module('hello');
 
     // Pour chaque chargement d'une nouvelle URL on va regarder si l'utilisateur a le droit de si connecter
-    helloApp.run(function($rootScope, $state, CommonDialogService, AuthenticationService, moment) {
+    helloApp.run(function($rootScope, $state, CommonDialogService, AuthenticationService, moment, CommonItemService) {
+
+        $rootScope.$on('$viewContentLoaded', function() {
+            CommonItemService.run();
+        });
 
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams) {
             //On regarde si il y a le parametre requireLogin
