@@ -43,7 +43,7 @@
                             </div>
                             <div class="tile-footer">
                                 <span class="strong" ng-show="item.dateEnd">Fin : {{ item.dateEnd | date:'dd/MM/yyyy' }}</span>
-                                <span class="strong" ng-show="item.type !== 'CURSE'" ng-click="ctrl.activeElement(item.id)">UTILISER</span>
+                                <span class="strong" ng-show="item.type !== 'CURSE'" ng-click="ctrl.activeElement(item.id, item.active)">{{ item.active ? 'ACTIVER' : 'DESACTIVER' }}</span>
                             </div>
                         </div>
                     </div>

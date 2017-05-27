@@ -22,6 +22,12 @@
                 });
             };
 
+            svc.removeItem = function(idItem) {
+                return InventoryWS.removeItem(idItem).then(function(response) {
+                    return response.data;
+                });
+            };
+
             svc.buyItem = function(idItem, idUser) {
                 return InventoryWS.buyItem(idItem, idUser).then(function(response) {
                     return response.data;

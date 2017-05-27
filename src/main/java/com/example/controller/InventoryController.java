@@ -38,6 +38,11 @@ public class InventoryController {
         return userService.updateInventory(items);
     }
     
+    @RequestMapping(value = "/{idItem}", method = RequestMethod.DELETE)
+    public Boolean removeItem(@PathVariable("idItem") Long idItem) {
+        return itemUserService.removeItem(idItem);
+    }
+    
     @RequestMapping(value = "/{idItem}", method = RequestMethod.POST)
     public ItemDTO buyItem(@PathVariable("idItem") Long idItem, @RequestBody(required=false) Long idUser) {
         return itemUserService.buyItem(idItem, idUser);

@@ -11,6 +11,7 @@ import com.example.enumeration.ItemEnum;
 public class ItemUserDTO extends ItemDTO {
 
     private Date dateEnd;
+    private Boolean active;
 
     
 	public Date getDateEnd() {
@@ -19,5 +20,13 @@ public class ItemUserDTO extends ItemDTO {
 
 	public void setDateEnd(Date dateEnd) {
 		this.dateEnd = dateEnd;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 }

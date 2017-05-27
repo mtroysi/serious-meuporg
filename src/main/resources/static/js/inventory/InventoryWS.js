@@ -18,6 +18,10 @@
                 return $http.put(constant.BASE_URI + '/inventory/', inventory);
             };
 
+            svc.removeItem = function(idItem) {
+                return $http.delete(constant.BASE_URI + '/inventory/' + idItem);
+            };
+
             svc.buyItem = function(idItem, idUser) {
                 return $http.post(constant.BASE_URI + '/inventory/' + idItem, idUser);
             };

@@ -75,6 +75,7 @@ public class ItemUserServiceImpl implements ItemUserService {
 	        			Calendar dateEnd = new GregorianCalendar();
 	        			dateEnd.add(Calendar.DAY_OF_YEAR, item.getDuration());
 	        			itemUser.setDateEnd(dateEnd.getTime());
+	        			itemUser.setActive(true);
 	        			
 	        			// Add item
 	        			itemUser.setUser(userMal);
@@ -94,6 +95,7 @@ public class ItemUserServiceImpl implements ItemUserService {
     				
     				// Add item
         			itemUser.setUser(user);
+        			itemUser.setActive(false);
         			user.addItemUser(itemUser);
     			}
 
@@ -105,4 +107,19 @@ public class ItemUserServiceImpl implements ItemUserService {
         	throw new GameMasterException(ConstanteGameMaster.ITEM_NO_FOUND);
     	}
     }
+
+	@Override
+	public Boolean removeItem(Long idItem) {
+    	User user = userService.getCurrentUser();
+    	Item item = itemRepository.findOne(idItem);
+    	ItemUser itemUser = user.getItemUser().stream().filter((ItemUser iu) -> iu.getItem().getId().equals(idItem)).findFirst().orElse(null);
+    	
+    	if(item != null && itemUser != null && !ItemEnum.CURSE.equals(item.getType())){
+    		itemUserRepository.deleteByIdItem(item.getId());
+    	}else{
+        	throw new GameMasterException(ConstanteGameMaster.ITEM_NO_FOUND);
+    	}
+    	
+    	return true;
+	}
 }

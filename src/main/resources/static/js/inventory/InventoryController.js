@@ -7,11 +7,12 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('InventoryController', function($scope, AuthenticationService, InventoryService, CommonDialogService) {
+        .controller('InventoryController', function($scope, AuthenticationService, InventoryService, CommonDialogService, CommonNotificationBoxService) {
             var ctrl = this;
             ctrl.inventory = [];
 
             ctrl.init = function() {
+                ctrl.filter = { type: "TOUT" };
                 InventoryService.getInventory(Number(AuthenticationService.getUserId())).then(function(data) {
                     ctrl.inventory = data;
                     ctrl.filteredInventory = data;
@@ -35,25 +36,28 @@
             };
 
             ctrl.removeFromInventory = function(item) {
-                ctrl.itemToRemove = item;
-
-                ctrl.inventory = _.reject(ctrl.inventory, function(e) {
-                    return e.id === item.id;
-                });
-
                 CommonDialogService.confirmation('Êtes-vous sûr de vouloir jeter ' + item.name + ' ? Cette action est irréversible.', function() {
-                    InventoryService.updateInventory(ctrl.inventory).then(function(data) {
-                        ctrl.inventory = data;
-                        ctrl.filteredInventory = data;
-                    });
-                }, function() {
-                    ctrl.inventory.push(ctrl.itemToRemove);
-                }, 'modalThrowItem', "Jeter un objet", "Valider", "Annuler");
+                    // Suppression d'un item
+                    ctrl.removeItem(item);
+
+                }, null, 'modalThrowItem', "Jeter un objet", "Valider", "Annuler");
             };
 
-            ctrl.activeElement = function(idItem) {
+            ctrl.activeElement = function(idItem, active) {
                 alert(idItem);
             };
+
+            ctrl.removeItem = function(item) {
+                InventoryService.removeItem(item.id).then(function() {
+                    CommonNotificationBoxService.info("L'objet a été jété", "");
+
+                    ctrl.inventory = _.reject(ctrl.inventory, function(e) {
+                        return e.id === item.id;
+                    });
+                    ctrl.filteredInventory = angular.copy(ctrl.inventory);
+                    ctrl.filterItems();
+                });
+            }
 
             ctrl.init();
         })
