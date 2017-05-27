@@ -28,7 +28,7 @@ public interface UserService {
 
     List<UserDTO> getAllUser();
     
-    UserStatsDTO getstats(long id);
+    UserStatsDTO getStats(Long id);
     
     UserRankinDTO getRankin(long id);
 

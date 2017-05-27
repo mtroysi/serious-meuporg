@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,12 +31,4 @@ public class ItemController {
         return itemService.getAllItemsByUser(idUser);
     }
     
-    /**
-     * Retourne la liste de tous les items.
-     * @return liste de tous les items.
-     */
-    @RequestMapping(method = RequestMethod.GET)
-    public List<ItemDto> getAllItems() {
-        return itemService.getAllItems();
-    }
 }
