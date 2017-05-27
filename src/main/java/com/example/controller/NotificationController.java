@@ -31,8 +31,8 @@ public class NotificationController {
 
 
     /**
-     * Return list of board by user
-     * @param user_id
+     * Return list of notifications by user
+     * @param user_id user id
      * @return list of NotificationDTO
      */
     @RequestMapping(value = "/user/{user_id}", method = RequestMethod.GET)

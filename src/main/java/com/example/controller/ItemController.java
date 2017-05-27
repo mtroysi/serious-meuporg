@@ -20,6 +20,10 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
+    /**
+     * Retourne la liste de tous les items.
+     * @return liste de tous les items.
+     */
     @RequestMapping(method = RequestMethod.GET)
     public List<ItemDto> getAllItems() {
         return itemService.getAllItems();

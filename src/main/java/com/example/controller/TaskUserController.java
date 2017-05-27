@@ -50,9 +50,8 @@ public class TaskUserController {
     }
     
     /**
-     * Return list of TaskUser By Board and User
+     * Return list of TaskUser By User
      * @param user_id
-     * @param board_id
      * @return
      */
     @RequestMapping(value = "/user/{user_id}", method = RequestMethod.GET)

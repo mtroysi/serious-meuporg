@@ -1,28 +1,15 @@
 package com.example.controller;
 
-import java.util.List;
-
+import com.example.dto.ColonneKanbanDTO;
+import com.example.service.ColonneKanbanService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
 
-import com.example.dto.BoardDTO;
-import com.example.dto.BoardWithDetailDTO;
-import com.example.dto.ColonneKanbanDTO;
-import com.example.service.BoardService;
-import com.example.service.BoardUserService;
-import com.example.service.ColonneKanbanService;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Created by Morgane TROYSI on 11/05/17.
@@ -37,13 +24,11 @@ public class ColonneKanbanController {
     @Autowired
     ColonneKanbanService colonneKanbanService;
 
-    
     /**
      * Update colonne Kanban
-     * @param user_id
-     * @return list of BoardWithDetailDTO
-     * @throws InvocationTargetException 
-     * @throws IllegalAccessException 
+     * @param kanban_id id colonne Kanban
+     * @param values updated datas
+     * @return updatd colonne Kanban
      */
     @RequestMapping(value = "/{kanban_id}", method = RequestMethod.PUT)
     public ResponseEntity<ColonneKanbanDTO> editColonneKanban(@PathVariable(value = "kanban_id") Long kanban_id, @RequestBody ColonneKanbanDTO values) {
@@ -57,13 +42,14 @@ public class ColonneKanbanController {
 
         return new ResponseEntity<>(colonne, HttpStatus.OK);
     }
-    
+
     /**
-     * Create colonne Kanban for boardId
-     * @param user_id
-     * @return list of BoardWithDetailDTO
-     * @throws InvocationTargetException 
-     * @throws IllegalAccessException 
+     * Create colonne Kanban in board
+     * @param board_id board id
+     * @param colonneKanbanDTO datas of the colonne Kanban to create
+     * @return new colonne Kanban
+     * @throws IllegalAccessException
+     * @throws InvocationTargetException
      */
     @RequestMapping(value = "/board/{board_id}", method = RequestMethod.POST)
     public ResponseEntity<ColonneKanbanDTO> createColonneKanban(@PathVariable(value = "board_id") Long board_id, @RequestBody ColonneKanbanDTO colonneKanbanDTO) throws IllegalAccessException, InvocationTargetException {
@@ -77,17 +63,14 @@ public class ColonneKanbanController {
 
         return new ResponseEntity<>(colonne, HttpStatus.OK);
     }
-    
-    
+
+
     /**
-     * Update colonne Kanban
-     * @param user_id
-     * @return list of BoardWithDetailDTO
-     * @throws InvocationTargetException 
-     * @throws IllegalAccessException 
+     * delete colonne Kanban.
+     * @param kanban_id id of the colonne Kanban to delete
      */
     @RequestMapping(value = "/{kanban_id}", method = RequestMethod.DELETE)
-    public void editColonneKanban(@PathVariable(value = "kanban_id") Long kanban_id) {
+    public void deleteColonneKanban(@PathVariable(value = "kanban_id") Long kanban_id) {
         logger.info("Calling ColonneKanbanController.editColonneKanban with {}", kanban_id);
 
         colonneKanbanService.deleteColonneKanban(kanban_id);

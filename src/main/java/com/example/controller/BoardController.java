@@ -38,11 +38,21 @@ public class BoardController {
     @Autowired
     BoardUserService boardUserService;
 
+    /**
+     * Crée un tableau.
+     * @param boardDTO données du tableau à créer
+     * @return tableau crée
+     */
     @RequestMapping(method = RequestMethod.POST)
     public BoardDTO createBoard(@RequestBody BoardDTO boardDTO) {
         return boardService.createBoard(boardDTO);
     }
 
+    /**
+     * Retourne le tableau dont l'id est fourni en paramètre.
+     * @param id id du tableau
+     * @return le tableau correspondant
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public BoardDTO getBoard(@PathVariable("id") Long id) {
         return boardService.getBoard(id);
@@ -66,11 +76,22 @@ public class BoardController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    /**
+     * Modifie un tableau.
+     * @param boardDTO données du tableau modifié
+     * @return tableau modifié
+     * @throws IllegalAccessException
+     * @throws InvocationTargetException
+     */
     @RequestMapping(method = RequestMethod.PUT)
     public BoardDTO updateBoard(@RequestBody BoardDTO boardDTO) throws IllegalAccessException, InvocationTargetException {
         return boardService.updateBoard(boardDTO);
     }
 
+    /**
+     * Supprime un tableau.
+     * @param id l'id du tableau à supprimer
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteBoard(@PathVariable("id") Long id) {
         boardService.deleteBoard(id);

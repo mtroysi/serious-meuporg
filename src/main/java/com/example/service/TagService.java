@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public interface TagService {
 
-    TagDTO listTag(Long id);
+    TagDTO getTag(Long id);
     List<TagDTO> listAllTags();
     TagDTO createTag(Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
     TagDTO updateTag(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
