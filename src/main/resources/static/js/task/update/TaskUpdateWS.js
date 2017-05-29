@@ -11,7 +11,7 @@
             var svc = this;
 
             svc.updateTask = function (id, task) {
-                return $http.put(constant.BASE_URI + '/task/' + id, task);
+                return $http.put(constant.BASE_URI + '/taskUser/' + id, task);
             };
 
             svc.deleteTask = function (id) {

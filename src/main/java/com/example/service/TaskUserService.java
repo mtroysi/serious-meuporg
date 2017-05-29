@@ -1,8 +1,11 @@
 package com.example.service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Map;
 
 import com.example.dto.TaskUserDTO;
+import com.example.dto.TaskWithPeriodDTO;
 
 
 public interface TaskUserService {
@@ -27,5 +30,16 @@ public interface TaskUserService {
 	 * @param boardId id du tableau
 	 * @return liste des tâches d'un tableau donné
 	 */
-	List<TaskUserDTO> getTaskUserByBoardId(Long boardId);	
+	List<TaskUserDTO> getTaskUserByBoardId(Long boardId);
+
+	/**
+	 * Modifie une tâche
+	 *
+	 * @param id     l'id de la tâche à modifier
+	 * @param values données modifiées
+	 * @return DTO de la tâche modifiée
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
+	 */
+	TaskUserDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
 }

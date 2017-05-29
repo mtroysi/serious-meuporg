@@ -72,19 +72,6 @@ public class TaskController {
     }
 
     /**
-     * Modifie une tâche.
-     * @param id id de la tâche à modifier
-     * @param values données modifiées de la tâche
-     * @return tache après modification
-     * @throws InvocationTargetException
-     * @throws IllegalAccessException
-     */
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public TaskWithPeriodDTO updateTask(@PathVariable("id") Long id, @RequestBody Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
-        return taskService.updateTask(id, values);
-    }
-
-    /**
      * Supprime une tâche
      * @param id id de la tâche à supprimer
      */

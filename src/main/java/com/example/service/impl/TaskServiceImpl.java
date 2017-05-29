@@ -6,20 +6,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.example.dto.*;
+import com.example.enumeration.PeriodicityEnum;
+import com.example.model.*;
+import com.example.repository.PeriodicityRepository;
+import com.fasterxml.jackson.databind.node.BooleanNode;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.BeanUtilsBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.dto.TaskDTO;
-import com.example.dto.TaskLiteDTO;
-import com.example.dto.TaskWithPeriodDTO;
 import com.example.enumeration.PriorityEnum;
 import com.example.enumeration.StatusEnum;
-import com.example.model.ColonneKanban;
-import com.example.model.Tag;
-import com.example.model.Task;
-import com.example.model.TaskUser;
 import com.example.repository.ColonneKanbanRepository;
 import com.example.repository.TagRepository;
 import com.example.repository.TaskRepository;
@@ -38,10 +39,11 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     private ColonneKanbanRepository colonneKanbanRepository;
     @Autowired
+    private PeriodicityRepository periodicityRepository;
+    @Autowired
     private Transformers transformers;
-    
-    
-    /* 
+
+    /*
      * (non-Javadoc)
      * @see com.example.service.TaskService#createTask(java.util.Map)
      */
@@ -54,7 +56,7 @@ public class TaskServiceImpl implements TaskService {
         return (TaskDTO) transformers.convertEntityToDto(taskRepository.save(task), TaskDTO.class);
     }
 
-    
+
     /* 
      * (non-Javadoc)
      * @see com.example.service.TaskService#listAllTask()
@@ -70,7 +72,7 @@ public class TaskServiceImpl implements TaskService {
         return list;
     }
 
-    
+
     /* 
      * (non-Javadoc)
      * @see com.example.service.TaskService#getTask(java.lang.Long)
@@ -80,37 +82,7 @@ public class TaskServiceImpl implements TaskService {
         return (TaskDTO) transformers.convertEntityToDto(taskRepository.findOne(id), TaskDTO.class);
     }
 
-    
-    /* 
-     * (non-Javadoc)
-     * @see com.example.service.TaskService#updateTask(java.lang.Long, java.util.Map)
-     */
-    @Override
-    public TaskWithPeriodDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
-        Task task = taskRepository.findOne(id);
 
-        task.setPriority(PriorityEnum.valueOf((String) values.get("priority")));
-        values.remove("priority");
-
-        values.remove("taskComments");
-        values.remove("tags");
-
-        logger.info(String.valueOf(values));
-        BeanUtilsBean.getInstance().getConvertUtils().register(false, true, 0);
-        BeanUtils.populate(task, values);
-
-        List<TaskUser> taskUsers = task.getTaskUsers();
-        taskUsers.stream().forEach(taskUser -> {
-            Map<String, Object> colonneValues = (Map<String, Object>) values.get("colonneKanban");
-            ColonneKanban colonneKanban = colonneKanbanRepository.findOne(new Long((Integer) colonneValues.get("id")));
-            taskUser.setColonneKanban(colonneKanban);
-        });
-        task.setTaskUsers(taskUsers);
-
-        return (TaskWithPeriodDTO) transformers.convertEntityToDto(taskRepository.save(task), TaskWithPeriodDTO.class);
-    }
-
-    
     /* 
      * (non-Javadoc)
      * @see com.example.service.TaskService#deleteTask(java.lang.Long)
@@ -120,7 +92,7 @@ public class TaskServiceImpl implements TaskService {
         taskRepository.delete(id);
     }
 
-   
+
     /* 
      * (non-Javadoc)
      * @see com.example.service.TaskService#addTaskTag(java.lang.Long, java.lang.Long)
