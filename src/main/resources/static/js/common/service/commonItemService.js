@@ -67,6 +67,10 @@
             if (item.keyItem === 'CURSE_SNOW') {
                 $.fn.snow();
             }
+
+            if (item.keyItem === 'CURSE_BREBIS') {
+                $('body').append($('<audio autoplay><source src="assets/audio/mouton.mp3" type="audio/mp3"></source></audio>'));
+            }
         };
 
         svc.spellHappyAction = function() {
