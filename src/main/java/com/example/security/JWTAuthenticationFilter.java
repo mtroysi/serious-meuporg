@@ -1,19 +1,17 @@
 package com.example.security;
 
 
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.filter.GenericFilterBean;
+import java.io.IOException;
 
-import com.example.ConstanteGameMaster;
-import com.example.exception.GameMasterException;
-
-import org.springframework.security.core.Authentication;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.filter.GenericFilterBean;
 /**
  * Created by sara on 15/05/17.
  */

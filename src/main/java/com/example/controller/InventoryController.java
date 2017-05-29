@@ -30,7 +30,7 @@ public class InventoryController {
 
     /**
      * Retourne l'inventaire d'un utilisateur.
-     * @param id id de l'utilisateur
+     * @param idUser id de l'utilisateur
      * @return liste des objets possédés par l'utilisateur
      */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
@@ -48,16 +48,33 @@ public class InventoryController {
         return userService.updateInventory(items);
     }
     
+    /**
+     * Supprime un item de l'inventaire
+     * @param idItem
+     * @return Boolean : etat de la suppression
+     */
     @RequestMapping(value = "/{idItem}", method = RequestMethod.DELETE)
     public Boolean removeItem(@PathVariable("idItem") Long idItem) {
         return itemUserService.removeItem(idItem);
     }
     
+    /**
+     * Active un item de l'inventaire
+     * @param idItem
+     * @param active : boolean
+     * @return Boolean : etat de la modification
+     */
     @RequestMapping(value = "/{idItem}/active", method = RequestMethod.PUT)
     public Boolean activeItem(@PathVariable("idItem") Long idItem, @RequestBody Boolean active) {
         return itemUserService.activeItem(idItem, active);
     }
     
+    /**
+     * Achete et donc ajoute un item dans l'inventaire
+     * @param idItem
+     * @param idUser
+     * @return item créé
+     */
     @RequestMapping(value = "/{idItem}", method = RequestMethod.POST)
     public ItemDTO buyItem(@PathVariable("idItem") Long idItem, @RequestBody(required=false) Long idUser) {
         return itemUserService.buyItem(idItem, idUser);

@@ -24,7 +24,6 @@ import com.example.model.ItemUser;
 import com.example.model.TaskUser;
 import com.example.model.TaskUserBid;
 import com.example.model.User;
-import com.example.repository.ItemRepository;
 import com.example.repository.UserRepository;
 import com.example.service.UserService;
 import com.example.transformers.Transformers;
@@ -42,13 +41,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private ItemRepository itemRepository;
-
-    /**
-     * Retourne les utilisateurs dont le nom + prénom contiennent la chaîne en paramètre, utilisateur connecté exclu
-     * @param query chaîne à chercher
-     * @return liste des utilisateurs dont le nom + prénom contiennent la chaîne en paramètre, utilisateur connecté exclu
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.UserService#loadUsers(java.lang.String)
      */
     @Override
     public List<UserDTO> loadUsers(String query) {
@@ -62,10 +58,10 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
-    /**
-     * Crée un utilisateur
-     * @param userDTO données de l'utilisateur à créer
-     * @return
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.UserService#createUser(com.example.dto.UserDTO)
      */
     @Override
     public UserDTO createUser(UserDTO userDTO){
@@ -85,9 +81,10 @@ public class UserServiceImpl implements UserService {
         return (UserDTO)transformers.convertEntityToDto(user, UserDTO.class);
     }
 
-    /**
-     * Retourne l'utilisateur connecté
-     * @return l'utilisateur connecté
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.UserService#getCurrentUser()
      */
     @Override
     public User getCurrentUser() {
@@ -95,10 +92,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(mail);
     }
 
-    /**
-     * Retourne l'utilisateur dont l'id est passé en paramètre
-     * @param id l'id de l'utilisateur
-     * @return l'utilisateur correspondant
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.UserService#getUser(long)
      */
     @Override
     public UserWithItemDTO getUser(long id){
@@ -113,9 +110,10 @@ public class UserServiceImpl implements UserService {
     	 return userWithItemDto;
     }
     
-    /**
-     * Retourne la liste de tous les utilisateurs
-     * @return liste des utilisateurs
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.UserService#getAllUser()
      */
     @Override
     public List<UserDTO> getAllUser(){
@@ -123,10 +121,10 @@ public class UserServiceImpl implements UserService {
     	return listUser.stream().map((User user) -> (UserDTO) this.transformers.convertEntityToDto(user, UserDTO.class)).collect(Collectors.toList());
     }
 
-    /**
-     * Modifie un utilisateur
-     * @param userDTO données de l'utilisateur à modifier
-     * @return DTO de l'utilisateur modifié
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.UserService#editUser(com.example.dto.UserDTO)
      */
     @Override
     public UserDTO editUser(UserDTO userDTO){
@@ -143,6 +141,11 @@ public class UserServiceImpl implements UserService {
         return (UserDTO)transformers.convertEntityToDto(user, UserDTO.class);
     }
     
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.UserService#getStats(java.lang.Long)
+     */
     @Override
     public UserStatsDTO getStats(Long id){
     	User user = userRepository.findOne(id);
@@ -151,8 +154,6 @@ public class UserServiceImpl implements UserService {
     	Long nbrTaskCreated = 0L;
     	int nbrBoardCreated = 0;
     	Long nbrTaskBid = 0L;
-    	
-    	User currentUser;
     	
     	List<TaskUser> listTaskUser = user.getTaskUsers();
     	List<BoardUser> listBoardUser= user.getBoardUsers();
@@ -170,6 +171,11 @@ public class UserServiceImpl implements UserService {
     	return userStatsDTO;
     }
     
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.UserService#getRankin(long)
+     */
     @Override
     public UserRankinDTO getRankin(long id){
     	
@@ -195,10 +201,10 @@ public class UserServiceImpl implements UserService {
     	
     }
 
-    /**
-     * Retourne l'inventaire d'un utilisateur
-     * @param id l'id de l'utilisateur
-     * @return liste des items possédés par l'utilisateur
+   
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.UserService#getUserInventory(java.lang.Long)
      */
     @Override
     public List<ItemUserDTO> getUserInventory(Long id) {
@@ -211,10 +217,10 @@ public class UserServiceImpl implements UserService {
         }).collect(Collectors.toList());
     }
 
-    /**
-     * Modifie l'inventaire d'un utilisateur
-     * @param itemDtoList liste des objets possédés par l'utilisateur
-     * @return inventaire mis à jour
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.UserService#updateInventory(java.util.List)
      */
     @Override
     public List<ItemDTO> updateInventory(List<ItemDTO> itemDtoList) {
@@ -230,6 +236,11 @@ public class UserServiceImpl implements UserService {
         return itemDtoList;
     }
     
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.UserService#manageMoneyExpUser(com.example.model.User, java.lang.Integer, java.lang.Integer)
+     */
     public void manageMoneyExpUser(User user, Integer money, Integer exp){
     	user.setMoney(user.getMoney() + money);
     	user.setExperience(user.getExperience() + exp);

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 /**
  * Created by Morgane TROYSI on 16/05/17.
  */
-
 @Repository
 public interface RoleRepository extends PagingAndSortingRepository<Role, Long> {
     Role findByCode(RoleEnum role);

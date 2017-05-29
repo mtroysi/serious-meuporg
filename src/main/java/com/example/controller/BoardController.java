@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -13,9 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.*;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
 
 import com.example.dto.BoardDTO;
 import com.example.dto.BoardWithDetailDTO;
@@ -59,7 +57,7 @@ public class BoardController {
     }
 
     /**
-     * Return list of board by user
+     * Retourne la liste des tableaux pour un utilisateur
      * @param user_id
      * @return list of BoardWithDetailDTO
      */

@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.dto.BoardWithDetailDTO;
 import com.example.dto.TaskUserDTO;
-import com.example.service.TaskService;
 import com.example.service.TaskUserService;
 
 /**
@@ -31,10 +29,10 @@ public class TaskUserController {
     TaskUserService taskUserService;
     
     /**
-     * Return list of TaskUser By Board and User
-     * @param user_id
-     * @param board_id
-     * @return
+     * Retorune la liste des taches(taskUser) pour un tableau et un utilisateur
+     * @param user_id : id utilisateur
+     * @param board_id : id tableau
+     * @return liste de tache
      */
     @RequestMapping(value = "/board/{board_id}/user/{user_id}", method = RequestMethod.GET)
     public ResponseEntity<List<TaskUserDTO>> listTaskByBoardAndUser(@PathVariable(value = "user_id") Long user_id, @PathVariable(value = "board_id") Long board_id){
@@ -50,9 +48,9 @@ public class TaskUserController {
     }
     
     /**
-     * Return list of TaskUser By User
-     * @param user_id
-     * @return
+     * Retourne la liste des taches par utilisateur
+     * @param user_id : id de l'utilisateur
+     * @return liste des taches
      */
     @RequestMapping(value = "/user/{user_id}", method = RequestMethod.GET)
     public ResponseEntity<List<TaskUserDTO>> listTaskByUser(@PathVariable(value = "user_id") Long user_id){
@@ -68,9 +66,9 @@ public class TaskUserController {
     }
     
     /**
-     * Return list of TaskUser By Board
-     * @param board_id
-     * @return
+     * Retourne la liste des taches par tableau
+     * @param board_id : id du tableau
+     * @return liste des taches
      */
     @RequestMapping(value = "/board/{board_id}", method = RequestMethod.GET)
     public ResponseEntity<List<TaskUserDTO>> listTaskByBoard(@PathVariable(value = "board_id") Long board_id){

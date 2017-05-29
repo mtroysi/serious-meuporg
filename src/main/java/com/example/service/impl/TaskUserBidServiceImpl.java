@@ -56,6 +56,10 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 	@Autowired
 	private Transformers transformers;
 
+	/* 
+	 * (non-Javadoc)
+	 * @see com.example.service.TaskUserBidService#getTaskUserBidByBoardAndUser(java.lang.Long, java.lang.Long)
+	 */
 	@Override
 	public List<TaskUserBidDTO> getTaskUserBidByBoardAndUser(Long idBoard, Long idUser) {
 
@@ -81,6 +85,10 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 		}
 	}
 
+	/* 
+	 * (non-Javadoc)
+	 * @see com.example.service.TaskUserBidService#getTaskUserBidEndByBoard(java.lang.Long)
+	 */
 	@Override
 	public List<TaskUserBidDTO> getTaskUserBidEndByBoard(Long idBoard) {
 		return taskUserBidRepo.findByTaskBoardIdAndTaskDateEndBidBefore(idBoard, new Date()).stream()
@@ -89,6 +97,10 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 				}).collect(Collectors.toList());
 	}
 
+	/* 
+	 * (non-Javadoc)
+	 * @see com.example.service.TaskUserBidService#addOrUpdateTaskUserBid(java.lang.Long, java.lang.Double)
+	 */
 	@Override
 	public TaskUserBidDTO addOrUpdateTaskUserBid(Long idTask, Double duration) {
 		User user = userService.getCurrentUser();
@@ -114,6 +126,10 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 		return (TaskUserBidDTO) transformers.convertEntityToDto(tub, TaskUserBidDTO.class);
 	}
 
+	/* 
+	 * (non-Javadoc)
+	 * @see com.example.service.TaskUserBidService#addNewTaskInBid(java.util.List, java.lang.Long)
+	 */
 	@Override
 	public List<TaskUserBidDTO> addNewTaskInBid(List<Long> listTaskId, Long dateEnd) {
 		List<TaskUserBidDTO> list = new ArrayList<>();
@@ -128,6 +144,11 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 		return list;
 	}
 
+	
+	/* 
+	 * (non-Javadoc)
+	 * @see com.example.service.TaskUserBidService#validBidByBoard(java.lang.Long, java.util.List)
+	 */
 	@Override
 	public void validBidByBoard(Long idBoard, List<BidDTO> listBidDTO) {
 		Board board = boardRepo.findOne(idBoard);
@@ -167,7 +188,7 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 				task.setDuration(bid.getDuration());
 				
 				// suppression des enchères dans la BDD
-				task.setTaskUserBids(null);
+				task.getTaskUserBids().clear();
 				
 				taskRepo.save(task);
 			}

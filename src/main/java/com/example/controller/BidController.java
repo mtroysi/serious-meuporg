@@ -33,9 +33,15 @@ public class BidController {
     
     @Autowired
     TaskService taskService;
-    	
+    
+    /**
+     * Retourne la liste des taches d'un tableaux qui n'ont pas d'utilisateur assigne
+     * @param idBoard
+     * @return list TaskLiteDTO
+     */
     @RequestMapping(value = "/withoutuser/board/{idBoard}", method = RequestMethod.GET)
     public ResponseEntity<List<TaskLiteDTO>> getTaskWithoutUser(@PathVariable("idBoard") Long idBoard) {
+    	logger.info("Calling BidController.getTaskWithoutUser with {}", idBoard);
     	
     	List<TaskLiteDTO> list = taskService.getTaskWithoutUser(idBoard);
     	
@@ -46,9 +52,14 @@ public class BidController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
     
-    
+    /**
+     * Retourne la liste des taches aux encheres qui sont finies
+     * @param idBoard
+     * @return liste de TaskUserBid
+     */
     @RequestMapping(value = "/end/board/{idBoard}", method = RequestMethod.GET)
     public ResponseEntity<List<TaskUserBidDTO>> getTaskBidEnd(@PathVariable("idBoard") Long idBoard) {
+    	logger.info("Calling BidController.getTaskBidEnd with {}", idBoard);
     	
     	List<TaskUserBidDTO> list = taskUserBidService.getTaskUserBidEndByBoard(idBoard);
     	
@@ -60,7 +71,7 @@ public class BidController {
     }
     
     /**
-     * Return list of taskUserBid by user and board
+     * Retourne la liste des enchères pour un tableau et/ou un utilisateur
      * @param user_id
      * @return list of TaskUserBidDTO
      */
@@ -77,6 +88,12 @@ public class BidController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
     
+    /**
+     * Affecte un temps a une tache aux encheres
+     * @param task_id : id de la tache
+     * @param duration : duree
+     * @return liste de TaskUserBidDTO
+     */
     @RequestMapping(value = "/task/{task_id}", method = RequestMethod.POST)
     public ResponseEntity<TaskUserBidDTO> addOrUpdateTaskUserBid(@PathVariable(value = "task_id") Long task_id, @RequestBody Double duration) {
         logger.info("Calling BidController.addOrUpdateTaskUserBid with {}", task_id);
@@ -86,10 +103,15 @@ public class BidController {
         return new ResponseEntity<>(tub, HttpStatus.OK);
     }
     
+    /**
+     * Ajoute une/ ou plusieurs taches aux encheres
+     * @param datetime
+     * @param listIdTasks : liste des idtache a créer.
+     * @return liste des taskUserBidDTO
+     */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<List<TaskUserBidDTO>> addBid(@RequestParam(value = "dateend") Long datetime, @RequestBody List<Long> listIdTasks) {
         logger.info("Calling BidController.addBid with {}", datetime);
-        
         
         List<TaskUserBidDTO> list = taskUserBidService.addNewTaskInBid(listIdTasks, datetime);
 
@@ -101,7 +123,11 @@ public class BidController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
     
-    
+    /**
+     * Valide les encheres d'un tableau
+     * @param board_id : id du tableau
+     * @param listBidDTO : liste de BidDTO
+     */
     @RequestMapping(value = "/valid/board/{board_id}", method = RequestMethod.POST)
     public void validBidByBoard(@PathVariable(value = "board_id") Long board_id, @RequestBody List<BidDTO> listBidDTO) {
         logger.info("Calling BidController.validBidByBoard with  {}", board_id);

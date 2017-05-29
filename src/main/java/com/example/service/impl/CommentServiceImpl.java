@@ -1,7 +1,13 @@
 package com.example.service.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
+
+import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.example.dto.CommentDTO;
-import com.example.enumeration.PriorityEnum;
 import com.example.model.Comment;
 import com.example.model.Task;
 import com.example.model.User;
@@ -10,13 +16,6 @@ import com.example.repository.TaskRepository;
 import com.example.repository.UserRepository;
 import com.example.service.CommentService;
 import com.example.transformers.Transformers;
-import org.apache.commons.beanutils.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Florentin NOËL on 17/05/17.
@@ -24,33 +23,33 @@ import java.util.Map;
 @Service
 
 public class CommentServiceImpl implements CommentService {
+	
     @Autowired
     private TaskRepository taskRepository;
+    
     @Autowired
     private CommentRepository commentRepository;
+    
     @Autowired
     private UserRepository userRepository;
+    
     @Autowired
     private Transformers transformers;
 
-    /**
-     * Retourne le commentaire dont l'id est passé en paramètre
-     * @param id l'id du commentaire
-     * @return le commentaire correspondant
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.CommentService#findComment(java.lang.Long)
      */
     @Override
     public CommentDTO findComment(Long id) {
         return (CommentDTO) transformers.convertEntityToDto(commentRepository.findOne(id), CommentDTO.class);
     }
 
-    /**
-     * Ajoute un commentaire à une tâche
-     * @param id l'id de la tâche
-     * @param values données du commentaire à créer
-     * @param idUser l'id de l'utilisateur
-     * @return
-     * @throws InvocationTargetException
-     * @throws IllegalAccessException
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.CommentService#addCommentToTask(java.lang.Long, java.util.Map, java.lang.Long)
      */
     @Override
     public CommentDTO addCommentToTask(Long id, Map<String, Object> values, Long idUser) throws InvocationTargetException, IllegalAccessException {
@@ -66,22 +65,20 @@ public class CommentServiceImpl implements CommentService {
         return (CommentDTO) transformers.convertEntityToDto(commentRepository.save(comment), CommentDTO.class);
     }
 
-    /**
-     * Supprime un commentaire
-     * @param id l'id du commentaire à supprimer
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.CommentService#deleteComment(java.lang.Long)
      */
     @Override
     public void deleteComment(Long id) {
         commentRepository.delete(id);
     }
 
-    /**
-     * Modifie un commentaire
-     * @param id l'id du commentaire à modifier
-     * @param values données à modifier
-     * @return DTO du commentaire modifié
-     * @throws InvocationTargetException
-     * @throws IllegalAccessException
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.CommentService#updateComment(java.lang.Long, java.util.Map)
      */
     @Override
     public CommentDTO updateComment(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {

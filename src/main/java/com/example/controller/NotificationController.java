@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.dto.BoardDTO;
 import com.example.dto.NotificationDTO;
 import com.example.service.NotificationService;
 
@@ -31,9 +30,9 @@ public class NotificationController {
 
 
     /**
-     * Return list of notifications by user
+     * Retourne la liste des notification par utilisateur
      * @param user_id user id
-     * @return list of NotificationDTO
+     * @return liste de NotificationDTO
      */
     @RequestMapping(value = "/user/{user_id}", method = RequestMethod.GET)
     public ResponseEntity<List<NotificationDTO>> getListByUser(@PathVariable(value = "user_id") Long user_id) {
@@ -49,9 +48,8 @@ public class NotificationController {
     }
     
     /**
-     * Read all notification by user
-     * @param user_id
-     * @return list of NotificationDTO
+     * Change le statut de toutes les notifications a "Read" par utilisateur
+     * @param user_id : id utilisateur
      */
     @RequestMapping(value = "/user/{user_id}/read", method = RequestMethod.GET)
     public void readAllNotification(@PathVariable(value = "user_id") Long user_id) {
@@ -60,12 +58,14 @@ public class NotificationController {
     }
     
     /**
-     * Create Notification
+     * Créer Notification
      * @param notifDTO
-     * @return
+     * @return notification Dto
      */
     @RequestMapping(method = RequestMethod.POST)
-    public NotificationDTO createBoard(@RequestBody NotificationDTO notifDTO) {
+    public NotificationDTO createNotification(@RequestBody NotificationDTO notifDTO) {
+        logger.info("Calling NotificationController.createNotification");
+        
         return notificationService.createNotification(notifDTO);
     }
     

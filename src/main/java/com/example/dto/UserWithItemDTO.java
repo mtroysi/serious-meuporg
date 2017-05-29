@@ -15,6 +15,4 @@ public class UserWithItemDTO extends UserDTO {
 	public void setItemUser(List<ItemUserDTO> itemUser) {
 		this.itemUser = itemUser;
 	}
-    
-    
 }

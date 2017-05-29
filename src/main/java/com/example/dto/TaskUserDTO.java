@@ -1,9 +1,5 @@
 package com.example.dto;
 
-import java.util.Date;
-
-import com.example.enumeration.PriorityEnum;
-import com.example.model.Task;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
