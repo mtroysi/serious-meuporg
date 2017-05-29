@@ -82,6 +82,10 @@
 
         };
 
+        ctrl.userAction = function(user){
+              $state.go('app.profil', { idUser: user.id });
+        }
+
         ctrl.init();
     })
 })();

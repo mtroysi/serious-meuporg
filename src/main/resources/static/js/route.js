@@ -36,6 +36,12 @@
                 controller: 'LoginController',
                 controllerAs: 'loginCtrl'
             })
+            .state('app.profil', {
+                url: '/profil/{idUser}',
+                templateUrl: 'js/user/profil/profil.html',
+                controller: 'ProfilController',
+                controllerAs: 'ctrl'
+            })
             .state('appSimple.signup', {
                 url: '/signup',
                 templateUrl: 'js/user/signup/signup.html',
