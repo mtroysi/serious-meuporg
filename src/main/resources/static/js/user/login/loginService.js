@@ -7,6 +7,10 @@
     helloApp.service('LoginService', function(LoginWS, AuthenticationService) {
         var svc = {};
 
+        /**
+         * Authentification
+         * @param user
+         */
         svc.authentification = function(user) {
 
             return LoginWS.login(user).then(function(response) {

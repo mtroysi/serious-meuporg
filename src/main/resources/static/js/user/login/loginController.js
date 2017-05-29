@@ -11,10 +11,13 @@
             loginCtrl.credentials = [];
         };
 
+        /**
+         * Login
+         */
         loginCtrl.loginAction = function() {
             var user = {
                 email: loginCtrl.credentials.email,
-                password: loginCtrl.credentials.password,
+                password: loginCtrl.credentials.password
             };
             LoginService.authentification(user).then(function(data) { 
                 /** appel aux methodes du services */
