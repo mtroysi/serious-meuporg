@@ -80,7 +80,7 @@ public class TaskWithPeriodDTO {
     }
 
     public Boolean getIsPeriodicity() {
-        return isPeriodicity;
+        return periodicity != null;
     }
 
     public void setIsPeriodicity(Boolean isPeriodicity) {
