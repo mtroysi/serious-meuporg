@@ -6,9 +6,9 @@ public enum PeriodicityEnum {
 	MONTHLY("Mois"), 
 	YEARLY("Année");
 
-	private final String name;
+	private String name = "";
 
-	private PeriodicityEnum(String s) {
+	PeriodicityEnum(String s) {
 		this.name = s;
 	}
 

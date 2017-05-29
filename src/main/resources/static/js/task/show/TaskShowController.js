@@ -10,14 +10,24 @@
         .controller('TaskShowController', function (TaskShowService, TaskUpdateService, $stateParams, constant, AuthenticationService, TagListService, $scope) {
             var ctrl = this;
 
+            ctrl.popup = {
+                opened: false
+            };
+
+            ctrl.open = function () {
+                ctrl.popup.opened = true;
+            };
+
             $scope.$on("showTask", function (event, args) {
                 ctrl.newTask = args.task.task;
                 ctrl.task = angular.copy(ctrl.newTask);
                 ctrl.columns = args.colonneKanban;
+                console.log(ctrl.task);
                 ctrl.listTags();
             });
 
             ctrl.priority = constant.priority;
+            ctrl.periodicityType = constant.periodicity;
 
             ctrl.init = function () {
                 ctrl.comment = {};
@@ -52,10 +62,10 @@
             };
 
             ctrl.updateTask = function () {
+                ctrl.task.periodicity.dateBegin = new Date(ctrl.task.periodicity.dateBegin).getTime();
+                console.log(ctrl.task.periodicity.dateBegin);
                 TaskUpdateService.updateTask(ctrl.task.id, ctrl.task).then(function (data) {
-                    console.log(ctrl.task);
-                    ctrl.newTask = data;
-                    console.log(ctrl.newTask);
+                    angular.extend(ctrl.newTask, ctrl.newTask, data);
                     $("#editTask").modal('toggle');
                 });
             };

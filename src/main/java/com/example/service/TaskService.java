@@ -58,7 +58,7 @@ public interface TaskService {
      * @throws InvocationTargetException
      * @throws IllegalAccessException
      */
-    TaskDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
+    TaskWithPeriodDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
     
     
     /**

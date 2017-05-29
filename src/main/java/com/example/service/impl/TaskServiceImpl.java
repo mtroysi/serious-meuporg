@@ -6,8 +6,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.example.enumeration.PeriodicityEnum;
+import com.example.model.*;
+import com.example.repository.PeriodicityRepository;
+import com.fasterxml.jackson.databind.node.BooleanNode;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.BeanUtilsBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +23,6 @@ import com.example.dto.TaskLiteDTO;
 import com.example.dto.TaskWithPeriodDTO;
 import com.example.enumeration.PriorityEnum;
 import com.example.enumeration.StatusEnum;
-import com.example.model.ColonneKanban;
-import com.example.model.Tag;
-import com.example.model.Task;
-import com.example.model.TaskUser;
 import com.example.repository.ColonneKanbanRepository;
 import com.example.repository.TagRepository;
 import com.example.repository.TaskRepository;
@@ -38,9 +41,12 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     private ColonneKanbanRepository colonneKanbanRepository;
     @Autowired
+    private PeriodicityRepository periodicityRepository;
+    @Autowired
     private Transformers transformers;
-    
-    
+
+    private final Logger logger = LoggerFactory.getLogger(TaskServiceImpl.class);
+
     /* 
      * (non-Javadoc)
      * @see com.example.service.TaskService#createTask(java.util.Map)
@@ -54,7 +60,7 @@ public class TaskServiceImpl implements TaskService {
         return (TaskDTO) transformers.convertEntityToDto(taskRepository.save(task), TaskDTO.class);
     }
 
-    
+
     /* 
      * (non-Javadoc)
      * @see com.example.service.TaskService#listAllTask()
@@ -70,7 +76,7 @@ public class TaskServiceImpl implements TaskService {
         return list;
     }
 
-    
+
     /* 
      * (non-Javadoc)
      * @see com.example.service.TaskService#getTask(java.lang.Long)
@@ -80,7 +86,7 @@ public class TaskServiceImpl implements TaskService {
         return (TaskDTO) transformers.convertEntityToDto(taskRepository.findOne(id), TaskDTO.class);
     }
 
-    
+
     /* 
      * (non-Javadoc)
      * @see com.example.service.TaskService#updateTask(java.lang.Long, java.util.Map)
@@ -88,6 +94,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public TaskWithPeriodDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         Task task = taskRepository.findOne(id);
+        logger.info(String.valueOf(values));
 
         task.setPriority(PriorityEnum.valueOf((String) values.get("priority")));
         values.remove("priority");
@@ -95,7 +102,35 @@ public class TaskServiceImpl implements TaskService {
         values.remove("taskComments");
         values.remove("tags");
 
-        logger.info(String.valueOf(values));
+        if ((Boolean) values.get("isPeriodicity")) {
+            Periodicity periodicity;
+            if (task.getPeriodicity() != null) {
+                periodicity = task.getPeriodicity();
+            } else {
+                periodicity = new Periodicity();
+            }
+
+            Map<String, Object> periodicityValues = (Map<String, Object>) values.get("periodicity");
+            logger.info(String.valueOf(periodicityValues));
+
+            periodicityValues.remove("periodicityChain");
+            periodicityValues.remove("periodicityDateUpdate");
+
+            periodicity.setType(PeriodicityEnum.valueOf((String) periodicityValues.get("type")));
+            periodicityValues.remove("type");
+            BeanUtils.populate(periodicity, periodicityValues);
+
+            periodicity = periodicityRepository.save(periodicity);
+            task.setPeriodicity(periodicity);
+        } else {
+            if (task.getPeriodicity() != null) {
+                Periodicity periodicity = task.getPeriodicity();
+                periodicityRepository.delete(periodicity.getId());
+            }
+            task.setPeriodicity(null);
+        }
+        values.remove("periodicity");
+
         BeanUtilsBean.getInstance().getConvertUtils().register(false, true, 0);
         BeanUtils.populate(task, values);
 
@@ -110,7 +145,7 @@ public class TaskServiceImpl implements TaskService {
         return (TaskWithPeriodDTO) transformers.convertEntityToDto(taskRepository.save(task), TaskWithPeriodDTO.class);
     }
 
-    
+
     /* 
      * (non-Javadoc)
      * @see com.example.service.TaskService#deleteTask(java.lang.Long)
@@ -120,7 +155,7 @@ public class TaskServiceImpl implements TaskService {
         taskRepository.delete(id);
     }
 
-   
+
     /* 
      * (non-Javadoc)
      * @see com.example.service.TaskService#addTaskTag(java.lang.Long, java.lang.Long)
