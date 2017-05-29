@@ -50,18 +50,6 @@ public interface TaskService {
     
     
     /**
-     * Modifie une tâche
-     *
-     * @param id     l'id de la tâche à modifier
-     * @param values données modifiées
-     * @return DTO de la tâche modifiée
-     * @throws InvocationTargetException
-     * @throws IllegalAccessException
-     */
-    TaskWithPeriodDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
-    
-    
-    /**
      * Supprime une tâche
      *
      * @param id l'id de la tâche à supprimer

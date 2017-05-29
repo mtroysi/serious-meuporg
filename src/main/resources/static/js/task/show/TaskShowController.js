@@ -19,7 +19,7 @@
             };
 
             $scope.$on("showTask", function (event, args) {
-                ctrl.newTask = args.task.task;
+                ctrl.newTask = args.task;
                 ctrl.task = angular.copy(ctrl.newTask);
                 ctrl.columns = args.colonneKanban;
                 console.log(ctrl.task);
@@ -44,28 +44,29 @@
                 ctrl.comment.dateCreation = Date.now();
                 ctrl.creator = AuthenticationService.getUserId();
                 return TaskShowService.addComment($stateParams.id, ctrl.comment, ctrl.creator).then(function (data) {
-                    ctrl.task.taskComments.push(data);
+                    ctrl.task.task.taskComments.push(data);
                     ctrl.comment = {};
                 });
             };
 
             ctrl.deleteComment = function (idx) {
-                return TaskShowService.deleteComment(ctrl.task.taskComments[idx].id).then(function () {
-                    ctrl.task.taskComments.splice(idx, 1);
+                return TaskShowService.deleteComment(ctrl.task.task.taskComments[idx].id).then(function () {
+                    ctrl.task.task.taskComments.splice(idx, 1);
                 });
             };
 
             ctrl.updateComment = function (idx) {
-                return TaskShowService.updateComment(ctrl.task.taskComments[idx].id, ctrl.task.taskComments[idx]).then(function (data) {
-                    ctrl.task.taskComments[idx] = data;
+                return TaskShowService.updateComment(ctrl.task.task.taskComments[idx].id, ctrl.task.task.taskComments[idx]).then(function (data) {
+                    ctrl.task.task.taskComments[idx] = data;
                 });
             };
 
             ctrl.updateTask = function () {
-                ctrl.task.periodicity.dateBegin = new Date(ctrl.task.periodicity.dateBegin).getTime();
-                console.log(ctrl.task.periodicity.dateBegin);
-                TaskUpdateService.updateTask(ctrl.task.id, ctrl.task).then(function (data) {
+                ctrl.task.task.periodicity.dateBegin = new Date(ctrl.task.task.periodicity.dateBegin).getTime();
+                console.log(ctrl.task);
+                TaskUpdateService.updateTask(ctrl.task.task.id, ctrl.task).then(function (data) {
                     angular.extend(ctrl.newTask, ctrl.newTask, data);
+                    console.log(ctrl.newTask);
                     $("#editTask").modal('toggle');
                 });
             };
@@ -78,7 +79,7 @@
             };
 
             ctrl.setSelectedTask = function () {
-                ctrl.task.tags.forEach(function (element) {
+                ctrl.task.task.tags.forEach(function (element) {
                     ctrl.tags.forEach(function (bis) {
                         if (element.color === bis.color) {
                             bis.selected = true;
@@ -89,7 +90,7 @@
 
             ctrl.toggleTag = function (tag) {
                 TaskUpdateService.toggleTag(ctrl.task.id, tag.id).then(function (data) {
-                    ctrl.task = data;
+                    ctrl.task.task = data;
                     tag.selected = !tag.selected;
                 });
             };

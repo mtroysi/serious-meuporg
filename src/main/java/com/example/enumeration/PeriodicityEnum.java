@@ -1,24 +1,24 @@
 package com.example.enumeration;
 
 public enum PeriodicityEnum {
-	
-	DAILY("Jour"),
-	MONTHLY("Mois"), 
-	YEARLY("Année");
 
-	private String name = "";
+    DAILY("Jour"),
+    MONTHLY("Mois"),
+    YEARLY("Année");
 
-	PeriodicityEnum(String s) {
-		this.name = s;
-	}
+    private String name = "";
 
-	public boolean equalsName(String otherName) {
-		return (otherName == null) ? false : this.name.equals(otherName);
-	}
+    PeriodicityEnum(String s) {
+        this.name = s;
+    }
 
-	@Override
-	public String toString() {
-		return this.name;
-	}
-	
+    public boolean equalsName(String otherName) {
+        return (otherName == null) ? false : this.name.equals(otherName);
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
+
 }

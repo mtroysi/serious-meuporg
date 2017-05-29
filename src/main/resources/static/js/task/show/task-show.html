@@ -2,9 +2,9 @@
     <div class="modal-header modal-header-confirmation">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                 aria-hidden="true">&times;</span></button>
-        <h5 class="modal-title" style="display: inline-block">{{ctrl.task.title}}</h5>
+        <h5 class="modal-title" style="display: inline-block">{{ctrl.task.task.title}}</h5>
         <div class="tags inline-block">
-            <span class="spanTag inline-block" ng-repeat="tag in ctrl.task.tags"
+            <span class="spanTag inline-block" ng-repeat="tag in ctrl.task.task.tags"
                   data-style="panel-{{tag.color}}">{{tag.name}}</span>
             <span class="spanTag fa fa-plus" ng-click="ctrl.listTags()" uib-popover-template="tagPopover.templateUrl"
                   popover-placement="bottom"></span>
@@ -17,21 +17,21 @@
                 <label class="col-sm-2 control-label" for="taskContent">Description</label>
                 <div class="col-sm-8">
                 <textarea type="text" class="form-control" id="taskContent"
-                          ng-model="ctrl.task.content"
+                          ng-model="ctrl.task.task.content"
                           placeholder="Description"></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="statusTask">Colonne</label>
                 <div class="col-sm-8">
-                    <select id="statusTask" class="form-control" ng-model="ctrl.task.colonneKanban"
+                    <select id="statusTask" class="form-control" ng-model="ctrl.task.task.colonneKanban"
                             ng-options="colonne.title for colonne in ctrl.columns track by colonne.id"></select>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="priorityTask">Priorité</label>
                 <div class="col-sm-8">
-                    <select id="priorityTask" class="form-control" ng-model="ctrl.task.priority"
+                    <select id="priorityTask" class="form-control" ng-model="ctrl.task.task.priority"
                             ng-options="idx as priority for (idx, priority) in ctrl.priority"></select>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                 <label class="col-sm-2 control-label" for="taskDuration">Durée</label>
                 <div class="col-sm-6">
                     <input type="number" class="form-control" id="taskDuration"
-                           ng-model="ctrl.task.duration"
+                           ng-model="ctrl.task.task.duration"
                            placeholder="Durée"/>
                 </div>
                 <label class="col-sm-2"> points d'énergie</label>
@@ -47,22 +47,22 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="taskDuration">Quête récurrente</label>
                 <div class="col-sm-10">
-                    <input type="checkbox" class="checkbox" ng-model="ctrl.task.isPeriodicity" ng-true-value="true"
+                    <input type="checkbox" class="checkbox" ng-model="ctrl.task.task.isPeriodicity" ng-true-value="true"
                            ng-false-value="false"/>
                 </div>
-                <div class="form-inline" ng-show="ctrl.task.isPeriodicity">
+                <div class="form-inline" ng-show="ctrl.task.task.isPeriodicity">
                     <div class="col-sm-offset-2 col-sm-10 ">
                         <span>Tous les </span><input type="number" class="form-inline" id="taskFrequency"
-                                                     ng-model="ctrl.task.periodicity.frequency"
+                                                     ng-model="ctrl.task.task.periodicity.frequency"
                                                      placeholder="Durée"/>
-                        <select class="form-control" ng-model="ctrl.task.periodicity.type"
+                        <select class="form-control" ng-model="ctrl.task.task.periodicity.type"
                                 ng-options="idx as type for (idx, type) in ctrl.periodicityType"></select>
                     </div>
                     <div class="col-sm-offset-2 col-sm-10 ">
                         <label for="taskDatePeriodicity">Date de début </label>
                         <p class="input-group">
                             <input id="taskDatePeriodicity" type="text" class="form-control" uib-datepicker-popup
-                                   ng-model="ctrl.task.periodicity.dateBegin"
+                                   ng-model="ctrl.task.task.periodicity.dateBegin"
                                    is-open="ctrl.popup.opened" datepicker-options="dateOptions" ng-required="true"
                                    close-text="Close"/>
                             <span class="input-group-btn">
@@ -76,13 +76,13 @@
             </div>
             <div class="row">
                 <label class="col-sm-2">Est aux enchères</label>
-                <p class="col-sm-8" ng-show="ctrl.task.isBid">Oui</p>
-                <p class="col-sm-8" ng-hide="ctrl.task.isBid">Non</p>
+                <p class="col-sm-8" ng-show="ctrl.task.task.isBid">Oui</p>
+                <p class="col-sm-8" ng-hide="ctrl.task.task.isBid">Non</p>
             </div>
             <div class="row">
                 <b class="col-sm-2" style="text-align: right">Commentaires</b>
                 <div class="col-sm-11 col-sm-offset-1 comments" style="overflow: auto;height: 300px;">
-                    <comment-div ng-repeat="c in ctrl.task.taskComments | orderBy: 'dateCreation' track by $index"
+                    <comment-div ng-repeat="c in ctrl.task.task.taskComments | orderBy: 'dateCreation' track by $index"
                                  class="row"
                                  comment="c" delete-comment="ctrl.deleteComment($index)"
                                  update-comment="ctrl.updateComment($index)"></comment-div>

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.example.dto.*;
 import com.example.enumeration.PeriodicityEnum;
 import com.example.model.*;
 import com.example.repository.PeriodicityRepository;
@@ -18,9 +19,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.dto.TaskDTO;
-import com.example.dto.TaskLiteDTO;
-import com.example.dto.TaskWithPeriodDTO;
 import com.example.enumeration.PriorityEnum;
 import com.example.enumeration.StatusEnum;
 import com.example.repository.ColonneKanbanRepository;
@@ -45,9 +43,7 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     private Transformers transformers;
 
-    private final Logger logger = LoggerFactory.getLogger(TaskServiceImpl.class);
-
-    /* 
+    /*
      * (non-Javadoc)
      * @see com.example.service.TaskService#createTask(java.util.Map)
      */
@@ -84,65 +80,6 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public TaskDTO getTask(Long id) {
         return (TaskDTO) transformers.convertEntityToDto(taskRepository.findOne(id), TaskDTO.class);
-    }
-
-
-    /* 
-     * (non-Javadoc)
-     * @see com.example.service.TaskService#updateTask(java.lang.Long, java.util.Map)
-     */
-    @Override
-    public TaskWithPeriodDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
-        Task task = taskRepository.findOne(id);
-        logger.info(String.valueOf(values));
-
-        task.setPriority(PriorityEnum.valueOf((String) values.get("priority")));
-        values.remove("priority");
-
-        values.remove("taskComments");
-        values.remove("tags");
-
-        if ((Boolean) values.get("isPeriodicity")) {
-            Periodicity periodicity;
-            if (task.getPeriodicity() != null) {
-                periodicity = task.getPeriodicity();
-            } else {
-                periodicity = new Periodicity();
-            }
-
-            Map<String, Object> periodicityValues = (Map<String, Object>) values.get("periodicity");
-            logger.info(String.valueOf(periodicityValues));
-
-            periodicityValues.remove("periodicityChain");
-            periodicityValues.remove("periodicityDateUpdate");
-
-            periodicity.setType(PeriodicityEnum.valueOf((String) periodicityValues.get("type")));
-            periodicityValues.remove("type");
-            BeanUtils.populate(periodicity, periodicityValues);
-
-            periodicity = periodicityRepository.save(periodicity);
-            task.setPeriodicity(periodicity);
-        } else {
-            if (task.getPeriodicity() != null) {
-                Periodicity periodicity = task.getPeriodicity();
-                periodicityRepository.delete(periodicity.getId());
-            }
-            task.setPeriodicity(null);
-        }
-        values.remove("periodicity");
-
-        BeanUtilsBean.getInstance().getConvertUtils().register(false, true, 0);
-        BeanUtils.populate(task, values);
-
-        List<TaskUser> taskUsers = task.getTaskUsers();
-        taskUsers.stream().forEach(taskUser -> {
-            Map<String, Object> colonneValues = (Map<String, Object>) values.get("colonneKanban");
-            ColonneKanban colonneKanban = colonneKanbanRepository.findOne(new Long((Integer) colonneValues.get("id")));
-            taskUser.setColonneKanban(colonneKanban);
-        });
-        task.setTaskUsers(taskUsers);
-
-        return (TaskWithPeriodDTO) transformers.convertEntityToDto(taskRepository.save(task), TaskWithPeriodDTO.class);
     }
 
 

@@ -1,17 +1,17 @@
 package com.example.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Map;
 
+import com.example.dto.TaskWithPeriodDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.dto.TaskUserDTO;
 import com.example.service.TaskUserService;
@@ -83,4 +83,16 @@ public class TaskUserController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    /**
+     * Modifie une tâche.
+     * @param id id de la tâche à modifier
+     * @param values données modifiées de la tâche
+     * @return tache après modification
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public TaskUserDTO updateTask(@PathVariable("id") Long id, @RequestBody Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
+        return taskUserService.updateTask(id, values);
+    }
 }

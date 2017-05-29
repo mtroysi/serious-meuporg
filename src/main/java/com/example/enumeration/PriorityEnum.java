@@ -1,6 +1,5 @@
 package com.example.enumeration;
 
-
 public enum PriorityEnum {
 
     URGENT_IMPORTANT("Urgent et important"),
@@ -10,11 +9,11 @@ public enum PriorityEnum {
 
     private String name = "";
 
-    PriorityEnum(String name){
+    PriorityEnum(String name) {
         this.name = name;
     }
 
-    public String toString(){
+    public String toString() {
         return name;
     }
 }
