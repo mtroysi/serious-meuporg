@@ -9,6 +9,10 @@
         .service('TagListWS', function($http, constant) {
             var svc = this;
 
+            /**
+             * Retourne la liste des tags disponibles
+             * @returns {HttpPromise}
+             */
             svc.listTags = function() {
                 return $http.get(constant.BASE_URI + '/tag');
             };
