@@ -7,6 +7,9 @@
     helloApp.controller('BidPreviewController', function(moment, $location, $http, BoardService, $stateParams, AuthenticationService, TaskService, BidService) {
         var ctrl = this;
 
+        /**
+         * Initialisation
+         */
         ctrl.init = function() {
             ctrl.initCarousel();
             ctrl.getBoard($stateParams.idBoard);
@@ -45,9 +48,12 @@
                 ctrl.listTaskBid = data || [];
                 ctrl.showTaskCarouselAndTinder(true);
             });
-        }
+        };
 
-
+        /**
+         * Display task carousel
+         * @param first
+         */
         ctrl.showTaskCarouselAndTinder = function(first) {
             if (ctrl.listTaskBid.length > 0) {
                 if (first) {
@@ -62,22 +68,22 @@
                     });
                 }
             }
-        }
+        };
 
         /**
          * Change task
          */
         ctrl.changeTask = function(task) {
             ctrl.taskShow = task;
-        }
+        };
 
         /**
-         * Accepcted task
+         * Accepted task
          */
         ctrl.acceptedTask = function() {
             $('#editDurationBid').modal('show');
             ctrl.durationBid = ctrl.taskShow.duration;
-        }
+        };
 
         /**
          * refused task
@@ -85,7 +91,7 @@
         ctrl.refusedTask = function() {
             ctrl.taskShow.read = true;
             ctrl.showTaskCarouselAndTinder();
-        }
+        };
 
 
 
@@ -143,7 +149,7 @@
                 ctrl.taskShow.duration = angular.copy(ctrl.durationBid);
                 ctrl.showTaskCarouselAndTinder();
             });
-        }
+        };
 
 
         /**
@@ -172,7 +178,7 @@
                 }
                 ctrl.listTaskWithoutUserSelected = [];
             });
-        }
+        };
 
 
         ctrl.init();
