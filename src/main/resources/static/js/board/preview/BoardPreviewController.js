@@ -245,7 +245,7 @@
             ctrl.setColor = function (colonne) {
                 ctrl.editColonne = colonne;
                 ctrl.saveEditColonne();
-            }
+            };
 
 
             /**
