@@ -16,6 +16,12 @@
                 'NOT_URGENT_IMPORTANT': 'Urgent et pas important',
                 'NOT_URGENT_NOT_IMPORTANT': 'Pas urgent et pas important'
             },
+            'status': {
+                'TODO': 'Todo',
+                'IN_PROGRESS': 'In progress',
+                'DONE': 'Done',
+                'DONE_ADMIN': 'Done avec validation de l\'administateur'
+            },
             'color': ['info', 'primary', 'blue', 'indigo', 'deeppurple', 'purple', 'pink', 'danger', 'teal', 'green',
                 'success', 'lime', 'yellow', 'warning', 'orange', 'deeporange', 'midnightblue', 'bluegray',
                 'bluegraylight', 'black', 'gray', 'default', 'white', 'brown'
