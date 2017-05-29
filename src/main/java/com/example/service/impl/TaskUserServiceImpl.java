@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.dto.TaskUserDTO;
 import com.example.dto.TaskWithPeriodDTO;
+import com.example.enumeration.StatusEnum;
 import com.example.model.Periodicity;
 import com.example.model.TaskUser;
 import com.example.repository.TaskUserRepository;
@@ -120,11 +121,11 @@ public class TaskUserServiceImpl implements TaskUserService {
 				}
 				
 				// Test sur les valeurs de la tasks, on va remettre le statut a TODO pour chaque nouvelle occurence de la periodicity.
-				
+				if( taskWithPeriod.getDateBeginTask().after(dateUpdatePeriodicity.getTime())){
+					tu.setStatus(StatusEnum.TODO);
+					taskUserRepository.save(tu);
+				}
 			}
-			
-			
-			
 			return taskUserDTO;
 		})
 		.filter((TaskUserDTO tud) -> tud != null).collect(Collectors.toList());

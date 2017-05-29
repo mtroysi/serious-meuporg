@@ -5,8 +5,7 @@ public enum StatusEnum {
 
     TODO("Todo"),
     IN_PROGRESS("In progress"),
-    DONE("Done"),
-    DONE_ADMIN("Done avec validation de l'administateur");
+    DONE("Done");
 
     private String name = "";
 
