@@ -69,7 +69,9 @@
             }
 
             if (item.keyItem === 'CURSE_BREBIS') {
-                $('body').append($('<audio autoplay><source src="assets/audio/mouton.mp3" type="audio/mp3"></source></audio>'));
+                if ($('body audio.brebis').length == 0) {
+                    $('body').append($('<audio class="brebis" autoplay><source src="assets/audio/mouton.mp3" type="audio/mp3"></source></audio>'));
+                }
             }
         };
 
