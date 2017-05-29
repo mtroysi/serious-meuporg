@@ -18,16 +18,19 @@
                 var idUser = AuthenticationService.getUserId();
                 ctrl.filter = { type: "TOUT" };
 
+                // Récupère les items disponibles
                 ShopService.getAllItemsByUserId(idUser).then(function(data) {
                     ctrl.items = data;
                     ctrl.filteredItems = angular.copy(data);
                 });
 
+                // Récupère l'utilisateur connecté
                 ctrl.user = {};
                 UserService.getUser(idUser).then(function(response) {
                     ctrl.user = response;
                 });
 
+                // Récupère la liste des utilisateurs (pour lancer malédictions)
                 ctrl.listUsers = {};
                 ctrl.userSelected = {};
                 UserService.getAllUser().then(function(response) {
@@ -41,6 +44,11 @@
 
             };
 
+            /**
+             * Retourne le code couleur en fonction du niveau de l'utilisateur et du niveau requis par l'objet
+             * @param item
+             * @returns {string}
+             */
             ctrl.hasLevel = function(item) {
                 if (ctrl.user.level >= item.requiredLevel) {
                     return 'text-success';
@@ -49,6 +57,11 @@
                 }
             };
 
+            /**
+             * Retourne le code couleur en fonction de l'argent de l'utilisateur et le prix de l'objet
+             * @param item
+             * @returns {string}
+             */
             ctrl.hasMoney = function(item) {
                 if (ctrl.user.money >= item.price) {
                     return 'text-success';
@@ -57,10 +70,19 @@
                 }
             };
 
+            /**
+             * Retourne true si l'utilisateur peut acheter l'objet
+             * @param item
+             * @returns {boolean}
+             */
             ctrl.canBeBought = function(item) {
                 return (ctrl.hasLevel(item) === 'text-success') && (ctrl.hasMoney(item) === 'text-success');
             };
 
+            /**
+             * Affiche modal d'achat ou d'erreur
+             * @param item
+             */
             ctrl.buyItem = function(item) {
                 if (ctrl.canBeBought(item)) {
                     ctrl.itemSelected = item;
@@ -71,6 +93,9 @@
                 }
             };
 
+            /**
+             * Achat d'un objet
+             */
             ctrl.validBuyItem = function() {
                 var idUserMal = ctrl.itemSelected.type === "CURSE" ? ctrl.userSelected.id : null;
                 InventoryService.buyItem(ctrl.itemSelected.id, idUserMal).then(function(data) {
@@ -90,7 +115,7 @@
                         }
                     }
                 });
-            }
+            };
 
 
             /**
@@ -100,6 +125,9 @@
                 $(element).slideToggle(500);
             };
 
+            /**
+             * Filter items
+             */
             ctrl.filterItems = function() {
                 ctrl.filteredItems = ctrl.items.filter(function(e) {
                     if (ctrl.filter.type === 'ACHETABLE') {
