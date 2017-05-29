@@ -15,7 +15,7 @@ public interface ItemUserService {
 	/**
 	 * Supprime un item de l'inventaire
 	 * @param idItem : id item
-	 * @return
+	 * @return etat de la suppression
 	 */
 	Boolean removeItem(Long idItem);
 	
@@ -23,7 +23,7 @@ public interface ItemUserService {
 	 * Active ou desactive un item dans l'inventaire
 	 * @param idItem : id item
 	 * @param active : boolean active
-	 * @return
+	 * @return etat de la modification
 	 */
 	Boolean activeItem(Long idItem, Boolean active);
 }

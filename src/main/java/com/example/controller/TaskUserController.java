@@ -49,8 +49,8 @@ public class TaskUserController {
     
     /**
      * Retourne la liste des taches par utilisateur
-     * @param user_id
-     * @return
+     * @param user_id : id de l'utilisateur
+     * @return liste des taches
      */
     @RequestMapping(value = "/user/{user_id}", method = RequestMethod.GET)
     public ResponseEntity<List<TaskUserDTO>> listTaskByUser(@PathVariable(value = "user_id") Long user_id){
@@ -67,8 +67,8 @@ public class TaskUserController {
     
     /**
      * Retourne la liste des taches par tableau
-     * @param board_id
-     * @return
+     * @param board_id : id du tableau
+     * @return liste des taches
      */
     @RequestMapping(value = "/board/{board_id}", method = RequestMethod.GET)
     public ResponseEntity<List<TaskUserDTO>> listTaskByBoard(@PathVariable(value = "board_id") Long board_id){

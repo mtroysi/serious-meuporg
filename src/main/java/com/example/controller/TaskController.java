@@ -75,7 +75,7 @@ public class TaskController {
      * Modifie une tâche.
      * @param id id de la tâche à modifier
      * @param values données modifiées de la tâche
-     * @return
+     * @return tache après modification
      * @throws InvocationTargetException
      * @throws IllegalAccessException
      */

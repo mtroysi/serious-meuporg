@@ -19,7 +19,7 @@ public interface UserService {
 	/**
      * Crée un utilisateur
      * @param userDTO données de l'utilisateur à créer
-     * @return
+     * @return utilisateur créé
      */
     UserDTO createUser(UserDTO userDTO);
     
@@ -73,7 +73,7 @@ public interface UserService {
     /**
      * Retourne le classement d'un utilisateur par rapport aux autres utilisateurs
      * @param id
-     * @return
+     * @return UserRankinDTO (classement)
      */
     UserRankinDTO getRankin(long id);
     

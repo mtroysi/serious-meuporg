@@ -19,7 +19,7 @@ public interface ItemUserRepository extends PagingAndSortingRepository<ItemUser,
 	/**
 	 * Retourne une liste d'item par utilisateur
 	 * @param userId
-	 * @return
+	 * @return ItemUser
 	 */
 	List<ItemUser> findByUserId(Long userId);
 	

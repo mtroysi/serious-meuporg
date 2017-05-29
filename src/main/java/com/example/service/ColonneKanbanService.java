@@ -16,7 +16,7 @@ public interface ColonneKanbanService {
 	/**
 	 * Modifie une colonne Kanban
 	 * @param id l'id de la colonne à modifier
-	 * @param colonneDTO données de la colonne modifiée
+	 * @param colonne données de la colonne modifiée
 	 * @return DTO de la colonne modifiée
 	 */
 	ColonneKanbanDTO updateColonneKanban(Long id, ColonneKanbanDTO colonne);

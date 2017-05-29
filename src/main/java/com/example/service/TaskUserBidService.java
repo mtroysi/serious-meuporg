@@ -12,7 +12,7 @@ public interface TaskUserBidService {
 	 * Retourne la liste des taches aux enchères par rapport à un tableau et un utilisateur
 	 * @param idBoard
 	 * @param idUser
-	 * @return
+	 * @return la liste des taches (TaskUserBidDTO)
 	 */
     List<TaskUserBidDTO> getTaskUserBidByBoardAndUser(Long idBoard, Long idUser);
     
@@ -21,7 +21,7 @@ public interface TaskUserBidService {
      * Ajoute le temps à une enchère par rapport à une tache
      * @param idTask
      * @param duration
-     * @return
+     * @return tache (TaskUserBidDTO)
      */
     TaskUserBidDTO addOrUpdateTaskUserBid(Long idTask, Double duration);
     
@@ -30,7 +30,7 @@ public interface TaskUserBidService {
      * Ajoute une liste de taches aux enchères
      * @param listTaskId
      * @param dateEnd
-     * @return
+     * @return la liste des taches créées (TaskUserBidDTO)
      */
     List<TaskUserBidDTO> addNewTaskInBid(List<Long> listTaskId, Long dateEnd);
     
@@ -38,8 +38,8 @@ public interface TaskUserBidService {
     /**
      * Retourne une liste de taches par rapport à la date de fin des enchères
      * @param idBoard
-     * @return
-     */
+     * @return la liste des taches 
+     */ 
     List<TaskUserBidDTO> getTaskUserBidEndByBoard(Long idBoard);
     
     

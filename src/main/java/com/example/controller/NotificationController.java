@@ -49,8 +49,7 @@ public class NotificationController {
     
     /**
      * Change le statut de toutes les notifications a "Read" par utilisateur
-     * @param user_id
-     * @return list of NotificationDTO
+     * @param user_id : id utilisateur
      */
     @RequestMapping(value = "/user/{user_id}/read", method = RequestMethod.GET)
     public void readAllNotification(@PathVariable(value = "user_id") Long user_id) {
@@ -61,11 +60,11 @@ public class NotificationController {
     /**
      * Créer Notification
      * @param notifDTO
-     * @return
+     * @return notification Dto
      */
     @RequestMapping(method = RequestMethod.POST)
-    public NotificationDTO createBoard(@RequestBody NotificationDTO notifDTO) {
-        logger.info("Calling NotificationController.createBoard");
+    public NotificationDTO createNotification(@RequestBody NotificationDTO notifDTO) {
+        logger.info("Calling NotificationController.createNotification");
         
         return notificationService.createNotification(notifDTO);
     }

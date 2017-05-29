@@ -21,7 +21,7 @@ public interface NotificationService {
 	
 	/**
 	 * Crée une notifications
-	 * @param notifDTO données de la notification
+	 * @param notif données de la notification
 	 * @return DTO de la notification créée
 	 */
 	NotificationDTO createNotification(NotificationDTO notif);

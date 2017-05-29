@@ -22,7 +22,7 @@ public interface CommentService {
      * @param id l'id de la tâche
      * @param values données du commentaire à créer
      * @param idUser l'id de l'utilisateur
-     * @return
+     * @return commentaire ajouté
      * @throws InvocationTargetException
      * @throws IllegalAccessException
      */
