@@ -7,22 +7,22 @@ import com.example.dto.NotificationDTO;
 public interface NotificationService {
 
 	/**
-	 * Get list of Notification by user id 
-	 * @param userId
-	 * @return
+	 * Retourne la liste des notifications d'un utilisateur donné
+	 * @param userId id de l'utilisateur
+	 * @return la liste des notifications d'un utilisateur donné
 	 */
 	List<NotificationDTO> getNotificationByUserId(Long userId);
 	
 	/**
-	 * Read all user notifications
-	 * @param userId
+	 * Marque toutes les notifications de l'utilisateur comme lues.
+	 * @param userId l'id de l'utilisateur
 	 */
 	void readAllNotification(Long userId);
 	
 	/**
-	 * Create notification
-	 * @param notif
-	 * @return
+	 * Crée une notifications
+	 * @param notifDTO données de la notification
+	 * @return DTO de la notification créée
 	 */
 	NotificationDTO createNotification(NotificationDTO notif);
 	

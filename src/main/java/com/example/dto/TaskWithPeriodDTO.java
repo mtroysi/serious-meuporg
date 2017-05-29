@@ -6,9 +6,6 @@ import java.util.List;
 
 import com.example.enumeration.PriorityEnum;
 import com.example.enumeration.StatusEnum;
-import com.example.model.Board;
-import com.example.model.Periodicity;
-import com.example.model.User;
 
 
 public class TaskWithPeriodDTO {

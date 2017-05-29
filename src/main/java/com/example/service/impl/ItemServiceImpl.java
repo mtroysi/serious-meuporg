@@ -1,6 +1,5 @@
 package com.example.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -20,7 +19,6 @@ import com.example.transformers.Transformers;
 /**
  * Created by Morgane TROYSI on 19/05/17.
  */
-
 @Service
 public class ItemServiceImpl implements ItemService {
 
@@ -33,9 +31,9 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private Transformers transformers;
 
-    /**
-     * Retourne la liste de tous les items
-     * @return la liste de tous les items
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.ItemService#getAllItemsByUser(java.lang.Long)
      */
     @Override
     public List<ItemDTO> getAllItemsByUser(Long userId) {

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.dto.TaskUserDTO;
 import com.example.dto.TaskWithPeriodDTO;
-import com.example.enumeration.PeriodicityEnum;
 import com.example.model.Periodicity;
 import com.example.model.TaskUser;
 import com.example.repository.TaskUserRepository;
@@ -28,31 +27,30 @@ public class TaskUserServiceImpl implements TaskUserService {
     @Autowired
     Transformers transformers;
 
-	/**
-	 * Retourne les tâches d'un utilisateur donné pour un tableau donné
-	 * @param userId id de l'utilisateur
-	 * @param boardId id du tableau
-	 * @return liste des tâches
+	
+	/* 
+	 * (non-Javadoc)
+	 * @see com.example.service.TaskUserService#getTaskUserByUserIdAndBoardId(java.lang.Long, java.lang.Long)
 	 */
 	@Override
 	public List<TaskUserDTO> getTaskUserByUserIdAndBoardId(Long userId, Long boardId) {
 		return this.buildTaskWithPeriodicity(taskUserRepository.findAllByUserIdAndTaskBoardId(userId, boardId));
 	}
 
-	/**
-	 * Retourne toutes les tâches d'un utilisateur donné
-	 * @param userId id de l'utilisateur
-	 * @return liste des tâches d'un utilisateur donné
+	
+	/* 
+	 * (non-Javadoc)
+	 * @see com.example.service.TaskUserService#getTaskUserByUserId(java.lang.Long)
 	 */
 	@Override
 	public List<TaskUserDTO> getTaskUserByUserId(Long userId) {
 		return this.buildTaskWithPeriodicity(taskUserRepository.findAllByUserId(userId));
 	}
 
-	/**
-	 * Retourne toutes les tâches d'un tableau donné
-	 * @param boardId id du tableau
-	 * @return liste des tâches d'un tableau donné
+	
+	/* 
+	 * (non-Javadoc)
+	 * @see com.example.service.TaskUserService#getTaskUserByBoardId(java.lang.Long)
 	 */
 	@Override
 	public List<TaskUserDTO> getTaskUserByBoardId(Long boardId) {
@@ -60,6 +58,11 @@ public class TaskUserServiceImpl implements TaskUserService {
 	}
 	
 	
+	/**
+	 * Méthode qui va constuire une liste de tache avec la gestion de la périodicité
+	 * @param taskUser
+	 * @return liste de TaskUserDTO
+	 */
 	private List<TaskUserDTO> buildTaskWithPeriodicity(List<TaskUser> taskUser){		
 		return taskUser.stream().map((TaskUser tu) -> {
 			TaskUserDTO taskUserDTO = (TaskUserDTO)transformers.convertEntityToDto(tu, TaskUserDTO.class);
@@ -127,7 +130,12 @@ public class TaskUserServiceImpl implements TaskUserService {
 		.filter((TaskUserDTO tud) -> tud != null).collect(Collectors.toList());
 	}
 	
-	
+	/**
+	 * Ajoute une période à une date par rapport a sa pérodicité
+	 * @param date
+	 * @param periodicity
+	 * @param negativeFrequence
+	 */
 	private void addPeriodicityDate(Calendar date, Periodicity periodicity, int negativeFrequence){
 		
 		switch(periodicity.getType()){

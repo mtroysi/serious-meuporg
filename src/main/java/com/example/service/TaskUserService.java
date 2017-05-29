@@ -3,29 +3,29 @@ package com.example.service;
 import java.util.List;
 
 import com.example.dto.TaskUserDTO;
-import com.example.model.TaskUser;
 
 
 public interface TaskUserService {
 	
 	/**
-	 * Get list of taskUser by user id and board id
-	 * @param userId
-	 * @return
+	 * Retourne les tâches d'un utilisateur donné pour un tableau donné
+	 * @param userId id de l'utilisateur
+	 * @param boardId id du tableau
+	 * @return liste des tâches
 	 */
 	List<TaskUserDTO> getTaskUserByUserIdAndBoardId(Long userId, Long boardId);
 	
 	/**
-	 * Get list of taskUser by user id 
-	 * @param userId
-	 * @return
+	 * Retourne toutes les tâches d'un utilisateur donné
+	 * @param userId id de l'utilisateur
+	 * @return liste des tâches d'un utilisateur donné
 	 */
 	List<TaskUserDTO> getTaskUserByUserId(Long userId);
 	
 	/**
-	 * Get list of taskUser by board id
-	 * @param boardId
-	 * @return
+	 * Retourne toutes les tâches d'un tableau donné
+	 * @param boardId id du tableau
+	 * @return liste des tâches d'un tableau donné
 	 */
 	List<TaskUserDTO> getTaskUserByBoardId(Long boardId);	
 }

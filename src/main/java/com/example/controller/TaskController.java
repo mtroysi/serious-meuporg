@@ -1,27 +1,20 @@
 package com.example.controller;
 
-import com.example.dto.*;
-import com.example.model.Comment;
-import com.example.service.CommentService;
-import com.example.service.TaskService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.dto.CommentDTO;
 import com.example.dto.TaskDTO;
+import com.example.dto.TaskWithPeriodDTO;
+import com.example.service.CommentService;
 import com.example.service.TaskService;
 
 /**
@@ -58,6 +51,10 @@ public class TaskController {
         return taskService.getTask(id);
     }
 
+    /**
+     * Retourne la liste de toutes les taches
+     * @return liste des taches
+     */
     public List<TaskDTO> listAllTask() {
         return taskService.listAllTask();
     }

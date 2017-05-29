@@ -22,11 +22,10 @@ public class ColonneKanbanServiceImpl implements ColonneKanbanService {
     @Autowired
     private Transformers transformers;
 
-	/**
-	 * Crée une colonne Kanban
-	 * @param colonneKanbanDTO informations de la colonne à créer
-	 * @param boardId id du tableau dans lequel créer la colonne
-	 * @return DTO de la colonne créée
+	
+	/* 
+	 * (non-Javadoc)
+	 * @see com.example.service.ColonneKanbanService#createColonneKanban(com.example.dto.ColonneKanbanDTO, java.lang.Long)
 	 */
 	@Override
 	public ColonneKanbanDTO createColonneKanban(ColonneKanbanDTO colonneKanbanDTO, Long boardId) {
@@ -36,11 +35,10 @@ public class ColonneKanbanServiceImpl implements ColonneKanbanService {
         return (ColonneKanbanDTO) transformers.convertEntityToDto(colonneKanbanRepository.save(ck), ColonneKanbanDTO.class);
 	}
 
-	/**
-	 * Modifie une colonne Kanban
-	 * @param id l'id de la colonne à modifier
-	 * @param colonneDTO données de la colonne modifiée
-	 * @return DTO de la colonne modifiée
+	
+	/* 
+	 * (non-Javadoc)
+	 * @see com.example.service.ColonneKanbanService#updateColonneKanban(java.lang.Long, com.example.dto.ColonneKanbanDTO)
 	 */
 	@Override
 	public ColonneKanbanDTO updateColonneKanban(Long id, ColonneKanbanDTO colonneDTO) {
@@ -50,9 +48,10 @@ public class ColonneKanbanServiceImpl implements ColonneKanbanService {
         return (ColonneKanbanDTO) transformers.convertEntityToDto(colonneKanbanRepository.save(colonne), ColonneKanbanDTO.class);
 	}
 
-	/**
-	 * Supprime une colonne Kanban
-	 * @param id l'id de la colonne à supprimer
+	
+	/* 
+	 * (non-Javadoc)
+	 * @see com.example.service.ColonneKanbanService#deleteColonneKanban(java.lang.Long)
 	 */
 	@Override
 	public void deleteColonneKanban(Long id) {

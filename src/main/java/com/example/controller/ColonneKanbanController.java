@@ -44,9 +44,9 @@ public class ColonneKanbanController {
     }
 
     /**
-     * Create colonne Kanban in board
+     * Crée une colonne Kanban dans un tableau board
      * @param board_id board id
-     * @param colonneKanbanDTO datas of the colonne Kanban to create
+     * @param colonneKanbanDTO : objet a créer
      * @return new colonne Kanban
      * @throws IllegalAccessException
      * @throws InvocationTargetException
@@ -66,8 +66,8 @@ public class ColonneKanbanController {
 
 
     /**
-     * delete colonne Kanban.
-     * @param kanban_id id of the colonne Kanban to delete
+     * Supprime une colonne Kanban.
+     * @param kanban_id : id colonne Kanban a supprimer
      */
     @RequestMapping(value = "/{kanban_id}", method = RequestMethod.DELETE)
     public void deleteColonneKanban(@PathVariable(value = "kanban_id") Long kanban_id) {

@@ -1,12 +1,14 @@
 package com.example.dto;
 
-import com.example.enumeration.PriorityEnum;
-import com.example.model.*;
-
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import com.example.enumeration.PriorityEnum;
+import com.example.model.Checklist;
+import com.example.model.Link;
+import com.example.model.Periodicity;
+import com.example.model.Task;
 
 
 /**

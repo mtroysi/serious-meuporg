@@ -1,11 +1,14 @@
 package com.example.model;
 
-import com.example.enumeration.StatusEnum;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.example.enumeration.StatusEnum;
 
 /**
  * Created by Morgane TROYSI on 10/05/17.

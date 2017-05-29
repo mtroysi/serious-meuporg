@@ -1,15 +1,20 @@
 package com.example.controller;
 
-import com.example.dto.ItemDTO;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.example.dto.UserDTO;
 import com.example.dto.UserRankinDTO;
 import com.example.dto.UserStatsDTO;
 import com.example.dto.UserWithItemDTO;
 import com.example.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Created by Morgane TROYSI on 16/05/17.
@@ -52,6 +57,10 @@ public class UserController {
         return userService.loadUsers(query);
     }
     
+    /**
+     * Retourne la liste complete des utilisateurs de l'application
+     * @return liste des utilisateurs
+     */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public List<UserDTO> getAllUser() {
         return userService.getAllUser();
@@ -62,8 +71,7 @@ public class UserController {
      * Retourne l'utilisateur dont l'id est passé en paramètre.
      * @param id id de l'utilisateur
      * @return l'utilisateur correspondant
-     */
-     
+     */     
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public UserWithItemDTO getUser(@PathVariable ("id") Long id){
         return userService.getUser(id);

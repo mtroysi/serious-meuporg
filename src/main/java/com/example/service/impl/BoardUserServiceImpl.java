@@ -15,21 +15,19 @@ import com.example.service.BoardUserService;
 /**
  * Created by Morgane TROYSI on 11/05/17.
  */
-
 @Service
 public class BoardUserServiceImpl implements BoardUserService {
     @Autowired
     private BoardUserRepository boardUserRepository;
 
-    /**
-     * Retourne les tableaux d'un utilisateur donné
-     * @param user_id l'id de l'utilisateur
-     * @return la liste des tableaux de l'utilisateur
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.BoardUserService#getListBoardByUserId(java.lang.Long)
      */
     @Override
     public List<BoardWithDetailDTO> getListBoardByUserId(Long user_id) {
         List<BoardUser> list = boardUserRepository.findAllByUserId(user_id);
-
 
         return list.stream()
                 .sorted(Comparator.comparing(board -> board.getBoard().getDateCreation()))

@@ -23,7 +23,6 @@ import java.util.Calendar;
 /**
  * Created by Morgane TROYSI on 11/05/17.
  */
-
 @Service
 public class BoardServiceImpl implements BoardService {
     @Autowired
@@ -38,20 +37,20 @@ public class BoardServiceImpl implements BoardService {
     @Autowired
     private Transformers transformers;
 
-    /**
-     * Retourne le tabbleau dont l'id est passé en paramètre
-     * @param id l'id du tableau
-     * @return le DTO du tableau correspondant
+
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.BoardService#getBoard(java.lang.Long)
      */
     @Override
     public BoardDTO getBoard(Long id) {
         return transformers.transformBoardToBoardDto(boardRepository.findOne(id));
     }
 
-    /**
-     * Crée un tableau
-     * @param boardDTO informations nécessaires à la création du tableau
-     * @return le DTO du tableau créé
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.BoardService#createBoard(com.example.dto.BoardDTO)
      */
     @Override
     public BoardDTO createBoard(BoardDTO boardDTO) {
@@ -88,21 +87,10 @@ public class BoardServiceImpl implements BoardService {
         return transformers.transformBoardToBoardDto(boardRepository.save(board));
     }
 
-/*    @Override
-    public BoardDTO updateBoard(Long id, Map<String, Object> values) throws IllegalAccessException, InvocationTargetException {
-        Board board = boardRepository.findOne(id);
-        if(board.getCreator().getId().equals(userService.getCurrentUser().getId())) {
-            BeanUtils.populate(board, values);
-            return transformers.transformBoardToBoardDto(boardRepository.save(board));
-        } else {
-            throw new GameMasterException(ConstanteGameMaster.UNAUTHORIZED_ERROR);
-        }
-    }*/
-
-    /**
-     * Met à jour un tableau
-     * @param boardDTO données du tableau modifié
-     * @return le DTO du tableau modifié
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.BoardService#updateBoard(com.example.dto.BoardDTO)
      */
     @Override
     public BoardDTO updateBoard(BoardDTO boardDTO) {
@@ -115,7 +103,6 @@ public class BoardServiceImpl implements BoardService {
             board.setExpDoneTask(boardDTO.getExpDoneTask());
             board.setExpWinBid(boardDTO.getExpWinBid());
             board.setName(boardDTO.getName());
-//            board.getBoardUsers().stream().forEach(boardUser -> boardUserRepository.delete(boardUser.getId()));
             board.getBoardUsers().clear();
             inviteUsers(board, boardDTO);
             return transformers.transformBoardToBoardDto(boardRepository.save(board));
@@ -124,15 +111,21 @@ public class BoardServiceImpl implements BoardService {
         }
     }
 
-    /**
-     * Supprime un tableau
-     * @param id l'id du tableau à supprimer
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.BoardService#deleteBoard(java.lang.Long)
      */
     @Override
     public void deleteBoard(Long id) {
         boardRepository.delete(id);
     }
 
+    /**
+     * Gestionnaire des utilisateurs invités
+     * @param board
+     * @param boardDTO
+     */
     private void inviteUsers(Board board, BoardDTO boardDTO) {
 
         /* Gestion du créateur/administrateur du tableau */

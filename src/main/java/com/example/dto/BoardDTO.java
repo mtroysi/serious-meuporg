@@ -3,10 +3,6 @@ package com.example.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-
-import com.example.model.ColonneKanban;
-
 /**
  * Created by Morgane TROYSI on 11/05/17.
  */

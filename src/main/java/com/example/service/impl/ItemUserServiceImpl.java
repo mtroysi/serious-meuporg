@@ -42,6 +42,10 @@ public class ItemUserServiceImpl implements ItemUserService {
     @Autowired
     private Transformers transformers;
     
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.ItemUserService#buyItem(java.lang.Long, java.lang.Long)
+     */
     @Override
     public ItemDTO buyItem(Long idItem, Long idUser){
     	User user = userService.getCurrentUser();
@@ -108,6 +112,10 @@ public class ItemUserServiceImpl implements ItemUserService {
     	}
     }
 
+	/* 
+	 * (non-Javadoc)
+	 * @see com.example.service.ItemUserService#removeItem(java.lang.Long)
+	 */
 	@Override
 	public Boolean removeItem(Long idItem) {
     	User user = userService.getCurrentUser();
@@ -124,6 +132,10 @@ public class ItemUserServiceImpl implements ItemUserService {
 	}
 	
 
+	/* 
+	 * (non-Javadoc)
+	 * @see com.example.service.ItemUserService#activeItem(java.lang.Long, java.lang.Boolean)
+	 */
 	@Override
 	public Boolean activeItem(Long idItem, Boolean active){
 		User user = userService.getCurrentUser();

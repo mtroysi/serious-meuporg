@@ -12,7 +12,10 @@ import com.example.model.ColonneKanban;
 @Repository
 public interface ColonneKanbanRepository extends PagingAndSortingRepository<ColonneKanban, Long> {
 
-
+	/**
+	 * Supprime le lien entre une colonne_kanban et une tache 
+	 * @param id
+	 */
 	@Modifying
 	@Transactional
     @Query(value = "UPDATE task_user t SET t.colonne_kanban_id=null WHERE t.colonne_kanban_id=?1", nativeQuery = true)
