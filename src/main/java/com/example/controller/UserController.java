@@ -66,6 +66,15 @@ public class UserController {
         return userService.getAllUser();
     }
     
+    /**
+     * Retourne la liste des top 10 du classement
+     * @return liste top 10
+     */
+    @RequestMapping(value = "/top10", method = RequestMethod.GET)
+    public UserRankinDTO gettop10User() {
+        return userService.getTop10User();
+    }
+    
 
     /**
      * Retourne l'utilisateur dont l'id est passé en paramètre.

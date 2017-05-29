@@ -61,13 +61,18 @@ public interface UserService {
      */
     List<UserDTO> getAllUser();
     
-    
+    /**
+     * Retourne la liste des tops 10 des utilisateurs
+     * @return liste des top 10 des utilisateurs
+     */
+    UserRankinDTO getTop10User();
     /**
      * Retorune les statistiques d'un utilisateur
      * @param id
      * @return statistiques
      */
     UserStatsDTO getStats(Long id);
+    
     
     
     /**

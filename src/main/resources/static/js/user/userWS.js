@@ -28,6 +28,11 @@
             svc.getRankin = function(id) {
                 return $http.get(constant.BASE_URI + '/user/' + id + '/rankin');
             }
+            svc.getTopUsers = function() {
+                return $http.get(constant.BASE_URI + '/user/top10');
+            }
+
+            
             return svc;
         })
 })();
