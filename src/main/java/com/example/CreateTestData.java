@@ -684,7 +684,18 @@ public class CreateTestData {
 		item5.setImage(
 				"https://previews.123rf.com/images/anastasiiam/anastasiiam1605/anastasiiam160500090/57128892-Simple-flat-like-icon-in-pink-color-Like-counter-notification-emblem-isolated-on-white-background--Stock-Vector.jpg");
 		itemRepository.save(item5);
-
+		
+		Item item6 = new Item();
+		item6.setKeyItem("CURSE_BREBIS");
+		item6.setName("Malediction de la brebis");
+		item6.setDescription("Petite musique de la brebis");
+		item6.setPrice(175L);
+		item6.setRequiredLevel(2L);
+		item6.setReusable(Boolean.FALSE);
+		item6.setType(ItemEnum.CURSE);
+		item6.setImage("Son sympa");
+		itemRepository.save(item6);
+		
 		return "FINI";
 	}
 
