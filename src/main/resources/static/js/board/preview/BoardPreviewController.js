@@ -16,6 +16,7 @@
                 ctrl.typeDisplayTeam = false;
                 ctrl.listTask = [];
                 ctrl.listTaskDefault = [];
+                ctrl.tmpColonneKanbanByBoard = [];
                 ctrl.newColonne = {};
                 ctrl.editColonne = {};
                 ctrl.filter = { type: 'TOUT' };
@@ -137,6 +138,7 @@
                 $(element).slideToggle(500);
             };
 
+
             /**
              * Open panel Task (Kanban)
              */
@@ -152,10 +154,28 @@
 
             ctrl.editTaskAction = function(task) {
                 $('#editTask').modal('show');
+                var testGetBoard = false;
                 var args = {};
                 args.task = task;
-                args.colonneKanban = ctrl.board.colonneKanbans;
-                $scope.$broadcast("showTask", args);
+
+                if (ctrl.board != null) {
+                    args.colonneKanban = ctrl.board.colonneKanbans;
+                } else {
+                    // Vue d'ensemble
+                    if ("board" + task.task.boardId in ctrl.tmpColonneKanbanByBoard) {
+                        args.colonneKanban = ctrl.tmpColonneKanbanByBoard["board" + task.task.boardId];
+                    } else {
+                        BoardService.getBoard(task.task.boardId).then(function(data) {
+                            ctrl.tmpColonneKanbanByBoard["board" + task.task.boardId] = data.colonneKanban;
+                            args.colonneKanban = data.colonneKanbans;
+                            $scope.$broadcast("showTask", args);
+                        });
+                    }
+                }
+
+                if (testGetBoard === false) {
+                    $scope.$broadcast("showTask", args);
+                }
             };
 
 
