@@ -11,7 +11,9 @@
             var ctrl = this;
 
             $scope.$on("showTask", function (event, args) {
-                ctrl.task = args.task;
+                ctrl.newTask = args.task.task;
+                ctrl.task = angular.copy(ctrl.newTask);
+                ctrl.columns = args.colonneKanban;
                 ctrl.listTags();
             });
 
@@ -51,7 +53,9 @@
 
             ctrl.updateTask = function () {
                 TaskUpdateService.updateTask(ctrl.task.id, ctrl.task).then(function (data) {
-                    ctrl.task = data;
+                    console.log(ctrl.task);
+                    ctrl.newTask = data;
+                    console.log(ctrl.newTask);
                     $("#editTask").modal('toggle');
                 });
             };

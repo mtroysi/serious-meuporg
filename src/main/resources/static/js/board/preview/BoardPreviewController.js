@@ -152,8 +152,10 @@
 
             ctrl.editTaskAction = function(task) {
                 $('#editTask').modal('show');
-                ctrl.task = task;
-                $scope.$broadcast("showTask", task);
+                var args = {};
+                args.task = task;
+                args.colonneKanban = ctrl.board.colonneKanbans;
+                $scope.$broadcast("showTask", args);
             };
 
 

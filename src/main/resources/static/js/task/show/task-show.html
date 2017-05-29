@@ -21,6 +21,13 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-sm-2 control-label" for="statusTask">Colonne</label>
+                <div class="col-sm-8">
+                    <select id="statusTask" class="form-control" ng-model="ctrl.task.colonneKanban"
+                            ng-options="colonne.title for colonne in ctrl.columns track by colonne.id"></select>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-sm-2 control-label" for="priorityTask">Priorité</label>
                 <div class="col-sm-8">
                     <select id="priorityTask" class="form-control" ng-model="ctrl.task.priority"

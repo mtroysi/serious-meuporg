@@ -15,8 +15,12 @@ import com.example.dto.TaskDTO;
 import com.example.dto.TaskLiteDTO;
 import com.example.dto.TaskWithPeriodDTO;
 import com.example.enumeration.PriorityEnum;
+import com.example.enumeration.StatusEnum;
+import com.example.model.ColonneKanban;
 import com.example.model.Tag;
 import com.example.model.Task;
+import com.example.model.TaskUser;
+import com.example.repository.ColonneKanbanRepository;
 import com.example.repository.TagRepository;
 import com.example.repository.TaskRepository;
 import com.example.service.TaskService;
@@ -31,6 +35,8 @@ public class TaskServiceImpl implements TaskService {
     private TaskRepository taskRepository;
     @Autowired
     private TagRepository tagRepository;
+    @Autowired
+    private ColonneKanbanRepository colonneKanbanRepository;
     @Autowired
     private Transformers transformers;
     
@@ -80,7 +86,7 @@ public class TaskServiceImpl implements TaskService {
      * @see com.example.service.TaskService#updateTask(java.lang.Long, java.util.Map)
      */
     @Override
-    public TaskDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
+    public TaskWithPeriodDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         Task task = taskRepository.findOne(id);
 
         task.setPriority(PriorityEnum.valueOf((String) values.get("priority")));
@@ -89,10 +95,19 @@ public class TaskServiceImpl implements TaskService {
         values.remove("taskComments");
         values.remove("tags");
 
-
+        logger.info(String.valueOf(values));
         BeanUtilsBean.getInstance().getConvertUtils().register(false, true, 0);
         BeanUtils.populate(task, values);
-        return (TaskDTO) transformers.convertEntityToDto(taskRepository.save(task), TaskDTO.class);
+
+        List<TaskUser> taskUsers = task.getTaskUsers();
+        taskUsers.stream().forEach(taskUser -> {
+            Map<String, Object> colonneValues = (Map<String, Object>) values.get("colonneKanban");
+            ColonneKanban colonneKanban = colonneKanbanRepository.findOne(new Long((Integer) colonneValues.get("id")));
+            taskUser.setColonneKanban(colonneKanban);
+        });
+        task.setTaskUsers(taskUsers);
+
+        return (TaskWithPeriodDTO) transformers.convertEntityToDto(taskRepository.save(task), TaskWithPeriodDTO.class);
     }
 
     

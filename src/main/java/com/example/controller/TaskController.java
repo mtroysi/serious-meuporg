@@ -80,7 +80,7 @@ public class TaskController {
      * @throws IllegalAccessException
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public TaskDTO updateTask(@PathVariable("id") Long id, @RequestBody Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
+    public TaskWithPeriodDTO updateTask(@PathVariable("id") Long id, @RequestBody Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         return taskService.updateTask(id, values);
     }
 
