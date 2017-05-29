@@ -40,7 +40,7 @@ public class CommentController {
      * @throws IllegalAccessException
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public CommentDTO updateTask(@PathVariable("id") Long id, @RequestBody Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
+    public CommentDTO updateComment(@PathVariable("id") Long id, @RequestBody Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         return commentService.updateComment(id,values);
     }
 }
