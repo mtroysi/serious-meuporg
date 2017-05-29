@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12 titleHeader panel">
+                <div class="panel-heading">
+                    <h1><span class="label label-default">Bonjour {{ctrl.user.firstName}}</span></h1>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 boxMatrice">
+        <div class="row">
+            <div class="col-md-6 panelMatrice">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Mon profil</h2>
+                       
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div ng-hide="ctrl.editorEnabled" class="col-md-12">
+                                <img ng-srcset="{{ctrl.user.avatar}}" alt="avatar" />
+                                <table>
+                                    <tr>
+                                        <th> Nom :</th>
+                                        <th>{{ctrl.user.lastName}}</th>
+                                    </tr>
+                                    <tr>
+                                        <th> Prénom :</th>
+                                        <th>{{ctrl.user.firstName}}</th>
+                                    </tr>
+                                    <tr>
+                                        <th> E-mail :</th>
+                                        <th>{{ctrl.user.email}}</th>
+                                    </tr>
+                                    <tr>
+                                        <th> Date d'inscription :</th>
+                                        <th>{{ctrl.user.dateCreation | date:'dd/MM/yyyy'}}</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 panelMatrice">
+               <div class="panel panel-teal">
+                    <div class="panel-heading">
+                        <h2>Classement</h2>
+                    </div>
+                    <div class="panel-body no-padding heightAuto">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Votre classement par niveau</td>
+                                    <td class="text-right">{{ctrl.rankin.rankLevel}}/{{ctrl.rankin.nbrUsers}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Votre classement par argent</td>
+                                    <td class="text-right">{{ctrl.rankin.rankMoney}}/{{ctrl.rankin.nbrUsers}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Votre classement par expérience</td>
+                                    <td class="text-right">{{ctrl.rankin.rankExperience}}/{{ctrl.rankin.nbrUsers}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
