@@ -10,6 +10,10 @@
     function ComponentUsersInputController(CommonUsersInputService) {
         var ctrl = this;
 
+        /**
+         * Récupère les utilisateurs dont le nom contient la chaîne en paramètre
+         * @param query chaîne à chercher
+         */
         ctrl.loadUsers = function (query) {
             return CommonUsersInputService.loadUsers(query);
         };

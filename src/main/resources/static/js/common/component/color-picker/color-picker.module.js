@@ -9,7 +9,7 @@
                 templateUrl: 'js/common/component/color-picker/color-picker.view.html',
                 require: 'ngModel',
                 scope: {
-                    ngModel: '=',
+                    ngModel: '='
                 },
                 link: function($scope, element, attrs, ngModel) {
 

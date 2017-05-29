@@ -15,7 +15,7 @@
 
         svc.setMoney = function(money) {
             svc.money = money;
-        }
+        };
 
         return svc;
     });
