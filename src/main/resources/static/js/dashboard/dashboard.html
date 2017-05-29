@@ -165,5 +165,65 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-4 panelMatrice">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Top 10 du classement par argent</h2>
+                    </div>
+                    <div class="panel-body scroll-pane">
+                        <div class="row scroll-content">
+                            <div class="col-md-12" ng-repeat="i in ctrl.listUsers.top10Money">
+                                <div class="info-tile tile-success tile-perso" ng-click="ctrl.userAction(i)" ng-class="{'border-custom-{{u.colorBoard}}' : ctrl.tableGlobal }">
+                                    <div class="tile-heading" ><span>{{ i.firstName }}</span></div>
+                                    <div class="tile-footer">
+                                        <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ u.user.lastName }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 panelMatrice">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Top 10 du classement par niveau</h2>
+                    </div>
+                    <div class="panel-body scroll-pane">
+                        <div class="row scroll-content">
+                             <div class="col-md-12" ng-repeat="i in ctrl.listUsers.top10Level">
+                                <div class="info-tile tile-success tile-perso" ng-click="ctrl.userAction(i)" ng-class="{'border-custom-{{u.colorBoard}}' : ctrl.tableGlobal }">
+                                    <div class="tile-heading" ><span>{{ i.firstName }}</span></div>
+                                    <div class="tile-footer">
+                                        <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ u.user.lastName }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 panelMatrice">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Top 10 du classement par expérience</h2>
+                    </div>
+                    <div class="panel-body scroll-pane">
+                        <div class="row scroll-content">
+                             <div class="col-md-12" ng-repeat="i in ctrl.listUsers.top10Experience">
+                                <div class="info-tile tile-success tile-perso" ng-click="ctrl.userAction(i)" ng-class="{'border-custom-{{u.colorBoard}}' : ctrl.tableGlobal }">
+                                    <div class="tile-heading" ><span>{{ i.firstName }}</span></div>
+                                    <div class="tile-footer">
+                                        <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ u.user.lastName }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
 </div>

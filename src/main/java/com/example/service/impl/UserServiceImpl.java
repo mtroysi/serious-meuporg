@@ -200,6 +200,47 @@ public class UserServiceImpl implements UserService {
     	return userRankinDto;
     	
     }
+    @Override
+    public UserRankinDTO getTop10User(){
+    	List<User> listUser = (List<User>) userRepository.findAll();
+    	UserRankinDTO userRankinDto = new UserRankinDTO();
+    	List<UserDTO> top10Money;
+    	List<UserDTO> top10Level;
+    	List<UserDTO> top10Experience;
+    	
+    	top10Money= listUser.stream()
+    			.sorted((User u1, User u2)-> Long.compare( u2.getMoney(), u1.getMoney()))
+    			.limit(10)
+    			.map((User u )-> {
+    				return (UserDTO)transformers.convertEntityToDto(u, UserDTO.class);
+    			})
+    			.collect(Collectors.toList());
+    	
+    	
+    	top10Level= listUser.stream()
+    			.sorted((User u1, User u2)-> Long.compare( u2.getLevel(), u1.getLevel()))
+    			.limit(10)
+    			.map((User u )-> {
+    				return (UserDTO)transformers.convertEntityToDto(u, UserDTO.class);
+    			})
+    			.collect(Collectors.toList());
+    	
+    	top10Experience= listUser.stream()
+    			.sorted((User u1, User u2)-> Long.compare( u2.getExperience(), u1.getExperience()))
+    			.limit(10)
+    			.map((User u )-> {
+    				return (UserDTO)transformers.convertEntityToDto(u, UserDTO.class);
+    			})
+    			.collect(Collectors.toList());
+    	
+    	userRankinDto.setTop10Money(top10Money);
+    	userRankinDto.setTop10Level(top10Level);
+    	userRankinDto.setTop10Experience(top10Experience);
+    	
+    	return userRankinDto;
+    }
+    	
+    
 
    
     /* 

@@ -39,6 +39,12 @@
                     return response.data;
                 });
             }
+
+            svc.getTopUsers = function(){
+                return UserWS.getTopUsers().then(function(response) {
+                    return response.data;
+                }); 
+            }
             return svc;
         });
 })();

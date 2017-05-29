@@ -15,6 +15,7 @@
             ctrl.stats = 0;
             ctrl.rankin = 0;
             ctrl.listTask = [];
+            ctrl.listUsers = [];
             ctrl.listTaskDefault = [];
             ctrl.editorEnabled = false;
             ctrl.task = {};
@@ -28,6 +29,7 @@
             ctrl.getStats();
             ctrl.getRankin();
             ctrl.getTaskUser(AuthenticationService.getUserId());
+            ctrl.getTopUsers();
         };
 
         ctrl.enableEditor = function() {
@@ -64,6 +66,13 @@
             TaskService.listTaskByUser(user_id).then(function(fetchData) {
                 /** ctrl.listTaskDefault = angular.copy(ctrl.addColorTask(fetchData));*/
                 ctrl.listTask = fetchData;
+            });
+
+        };
+
+         ctrl.getTopUsers = function() {
+            UserService.getTopUsers().then(function(fetchData) {
+                ctrl.listUsers = fetchData;
             });
 
         };
