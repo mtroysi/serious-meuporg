@@ -10,6 +10,9 @@
         var ctrl = this;
         ctrl.CommonProgressService = CommonProgressService;
 
+        /**
+         * Initialisation
+         */
         ctrl.init = function() {
             ctrl.user = {};
             var id = AuthenticationService.getUserId();
@@ -29,6 +32,10 @@
             });
         };
 
+        /**
+         * Retourne le pourcentage de l'xp utilisateur par rapport au total du niveau
+         * @returns {number}
+         */
         ctrl.getXpPercent = function() {
             return (ctrl.user.experience * 100) / ctrl.totalXp;
         };

@@ -11,16 +11,19 @@
             signupCtrl.credentials = [];
         };
 
+        /**
+         * Inscription
+         */
         signupCtrl.signupAction = function() {
             var user = {
                 firstName: signupCtrl.credentials.firstName,
                 lastName: signupCtrl.credentials.lastName,
                 email: signupCtrl.credentials.email,
-                password: signupCtrl.credentials.password,
+                password: signupCtrl.credentials.password
             };
             SignupService.signup(user).then(function(data) { /** appel aux methodes du services */
                 if (data != null) {
-                    CommonNotificationBoxService.success("Information", "votre compte à bien été créé");
+                    CommonNotificationBoxService.success("Information", "Votre compte a bien été créé");
                     $state.go('appSimple.login');
                 }
             });

@@ -10,12 +10,21 @@
         .service('TaskShowService', function (TaskShowWS) {
             var svc = {};
 
+            /**
+             * Retourne une tâche
+             * @param id tâche à retourner
+             */
             svc.showTask = function (id) {
                 return TaskShowWS.showTask(id).then(function (response) {
                     return response.data;
                 });
             };
 
+            /**
+             * Ajoute un commentaire à une tâche
+             * @param id de la tâche
+             * @param comment données du commentaire à ajouter
+             */
             svc.addComment = function (id, comment, creator) {
                 comment.creator = creator;
                 return TaskShowWS.addComment(id, comment).then(function (response) {
@@ -23,12 +32,21 @@
                 });
             };
 
+            /**
+             * Supprime un commentaire
+             * @param id du commentaire à supprimer
+             */
             svc.deleteComment = function (id) {
                 return TaskShowWS.deleteComment(id).then(function (response) {
                     return response.data;
                 });
             };
 
+            /**
+             * Modifie un commentaire
+             * @param id du commentaire
+             * @param comment données modifiées
+             */
             svc.updateComment = function (id, comment) {
                 return TaskShowWS.updateComment(id, comment).then(function (response) {
                     return response.data;

@@ -7,9 +7,12 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.controller('DashboardController', function($location, $http, $state, $stateParams, CommonNotificationBoxService, UserService, AuthenticationService, TaskShowService) {
+    helloApp.controller('DashboardController', function($location, $http, $state, $stateParams, CommonNotificationBoxService, UserService, AuthenticationService, TaskService) {
         var ctrl = this;
 
+        /**
+         * Initialisation.
+         */
         ctrl.init = function() {
             ctrl.user = {};
             ctrl.stats = 0;
@@ -32,10 +35,16 @@
             ctrl.getTopUsers();
         };
 
+        /**
+         * Affiche ou non le formulaire d'édition des données de l'utilisateur
+         */
         ctrl.enableEditor = function() {
             ctrl.editorEnabled = true;
         };
 
+        /**
+         * Edition des informations utilisateur
+         */
         ctrl.editUserAction = function() {
             var user = {
                 firstName: ctrl.user.firstName,
@@ -50,26 +59,39 @@
             });
         };
 
+        /**
+         * Retourne les statistiques de l'utilisateurœ
+         */
         ctrl.getStats = function() {
             UserService.getStats(AuthenticationService.getUserId()).then(function(response) {
                 ctrl.stats = response;
             });
         };
 
+        /**
+         * Retourne le rang de l'utilisateur dans les différentes catégories
+         */
         ctrl.getRankin = function() {
             UserService.getRankin(AuthenticationService.getUserId()).then(function(response) {
                 ctrl.rankin = response;
             });
         };
 
+        /**
+         * Retourne les tâches de l'utilisateur
+         * @param user_id id de l'utilisateur
+         */
         ctrl.getTaskUser = function(user_id) {
             TaskShowService.listTaskByUser(user_id).then(function(fetchData) {
-                /** ctrl.listTaskDefault = angular.copy(ctrl.addColorTask(fetchData));*/
+                /* ctrl.listTaskDefault = angular.copy(ctrl.addColorTask(fetchData));*/
                 ctrl.listTask = fetchData;
             });
 
         };
 
+        /**
+         * Retourne la liste des meilleurs joueurs dans chaque catégorie
+         */
          ctrl.getTopUsers = function() {
             UserService.getTopUsers().then(function(fetchData) {
                 ctrl.listUsers = fetchData;
@@ -77,6 +99,10 @@
 
         };
 
+        /**
+         * Affiche la tâche et redirige vers son tableau
+         * @param task tâche à afficher
+         */
         ctrl.taskAction = function(task) {
             $state.go('app.board-preview', { idBoard: task.task.boardId, idtask: task.task.id });
 

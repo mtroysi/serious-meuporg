@@ -24,6 +24,12 @@
             });
         };
 
+        /**
+         * Indique si le tableau est actif ou non (ligne surlignée)
+         * @param arrayRoute path du tableau
+         * @param idBoard id du tableau
+         * @returns {string}
+         */
         ctrl.getClass = function(arrayRoute, idBoard) {
             return arrayRoute.indexOf($state.current.name) > -1 && (idBoard === undefined || $state.params.idBoard == idBoard) ? 'active' : '';
         };

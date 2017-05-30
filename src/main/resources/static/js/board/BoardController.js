@@ -10,6 +10,10 @@
         .controller('BoardController', function(BoardService, CommonMenuService, $state, $stateParams) {
             var ctrl = this;
 
+            /**
+             * Initialise le controller.
+             * Si un id est fourni en paramètres, récupère les informations du tableau.
+             */
             ctrl.init = function() {
                 if (!$stateParams.idBoard) {
                     ctrl.board = {};
@@ -26,6 +30,9 @@
                 }
             };
 
+            /**
+             * Crée un tableau.
+             */
             ctrl.createBoard = function() {
                 // ctrl.board.users = angular.copy(ctrl.users);
                 BoardService.createBoard(ctrl.board).then(function(data) {
@@ -44,6 +51,9 @@
                 });
             };*/
 
+            /**
+             * Modifie le tableau courant.
+             */
             ctrl.updateBoard = function() {
                 BoardService.updateBoard(ctrl.board).then(function(data) {
                     CommonMenuService.updateElementListBoard(angular.copy(ctrl.board));

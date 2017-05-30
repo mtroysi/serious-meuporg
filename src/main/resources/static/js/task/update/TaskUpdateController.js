@@ -21,12 +21,18 @@
                 });
             };
 
+            /**
+             * Modifie une tâche
+             */
             ctrl.updateTask = function () {
                 TaskUpdateService.updateTask($stateParams.id, ctrl.task).then(function (data) {
                     ctrl.task = data;
                 });
             };
 
+            /**
+             * Supprime une tâche
+             */
             ctrl.deleteTask = function () {
                 TaskUpdateService.deleteTask($stateParams.id).then(function (data) {
                     ctrl.task = data;
