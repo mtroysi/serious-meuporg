@@ -7,7 +7,7 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.controller('DashboardController', function($location, $http, $state, $stateParams, CommonNotificationBoxService, UserService, AuthenticationService, TaskService) {
+    helloApp.controller('DashboardController', function($location, TaskShowService, $http, $state, $stateParams, CommonNotificationBoxService, UserService, AuthenticationService) {
         var ctrl = this;
 
         /**
@@ -92,7 +92,7 @@
         /**
          * Retourne la liste des meilleurs joueurs dans chaque catégorie
          */
-         ctrl.getTopUsers = function() {
+        ctrl.getTopUsers = function() {
             UserService.getTopUsers().then(function(fetchData) {
                 ctrl.listUsers = fetchData;
             });
@@ -108,8 +108,8 @@
 
         };
 
-        ctrl.userAction = function(user){
-              $state.go('app.profil', { idUser: user.id });
+        ctrl.userAction = function(user) {
+            $state.go('app.profil', { idUser: user.id });
         }
 
         ctrl.init();

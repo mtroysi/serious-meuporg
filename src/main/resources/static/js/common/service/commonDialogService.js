@@ -4,7 +4,7 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.service('CommonDialogService', function(HomeWS, $rootScope) {
+    helloApp.service('CommonDialogService', function($rootScope) {
 
         var svc = {};
 
