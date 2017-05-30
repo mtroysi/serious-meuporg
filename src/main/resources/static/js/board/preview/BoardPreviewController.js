@@ -42,7 +42,7 @@
                     ctrl.getTaskUser(AuthenticationService.getUserId());
                 } else {
                     ctrl.getBoard($stateParams.idBoard);
-                    ctrl.getTaskBoard($stateParams.idBoard, AuthenticationService.getUserId());
+                    // ctrl.getTaskBoard($stateParams.idBoard, AuthenticationService.getUserId());
                 }
 
                 $scope.$watch('this.ctrl.filter.type', function() {
@@ -54,10 +54,19 @@
              * WS Loard info board
              */
             ctrl.getBoard = function(id) {
-                BoardService.getBoard(id).then(function(data) {
-                    ctrl.board = data;
-                    ctrl.isAdmin = (Number(AuthenticationService.getUserId()) === ctrl.board.creator.id);
-                });
+                if(($stateParams.idtask)&&(!$stateParams.idBoard)) {
+                    BoardService.getBoardFromTask($stateParams.idtask).then(function (response) {
+                        ctrl.board = response;
+                        ctrl.isAdmin = (Number(AuthenticationService.getUserId()) === ctrl.board.creator.id);
+                        ctrl.getTaskBoard(ctrl.board.id, AuthenticationService.getUserId());
+                    });
+                } else {
+                    BoardService.getBoard(id).then(function(data) {
+                        ctrl.board = data;
+                        ctrl.isAdmin = (Number(AuthenticationService.getUserId()) === ctrl.board.creator.id);
+                        ctrl.getTaskBoard(ctrl.board.id, AuthenticationService.getUserId());
+                    });
+                }
             };
 
             /**

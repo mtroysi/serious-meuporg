@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
+import com.example.dto.BoardDTO;
 import com.example.dto.TaskDTO;
 import com.example.dto.TaskLiteDTO;
 import com.example.dto.TaskWithPeriodDTO;
@@ -67,4 +68,11 @@ public interface TaskService {
      * @throws IllegalAccessException
      */
     TaskWithPeriodDTO addTaskTag(Long idTask, Long idTag) throws InvocationTargetException, IllegalAccessException;
+
+    /**
+     * Retourne le tableau à partir de l'id d'une tâche
+     * @param id de la tâche
+     * @return id du tableau
+     */
+    BoardDTO getBoardFromTask(Long id);
 }

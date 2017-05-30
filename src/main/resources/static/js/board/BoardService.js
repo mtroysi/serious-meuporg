@@ -89,6 +89,16 @@
                 })
             };
 
+            /**
+             * Retourne le tableau à partir de l'id d'une tâche
+             * @param idTask id de la tâche
+             */
+            svc.getBoardFromTask = function(idTask) {
+                return BoardWS.getBoardFromTask(idTask).then(function(response) {
+                    return response.data;
+                })
+            };
+
             return svc;
         });
 })();
