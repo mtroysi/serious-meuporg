@@ -1,4 +1,4 @@
-<div class="row bidPreview ">
+<div class="row bidPreview  margin-h-5">
     <div class="col-md-12 titleHeader panel">
         <div class="panel-heading">
             <h1>Enchères de la guilde</h1>
@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="col-md-3" ng-if="ctrl.isAdmin">
-        <div class="row margin-t-20 margin-l-20 ">
+        <div class="row margin-t-20">
             <div class=" col-md-12 panel panel-default boxAdminBid">
                 <div class="panel-header">
                     Ajout de quête aux enchères
@@ -34,7 +34,7 @@
         </div>
     </div>
     <div ng-class="{'col-md-12' : ctrl.isAdmin === false, 'col-md-9' : ctrl.isAdmin}">
-        <div ng-show="ctrl.listTaskBid.length == 0" class="row margin-t-20 margin-h-20">
+        <div ng-show="ctrl.listTaskBid.length == 0" class="row margin-t-20 margin-l-20">
             <h2 class="text-center panel panel-default padding-v-20">Il n'y a aucune quête disponible</h2>
         </div>
         <div ng-show="ctrl.listTaskBid.length > 0">
