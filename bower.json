@@ -28,6 +28,7 @@
     "slick-carousel": "^1.6.0",
     "angular-ui-bootstrap-datetimepicker": "^2.5.0",
     "moment": "^2.18.1",
-    "angular-i18n": "^1.6.4"
+    "angular-i18n": "^1.6.4",
+    "jquery-ui": "^1.12.1"
   }
 }

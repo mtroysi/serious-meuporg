@@ -3,7 +3,7 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('BoardPreviewController', function($scope, $state, $stateParams, BoardService, $timeout, CommonMenuService, TaskService, AuthenticationService, CommonDialogService) {
+        .controller('BoardPreviewController', function($scope, $rootScope, $state, $stateParams, BoardService, $timeout, CommonMenuService, TaskService, AuthenticationService, CommonDialogService) {
             var ctrl = this;
             ctrl.isAdmin = false;
 
@@ -24,6 +24,11 @@
                 ctrl.tableGlobal = false;
                 ctrl.task = {};
                 ctrl.tags = {};
+
+
+                $rootScope.$on('$viewContentLoaded', function() {
+                    ctrl.activeDragAndDrop();
+                });
 
                 $scope.tagPopover = {
                     content: 'Hello, World!',
@@ -225,6 +230,7 @@
                     ctrl.board.colonneKanbans.push(response);
                     $timeout(function() {
                         ctrl.sizeKanban();
+                        ctrl.activeDragAndDrop();
                         //Reset form
                         ctrl.newColonne = {};
                         ctrl.openPanelNewColonne = false;
@@ -278,6 +284,41 @@
                     $state.go('app.dashboard');
                 });
             };
+
+
+            /**
+             * Active drag And Drop
+             */
+            ctrl.activeDragAndDrop = function() {
+                setTimeout(function() {
+                    $("#sortable1, #sortable2, #sortable3, #sortable4").sortable({
+                        connectWith: ".boxElementTile",
+                        appendTo: 'body',
+                        containment: 'window',
+                        scroll: false,
+                        helper: 'clone',
+                        receive: function(event, ui) {
+                            var newColonne = $(event.target).data('task');
+                            var idTask = $(ui.item[0]).data('idtask');
+                            console.log('receive', newColonne, idTask);
+                        }
+                    }).disableSelection();
+
+                    $(".listTache").sortable({
+                        connectWith: ".listTache",
+                        appendTo: 'body',
+                        containment: 'window',
+                        scroll: false,
+                        helper: 'clone',
+                        receive: function(event, ui) {
+                            var newColonne = $(event.target).data('column');
+                            var idTask = $(ui.item[0]).children().data('idtask');
+                            console.log('receive', newColonne, idTask);
+                        }
+                    }).disableSelection();
+                }, 200);
+            };
+
 
             ctrl.init();
         });
