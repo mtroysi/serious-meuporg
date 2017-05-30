@@ -37,8 +37,8 @@
                     </div>
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content boxElementTile" id="sortable1" data-task="URGENT_IMPORTANT">
-                            <div data-idtask="{{n.task.id}}" class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'URGENT_IMPORTANT' }}:true">
-                                <div class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                            <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'URGENT_IMPORTANT' }}:true">
+                                <div data-idtask="{{ n.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -60,8 +60,8 @@
                     </div>
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content boxElementTile" id="sortable2" data-task="URGENT_NOT_IMPORTANT">
-                            <div data-idtask="{{n.task.id}}" class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'URGENT_NOT_IMPORTANT'}}:true">
-                                <div class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                            <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'URGENT_NOT_IMPORTANT'}}:true">
+                                <div data-idtask="{{ n.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -86,7 +86,7 @@
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content boxElementTile" id="sortable3" data-task="NOT_URGENT_IMPORTANT">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'NOT_URGENT_IMPORTANT'}}:true">
-                                <div data-idtask="{{n.task.id}}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                <div data-idtask="{{ n.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -109,7 +109,7 @@
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content boxElementTile" id="sortable4" data-task="NOT_URGENT_NOT_IMPORTANT">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'NOT_URGENT_NOT_IMPORTANT'}}:true">
-                                <div data-idtask="{{n.task.id}}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                <div data-idtask="{{ n.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -145,7 +145,7 @@
                                 </div>
                                 <ul class="listTache" id="sortable_col_0" data-column="NO_ASSIGNE">
                                     <li ng-repeat="n in ctrl.listTask | filter:{task : {colonneKanban: null}}:true">
-                                        <div data-idtask="{{ n.task.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                        <div data-idtask="{{ n.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                             <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                             <div class="tile-footer">
                                                 <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -174,7 +174,7 @@
                                 </div>
                                 <ul class="listTache" id="sortable_col_{{ colonne.id }}" data-column="{{ colonne.id }}">
                                     <li ng-repeat="n in ctrl.listTask | filter:{task : {colonneKanban: { id : colonne.id }}}:true">
-                                        <div data-idtask="{{ n.task.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                        <div data-idtask="{{ n.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                             <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                             <div class="tile-footer">
                                                 <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>

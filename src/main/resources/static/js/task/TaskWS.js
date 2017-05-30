@@ -18,6 +18,14 @@
                 return $http.put(constant.BASE_URI + '/task/' + id, jsonToSend);
             };
 
+            svc.updateColumnTask = function(taskUserId, idColumn) {
+                return $http.put(constant.BASE_URI + '/taskUser/' + taskUserId + '/column', idColumn);
+            };
+
+            svc.updatePriorityTask = function(taskUserId, priority) {
+                return $http.put(constant.BASE_URI + '/taskUser/' + taskUserId + '/priority', priority);
+            };
+
             svc.deleteTask = function(id) {
                 return $http.delete(constant.BASE_URI + '/task/' + id);
             };

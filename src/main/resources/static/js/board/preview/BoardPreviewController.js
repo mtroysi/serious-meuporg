@@ -295,12 +295,15 @@
                         connectWith: ".boxElementTile",
                         appendTo: 'body',
                         containment: 'window',
+                        dropOnEmpty: true,
                         scroll: false,
                         helper: 'clone',
                         receive: function(event, ui) {
-                            var newColonne = $(event.target).data('task');
-                            var idTask = $(ui.item[0]).data('idtask');
-                            console.log('receive', newColonne, idTask);
+                            var periodicy = $(event.target).data('task');
+                            var idTask = $(ui.item[0]).children().data('idtask');
+                            TaskService.updatePriorityTask(idTask, periodicy).then(function(fetchData) {
+                                ctrl.updateLocalListTask(idTask, fetchData);
+                            });
                         }
                     }).disableSelection();
 
@@ -308,17 +311,34 @@
                         connectWith: ".listTache",
                         appendTo: 'body',
                         containment: 'window',
+                        dropOnEmpty: true,
                         scroll: false,
                         helper: 'clone',
                         receive: function(event, ui) {
                             var newColonne = $(event.target).data('column');
                             var idTask = $(ui.item[0]).children().data('idtask');
-                            console.log('receive', newColonne, idTask);
+                            TaskService.updateColumnTask(idTask, newColonne === "NO_ASSIGNE" ? null : newColonne).then(function(fetchData) {
+                                ctrl.updateLocalListTask(idTask, fetchData);
+                            });
                         }
                     }).disableSelection();
                 }, 200);
             };
 
+
+            /**
+             * Update la liste des tasks
+             */
+            ctrl.updateLocalListTask = function(idTaskUser, newElement) {
+                // Updating Task Lists
+                ctrl.listTaskDefault.forEach(function(element) {
+                    if (element.id === idTaskUser) {
+                        angular.extend(element, element, newElement);
+                    }
+                });
+                ctrl.listTask = angular.copy(ctrl.listTaskDefault);
+                ctrl.filterTask();
+            }
 
             ctrl.init();
         });

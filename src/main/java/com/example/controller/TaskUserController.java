@@ -116,7 +116,7 @@ public class TaskUserController {
      * @return TaskUserDTO
      */ 
     @RequestMapping(value = "/{idTaskUser}/priority", method = RequestMethod.PUT)
-    public TaskUserDTO updateColumnTask(@PathVariable("idTaskUser") Long idTaskUser, @RequestBody(required=false) PriorityEnum priority){
-        return taskUserService.updatePriorityTask(idTaskUser, priority);
+    public TaskUserDTO updatePriorityTask(@PathVariable("idTaskUser") Long idTaskUser, @RequestBody(required=false) String priority){
+        return taskUserService.updatePriorityTask(idTaskUser, PriorityEnum.valueOf(priority));
     }
 }

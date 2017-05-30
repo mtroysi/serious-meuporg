@@ -22,6 +22,18 @@
                 });
             };
 
+            svc.updateColumnTask = function(taskUserId, idColumn) {
+                return TaskWS.updateColumnTask(taskUserId, idColumn).then(function(response) {
+                    return response.data;
+                })
+            };
+
+            svc.updatePriorityTask = function(taskUserId, priority) {
+                return TaskWS.updatePriorityTask(taskUserId, priority).then(function(response) {
+                    return response.data;
+                })
+            };
+
             svc.deleteTask = function(id) {
                 return TaskWS.deleteTask(id).then(function(response) {
                     return response.data;
