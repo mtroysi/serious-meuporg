@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.example.enumeration.PriorityEnum;
 import com.example.enumeration.StatusEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 public class TaskWithPeriodDTO {
@@ -21,6 +22,7 @@ public class TaskWithPeriodDTO {
     private Date dateEndBid;
     private StatusEnum status;
     private Double durationReel;
+    private Long creator;
     private Date dateBegin;
     private Date dateEnd;
     private Date dateBeginTask; /* Valeur reel de la tache (gestion de la périodicity) */
@@ -189,5 +191,13 @@ public class TaskWithPeriodDTO {
 
     public void setTags(List<TagDTO> tags) {
         this.tags = tags;
+    }
+
+    public Long getCreator() {
+        return creator;
+    }
+
+    public void setCreator(UserDTO creator) {
+        this.creator = creator.getId();
     }
 }

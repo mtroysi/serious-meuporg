@@ -7,7 +7,7 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.controller('DashboardController', function($location, $http, $state, $stateParams, CommonNotificationBoxService, UserService, AuthenticationService, TaskService) {
+    helloApp.controller('DashboardController', function($location, $http, $state, $stateParams, CommonNotificationBoxService, UserService, AuthenticationService, TaskShowService) {
         var ctrl = this;
 
         ctrl.init = function() {
@@ -63,7 +63,7 @@
         };
 
         ctrl.getTaskUser = function(user_id) {
-            TaskService.listTaskByUser(user_id).then(function(fetchData) {
+            TaskShowService.listTaskByUser(user_id).then(function(fetchData) {
                 /** ctrl.listTaskDefault = angular.copy(ctrl.addColorTask(fetchData));*/
                 ctrl.listTask = fetchData;
             });

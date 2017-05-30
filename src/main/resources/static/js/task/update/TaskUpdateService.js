@@ -10,6 +10,12 @@
         .service('TaskUpdateService', function (TaskUpdateWS) {
             var svc = {};
 
+            svc.createTask = function (task) {
+                return TaskUpdateWS.createTask(task).then(function (response) {
+                    return response.data;
+                });
+            };
+
             svc.updateTask = function (id, task) {
                 return TaskUpdateWS.updateTask(id, task).then(function (response) {
                     return response.data;

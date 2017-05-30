@@ -44,6 +44,15 @@ public class TaskUserServiceImpl implements TaskUserService {
     private ColonneKanbanRepository colonneKanbanRepository;
 
     @Autowired
+    private TaskRepository taskRepository;
+
+    @Autowired
+    private BoardRepository boardRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     Transformers transformers;
 
     private final Logger logger = LoggerFactory.getLogger(TaskServiceImpl.class);
@@ -140,12 +149,12 @@ public class TaskUserServiceImpl implements TaskUserService {
                     taskUserDTO.setTask(taskWithPeriod);
                 }
 
-				// Test sur les valeurs de la tasks, on va remettre le statut a TODO pour chaque nouvelle occurence de la periodicity.
-				if( taskWithPeriod.getDateBeginTask().after(dateUpdatePeriodicity.getTime())){
-					tu.setStatus(StatusEnum.TODO);
-					tu.getTask().getPeriodicity().setPeriodicityDateUpdate(new Date());
-					taskUserRepository.save(tu);
-				}
+		// Test sur les valeurs de la tasks, on va remettre le statut a TODO pour chaque nouvelle occurence de la periodicity.
+		if( taskWithPeriod.getDateBeginTask().after(dateUpdatePeriodicity.getTime())){
+			tu.setStatus(StatusEnum.TODO);
+			tu.getTask().getPeriodicity().setPeriodicityDateUpdate(new Date());
+			taskUserRepository.save(tu);
+		}
             }
             return taskUserDTO;
         })
@@ -187,10 +196,13 @@ public class TaskUserServiceImpl implements TaskUserService {
 
         Task task = taskUser.getTask();
 
+        task.setCreator(userRepository.findOne(new Long((Integer) taskValues.get("creator"))));
+
         task.setPriority(PriorityEnum.valueOf((String) taskValues.get("priority")));
         taskValues.remove("priority");
         taskValues.remove("taskComments");
         taskValues.remove("tags");
+        taskValues.remove("creator");
 
         Periodicity periodicity = null;
         if (task.getPeriodicity() != null) {
@@ -223,18 +235,21 @@ public class TaskUserServiceImpl implements TaskUserService {
         }
         taskValues.remove("periodicity");
 
+        Board board = boardRepository.findOne(new Long((Integer) taskValues.get("boardId")));
+        task.setBoard(board);
+        taskValues.remove("boardId");
+
         BeanUtilsBean.getInstance().getConvertUtils().register(false, true, 0);
         BeanUtils.populate(task, taskValues);
 
-        List<TaskUser> taskUsers = task.getTaskUsers();
-        taskUsers.stream().forEach(tu -> {
-            Map<String, Object> colonneValues = (Map<String, Object>) taskValues.get("colonneKanban");
-            ColonneKanban colonneKanban = colonneKanbanRepository.findOne(new Long((Integer) colonneValues.get("id")));
-            tu.setColonneKanban(colonneKanban);
-        });
-        task.setTaskUsers(taskUsers);
+        task.setDateCreation(new Date());
 
         taskUser.setTask(task);
+
+        Map<String, Object> colonneValues = (Map<String, Object>) taskValues.get("colonneKanban");
+        ColonneKanban colonneKanban = colonneKanbanRepository.findOne(new Long((Integer) colonneValues.get("id")));
+        taskUser.setColonneKanban(colonneKanban);
+
         taskUser = taskUserRepository.save(taskUser);
 
         if (deletePeriodicity) {
@@ -246,6 +261,23 @@ public class TaskUserServiceImpl implements TaskUserService {
         return listDTO.get(0);
     }
 
+    @Override
+    public TaskUserDTO createTask(Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
+        TaskUser taskUser = new TaskUser();
+        Task task = new Task();
+
+        task = taskRepository.save(task);
+
+        taskUser.setTask(task);
+        taskUser = taskUserRepository.save(taskUser);
+
+        return updateTask(taskUser.getId(), values);
+    }
+
+    @Override
+    public void deleteTask(Long id) {
+        taskUserRepository.delete(id);
+    }
 
 	@Override
 	public TaskUserDTO updateColumnTask(Long idtaskUser, Long idColumn) {
@@ -264,19 +296,20 @@ public class TaskUserServiceImpl implements TaskUserService {
 		}
 	}
 
-
 	@Override
-	public TaskUserDTO updatePriorityTask(Long idtaskUser, PriorityEnum priority) {
+	public TaskUserDTO updateColumnTask(Long idtaskUser, Long idColumn) {
 		TaskUser tu = taskUserRepository.findOne(idtaskUser);
+		ColonneKanban col = null;
+		if( idColumn != null){
+			col = colonneKanbanRepository.findOne(idColumn);
+		}
 		
-		if( tu != null && priority != null){
-			tu.getTask().setPriority(priority);
+		if( tu != null){
+			tu.setColonneKanban(col);
 			List<TaskUserDTO> listDTO = buildTaskWithPeriodicity(Collections.singletonList(taskUserRepository.save(tu)));
 	        return listDTO.get(0);
 		}else{
 			throw new GameMasterException(ConstanteGameMaster.ELEMENT_NO_FOUND);
 		}
 	}
-    
-    
 }
