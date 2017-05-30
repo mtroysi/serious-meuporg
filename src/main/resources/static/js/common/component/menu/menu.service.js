@@ -23,7 +23,7 @@
         svc.updateElementListBoard = function(newElement) {
             var index = svc.listBoard.findIndex(function(element) { return element.id == newElement.id });
             if (index != -1) {
-                svc.listBoard[index] = newElement;
+                angular.extend(svc.listBoard[index], svc.listBoard[index], newElement);
             }
         };
 
