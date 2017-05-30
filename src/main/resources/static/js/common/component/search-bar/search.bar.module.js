@@ -6,11 +6,19 @@
     'use strict';
 
     /** @ngInject */
-    function ComponentSearchBarController(CommonSearchBarService) {
+    function ComponentSearchBarController($state, CommonSearchBarService) {
         var ctrl = this;
 
         ctrl.searchUsersAndTasks = function (query) {
             return CommonSearchBarService.searchUsersAndTasks(query);
+        };
+        
+        ctrl.onSelect = function ($item, $model, $label) {
+            if($item.type === "USER") {
+                $state.go('app.profil', { idUser: $item.id });
+            } else {
+                // $state.go('app.board-preview', { idtask: $item.id });
+            }
         };
     }
 

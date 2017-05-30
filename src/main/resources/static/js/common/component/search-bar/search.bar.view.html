@@ -1,4 +1,5 @@
 <div class="toolbar-icon-bg component" id="search-bar">
-    <input type="search" placeholder="Rechercher un joueur, une quête..." ng-model="ctrl.text"
-           uib-typeahead="result as result.name for result in ctrl.searchUsersAndTasks($viewValue)">
+    <input type="search" placeholder="Rechercher un joueur, une quête..." ng-model="ctrl.text" id="searchField"
+           uib-typeahead="result as result.name for result in ctrl.searchUsersAndTasks($viewValue)"
+           typeahead-on-select="ctrl.onSelect($item, $model, $label)">
 </div>
