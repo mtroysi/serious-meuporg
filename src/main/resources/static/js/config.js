@@ -86,4 +86,15 @@
     helloApp.config(['$httpProvider', function($httpProvider) {
         $httpProvider.interceptors.push('AuthorizationInjector');
     }]);
+
+    helloApp.config(["toastrConfig",function(toastrConfig) {
+
+        var options = {
+            "closeButton": true,
+            "progressBar": true
+        };
+
+        angular.extend(toastrConfig, options);
+    }]);
+
 })();

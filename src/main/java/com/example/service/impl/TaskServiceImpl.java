@@ -124,4 +124,10 @@ public class TaskServiceImpl implements TaskService {
 
         return list.stream().map((Task task) -> (TaskLiteDTO) transformers.convertEntityToDto(task, TaskLiteDTO.class)).collect(Collectors.toList());
     }
+
+    @Override
+    public BoardDTO getBoardFromTask(Long id) {
+        Task task = taskRepository.findOne(id);
+        return (BoardDTO)transformers.convertEntityToDto(task.getBoard(), BoardDTO.class);
+    }
 }

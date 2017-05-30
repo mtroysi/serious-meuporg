@@ -83,6 +83,15 @@
                 return $http.delete(constant.BASE_URI + '/colonneKanban/' + colonneKanbanId);
             };
 
+            /**
+             * Retourne le tableau à partir de l'id d'une tâche
+             * @param idTask id de la tâche
+             * @returns {HttpPromise}
+             */
+            svc.getBoardFromTask = function(idTask) {
+                return $http.get(constant.BASE_URI + '/task?idTask='+idTask);
+            };
+
             return svc;
         })
 })();

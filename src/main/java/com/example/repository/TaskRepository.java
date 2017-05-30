@@ -31,4 +31,11 @@ public interface TaskRepository extends PagingAndSortingRepository<Task, Long> {
 	 */
 	@Query(value="SELECT * FROM task t WHERE t.is_bid = false AND t.board_id=?1 AND t.id NOT IN (SELECT task_id FROM task_user)", nativeQuery = true)
 	List<Task> findTaskByUserIsNullAndBoardId(Long boardId);
+
+	/**
+	 * Retourne la liste des tâches dont le titre contient la requête
+	 * @param query requête
+	 * @return liste de Task
+	 */
+	List<Task> findByTitleContaining(String query);
 }

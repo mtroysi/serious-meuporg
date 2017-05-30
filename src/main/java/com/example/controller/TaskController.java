@@ -4,12 +4,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
+import com.example.dto.BoardDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.dto.CommentDTO;
 import com.example.dto.TaskDTO;
@@ -94,5 +91,15 @@ public class TaskController {
         System.out.println(idUser);
         comment.remove("creator");
         return commentService.addCommentToTask(id, comment, idUser);
+    }
+
+    /**
+     * Retourne le tableau à partir de l'id d'une tâche
+     * @param idTask id de la tâche
+     * @return la tâche correspondante
+     */
+    @RequestMapping(method = RequestMethod.GET)
+    public BoardDTO getBoardFromTask(@RequestParam("idTask") Long idTask) {
+        return taskService.getBoardFromTask(idTask);
     }
 }
