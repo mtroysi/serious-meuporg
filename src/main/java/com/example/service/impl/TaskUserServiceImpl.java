@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.example.ConstanteGameMaster;
 import com.example.dto.ColonneKanbanDTO;
 import com.example.dto.PeriodicityDTO;
 import com.example.enumeration.PeriodicityEnum;
@@ -22,6 +23,7 @@ import org.springframework.stereotype.Service;
 import com.example.dto.TaskUserDTO;
 import com.example.dto.TaskWithPeriodDTO;
 import com.example.enumeration.StatusEnum;
+import com.example.exception.GameMasterException;
 import com.example.model.Periodicity;
 import com.example.model.TaskUser;
 import com.example.repository.TaskUserRepository;
@@ -243,4 +245,38 @@ public class TaskUserServiceImpl implements TaskUserService {
 
         return listDTO.get(0);
     }
+
+
+	@Override
+	public TaskUserDTO updateColumnTask(Long idtaskUser, Long idColumn) {
+		TaskUser tu = taskUserRepository.findOne(idtaskUser);
+		ColonneKanban col = null;
+		if( idColumn != null){
+			col = colonneKanbanRepository.findOne(idColumn);
+		}
+		
+		if( tu != null){
+			tu.setColonneKanban(col);
+			List<TaskUserDTO> listDTO = buildTaskWithPeriodicity(Collections.singletonList(taskUserRepository.save(tu)));
+	        return listDTO.get(0);
+		}else{
+			throw new GameMasterException(ConstanteGameMaster.ELEMENT_NO_FOUND);
+		}
+	}
+
+
+	@Override
+	public TaskUserDTO updatePriorityTask(Long idtaskUser, PriorityEnum priority) {
+		TaskUser tu = taskUserRepository.findOne(idtaskUser);
+		
+		if( tu != null && priority != null){
+			tu.getTask().setPriority(priority);
+			List<TaskUserDTO> listDTO = buildTaskWithPeriodicity(Collections.singletonList(taskUserRepository.save(tu)));
+	        return listDTO.get(0);
+		}else{
+			throw new GameMasterException(ConstanteGameMaster.ELEMENT_NO_FOUND);
+		}
+	}
+    
+    
 }

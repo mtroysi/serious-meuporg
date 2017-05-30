@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 public class TaskUserDTO {
 
+	private Long id;
 	private TaskWithPeriodDTO task;
 	private UserDTO user;
 	
@@ -24,5 +25,11 @@ public class TaskUserDTO {
 	}
 	public void setUser(UserDTO user) {
 		this.user = user;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 }

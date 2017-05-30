@@ -15,6 +15,7 @@ public final class ConstanteGameMaster {
 	
 	public static final String ITEM_NO_RESSOURCE = "Vous n'avez pas assez de ressource";
 	public static final String ITEM_NO_FOUND = "Item n'a pas été trouvé dans la base de données";
+	public static final String ELEMENT_NO_FOUND = "L'élément n'a pas été trouvé dans la base de données";
 	
 	public static final String BUY_ITEM= "Tu as acheté un element dans ton inventaire";
 	public static final String BUY_CURSE = "Un utilisateur vient de te lancer une malédiction. Merci ";

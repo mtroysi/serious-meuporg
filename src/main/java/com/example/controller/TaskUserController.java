@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.dto.TaskWithPeriodDTO;
+import com.example.enumeration.PriorityEnum;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,5 +96,27 @@ public class TaskUserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public TaskUserDTO updateTask(@PathVariable("id") Long id, @RequestBody Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         return taskUserService.updateTask(id, values);
+    }
+    
+    /**
+     * Modifie la TaskUser avec une nouvelle colonne kanban
+     * @param idTaskUser
+     * @param idColumn
+     * @return TaskUserDTO
+     */
+    @RequestMapping(value = "/{idTaskUser}/column", method = RequestMethod.PUT)
+    public TaskUserDTO updateColumnTask(@PathVariable("idTaskUser") Long idTaskUser, @RequestBody(required=false) Long idColumn){
+        return taskUserService.updateColumnTask(idTaskUser, idColumn);
+    }
+    
+    /**
+     * Modifie la TaskUser avec une nouvelle priority
+     * @param idTaskUser
+     * @param priority
+     * @return TaskUserDTO
+     */ 
+    @RequestMapping(value = "/{idTaskUser}/priority", method = RequestMethod.PUT)
+    public TaskUserDTO updateColumnTask(@PathVariable("idTaskUser") Long idTaskUser, @RequestBody(required=false) PriorityEnum priority){
+        return taskUserService.updatePriorityTask(idTaskUser, priority);
     }
 }
