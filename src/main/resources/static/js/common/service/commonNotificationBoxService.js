@@ -4,38 +4,27 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.service('CommonNotificationBoxService', function() {
+    helloApp.service('CommonNotificationBoxService', function(toastr) {
         var svc = {};
 
         svc.info = function(title, message) {
-            svc.message(title, message, 'info');
+            toastr.info(title, message);
         };
 
         svc.notice = function(title, message) {
-            svc.message(title, message, 'notice');
+            toastr.warning(title, message);
         };
 
         svc.success = function(title, message) {
-            svc.message(title, message, 'success');
+            toastr.success(title, message);
         };
 
         svc.error = function(title, message) {
-            svc.message(title, message, 'error');
+            toastr.error(title, message);
         };
 
         svc.messageAdore = function(title) {
-            svc.message(title, '', 'info', 7000);
-        };
-
-        svc.message = function(title, message, type, delay) {
-            new PNotify({
-                title: title,
-                text: message,
-                type: type,
-                icon: false,
-                delay: delay || 3000,
-                styling: 'fontawesome'
-            });
+            svc.info(title, '');
         };
 
         return svc;
