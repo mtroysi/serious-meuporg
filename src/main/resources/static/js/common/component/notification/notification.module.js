@@ -22,10 +22,13 @@
             });
         };
 
+        /**
+         * Marque toutes les notifications comme lues
+         */
         ctrl.readAllNotif = function() {
             // The user has just seen all notifications
             NotificationService.readAllNotification(AuthenticationService.getUserId());
-        }
+        };
 
         ctrl.init();
     }

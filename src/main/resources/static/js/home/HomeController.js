@@ -7,7 +7,7 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.controller('HomeController', function($location, $http, HomeService) {
+    helloApp.controller('HomeController', function() {
         var ctrl = this;
 
         ctrl.init = function() {

@@ -58,7 +58,7 @@
         svc.empty = function() {
             $cookies.put('Authorization', null);
             $cookies.put('user_id', null);
-        }
+        };
 
         return svc;
     });

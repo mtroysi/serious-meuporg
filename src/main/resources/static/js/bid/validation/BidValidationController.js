@@ -27,14 +27,19 @@
             });
         };
 
-
+        /**
+         * Liste des tâches aux enchères qui sont finies
+         * @param boardId id du tableau
+         */
         ctrl.getListBidEndByBoard = function(boardId) {
             BidService.getListBidEndByBoard(boardId).then(function(fetchData) {
                 ctrl.listBidEnd = fetchData;
             });
-        }
+        };
 
-
+        /**
+         * Valide les enchères d'un tableau
+         */
         ctrl.validAffectation = function() {
             var listFinal = [];
             $.each(ctrl.listBidEnd, function(index, value) {
@@ -55,7 +60,7 @@
                 CommonNotificationBoxService.info("Les enchères ont été validées.", "");
                 $state.go("app.bidPreview", { idBoard: $stateParams.idBoard });
             });
-        }
+        };
 
 
         ctrl.init();

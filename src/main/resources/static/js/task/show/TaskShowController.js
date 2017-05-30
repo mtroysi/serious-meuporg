@@ -22,6 +22,7 @@
                 ctrl.newTask = args.task;
                 ctrl.task = angular.copy(ctrl.newTask);
                 ctrl.columns = args.colonneKanban;
+                console.log(ctrl.task);
                 ctrl.listTags();
                 ctrl.titleEditable = false;
                 ctrl.creation = false;
@@ -46,17 +47,24 @@
                 ctrl.titleEditable = false;
             };
 
-            ctrl.toggleTitle = function () {
+	ctrl.toggleTitle = function () {
                 if (ctrl.task.task.title !== undefined)
                     ctrl.titleEditable = !ctrl.titleEditable;
             };
 
+            /**
+             * Récupère la tâche à afficher
+             * @param id
+             */
             ctrl.showTask = function (id) {
                 TaskShowService.showTask(id).then(function (data) {
                     ctrl.task = data;
                 });
             };
 
+            /**
+             * Ajoute un commentaire
+             */
             ctrl.addComment = function () {
                 ctrl.comment.dateCreation = Date.now();
                 ctrl.creator = AuthenticationService.getUserId();
@@ -66,19 +74,27 @@
                 });
             };
 
+            /**
+             * Supprime un commentaire
+             * @param idx
+             */
             ctrl.deleteComment = function (idx) {
                 return TaskShowService.deleteComment(ctrl.task.task.taskComments[idx].id).then(function () {
                     ctrl.task.task.taskComments.splice(idx, 1);
                 });
             };
 
+            /**
+             * Modifie un commentaire
+             * @param idx
+             */
             ctrl.updateComment = function (idx) {
                 return TaskShowService.updateComment(ctrl.task.task.taskComments[idx].id, ctrl.task.task.taskComments[idx]).then(function (data) {
                     ctrl.task.task.taskComments[idx] = data;
                 });
             };
 
-            ctrl.performActionTask = function () {
+ctrl.performActionTask = function () {
                 if (ctrl.creation) {
                     ctrl.createTask();
                 } else {
@@ -98,6 +114,9 @@
                 });
             };
 
+            /**
+             * Modifie une tâche
+             */
             ctrl.updateTask = function () {
                 if (ctrl.task.task.isPeriodicity) {
                     ctrl.task.task.periodicity.dateBegin = new Date(ctrl.task.task.periodicity.dateBegin).getTime();
@@ -121,6 +140,9 @@
                 });
             };
 
+            /**
+             * Récupère la liste des tags
+             */
             ctrl.listTags = function () {
                 TagListService.listTags().then(function (data) {
                     ctrl.tags = data;
@@ -128,6 +150,9 @@
                 });
             };
 
+            /**
+             * Modifie l'affichage des tags : marque ceux sélectionnés
+             */
             ctrl.setSelectedTask = function () {
                 if (ctrl.task.task !== undefined && ctrl.task.task.tags !== undefined) {
                     ctrl.task.task.tags.forEach(function (element) {
@@ -140,6 +165,10 @@
                 }
             };
 
+            /**
+             * Ajoute ou enlève un tag d'une tâche
+             * @param tag
+             */
             ctrl.toggleTag = function (tag) {
                 if (ctrl.task.task.id !== undefined) {
                     TaskUpdateService.toggleTag(ctrl.task.id, tag.id).then(function (data) {

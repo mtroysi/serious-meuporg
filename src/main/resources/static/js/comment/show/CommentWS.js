@@ -10,14 +10,30 @@
         .service('CommentWS', function ($http, constant) {
             var svc = this;
 
+            /**
+             * Affiche un commentaire
+             * @param id l'id du commentaire
+             * @returns {HttpPromise}
+             */
             svc.showComment = function (id) {
                 return $http.get(constant.BASE_URI+'/comment/'+id);
             };
 
-            svc.updateComment = function (id, task) {
-                return $http.put(constant.BASE_URI + '/comment/'+id, task);
+            /**
+             * Modifie un commentaire
+             * @param id l'id du commentaire
+             * @param comment données modifiées du commentaire
+             * @returns {HttpPromise}
+             */
+            svc.updateComment = function (id, comment) {
+                return $http.put(constant.BASE_URI + '/comment/'+id, comment);
             };
 
+            /**
+             * Supprime un commentaire
+             * @param id l'id du commentaire
+             * @returns {HttpPromise}
+             */
             svc.deleteComment = function (id) {
                 return $http.delete(constant.BASE_URI + '/comment/'+id);
             };

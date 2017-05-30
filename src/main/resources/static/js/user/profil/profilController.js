@@ -24,6 +24,9 @@
             ctrl.getRankin();
         };
 
+        /**
+         * Classement de l'utilisateur dans chaque catégorie
+         */
         ctrl.getRankin = function() {
             UserService.getRankin(AuthenticationService.getUserId()).then(function(response) {
                 ctrl.rankin = response;

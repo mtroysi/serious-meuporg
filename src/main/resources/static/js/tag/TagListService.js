@@ -9,6 +9,9 @@
         .service('TagListService', function(TagListWS) {
             var svc = {};
 
+            /**
+             * Retourne la liste des tags disponibles
+             */
             svc.listTags = function() {
                 return TagListWS.listTags().then(function(response) {
                     return response.data;

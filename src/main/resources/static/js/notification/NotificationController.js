@@ -89,7 +89,7 @@
                 });
             }
             return data || [];
-        }
+        };
 
         ctrl.init();
     })
