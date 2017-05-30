@@ -10,18 +10,40 @@
         .service('TaskShowWS', function ($http, constant) {
             var svc = this;
 
+            /**
+             * Retourne une tâche
+             * @param id tâche à retourner
+             * @returns {HttpPromise}
+             */
             svc.showTask = function (id) {
                 return $http.get(constant.BASE_URI + '/task/'+id);
             };
 
+            /**
+             * Ajoute un commentaire à une tâche
+             * @param id de la tâche
+             * @param comment données du commentaire à ajouter
+             * @returns {HttpPromise}
+             */
             svc.addComment = function (id, comment) {
                 return $http.post(constant.BASE_URI + '/task/'+id, comment);
             };
 
+            /**
+             * Supprime un commentaire
+             * @param id du commentaire à supprimer
+             * @returns {HttpPromise}
+             */
             svc.deleteComment = function(id) {
                 return $http.delete(constant.BASE_URI + '/comment/'+id);
             };
 
+            /**
+             * Modifie un commentaire
+             * @param id du commentaire
+             * @param comment données modifiées
+             * @returns {HttpPromise}
+             */
             svc.updateComment = function(id, comment) {
                 return $http.put(constant.BASE_URI + '/comment/'+id, comment);
             };
