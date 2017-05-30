@@ -42,4 +42,24 @@ public interface TaskUserService {
 	 * @throws IllegalAccessException
 	 */
 	TaskUserDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
+
+	/**
+	 * Créé une tâche
+	 *
+	 * @param values données de la tâche
+	 * @return DTO de la tâche créée
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
+	 */
+    TaskUserDTO createTask(Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
+
+
+	/**
+	 * Supprime une tâche
+	 *
+	 * @param id id de la tâche à supprimer
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
+	 */
+	void deleteTask(Long id);
 }

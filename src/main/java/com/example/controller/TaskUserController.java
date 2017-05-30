@@ -95,4 +95,25 @@ public class TaskUserController {
     public TaskUserDTO updateTask(@PathVariable("id") Long id, @RequestBody Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
         return taskUserService.updateTask(id, values);
     }
+
+    /**
+     * Créé une tâche.
+     * @param values données de la tâche
+     * @return tache après création
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public TaskUserDTO createTask(@RequestBody Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
+        return taskUserService.createTask(values);
+    }
+
+    /**
+     * Supprime une tâche
+     * @param id id de la tâche à supprimer
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteTask(@PathVariable("id") Long id) {
+        taskUserService.deleteTask(id);
+    }
 }

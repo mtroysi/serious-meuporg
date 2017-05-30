@@ -34,6 +34,30 @@
                     return response.data;
                 });
             };
+            svc.listTaskByBoardAndUser = function(board_id, user_id) {
+                return TaskShowWS.listTaskByBoardAndUser(board_id, user_id).then(function(response) {
+                    return response.data;
+                });
+            };
+
+            svc.listTaskByBoard = function(board_id) {
+                return TaskShowWS.listTaskByBoard(board_id).then(function(response) {
+                    return response.data;
+                });
+            };
+
+            svc.listTaskByUser = function(user_id) {
+                return TaskShowWS.listTaskByUser(user_id).then(function(response) {
+                    return response.data;
+                });
+            };
+
+            svc.getTaskWithoutUser = function(boardId) {
+                return TaskShowWS.getTaskWithoutUser(boardId).then(function(response) {
+                    return response.data;
+                });
+            };
+
 
             return svc;
         })

@@ -8,10 +8,8 @@ import com.example.dto.ColonneKanbanDTO;
 import com.example.dto.PeriodicityDTO;
 import com.example.enumeration.PeriodicityEnum;
 import com.example.enumeration.PriorityEnum;
-import com.example.model.ColonneKanban;
-import com.example.model.Task;
-import com.example.repository.ColonneKanbanRepository;
-import com.example.repository.PeriodicityRepository;
+import com.example.model.*;
+import com.example.repository.*;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.slf4j.Logger;
@@ -22,9 +20,6 @@ import org.springframework.stereotype.Service;
 import com.example.dto.TaskUserDTO;
 import com.example.dto.TaskWithPeriodDTO;
 import com.example.enumeration.StatusEnum;
-import com.example.model.Periodicity;
-import com.example.model.TaskUser;
-import com.example.repository.TaskUserRepository;
 import com.example.service.TaskUserService;
 import com.example.transformers.Transformers;
 
@@ -40,6 +35,15 @@ public class TaskUserServiceImpl implements TaskUserService {
 
     @Autowired
     private ColonneKanbanRepository colonneKanbanRepository;
+
+    @Autowired
+    private TaskRepository taskRepository;
+
+    @Autowired
+    private BoardRepository boardRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     Transformers transformers;
@@ -184,10 +188,13 @@ public class TaskUserServiceImpl implements TaskUserService {
 
         Task task = taskUser.getTask();
 
+        task.setCreator(userRepository.findOne(new Long((Integer) taskValues.get("creator"))));
+
         task.setPriority(PriorityEnum.valueOf((String) taskValues.get("priority")));
         taskValues.remove("priority");
         taskValues.remove("taskComments");
         taskValues.remove("tags");
+        taskValues.remove("creator");
 
         Periodicity periodicity = null;
         if (task.getPeriodicity() != null) {
@@ -220,18 +227,21 @@ public class TaskUserServiceImpl implements TaskUserService {
         }
         taskValues.remove("periodicity");
 
+        Board board = boardRepository.findOne(new Long((Integer) taskValues.get("boardId")));
+        task.setBoard(board);
+        taskValues.remove("boardId");
+
         BeanUtilsBean.getInstance().getConvertUtils().register(false, true, 0);
         BeanUtils.populate(task, taskValues);
 
-        List<TaskUser> taskUsers = task.getTaskUsers();
-        taskUsers.stream().forEach(tu -> {
-            Map<String, Object> colonneValues = (Map<String, Object>) taskValues.get("colonneKanban");
-            ColonneKanban colonneKanban = colonneKanbanRepository.findOne(new Long((Integer) colonneValues.get("id")));
-            tu.setColonneKanban(colonneKanban);
-        });
-        task.setTaskUsers(taskUsers);
+        task.setDateCreation(new Date());
 
         taskUser.setTask(task);
+
+        Map<String, Object> colonneValues = (Map<String, Object>) taskValues.get("colonneKanban");
+        ColonneKanban colonneKanban = colonneKanbanRepository.findOne(new Long((Integer) colonneValues.get("id")));
+        taskUser.setColonneKanban(colonneKanban);
+
         taskUser = taskUserRepository.save(taskUser);
 
         if (deletePeriodicity) {
@@ -241,5 +251,23 @@ public class TaskUserServiceImpl implements TaskUserService {
         List<TaskUserDTO> listDTO = buildTaskWithPeriodicity(Collections.singletonList(taskUser));
 
         return listDTO.get(0);
+    }
+
+    @Override
+    public TaskUserDTO createTask(Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
+        TaskUser taskUser = new TaskUser();
+        Task task = new Task();
+
+        task = taskRepository.save(task);
+
+        taskUser.setTask(task);
+        taskUser = taskUserRepository.save(taskUser);
+
+        return updateTask(taskUser.getId(), values);
+    }
+
+    @Override
+    public void deleteTask(Long id) {
+        taskUserRepository.delete(id);
     }
 }
