@@ -138,11 +138,12 @@ public class TaskUserServiceImpl implements TaskUserService {
                     taskUserDTO.setTask(taskWithPeriod);
                 }
 
-                // Test sur les valeurs de la tasks, on va remettre le statut a TODO pour chaque nouvelle occurence de la periodicity.
-                if (taskWithPeriod.getDateBeginTask().after(dateUpdatePeriodicity.getTime())) {
-                    tu.setStatus(StatusEnum.TODO);
-                    taskUserRepository.save(tu);
-                }
+				// Test sur les valeurs de la tasks, on va remettre le statut a TODO pour chaque nouvelle occurence de la periodicity.
+				if( taskWithPeriod.getDateBeginTask().after(dateUpdatePeriodicity.getTime())){
+					tu.setStatus(StatusEnum.TODO);
+					tu.getTask().getPeriodicity().setPeriodicityDateUpdate(new Date());
+					taskUserRepository.save(tu);
+				}
             }
             return taskUserDTO;
         })
