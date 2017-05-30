@@ -30,11 +30,19 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
     User findByEmailAndPassword(String email,String password);
     
     /**
-     * Retorune la liste des utilisateurs dont le nom + prénom contiennent la chaîne en paramètre, utilisateur connecté exclu (mail)
+     * Retourne la liste des utilisateurs dont le nom + prénom contiennent la chaîne en paramètre, utilisateur connecté exclu (mail)
      * @param query1
      * @param mail
      * @return liste utilisateur
      */
     @Query(value = "SELECT * FROM user WHERE (first_name LIKE %?1% OR last_name LIKE %?1%) AND email != ?2", nativeQuery = true)
     List<User> findByFirstNameContainingOrLastNameContainingAndEmailNot(String query1, String mail);
+
+    /**
+     * Retourne la liste des utilisateurs dont le nom + prénom contiennent la chaîne en paramètre
+     * @param query
+     * @return liste utilisateur
+     */
+    @Query(value = "SELECT * FROM user WHERE first_name LIKE %?1% OR last_name LIKE %?1%", nativeQuery = true)
+    List<User> findByFirstNameContainingOrLastNameContaining(String query);
 }

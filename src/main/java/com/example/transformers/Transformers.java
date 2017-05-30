@@ -1,8 +1,10 @@
 package com.example.transformers;
 
 import com.example.dto.BoardDTO;
+import com.example.dto.ResultDto;
 import com.example.dto.UserDTO;
 import com.example.model.Board;
+import com.example.model.Task;
 import com.example.model.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -60,5 +62,21 @@ public class Transformers {
         UserDTO userDTO = (UserDTO)convertEntityToDto(user, UserDTO.class);
         userDTO.setFullName(user.getFirstName() + ' ' + user.getLastName());
         return userDTO;
+    }
+
+    public ResultDto transformUserToResultDto(User user) {
+        ResultDto resultDTO = new ResultDto();
+        resultDTO.setId(user.getId());
+        resultDTO.setName(user.getFirstName() + ' ' + user.getLastName());
+        resultDTO.setType("USER");
+        return resultDTO;
+    }
+
+    public ResultDto transformTaskToResultDto(Task task) {
+        ResultDto resultDTO = new ResultDto();
+        resultDTO.setId(task.getId());
+        resultDTO.setName(task.getTitle());
+        resultDTO.setType("TASK");
+        return resultDTO;
     }
 }

@@ -1,0 +1,4 @@
+<div class="toolbar-icon-bg component" id="search-bar">
+    <input type="search" placeholder="Rechercher un joueur, une quête..." ng-model="ctrl.text"
+           uib-typeahead="result as result.name for result in ctrl.searchUsersAndTasks($viewValue)">
+</div>
