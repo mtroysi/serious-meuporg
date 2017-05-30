@@ -43,6 +43,7 @@
 
             ctrl.init = function () {
                 ctrl.comment = {};
+                ctrl.comment.content = "";
                 ctrl.tags = [];
                 ctrl.titleEditable = false;
             };
@@ -68,7 +69,7 @@
             ctrl.addComment = function () {
                 ctrl.comment.dateCreation = Date.now();
                 ctrl.creator = AuthenticationService.getUserId();
-                return TaskShowService.addComment($stateParams.id, ctrl.comment, ctrl.creator).then(function (data) {
+                return TaskShowService.addComment(ctrl.task.task.id, ctrl.comment, ctrl.creator).then(function (data) {
                     ctrl.task.task.taskComments.push(data);
                     ctrl.comment = {};
                 });
