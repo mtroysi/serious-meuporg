@@ -7,7 +7,7 @@
 
     /** @ngInject */
     angular.module('hello')
-        .controller('TaskShowController', function (TaskShowService, TaskUpdateService, $stateParams, constant, AuthenticationService, TagListService, $scope) {
+        .controller('TaskShowController', function (TaskShowService, TaskUpdateService, $stateParams, constant, AuthenticationService, TagListService, $scope, $rootScope) {
             var ctrl = this;
 
             ctrl.popup = {
@@ -22,8 +22,19 @@
                 ctrl.newTask = args.task;
                 ctrl.task = angular.copy(ctrl.newTask);
                 ctrl.columns = args.colonneKanban;
-                console.log(ctrl.task);
                 ctrl.listTags();
+                ctrl.titleEditable = false;
+                ctrl.creation = false;
+            });
+
+            $scope.$on("createTask", function (event, args) {
+                ctrl.newTask = args.task;
+                ctrl.task = angular.copy(ctrl.newTask);
+                ctrl.columns = args.colonneKanban;
+                ctrl.task.task.isPeriodicity = false;
+                ctrl.listTags();
+                ctrl.titleEditable = true;
+                ctrl.creation = true;
             });
 
             ctrl.priority = constant.priority;
@@ -32,6 +43,12 @@
             ctrl.init = function () {
                 ctrl.comment = {};
                 ctrl.tags = [];
+                ctrl.titleEditable = false;
+            };
+
+            ctrl.toggleTitle = function () {
+                if (ctrl.task.task.title !== undefined)
+                    ctrl.titleEditable = !ctrl.titleEditable;
             };
 
             ctrl.showTask = function (id) {
@@ -61,12 +78,45 @@
                 });
             };
 
+            ctrl.performActionTask = function () {
+                if (ctrl.creation) {
+                    ctrl.createTask();
+                } else {
+                    ctrl.updateTask();
+                }
+            };
+
+            ctrl.createTask = function () {
+                if (ctrl.task.task.isPeriodicity) {
+                    ctrl.task.task.periodicity.dateBegin = new Date(ctrl.task.task.periodicity.dateBegin).getTime();
+                }
+                TaskUpdateService.createTask(ctrl.task).then(function (data) {
+                    var args = {};
+                    args.task = data;
+                    $rootScope.$broadcast('createdTask', args);
+                    $("#editTask").modal('toggle');
+                });
+            };
+
             ctrl.updateTask = function () {
-                ctrl.task.task.periodicity.dateBegin = new Date(ctrl.task.task.periodicity.dateBegin).getTime();
-                console.log(ctrl.task);
-                TaskUpdateService.updateTask(ctrl.task.task.id, ctrl.task).then(function (data) {
+                if (ctrl.task.task.isPeriodicity) {
+                    ctrl.task.task.periodicity.dateBegin = new Date(ctrl.task.task.periodicity.dateBegin).getTime();
+                }
+                TaskUpdateService.updateTask(ctrl.task.id, ctrl.task).then(function (data) {
                     angular.extend(ctrl.newTask, ctrl.newTask, data);
-                    console.log(ctrl.newTask);
+                    $("#editTask").modal('toggle');
+                });
+            };
+
+            ctrl.cancelTask = function () {
+                $("#editTask").modal('toggle');
+            };
+
+            ctrl.confirmDeleteTask = function () {
+                TaskUpdateService.deleteTask(ctrl.task.id).then(function () {
+                    var args = {};
+                    args.task = ctrl.task;
+                    $rootScope.$broadcast('deleteTask', args);
                     $("#editTask").modal('toggle');
                 });
             };
@@ -79,20 +129,28 @@
             };
 
             ctrl.setSelectedTask = function () {
-                ctrl.task.task.tags.forEach(function (element) {
-                    ctrl.tags.forEach(function (bis) {
-                        if (element.color === bis.color) {
-                            bis.selected = true;
-                        }
+                if (ctrl.task.task !== undefined && ctrl.task.task.tags !== undefined) {
+                    ctrl.task.task.tags.forEach(function (element) {
+                        ctrl.tags.forEach(function (bis) {
+                            if (element.color === bis.color) {
+                                bis.selected = true;
+                            }
+                        });
                     });
-                });
+                }
             };
 
             ctrl.toggleTag = function (tag) {
-                TaskUpdateService.toggleTag(ctrl.task.id, tag.id).then(function (data) {
-                    ctrl.task.task = data;
-                    tag.selected = !tag.selected;
-                });
+                if (ctrl.task.task.id !== undefined) {
+                    TaskUpdateService.toggleTag(ctrl.task.id, tag.id).then(function (data) {
+                        ctrl.task.task = data;
+                        tag.selected = !tag.selected;
+                    });
+                } else {
+                    if (ctrl.task.task.tags === undefined)
+                        ctrl.task.task.tags = [];
+                    ctrl.task.task.tags.push(tag);
+                }
             };
 
             ctrl.init();
