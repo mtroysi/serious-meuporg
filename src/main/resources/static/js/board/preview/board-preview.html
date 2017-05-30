@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-md-12 titleHeader panel">
+<div class="row margin-h-5">
+    <div class="titleHeader panel margin-v-5">
         <div class="panel-heading">
             <h1 ng-if="ctrl.tableGlobal===false"><span class="label label-default">{{ ctrl.typeDisplayTeam == true ? "EQUIPE" : "INDIVIDUELLE" }}</span> {{ctrl.board.name}}</h1>
             <h1 ng-if="ctrl.tableGlobal===true">Vue d'ensemble</h1>
@@ -25,7 +25,7 @@
             </ul>
         </div>
     </div>
-    <div class="col-md-12 boxMatrice">
+    <div class="col-md-12 boxMatrice padding-h-0">
         <div class="row">
             <div class="col-md-6 panelMatrice">
                 <div class="panel panel-default">
@@ -36,9 +36,9 @@
                         </div>
                     </div>
                     <div class="panel-body scroll-pane">
-                        <div class="row scroll-content">
+                        <div class="row scroll-content boxElementTile" id="sortable1" data-task="URGENT_IMPORTANT">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'URGENT_IMPORTANT' }}:true">
-                                <div class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                <div data-idtask="{{ n.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -59,9 +59,9 @@
                         </div>
                     </div>
                     <div class="panel-body scroll-pane">
-                        <div class="row scroll-content">
+                        <div class="row scroll-content boxElementTile" id="sortable2" data-task="URGENT_NOT_IMPORTANT">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'URGENT_NOT_IMPORTANT'}}:true">
-                                <div class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                <div data-idtask="{{ n.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -84,9 +84,9 @@
                         </div>
                     </div>
                     <div class="panel-body scroll-pane">
-                        <div class="row scroll-content">
+                        <div class="row scroll-content boxElementTile" id="sortable3" data-task="NOT_URGENT_IMPORTANT">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'NOT_URGENT_IMPORTANT'}}:true">
-                                <div class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                <div data-idtask="{{ n.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -107,9 +107,9 @@
                         </div>
                     </div>
                     <div class="panel-body scroll-pane">
-                        <div class="row scroll-content">
+                        <div class="row scroll-content boxElementTile" id="sortable4" data-task="NOT_URGENT_NOT_IMPORTANT">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'NOT_URGENT_NOT_IMPORTANT'}}:true">
-                                <div class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                <div data-idtask="{{ n.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -123,7 +123,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12 bigPanelMatrice" ng-if="ctrl.tableGlobal===false">
+    <div class="col-md-12 bigPanelMatrice" ng-show="ctrl.tableGlobal===false">
         <div class="panel panel-bluegray">
             <div class="panel-heading">
                 <h2>Tableau Kanban</h2>
@@ -143,9 +143,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <ul class="listTache">
+                                <ul class="listTache" id="sortable_col_0" data-column="NO_ASSIGNE">
                                     <li ng-repeat="n in ctrl.listTask | filter:{task : {colonneKanban: null}}:true">
-                                        <div class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                        <div data-idtask="{{ n.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                             <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                             <div class="tile-footer">
                                                 <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -172,18 +172,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <ul class="listTache">
+                                <ul class="listTache" id="sortable_col_{{ colonne.id }}" data-column="{{ colonne.id }}">
                                     <li ng-repeat="n in ctrl.listTask | filter:{task : {colonneKanban: { id : colonne.id }}}:true">
-                                        <div class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                        <div data-idtask="{{ n.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
                                             <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                             <div class="tile-footer">
                                                 <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
                                                 <span class="strong">{{ n.task.dateBeginTask | date:'dd/MM/yyyy'  }}</span>
                                             </div>
                                         </div>
-                                    </li>
-                                    <li class="addTask">
-                                        <button class="btn btn-inverse-alt"><i class="ti ti-plus"></i></button>
                                     </li>
                                 </ul>
                             </div>

@@ -4,7 +4,7 @@
     var helloApp = angular.module('hello');
 
     /** @ngInject */
-    helloApp.service('CommonNotificationBoxService', function() {
+    helloApp.service('CommonNotificationBoxService', function(toastr) {
         var svc = {};
 
         /**
@@ -13,11 +13,11 @@
          * @param message contenu de la notification
          */
         svc.info = function(title, message) {
-            svc.message(title, message, 'info');
+            toastr.info(title, message);
         };
 
         svc.notice = function(title, message) {
-            svc.message(title, message, 'notice');
+            toastr.warning(title, message);
         };
 
         /**
@@ -26,7 +26,7 @@
          * @param message contenu de la notification
          */
         svc.success = function(title, message) {
-            svc.message(title, message, 'success');
+            toastr.success(title, message);
         };
 
         /**
@@ -35,7 +35,7 @@
          * @param message contenu de la notification
          */
         svc.error = function(title, message) {
-            svc.message(title, message, 'error');
+            toastr.error(title, message);
         };
 
         /**
@@ -43,25 +43,7 @@
          * @param title titre de la notification
          */
         svc.messageAdore = function(title) {
-            svc.message(title, '', 'info', 7000);
-        };
-
-        /**
-         * Options du contenu des notifications
-         * @param title titre
-         * @param message contenu
-         * @param type error / info / success
-         * @param delay délai d'affichage
-         */
-        svc.message = function(title, message, type, delay) {
-            new PNotify({
-                title: title,
-                text: message,
-                type: type,
-                icon: false,
-                delay: delay || 3000,
-                styling: 'fontawesome'
-            });
+            svc.info(title, '');
         };
 
         return svc;

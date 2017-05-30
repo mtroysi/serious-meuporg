@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.dto.TaskUserDTO;
-import com.example.dto.TaskWithPeriodDTO;
+import com.example.enumeration.PriorityEnum;
 
 
 public interface TaskUserService {
@@ -51,7 +51,7 @@ public interface TaskUserService {
 	 * @throws InvocationTargetException
 	 * @throws IllegalAccessException
 	 */
-    TaskUserDTO createTask(Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
+    	TaskUserDTO createTask(Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
 
 
 	/**
@@ -62,4 +62,20 @@ public interface TaskUserService {
 	 * @throws IllegalAccessException
 	 */
 	void deleteTask(Long id);
+	
+	/**
+	 * Modifie la colonne kanban d'une tache
+	 * @param idtaskUser 
+	 * @param idColumn
+	 * @return DTO de la tâche modifiée
+	 */
+	TaskUserDTO updateColumnTask(Long idtaskUser, Long idColumn);
+	
+	/**
+	 * Modifie le priorité d'une tache
+	 * @param idtaskUser 
+	 * @param status
+	 * @return DTO de la tâche modifiée
+	 */
+	TaskUserDTO updatePriorityTask(Long idtaskUser, PriorityEnum priority);
 }

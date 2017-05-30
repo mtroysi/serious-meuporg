@@ -38,7 +38,7 @@
     }
 
 
-    angular.module('hello', ['ui.router', 'ngTagsInput', 'ngCookies', 'ui.bootstrap', 'ui.bootstrap.datetimepicker'])
+    angular.module('hello', ['ui.router', 'ngTagsInput', 'ngCookies', 'ui.bootstrap', 'ui.bootstrap.datetimepicker', 'toastr'])
         .component('mgMenu', {
             controller: ComponentMenuController,
             controllerAs: 'vm',

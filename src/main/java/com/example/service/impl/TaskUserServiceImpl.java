@@ -1,15 +1,14 @@
 package com.example.service.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.example.dto.ColonneKanbanDTO;
-import com.example.dto.PeriodicityDTO;
-import com.example.enumeration.PeriodicityEnum;
-import com.example.enumeration.PriorityEnum;
-import com.example.model.*;
-import com.example.repository.*;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.slf4j.Logger;
@@ -17,257 +16,325 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.ConstanteGameMaster;
 import com.example.dto.TaskUserDTO;
 import com.example.dto.TaskWithPeriodDTO;
+import com.example.enumeration.PeriodicityEnum;
+import com.example.enumeration.PriorityEnum;
 import com.example.enumeration.StatusEnum;
+import com.example.exception.GameMasterException;
+import com.example.model.Board;
+import com.example.model.ColonneKanban;
+import com.example.model.Periodicity;
+import com.example.model.Task;
+import com.example.model.TaskUser;
+import com.example.repository.BoardRepository;
+import com.example.repository.ColonneKanbanRepository;
+import com.example.repository.PeriodicityRepository;
+import com.example.repository.TaskRepository;
+import com.example.repository.TaskUserRepository;
+import com.example.repository.UserRepository;
 import com.example.service.TaskUserService;
 import com.example.transformers.Transformers;
-
 
 @Service
 public class TaskUserServiceImpl implements TaskUserService {
 
-    @Autowired
-    private TaskUserRepository taskUserRepository;
+	@Autowired
+	private TaskUserRepository taskUserRepository;
 
-    @Autowired
-    private PeriodicityRepository periodicityRepository;
+	@Autowired
+	private PeriodicityRepository periodicityRepository;
 
-    @Autowired
-    private ColonneKanbanRepository colonneKanbanRepository;
+	@Autowired
+	private ColonneKanbanRepository colonneKanbanRepository;
 
-    @Autowired
-    private TaskRepository taskRepository;
+	@Autowired
+	private TaskRepository taskRepository;
 
-    @Autowired
-    private BoardRepository boardRepository;
+	@Autowired
+	private BoardRepository boardRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-    @Autowired
-    Transformers transformers;
+	@Autowired
+	Transformers transformers;
 
-    private final Logger logger = LoggerFactory.getLogger(TaskServiceImpl.class);
+	private final Logger logger = LoggerFactory.getLogger(TaskServiceImpl.class);
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.example.service.TaskUserService#getTaskUserByUserIdAndBoardId(java.
+	 * lang.Long, java.lang.Long)
+	 */
+	@Override
+	public List<TaskUserDTO> getTaskUserByUserIdAndBoardId(Long userId, Long boardId) {
+		return this.buildTaskWithPeriodicity(taskUserRepository.findAllByUserIdAndTaskBoardId(userId, boardId));
+	}
 
-    /*
-     * (non-Javadoc)
-     * @see com.example.service.TaskUserService#getTaskUserByUserIdAndBoardId(java.lang.Long, java.lang.Long)
-     */
-    @Override
-    public List<TaskUserDTO> getTaskUserByUserIdAndBoardId(Long userId, Long boardId) {
-        return this.buildTaskWithPeriodicity(taskUserRepository.findAllByUserIdAndTaskBoardId(userId, boardId));
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.example.service.TaskUserService#getTaskUserByUserId(java.lang.Long)
+	 */
+	@Override
+	public List<TaskUserDTO> getTaskUserByUserId(Long userId) {
+		return this.buildTaskWithPeriodicity(taskUserRepository.findAllByUserId(userId));
+	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.example.service.TaskUserService#getTaskUserByBoardId(java.lang.Long)
+	 */
+	@Override
+	public List<TaskUserDTO> getTaskUserByBoardId(Long boardId) {
+		return this.buildTaskWithPeriodicity(taskUserRepository.findAllByTaskBoardId(boardId));
+	}
 
-    /*
-     * (non-Javadoc)
-     * @see com.example.service.TaskUserService#getTaskUserByUserId(java.lang.Long)
-     */
-    @Override
-    public List<TaskUserDTO> getTaskUserByUserId(Long userId) {
-        return this.buildTaskWithPeriodicity(taskUserRepository.findAllByUserId(userId));
-    }
+	/**
+	 * Méthode qui va constuire une liste de tache avec la gestion de la
+	 * périodicité
+	 *
+	 * @param taskUser
+	 * @return liste de TaskUserDTO
+	 */
+	private List<TaskUserDTO> buildTaskWithPeriodicity(List<TaskUser> taskUser) {
+		return taskUser.stream().map((TaskUser tu) -> {
+			TaskUserDTO taskUserDTO = (TaskUserDTO) transformers.convertEntityToDto(tu, TaskUserDTO.class);
+			Periodicity period = tu.getTask().getPeriodicity();
+			TaskWithPeriodDTO taskWithPeriod = taskUserDTO.getTask();
+			taskWithPeriod.setBoardId(tu.getTask().getBoard().getId());
+			taskWithPeriod.setDateEnd(tu.getTask().getDateEnd());
+			/* Si pas de periode alors la tache est classique */
+			if (period == null) {
+				taskWithPeriod.setDateBeginTask(taskWithPeriod.getDateBegin());
+				taskWithPeriod.setDateEndTask(taskWithPeriod.getDateEnd());
+			} else {
+				// On récupere la premiere date de la périodicité
+				Calendar dateBeginPeriodicity = new GregorianCalendar();
+				dateBeginPeriodicity.setTime(period.getDateBegin());
 
+				Calendar dateBegin = new GregorianCalendar();
+				dateBegin.setTime(new Date());
 
-    /*
-     * (non-Javadoc)
-     * @see com.example.service.TaskUserService#getTaskUserByBoardId(java.lang.Long)
-     */
-    @Override
-    public List<TaskUserDTO> getTaskUserByBoardId(Long boardId) {
-        return this.buildTaskWithPeriodicity(taskUserRepository.findAllByTaskBoardId(boardId));
-    }
+				Calendar dateEnd = new GregorianCalendar();
+				dateEnd.setTime(taskWithPeriod.getDateEnd());
 
+				Calendar dateUpdatePeriodicity = new GregorianCalendar();
+				if (period.getPeriodicityDateUpdate() != null) {
+					dateUpdatePeriodicity.setTime(period.getPeriodicityDateUpdate());
+				}
 
-    /**
-     * Méthode qui va constuire une liste de tache avec la gestion de la périodicité
-     *
-     * @param taskUser
-     * @return liste de TaskUserDTO
-     */
-    private List<TaskUserDTO> buildTaskWithPeriodicity(List<TaskUser> taskUser) {
-        return taskUser.stream().map((TaskUser tu) -> {
-            TaskUserDTO taskUserDTO = (TaskUserDTO) transformers.convertEntityToDto(tu, TaskUserDTO.class);
-            Periodicity period = tu.getTask().getPeriodicity();
-            TaskWithPeriodDTO taskWithPeriod = taskUserDTO.getTask();
-            taskWithPeriod.setBoardId(tu.getTask().getBoard().getId());
-            taskWithPeriod.setDateEnd(tu.getTask().getDateEnd());
-            /* Si pas de periode alors la tache est classique */
-            if (period == null) {
-                taskWithPeriod.setDateBeginTask(taskWithPeriod.getDateBegin());
-                taskWithPeriod.setDateEndTask(taskWithPeriod.getDateEnd());
-            } else {
-                //On récupere la premiere date de la périodicité
-                Calendar dateBeginPeriodicity = new GregorianCalendar();
-                dateBeginPeriodicity.setTime(period.getDateBegin());
+				Boolean test = Boolean.FALSE;
+				do {
+					if (dateBegin.before(dateBeginPeriodicity)
+							&& (period.getPeriodicityDateUpdate() == null || (period.getPeriodicityDateUpdate() != null
+									&& dateUpdatePeriodicity.before(dateBeginPeriodicity)))) {
+						test = Boolean.TRUE;
+					} else {
+						this.addPeriodicityDate(dateBeginPeriodicity, period, 1);
+					}
 
-                Calendar dateBegin = new GregorianCalendar();
-                dateBegin.setTime(new Date());
+				} while (dateBeginPeriodicity.before(dateEnd) && !test);
 
-                Calendar dateEnd = new GregorianCalendar();
-                dateEnd.setTime(taskWithPeriod.getDateEnd());
+				// SI la dateBeginPeriodicity est avant la date de fin alors en
+				// prend la date de la premiere occurence (pour la date de fin)
+				// et la date de -1 occurrence pour la date de debut
+				if (dateBeginPeriodicity.before(dateEnd)) {
+					taskWithPeriod.setDateEndTask((Date) dateBeginPeriodicity.getTime().clone());
+					this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
+					taskWithPeriod.setDateBeginTask(dateBeginPeriodicity.getTime());
+					taskUserDTO.setTask(taskWithPeriod);
+				} else {
+					// SI la dateBeginPeriodicity est avant la date de fin alors
+					// en prend la date de l'occurence -1 (pour la date de fin)
+					// et la date de -2 occurrence pour la date de debut
+					this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
+					taskWithPeriod.setDateEndTask((Date) dateBeginPeriodicity.getTime().clone());
+					this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
+					taskWithPeriod.setDateBeginTask(dateBeginPeriodicity.getTime());
+					taskUserDTO.setTask(taskWithPeriod);
+				}
 
-                Calendar dateUpdatePeriodicity = new GregorianCalendar();
-                if (period.getPeriodicityDateUpdate() != null) {
-                    dateUpdatePeriodicity.setTime(period.getPeriodicityDateUpdate());
-                }
+				// Test sur les valeurs de la tasks, on va remettre le statut a
+				// TODO pour chaque nouvelle occurence de la periodicity.
+				if (taskWithPeriod.getDateBeginTask().after(dateUpdatePeriodicity.getTime())) {
+					tu.setStatus(StatusEnum.TODO);
+					tu.getTask().getPeriodicity().setPeriodicityDateUpdate(new Date());
+					taskUserRepository.save(tu);
+				}
+			}
+			return taskUserDTO;
+		}).filter((TaskUserDTO tud) -> tud != null).collect(Collectors.toList());
+	}
 
+	/**
+	 * Ajoute une période à une date par rapport a sa pérodicité
+	 *
+	 * @param date
+	 * @param periodicity
+	 * @param negativeFrequence
+	 */
+	private void addPeriodicityDate(Calendar date, Periodicity periodicity, int negativeFrequence) {
 
-                Boolean test = Boolean.FALSE;
-                do {
-                    if (dateBegin.before(dateBeginPeriodicity) && (period.getPeriodicityDateUpdate() == null || (period.getPeriodicityDateUpdate() != null && dateUpdatePeriodicity.before(dateBeginPeriodicity)))) {
-                        test = Boolean.TRUE;
-                    } else {
-                        this.addPeriodicityDate(dateBeginPeriodicity, period, 1);
-                    }
+		switch (periodicity.getType()) {
+		case DAILY:
+			date.add(Calendar.DAY_OF_YEAR, periodicity.getFrequency() * negativeFrequence);
+			break;
+		case MONTHLY:
+			date.add(Calendar.MONTH, periodicity.getFrequency() * negativeFrequence);
+			break;
+		case YEARLY:
+			date.add(Calendar.YEAR, periodicity.getFrequency() * negativeFrequence);
+			break;
+		}
+	}
 
-                } while (dateBeginPeriodicity.before(dateEnd) && !test);
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.example.service.TaskService#updateTask(java.lang.Long,
+	 * java.util.Map)
+	 */
+	@Override
+	public TaskUserDTO updateTask(Long id, Map<String, Object> values)
+			throws InvocationTargetException, IllegalAccessException {
+		TaskUser taskUser = taskUserRepository.findOne(id);
 
-                // SI la dateBeginPeriodicity est avant la date de fin alors en prend la date de la premiere occurence (pour la date de fin)
-                // et la date de -1 occurrence pour la date de debut
-                if (dateBeginPeriodicity.before(dateEnd)) {
-                    taskWithPeriod.setDateEndTask((Date) dateBeginPeriodicity.getTime().clone());
-                    this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
-                    taskWithPeriod.setDateBeginTask(dateBeginPeriodicity.getTime());
-                    taskUserDTO.setTask(taskWithPeriod);
-                } else {
-                    // SI la dateBeginPeriodicity est avant la date de fin alors en prend la date de l'occurence -1 (pour la date de fin)
-                    // et la date de -2 occurrence pour la date de debut
-                    this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
-                    taskWithPeriod.setDateEndTask((Date) dateBeginPeriodicity.getTime().clone());
-                    this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
-                    taskWithPeriod.setDateBeginTask(dateBeginPeriodicity.getTime());
-                    taskUserDTO.setTask(taskWithPeriod);
-                }
+		Map<String, Object> taskValues = (Map<String, Object>) values.get("task");
 
-                // Test sur les valeurs de la tasks, on va remettre le statut a TODO pour chaque nouvelle occurence de la periodicity.
-                if (taskWithPeriod.getDateBeginTask().after(dateUpdatePeriodicity.getTime())) {
-                    tu.setStatus(StatusEnum.TODO);
-                    taskUserRepository.save(tu);
-                }
-            }
-            return taskUserDTO;
-        })
-                .filter((TaskUserDTO tud) -> tud != null).collect(Collectors.toList());
-    }
+		Task task = taskUser.getTask();
 
-    /**
-     * Ajoute une période à une date par rapport a sa pérodicité
-     *
-     * @param date
-     * @param periodicity
-     * @param negativeFrequence
-     */
-    private void addPeriodicityDate(Calendar date, Periodicity periodicity, int negativeFrequence) {
+		task.setCreator(userRepository.findOne(new Long((Integer) taskValues.get("creator"))));
 
-        switch (periodicity.getType()) {
-            case DAILY:
-                date.add(Calendar.DAY_OF_YEAR, periodicity.getFrequency() * negativeFrequence);
-                break;
-            case MONTHLY:
-                date.add(Calendar.MONTH, periodicity.getFrequency() * negativeFrequence);
-                break;
-            case YEARLY:
-                date.add(Calendar.YEAR, periodicity.getFrequency() * negativeFrequence);
-                break;
-        }
-    }
+		task.setPriority(PriorityEnum.valueOf((String) taskValues.get("priority")));
+		taskValues.remove("priority");
+		taskValues.remove("taskComments");
+		taskValues.remove("tags");
+		taskValues.remove("creator");
 
+		Periodicity periodicity = null;
+		if (task.getPeriodicity() != null) {
+			periodicity = task.getPeriodicity();
+		}
 
-    /*
-     * (non-Javadoc)
-     * @see com.example.service.TaskService#updateTask(java.lang.Long, java.util.Map)
-     */
-    @Override
-    public TaskUserDTO updateTask(Long id, Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
-        TaskUser taskUser = taskUserRepository.findOne(id);
+		boolean deletePeriodicity = false;
+		if (!(Boolean) taskValues.get("isPeriodicity") && task.getPeriodicity() != null) {
+			deletePeriodicity = true;
+		}
 
-        Map<String, Object> taskValues = (Map<String, Object>) values.get("task");
+		if ((Boolean) taskValues.get("isPeriodicity")) {
+			if (periodicity == null)
+				periodicity = new Periodicity();
 
-        Task task = taskUser.getTask();
+			Map<String, Object> periodicityValues = (Map<String, Object>) taskValues.get("periodicity");
 
-        task.setCreator(userRepository.findOne(new Long((Integer) taskValues.get("creator"))));
+			periodicityValues.remove("periodicityChain");
+			periodicityValues.remove("periodicityDateUpdate");
 
-        task.setPriority(PriorityEnum.valueOf((String) taskValues.get("priority")));
-        taskValues.remove("priority");
-        taskValues.remove("taskComments");
-        taskValues.remove("tags");
-        taskValues.remove("creator");
+			periodicity.setType(PeriodicityEnum.valueOf((String) periodicityValues.get("type")));
+			periodicityValues.remove("type");
+			BeanUtils.populate(periodicity, periodicityValues);
 
-        Periodicity periodicity = null;
-        if (task.getPeriodicity() != null) {
-            periodicity = task.getPeriodicity();
-        }
+			periodicity = periodicityRepository.save(periodicity);
+			task.setPeriodicity(periodicity);
+		} else {
+			task.setPeriodicity(null);
+		}
+		taskValues.remove("periodicity");
 
-        boolean deletePeriodicity = false;
-        if (!(Boolean) taskValues.get("isPeriodicity") && task.getPeriodicity() != null) {
-            deletePeriodicity = true;
-        }
+		Board board = boardRepository.findOne(new Long((Integer) taskValues.get("boardId")));
+		task.setBoard(board);
+		taskValues.remove("boardId");
 
+		BeanUtilsBean.getInstance().getConvertUtils().register(false, true, 0);
+		BeanUtils.populate(task, taskValues);
 
-        if ((Boolean) taskValues.get("isPeriodicity")) {
-            if (periodicity == null)
-                periodicity = new Periodicity();
+		task.setDateCreation(new Date());
 
-            Map<String, Object> periodicityValues = (Map<String, Object>) taskValues.get("periodicity");
+		taskUser.setTask(task);
 
-            periodicityValues.remove("periodicityChain");
-            periodicityValues.remove("periodicityDateUpdate");
+		Map<String, Object> colonneValues = (Map<String, Object>) taskValues.get("colonneKanban");
+		ColonneKanban colonneKanban = colonneKanbanRepository.findOne(new Long((Integer) colonneValues.get("id")));
+		taskUser.setColonneKanban(colonneKanban);
 
-            periodicity.setType(PeriodicityEnum.valueOf((String) periodicityValues.get("type")));
-            periodicityValues.remove("type");
-            BeanUtils.populate(periodicity, periodicityValues);
+		taskUser = taskUserRepository.save(taskUser);
 
-            periodicity = periodicityRepository.save(periodicity);
-            task.setPeriodicity(periodicity);
-        } else {
-            task.setPeriodicity(null);
-        }
-        taskValues.remove("periodicity");
+		if (deletePeriodicity) {
+			periodicityRepository.delete(periodicity.getId());
+		}
 
-        Board board = boardRepository.findOne(new Long((Integer) taskValues.get("boardId")));
-        task.setBoard(board);
-        taskValues.remove("boardId");
+		List<TaskUserDTO> listDTO = buildTaskWithPeriodicity(Collections.singletonList(taskUser));
 
-        BeanUtilsBean.getInstance().getConvertUtils().register(false, true, 0);
-        BeanUtils.populate(task, taskValues);
+		return listDTO.get(0);
+	}
 
-        task.setDateCreation(new Date());
+	/* 
+	 * (non-Javadoc)
+	 * @see com.example.service.TaskUserService#createTask(java.util.Map)
+	 */
+	@Override
+	public TaskUserDTO createTask(Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
+		TaskUser taskUser = new TaskUser();
+		Task task = new Task();
 
-        taskUser.setTask(task);
+		task = taskRepository.save(task);
 
-        Map<String, Object> colonneValues = (Map<String, Object>) taskValues.get("colonneKanban");
-        ColonneKanban colonneKanban = colonneKanbanRepository.findOne(new Long((Integer) colonneValues.get("id")));
-        taskUser.setColonneKanban(colonneKanban);
+		taskUser.setTask(task);
+		taskUser = taskUserRepository.save(taskUser);
 
-        taskUser = taskUserRepository.save(taskUser);
+		return updateTask(taskUser.getId(), values);
+	}
 
-        if (deletePeriodicity) {
-            periodicityRepository.delete(periodicity.getId());
-        }
+	/* 
+	 * (non-Javadoc)
+	 * @see com.example.service.TaskUserService#deleteTask(java.lang.Long)
+	 */
+	@Override
+	public void deleteTask(Long id) {
+		taskUserRepository.delete(id);
+	}
 
-        List<TaskUserDTO> listDTO = buildTaskWithPeriodicity(Collections.singletonList(taskUser));
+	@Override
+	public TaskUserDTO updateColumnTask(Long idtaskUser, Long idColumn) {
+		TaskUser tu = taskUserRepository.findOne(idtaskUser);
+		ColonneKanban col = null;
+		if (idColumn != null) {
+			col = colonneKanbanRepository.findOne(idColumn);
+		}
 
-        return listDTO.get(0);
-    }
+		if (tu != null) {
+			tu.setColonneKanban(col);
+			List<TaskUserDTO> listDTO = buildTaskWithPeriodicity(
+					Collections.singletonList(taskUserRepository.save(tu)));
+			return listDTO.get(0);
+		} else {
+			throw new GameMasterException(ConstanteGameMaster.ELEMENT_NO_FOUND);
+		}
+	}
 
-    @Override
-    public TaskUserDTO createTask(Map<String, Object> values) throws InvocationTargetException, IllegalAccessException {
-        TaskUser taskUser = new TaskUser();
-        Task task = new Task();
+	
+	/* 
+	 * (non-Javadoc)
+	 * @see com.example.service.TaskUserService#updatePriorityTask(java.lang.Long, com.example.enumeration.PriorityEnum)
+	 */
+	@Override
+	public TaskUserDTO updatePriorityTask(Long idtaskUser, PriorityEnum priority) {
+		TaskUser tu = taskUserRepository.findOne(idtaskUser);
 
-        task = taskRepository.save(task);
-
-        taskUser.setTask(task);
-        taskUser = taskUserRepository.save(taskUser);
-
-        return updateTask(taskUser.getId(), values);
-    }
-
-    @Override
-    public void deleteTask(Long id) {
-        taskUserRepository.delete(id);
-    }
+		if (tu != null && priority != null) {
+			tu.getTask().setPriority(priority);
+			List<TaskUserDTO> listDTO = buildTaskWithPeriodicity(
+					Collections.singletonList(taskUserRepository.save(tu)));
+			return listDTO.get(0);
+		} else {
+			throw new GameMasterException(ConstanteGameMaster.ELEMENT_NO_FOUND);
+		}
+	}
 }
