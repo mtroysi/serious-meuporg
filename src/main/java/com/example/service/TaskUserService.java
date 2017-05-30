@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.dto.TaskUserDTO;
-import com.example.dto.TaskWithPeriodDTO;
+import com.example.enumeration.PriorityEnum;
 
 
 public interface TaskUserService {
