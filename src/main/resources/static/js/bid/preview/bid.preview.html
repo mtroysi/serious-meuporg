@@ -34,9 +34,8 @@
         </div>
     </div>
     <div ng-class="{'col-md-12' : ctrl.isAdmin === false, 'col-md-9' : ctrl.isAdmin}">
-        <div ng-show="ctrl.listTaskBid.length == 0">
-            <h2 class="text-center">Il n'y a aucune quête disponible
-                <h2>
+        <div ng-show="ctrl.listTaskBid.length == 0" class="row margin-t-20 margin-h-20">
+            <h2 class="text-center panel panel-default padding-v-20">Il n'y a aucune quête disponible</h2>
         </div>
         <div ng-show="ctrl.listTaskBid.length > 0">
             <div class="row margin-t-20 margin-h-20">
