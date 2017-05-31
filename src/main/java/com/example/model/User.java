@@ -68,6 +68,12 @@ public class User extends CommonEntity {
     private Long experience = 0L;
 
     /**
+    *
+    */
+    @Column(name = "super_admin")
+    private Boolean isSuperAdmin = false;
+
+    /**
      * Tableaux
      */
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -213,6 +219,14 @@ public class User extends CommonEntity {
 
 	public void setItemUser(List<ItemUser> itemUser) {
 		this.itemUser = itemUser;
+	}
+
+	public Boolean getIsSuperAdmin() {
+		return isSuperAdmin;
+	}
+
+	public void setIsSuperAdmin(Boolean isSuperAdmin) {
+		this.isSuperAdmin = isSuperAdmin;
 	}
     
 }
