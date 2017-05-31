@@ -20,6 +20,16 @@
                 });
             };
 
+            /**
+             * Créé un nouveau item
+             * @param itemDTO item a créer
+             */
+            svc.createItem = function(itemDTO) {
+                return ShopWS.createItem(itemDTO).then(function(response) {
+                    return response.data;
+                });
+            };
+
             return svc;
         });
 })();

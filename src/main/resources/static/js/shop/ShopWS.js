@@ -19,6 +19,15 @@
                 return $http.get(constant.BASE_URI + '/item/' + idUser);
             };
 
+            /**
+             * Créé un nouveau item
+             * @param itemDTO itemDTO
+             * @returns {HttpPromise}
+             */
+            svc.createItem = function(itemDTO) {
+                return $http.post(constant.BASE_URI + '/item/', itemDTO);
+            };
+
             return svc;
         })
 })();

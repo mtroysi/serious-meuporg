@@ -38,10 +38,10 @@
                 </div>
             </div>
 
-            <div class="form-group" ng-class="{'has-error': formCreateItem.$submitted && formCreateItem.level.$invalid}">
+            <div class="form-group" ng-class="{'has-error': formCreateItem.$submitted && formCreateItem.requiredLevel.$invalid}">
                 <label for="board_name" class="col-sm-2 control-label">Level minimun<span class="required">*</span> : </label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" id="level" name="level" ng-model="ctrl.item.level" ng-required="true" required="required">
+                    <input type="text" class="form-control" id="requiredLevel" name="requiredLevel" ng-model="ctrl.item.requiredLevel" ng-required="true" required="required">
                 </div>
             </div>
 
