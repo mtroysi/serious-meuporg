@@ -17,17 +17,17 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group" ng-class="{'has-error': formCreateItem.$submitted && formCreateItem.title.$invalid}">
+            <div class="form-group" ng-class="{'has-error': formCreateItem.$submitted && formCreateItem.name.$invalid}">
                 <label for="board_name" class="col-sm-2 control-label">Titre<span class="required">*</span> : </label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" id="title" name="title" ng-model="ctrl.item.title" ng-required="true" required="required">
+                    <input type="text" class="form-control" id="name" name="name" ng-model="ctrl.item.name" ng-required="true" required="required">
                 </div>
             </div>
 
-            <div class="form-group" ng-class="{'has-error': formCreateItem.$submitted && formCreateItem.content.$invalid}">
+            <div class="form-group" ng-class="{'has-error': formCreateItem.$submitted && formCreateItem.description.$invalid}">
                 <label for="board_name" class="col-sm-2 control-label">Description: </label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" id="content" name="content" ng-model="ctrl.item.content">
+                    <input type="text" class="form-control" id="description" name="description" ng-model="ctrl.item.description">
                 </div>
             </div>
 
