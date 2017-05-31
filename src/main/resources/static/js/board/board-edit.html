@@ -33,25 +33,25 @@
             </div>
 
             <div class="form-group" ng-class="{'has-error': formEditBoard.$submitted && formEditBoard.argentBid.$invalid}">
-                <label class="col-sm-6 control-label">Argent en plus par avoir gagné une enchère<span class="required">*</span> : </label>
+                <label class="col-sm-6 control-label">Gain d'argent par enchère gagnée<span class="required">*</span> : </label>
                 <div class="col-sm-3">
                     <input type="number" class="form-control" id="board_moneyWinBid" name="argentBid" ng-model="ctrl.board.moneyWinBid" ng-required="true" />
                 </div>
             </div>
             <div class="form-group" ng-class="{'has-error': formEditBoard.$submitted && formEditBoard.expBid.$invalid}">
-                <label class="col-sm-6 control-label">Expérience en plus par avoir gagné une enchère<span class="required">*</span> : </label>
+                <label class="col-sm-6 control-label">Gain d'expérience par enchère gagnée<span class="required">*</span> : </label>
                 <div class="col-sm-3">
                     <input type="number" class="form-control" id="board_expWinBid" name="expBid" ng-model="ctrl.board.expWinBid" ng-required="true" />
                 </div>
             </div>
             <div class="form-group" ng-class="{'has-error': formEditBoard.$submitted && formEditBoard.argentTask.$invalid}">
-                <label class="col-sm-6 control-label">Argent en plus pour avoir fini une quête (valeur pour 1 point d'énergie)<span class="required">*</span> : </label>
+                <label class="col-sm-6 control-label">Gain d'argent par point d'énergie<span class="required">*</span> : </label>
                 <div class="col-sm-3">
                     <input type="number" class="form-control" id="board_moneyDoneTask" name="argentTask" ng-model="ctrl.board.moneyDoneTask" ng-required="true" />
                 </div>
             </div>
             <div class="form-group" ng-class="{'has-error': formEditBoard.$submitted && formEditBoard.expTask.$invalid}">
-                <label class="col-sm-6 control-label">Experience en plus pour avoir fini une quête (valeur pour 1 point d'énergie)<span class="required">*</span> : </label>
+                <label class="col-sm-6 control-label">Gain d'expérience par point d'énergie<span class="required">*</span> : </label>
                 <div class="col-sm-3">
                     <input type="number" class="form-control" id="board_expDoneTask" name="expTask" ng-model="ctrl.board.expDoneTask" ng-required="true" />
                 </div>

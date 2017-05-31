@@ -61,9 +61,9 @@
                     <p class="tile-text padding-v-20 padding-h-20" title="{{ ctrl.itemSelected.description }}">{{ ctrl.itemSelected.description }}</p>
                     <div class="form-horizontal">
                         <div class="form-group" ng-show="ctrl.itemSelected.type === 'CURSE'">
-                            <label for="inputEmail3" class="col-md-offset-2 col-md-4 control-label">Utilisateur qui aura le sort :</label>
+                            <label class="col-md-offset-2 col-md-4 control-label">Cible du sort :</label>
                             <div class="col-md-4">
-                                <select ng-model="ctrl.userSelected" class="form-control" ng-options="user as user.firstName for user in ctrl.listUsers track by user.id">
+                                <select ng-model="ctrl.userSelected" class="form-control" ng-options="user as user.fullName for user in ctrl.listUsers track by user.id">
                                 </select>
                             </div>
                         </div>

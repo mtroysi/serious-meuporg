@@ -118,7 +118,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDTO> getAllUser(){
     	List<User> listUser = (List<User>) userRepository.findAll();
-    	return listUser.stream().map((User user) -> (UserDTO) this.transformers.convertEntityToDto(user, UserDTO.class)).collect(Collectors.toList());
+    	return listUser.stream().map((User user) -> this.transformers.transformUserToUserDto(user)).collect(Collectors.toList());
     }
 
     

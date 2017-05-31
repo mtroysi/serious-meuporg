@@ -14,7 +14,7 @@
             <div class="col-md-3">
                 <div class="info-tile tile-success" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
                     <div class="tile-icon"><i class="ti ti-bar-chart"></i></div>
-                    <div class="tile-heading"><span>Les tâches en enchère</span></div>
+                    <div class="tile-heading"><span>Nombre d'enchères gagnées</span></div>
                     <div class="tile-body"><span>{{ctrl.stats.nbrTaskBid}}</span></div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>Mon profil</h2>
-                        <div class="panel-ctrls button-icon-bg">
+                        <div class="panel-ctrls button-icon-bg" style="margin-top: 4px;">
                             <a ng-click="ctrl.enableEditor()"> <button class="btn btn-default-alt btn-lg"><i class="ti ti-pencil"></i></button></a>
                         </div>
                     </div>
@@ -57,19 +57,19 @@
                                 <table>
                                     <tr>
                                         <th> Nom :</th>
-                                        <th>{{ctrl.user.lastName}}</th>
+                                        <td>{{ctrl.user.lastName}}</td>
                                     </tr>
                                     <tr>
                                         <th> Prénom :</th>
-                                        <th>{{ctrl.user.firstName}}</th>
+                                        <td>{{ctrl.user.firstName}}</td>
                                     </tr>
                                     <tr>
                                         <th> E-mail :</th>
-                                        <th>{{ctrl.user.email}}</th>
+                                        <td>{{ctrl.user.email}}</td>
                                     </tr>
                                     <tr>
                                         <th> Date d'inscription :</th>
-                                        <th>{{ctrl.user.dateCreation | date:'dd/MM/yyyy'}}</th>
+                                        <td>{{ctrl.user.dateCreation | date:'dd/MM/yyyy'}}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -125,7 +125,7 @@
             <div class="col-md-4 panelMatrice">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h2>Les tâches en enchére</h2>
+                        <h2>Enchères en cours</h2>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -148,15 +148,15 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td>Votre classement par niveau</td>
+                                    <td>Classement par niveau</td>
                                     <td class="text-right">{{ctrl.rankin.rankLevel}}/{{ctrl.rankin.nbrUsers}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Votre classement par argent</td>
+                                    <td>Classement par argent</td>
                                     <td class="text-right">{{ctrl.rankin.rankMoney}}/{{ctrl.rankin.nbrUsers}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Votre classement par expérience</td>
+                                    <td>Classement par expérience</td>
                                     <td class="text-right">{{ctrl.rankin.rankExperience}}/{{ctrl.rankin.nbrUsers}}</td>
                                 </tr>
                             </tbody>
