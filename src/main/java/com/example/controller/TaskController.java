@@ -102,4 +102,15 @@ public class TaskController {
     public BoardDTO getBoardFromTask(@RequestParam("idTask") Long idTask) {
         return taskService.getBoardFromTask(idTask);
     }
+    
+    /**
+     * Retourne les taches en enchére pour l'utilisateur
+     * @param id id de l'utilisateur
+     * @return TaskDTO
+     */
+    
+    @RequestMapping(value = "/usertaskbid/{id}",method = RequestMethod.GET)
+    public List<TaskDTO> getTaskBidUser(@PathVariable ("id") Long id){
+        return taskService.getTaskBidUser(id);
+    }
 }

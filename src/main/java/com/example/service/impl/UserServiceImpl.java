@@ -25,6 +25,7 @@ import com.example.model.TaskUser;
 import com.example.model.TaskUserBid;
 import com.example.model.User;
 import com.example.repository.UserRepository;
+import com.example.service.TaskDTO;
 import com.example.service.UserService;
 import com.example.transformers.Transformers;
 

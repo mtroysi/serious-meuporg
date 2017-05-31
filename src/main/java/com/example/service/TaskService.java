@@ -75,4 +75,11 @@ public interface TaskService {
      * @return id du tableau
      */
     BoardDTO getBoardFromTask(Long id);
+    
+    /**
+     * Retourne la liste des taches en enchére de l'uilisateur
+     * @param id : id de l'uilisateur connecté 
+     * @return 
+     */
+    List<TaskDTO> getTaskBidUser(Long id);
 }

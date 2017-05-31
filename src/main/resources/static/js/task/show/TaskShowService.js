@@ -76,6 +76,11 @@
                 });
             };
 
+            svc.listTaskByUserAndBoard = function(user_id){
+                 return TaskShowWS.listTaskByUserAndBoard(user_id).then(function(response) {
+                    return response.data;
+                });
+            }
 
             return svc;
         })
