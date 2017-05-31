@@ -9,6 +9,7 @@
         .module('hello')
         .constant('moment', moment)
         .constant('constant', {
+            'URL_IMAGE_DEFAULT': 'images/avatar/user.png',
             'BASE_URI': '/api',
             'priority': {
                 'URGENT_IMPORTANT': 'Urgent et important',

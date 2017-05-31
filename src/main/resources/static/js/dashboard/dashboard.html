@@ -54,7 +54,7 @@
                         <div class="row">
                             <div ng-hide="ctrl.editorEnabled" class="col-md-12">
                                 <img ng-srcset="{{ctrl.user.avatar}}" alt="avatar" />
-                                <table>
+                                <table class="table browsers m-n">
                                     <tr>
                                         <th> Nom :</th>
                                         <td>{{ctrl.user.lastName}}</td>
@@ -127,7 +127,7 @@
                     <div class="panel-heading">
                         <h2>Enchères en cours</h2>
                     </div>
-                     <div class="panel-body scroll-pane">
+                    <div class="panel-body scroll-pane">
                         <div class="row scroll-content">
                             <div class="col-md-12" ng-repeat="n in ctrl.listTaskBid">
                                 <div class="info-tile tile-success tile-perso" ng-click="ctrl.taskActionBid(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
@@ -167,22 +167,21 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-md-4 panelMatrice">
+        <div class="row">
+            <div class="col-md-4 panelMatrice">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>Top 10 du classement par argent</h2>
                     </div>
-                    <div class="panel-body scroll-pane">
+                    <div class="panel-body scroll-pane padding-h-0">
                         <div class="row scroll-content">
-                            <div class="col-md-12" ng-repeat="i in ctrl.listUsers.top10Money">
-                                <div class="info-tile tile-success tile-perso" ng-click="ctrl.userAction(i)" ng-class="{'border-custom-{{u.colorBoard}}' : ctrl.tableGlobal }">
-                                    <div class="tile-heading" ><span>{{ i.firstName }}</span></div>
-                                    <div class="tile-footer">
-                                        <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ u.user.lastName }}</span>
-                                    </div>
-                                </div>
-                            </div>
+                            <table class="table browsers m-n borderBlock">
+                                <tr ng-repeat="i in ctrl.listUsers.top10Money">
+                                    <td ng-click="ctrl.userAction(i)">
+                                        <span class="badge">{{ $index + 1 }}</span> {{ i.firstName }} {{ i.lastName }}
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -195,14 +194,13 @@
                     </div>
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content">
-                             <div class="col-md-12" ng-repeat="i in ctrl.listUsers.top10Level">
-                                <div class="info-tile tile-success tile-perso" ng-click="ctrl.userAction(i)" ng-class="{'border-custom-{{u.colorBoard}}' : ctrl.tableGlobal }">
-                                    <div class="tile-heading" ><span>{{ i.firstName }}</span></div>
-                                    <div class="tile-footer">
-                                        <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ u.user.lastName }}</span>
-                                    </div>
-                                </div>
-                            </div>
+                            <table class="table browsers m-n borderBlock">
+                                <tr ng-repeat="i in ctrl.listUsers.top10Level">
+                                    <td ng-click="ctrl.userAction(i)">
+                                        <span class="badge">{{ $index + 1 }}</span> {{ i.firstName }} {{ i.lastName }}
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -215,17 +213,17 @@
                     </div>
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content">
-                             <div class="col-md-12" ng-repeat="i in ctrl.listUsers.top10Experience">
-                                <div class="info-tile tile-success tile-perso" ng-click="ctrl.userAction(i)" ng-class="{'border-custom-{{u.colorBoard}}' : ctrl.tableGlobal }">
-                                    <div class="tile-heading" ><span>{{ i.firstName }}</span></div>
-                                    <div class="tile-footer">
-                                        <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ u.user.lastName }}</span>
-                                    </div>
-                                </div>
-                            </div>
+                            <table class="table browsers m-n borderBlock">
+                                <tr ng-repeat="i in ctrl.listUsers.top10Experience">
+                                    <td ng-click="ctrl.userAction(i)">
+                                        <span class="badge">{{ $index + 1 }}</span> {{ i.firstName }} {{ i.lastName }}
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 </div>
