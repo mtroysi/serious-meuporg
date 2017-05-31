@@ -75,17 +75,17 @@
 
             } else if (item.keyItem === 'CURSE_JCVD') {
                 if ($('body .jcvd').length == 0) {
-                    $('body').append($('<div class="positionFixedImage bottom_right"><img src="images/jcvd1.gif" /></div>'));
+                    $('body').append($('<div class="jcvd positionFixedImage bottom_right"><img src="images/jcvd1.gif" /></div>'));
                     setTimeout(function() {
                         $('body .jcvd img').remove();
                     }, 15000);
                 }
             } else {
                 if ($('body .blockImage').length == 0) {
-                    $('body').append($('<div class="positionFixedImage ' + item.position.toLowerCase() + '"><img src="' + item.image + '" /></div>'));
+                    $('body').append($('<div class="blockImage positionFixedImage ' + item.position.toLowerCase() + '"><img src="' + item.image + '" /></div>'));
                     setTimeout(function() {
                         $('body .blockImage img').remove();
-                    }, 5000);
+                    }, 3000);
                 }
             }
         };
