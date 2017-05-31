@@ -88,18 +88,6 @@
                 controller: 'TaskCreateController',
                 controllerAs: 'ctrl'
             })
-            .state('app.task-show', {
-                url: '/task/{id}',
-                templateUrl: 'js/task/show/task-show.html',
-                controller: 'TaskShowController',
-                controllerAs: 'ctrl'
-            })
-            .state('app.task-update', {
-                url: '/task/update/{id}',
-                templateUrl: 'js/task/update/task-update.html',
-                controller: 'TaskUpdateController',
-                controllerAs: 'ctrl'
-            })
             .state('app.notification', {
                 url: '/notification',
                 templateUrl: 'js/notification/notification.html',
@@ -128,12 +116,6 @@
                 url: '/inventory',
                 templateUrl: 'js/inventory/inventory.html',
                 controller: 'InventoryController',
-                controllerAs: 'ctrl'
-            })
-            .state('app.comment', {
-                url: '/comment/{id}',
-                templateUrl: 'js/comment/show/comment-show.html',
-                controller: 'CommentController',
                 controllerAs: 'ctrl'
             });
 

@@ -15,7 +15,8 @@
          * @param query chaîne à chercher
          */
         ctrl.loadUsers = function (query) {
-            return CommonUsersInputService.loadUsers(query);
+            console.log(ctrl.boardId);
+            return CommonUsersInputService.loadUsers(query, ctrl.withCurrent, ctrl.boardId);
         };
     }
 
@@ -26,7 +27,9 @@
             controllerAs: 'ctrl',
             templateUrl: 'js/common/component/users-input/users.input.view.html',
             bindings: {
-                users: '='
+                users: '=',
+                withCurrent: '=',
+                boardId: '=?'
             }
         });
 })();

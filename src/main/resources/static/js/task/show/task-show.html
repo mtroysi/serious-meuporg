@@ -83,7 +83,7 @@
                             <span>Tous les </span><input type="number" class="form-inline" id="taskFrequency"
                                                          ng-model="ctrl.task.task.periodicity.frequency"
                                                          placeholder="Durée"/>
-                            <select class="form-inline" ng-model="ctrl.task.task.periodicity.type"
+                            <select class="form-inline form-control" ng-model="ctrl.task.task.periodicity.type"
                                     ng-options="idx as type for (idx, type) in ctrl.periodicityType"></select>
                         </div>
                         <div class="col-sm-offset-2 col-sm-10 ">
@@ -103,10 +103,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="form-group">
                     <label class="col-sm-3">Est aux enchères</label>
                     <p class="col-sm-8" ng-show="ctrl.task.task.isBid">Oui</p>
                     <p class="col-sm-8" ng-hide="ctrl.task.task.isBid">Non</p>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Inviter des utilisateurs : </label>
+                    <div class="col-sm-7">
+                        <users-input users="ctrl.task.user" with-current="true" board-id="ctrl.task.task.boardId"></users-input>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-6">

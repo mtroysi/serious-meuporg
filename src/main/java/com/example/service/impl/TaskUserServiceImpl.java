@@ -1,14 +1,11 @@
 package com.example.service.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import com.example.dto.UserDTO;
+import com.example.model.*;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.slf4j.Logger;
@@ -23,11 +20,6 @@ import com.example.enumeration.PeriodicityEnum;
 import com.example.enumeration.PriorityEnum;
 import com.example.enumeration.StatusEnum;
 import com.example.exception.GameMasterException;
-import com.example.model.Board;
-import com.example.model.ColonneKanban;
-import com.example.model.Periodicity;
-import com.example.model.Task;
-import com.example.model.TaskUser;
 import com.example.repository.BoardRepository;
 import com.example.repository.ColonneKanbanRepository;
 import com.example.repository.PeriodicityRepository;
@@ -162,17 +154,22 @@ public class TaskUserServiceImpl implements TaskUserService {
 					taskUserDTO.setTask(taskWithPeriod);
 				}
 
-				// Test sur les valeurs de la tasks, on va remettre le statut a
-				// TODO pour chaque nouvelle occurence de la periodicity.
-				if (taskWithPeriod.getDateBeginTask().after(dateUpdatePeriodicity.getTime())) {
-					tu.setStatus(StatusEnum.TODO);
-					tu.getTask().getPeriodicity().setPeriodicityDateUpdate(new Date());
-					taskUserRepository.save(tu);
-				}
-			}
-			return taskUserDTO;
-		}).filter((TaskUserDTO tud) -> tud != null).collect(Collectors.toList());
-	}
+                // Test sur les valeurs de la tasks, on va remettre le statut a
+                // TODO pour chaque nouvelle occurence de la periodicity.
+                if (taskWithPeriod.getDateBeginTask().after(dateUpdatePeriodicity.getTime())) {
+                    tu.setStatus(StatusEnum.TODO);
+                    tu.getTask().getPeriodicity().setPeriodicityDateUpdate(new Date());
+                    taskUserRepository.save(tu);
+                }
+            }
+
+            ArrayList<UserDTO> userDTOS = new ArrayList<>();
+            tu.getUser().forEach(user -> userDTOS.add(transformers.transformUserToUserDto(user)));
+            taskUserDTO.setUser(userDTOS);
+
+            return taskUserDTO;
+        }).filter((TaskUserDTO tud) -> tud != null).collect(Collectors.toList());
+    }
 
 	/**
 	 * Ajoute une période à une date par rapport a sa pérodicité
@@ -183,21 +180,18 @@ public class TaskUserServiceImpl implements TaskUserService {
 	 */
 	private void addPeriodicityDate(Calendar date, Periodicity periodicity, int negativeFrequence) {
 
-		switch (periodicity.getType()) {
-		case DAILY:
-			date.add(Calendar.DAY_OF_YEAR, periodicity.getFrequency() * negativeFrequence);
-			break;
-		case WEEKLY:
-			date.add(Calendar.WEEK_OF_YEAR, periodicity.getFrequency() * negativeFrequence);
-			break;
-		case MONTHLY:
-			date.add(Calendar.MONTH, periodicity.getFrequency() * negativeFrequence);
-			break;
-		case YEARLY:
-			date.add(Calendar.YEAR, periodicity.getFrequency() * negativeFrequence);
-			break;
-		}
-	}
+        switch (periodicity.getType()) {
+            case DAILY:
+                date.add(Calendar.DAY_OF_YEAR, periodicity.getFrequency() * negativeFrequence);
+                break;
+            case MONTHLY:
+                date.add(Calendar.MONTH, periodicity.getFrequency() * negativeFrequence);
+                break;
+            case YEARLY:
+                date.add(Calendar.YEAR, periodicity.getFrequency() * negativeFrequence);
+                break;
+        }
+    }
 
 	/*
 	 * (non-Javadoc)
@@ -269,7 +263,16 @@ public class TaskUserServiceImpl implements TaskUserService {
 			taskUser.setColonneKanban(colonneKanban);
 		}
 
-		taskUser = taskUserRepository.save(taskUser);
+        List<Map<String, Object>> userValues = (List<Map<String, Object>>) values.get("user");
+        logger.info(String.valueOf(userValues));
+        ArrayList<User> users = new ArrayList<>();
+        userValues.forEach(u -> {
+            User user = userRepository.findOne(new Long((Integer) u.get("id")));
+            users.add(user);
+        });
+        taskUser.setUser(users);
+
+        taskUser = taskUserRepository.save(taskUser);
 
 		if (deletePeriodicity) {
 			periodicityRepository.delete(periodicity.getId());

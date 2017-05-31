@@ -45,4 +45,14 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
      */
     @Query(value = "SELECT * FROM user WHERE first_name LIKE %?1% OR last_name LIKE %?1%", nativeQuery = true)
     List<User> findByFirstNameContainingOrLastNameContaining(String query);
+
+    /**
+     * Retourne la liste des utilisateurs du tableau dont le nom + prénom contiennent la chaîne en paramètre
+     *
+     * @param id
+     * @param query
+     * @return liste utilisateur
+     */
+    @Query(value = "select * from user as u where (first_name LIKE %?2% OR last_name LIKE %?2%) AND u.id in (select bu.user_id from board_user as bu where bu.board_id = ?1)", nativeQuery = true)
+    List<User> findByIdAndFirstNameContainingOrLastNameContaining(Long id, String query);
 }

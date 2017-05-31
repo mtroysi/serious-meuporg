@@ -1,12 +1,9 @@
 package com.example.model;
 
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.example.enumeration.StatusEnum;
 
@@ -21,9 +18,9 @@ public class TaskUser extends CommonEntity {
     /**
      * Utilisateur
      */
-    @ManyToOne
+    @ManyToMany
     @JoinColumn(name = "user_id")
-    private User user;
+    private List<User> user;
 
     /**
      * Tâche
@@ -57,11 +54,11 @@ public class TaskUser extends CommonEntity {
     @JoinColumn(name = "colonne_kanban_id", nullable= true)
     private ColonneKanban colonneKanban;
 
-    public User getUser() {
+    public List<User> getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(List<User> user) {
         this.user = user;
     }
 
