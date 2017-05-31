@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function ComponentMenuController(BoardService, CommonMenuService, $scope, AuthenticationService, $state) {
+    function ComponentMenuController(BoardService, CommonMenuService, $scope, UserService, AuthenticationService, $state) {
         var ctrl = this;
 
         // Constructor
@@ -9,6 +9,12 @@
             // Init variable
             ctrl.listBoard = [];
             ctrl.CommonMenuService = CommonMenuService;
+
+            ctrl.user = {};
+            var id = AuthenticationService.getUserId();
+            UserService.getUser(id).then(function(response) {
+                ctrl.user = response;
+            });
 
             // Call WS for get the list of board of the user
             BoardService.listBoardByUser(AuthenticationService.getUserId()).then(function(data) {

@@ -16,6 +16,7 @@ public class UserDTO {
     private Long experience;
     private Long level;
     private Long money;
+    private Boolean isSuperAdmin;
 
     public Long getId() {
         return id;
@@ -103,4 +104,12 @@ public class UserDTO {
     public void setMoney(Long money) {
         this.money = money;
     }
+
+	public Boolean getIsSuperAdmin() {
+		return isSuperAdmin;
+	}
+
+	public void setIsSuperAdmin(Boolean isSuperAdmin) {
+		this.isSuperAdmin = isSuperAdmin;
+	}
 }

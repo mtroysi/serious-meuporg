@@ -167,7 +167,7 @@ public class CreateTestData {
 		user1.setBoardUsers(null);
 		user1.setTaskUserBids(null);
 		user1.setTaskUsers(null);
-		user1.setIsSuperAdmin(true);
+		user1.setIsSuperAdmin(false);
 		this.user1 = this.userRepository.save(user1);
 
 		User user2 = new User();

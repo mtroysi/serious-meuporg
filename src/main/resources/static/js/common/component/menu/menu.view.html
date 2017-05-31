@@ -12,20 +12,7 @@
                 <li><a ui-sref="app.bidPreview({ idBoard: board.id})">Enchères</a></li>
             </ul>
         </li>
-        <!--
-        <li><a href="javascript:;"><i class="ti ti-file"></i><span>Tableau 2 </span></a>
-            <ul class="acc-menu">
-                <li><a href="extras-profile.html">Visualiser</a></li>
-                <li><a href="javascript:;">Sous-Tableau</a>
-                    <ul class="acc-menu">
-                        <li><a href="responsive-email/basic.html">1<span class="badge badge-teal">2</span></a></li>
-                        <li><a href="responsive-email/hero.html">2</a></li>
-                        <li><a href="responsive-email/sidebar.html">3</a></li>
-                        <li><a href="responsive-email/sidebar-hero.html">3</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        -->
+        <li class="nav-separator" ng-if="vm.user.isSuperAdmin"><span>Super Admin</span></li>
+        <li ng-class="vm.getClass(['app.shopCreate'])" ng-if="vm.user.isSuperAdmin"><a ui-sref="app.board-create"><i class="ti ti ti-shopping-cart"></i><span>Créer des objets</span></a></li>
     </ul>
 </nav>
