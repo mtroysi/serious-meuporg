@@ -13,7 +13,7 @@
                     <select class="form-control" ng-model="ctrl.item.type">
                         <option value="AVATAR">Avatar</option>
                         <option value="WALLPAPER">Fond d'écran</option>
-                        <option value="CURSE">Malédiction</option>
+                        <option value="CURSE_IMAGE">Malédiction avec image</option>
                     </select>
                 </div>
             </div>
@@ -28,6 +28,20 @@
                 <label for="board_name" class="col-sm-2 control-label">Description: </label>
                 <div class="col-sm-7">
                     <input type="text" class="form-control" id="content" name="content" ng-model="ctrl.item.content">
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': formCreateItem.$submitted && formCreateItem.price.$invalid}">
+                <label for="board_name" class="col-sm-2 control-label">Prix<span class="required">*</span> : </label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="price" name="price" ng-model="ctrl.item.price" ng-required="true" required="required">
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': formCreateItem.$submitted && formCreateItem.level.$invalid}">
+                <label for="board_name" class="col-sm-2 control-label">Level minimun<span class="required">*</span> : </label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="level" name="level" ng-model="ctrl.item.level" ng-required="true" required="required">
                 </div>
             </div>
 

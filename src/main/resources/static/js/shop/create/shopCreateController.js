@@ -7,11 +7,11 @@
             var ctrl = this;
 
             ctrl.init = function() {
-                ctrl.item = { type: 'AVATAR', position: 'TOP_RIGHT' };
+                ctrl.item = { type: 'AVATAR', position: 'TOP_RIGHT', price: '0', level: '1' };
             };
 
             ctrl.createItem = function() {
-                alert('rrr');
+                item.keyItem = ctrl.item.type + '_' + new Date().getTime();
             };
 
             ctrl.init();

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.enumeration.ItemEnum;
+import com.example.enumeration.ItemPositionEnum;
 import com.example.enumeration.PeriodicityEnum;
 import com.example.enumeration.PriorityEnum;
 import com.example.enumeration.RoleEnum;
@@ -726,6 +727,7 @@ public class CreateTestData {
 		item7.setDuration(3);
 		item7.setReusable(Boolean.FALSE);
 		item7.setType(ItemEnum.CURSE);
+		item7.setPosition(ItemPositionEnum.BOTTOM_RIGHT);
 		item7.setImage("http://www.jookos.com/wp-content/uploads/2016/06/url-4.jpg");
 		itemRepository.save(item7);
 		

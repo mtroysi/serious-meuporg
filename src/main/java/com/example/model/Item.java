@@ -1,6 +1,7 @@
 package com.example.model;
 
 import com.example.enumeration.ItemEnum;
+import com.example.enumeration.ItemPositionEnum;
 
 import javax.persistence.*;
 
@@ -60,12 +61,24 @@ public class Item extends CommonEntity {
      */
     @Column(name = "is_reusable")
     private Boolean isReusable = Boolean.FALSE;
-
+    
+    /**
+     * Durée avant expiration
+     */
     @Column(name = "duration")
     private Integer duration;
     
-    @Column(name = "key_item")
+    /**
+     * Clé item
+     */
+    @Column(name = "key_item", unique=true)
     private String keyItem;
+    
+    /**
+     * Position image
+     */
+    @Column(name = "position")
+    private ItemPositionEnum position;
     
     public String getName() {
         return name;
@@ -154,4 +167,13 @@ public class Item extends CommonEntity {
 	public void setKeyItem(String keyItem) {
 		this.keyItem = keyItem;
 	}
+
+	public ItemPositionEnum getPosition() {
+		return position;
+	}
+
+	public void setPosition(ItemPositionEnum position) {
+		this.position = position;
+	}
+	
 }
