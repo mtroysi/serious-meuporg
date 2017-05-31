@@ -143,8 +143,8 @@ public class BoardServiceImpl implements BoardService {
         
         
         /* Gestion du créateur/administrateur du tableau */
+        User creator = userService.getCurrentUser();
         if(creation){
-	        User creator = userService.getCurrentUser();
 	        board.setCreator(creator);
 	        BoardUser boardUserCreator = new BoardUser();
 	        boardUserCreator.setBoard(board);
@@ -155,7 +155,7 @@ public class BoardServiceImpl implements BoardService {
         
         /* On supprime les utilisateurs supprimés dans le boardDTO */
         board.getBoardUsers().removeAll(board.getBoardUsers().stream().filter((BoardUser bu) -> {
-        	return !boardDTO.getUsers().stream().filter((UserDTO userDTO) -> userDTO.getId().equals(bu.getUser().getId())).findFirst().isPresent();
+        	return !bu.getUser().getId().equals(creator.getId()) || boardDTO.getUsers().stream().filter((UserDTO userDTO) -> userDTO.getId().equals(bu.getUser().getId())).findFirst().isPresent();
         }).collect(Collectors.toList()));
         
         /* Gestion des utilisateurs invités */
