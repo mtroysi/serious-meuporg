@@ -619,11 +619,37 @@ body{
         float: left;
     }
 
-    .jcvd{
+    .positionFixedImage{
         position: fixed;
-        bottom: 0;
-        right: 0;
         z-index: 100000;
+        &.top_right{
+            top: 0;
+            right: 0;
+        }
+        &.top_left{
+            top: 0;
+            left: 0;
+        }
+        &.bottom_right{
+            bottom: 0;
+            right: 0;
+        }
+        &.bottom_left{
+            bottom: 0;
+            left: 0;
+        }
+        &.full{
+            bottom: 0;
+            left: 0;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
     }
 
     #return-to-top {

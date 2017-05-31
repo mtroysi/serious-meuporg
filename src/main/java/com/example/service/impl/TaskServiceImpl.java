@@ -141,7 +141,7 @@ public class TaskServiceImpl implements TaskService {
     	 List<TaskDTO> listDto = listUserBoard.stream()
     			 .flatMap((BoardUser u)-> {
     				return u.getBoard().getTasks().stream()
-    				 .filter((Task t)-> t.getBid().equals(true))
+    				 .filter((Task t)-> Boolean.TRUE.equals(t.getBid()))
     				 .map((Task t )-> {
     	     				return (TaskDTO)transformers.convertEntityToDto(t, TaskDTO.class);
     	     			});

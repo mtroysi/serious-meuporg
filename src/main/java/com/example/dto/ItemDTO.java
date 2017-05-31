@@ -15,6 +15,7 @@ public class ItemDTO {
     private Long price;
     private Long requiredLevel;
     private String url;
+    private Long duration = 1L;
     private String description;
     private Boolean isReusable;
     private String image;
@@ -115,5 +116,13 @@ public class ItemDTO {
 
 	public void setPosition(ItemPositionEnum position) {
 		this.position = position;
+	}
+
+	public Long getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Long duration) {
+		this.duration = duration;
 	}
 }

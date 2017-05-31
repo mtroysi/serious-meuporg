@@ -66,7 +66,7 @@ public class Item extends CommonEntity {
      * Durée avant expiration
      */
     @Column(name = "duration")
-    private Integer duration;
+    private Long duration;
     
     /**
      * Clé item
@@ -152,11 +152,11 @@ public class Item extends CommonEntity {
 		this.isReusable = isReusable;
 	}
 
-	public Integer getDuration() {
+	public Long getDuration() {
 		return duration;
 	}
 
-	public void setDuration(Integer duration) {
+	public void setDuration(Long duration) {
 		this.duration = duration;
 	}
 
