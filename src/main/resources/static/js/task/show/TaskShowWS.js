@@ -64,6 +64,10 @@
                 return $http.get(constant.BASE_URI + '/bid/withoutuser/board/' + boardId);
             };
 
+            svc.listTaskByUserAndBoard = function(user_id){
+                return $http.get(constant.BASE_URI + '/task/usertaskbid/' + user_id);
+            }
+
             return svc;
         })
 })();

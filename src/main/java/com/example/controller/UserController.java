@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.dto.TaskDTO;
 import com.example.dto.UserDTO;
 import com.example.dto.UserRankinDTO;
 import com.example.dto.UserStatsDTO;

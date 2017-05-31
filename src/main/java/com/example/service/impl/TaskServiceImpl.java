@@ -24,6 +24,7 @@ import com.example.enumeration.StatusEnum;
 import com.example.repository.ColonneKanbanRepository;
 import com.example.repository.TagRepository;
 import com.example.repository.TaskRepository;
+import com.example.repository.UserRepository;
 import com.example.service.TaskService;
 import com.example.transformers.Transformers;
 
@@ -42,6 +43,8 @@ public class TaskServiceImpl implements TaskService {
     private PeriodicityRepository periodicityRepository;
     @Autowired
     private Transformers transformers;
+    @Autowired
+    private UserRepository userRepository;
 
     /*
      * (non-Javadoc)
@@ -129,5 +132,23 @@ public class TaskServiceImpl implements TaskService {
     public BoardDTO getBoardFromTask(Long id) {
         Task task = taskRepository.findOne(id);
         return (BoardDTO)transformers.convertEntityToDto(task.getBoard(), BoardDTO.class);
+    }
+    
+    @Override
+    public List<TaskDTO> getTaskBidUser(Long id){
+    	 User user = userRepository.findOne(id);
+    	 List<BoardUser> listUserBoard = user.getBoardUsers();
+    	 List<TaskDTO> listDto = listUserBoard.stream()
+    			 .flatMap((BoardUser u)-> {
+    				return u.getBoard().getTasks().stream()
+    				 .filter((Task t)-> t.getBid().equals(true))
+    				 .map((Task t )-> {
+    	     				return (TaskDTO)transformers.convertEntityToDto(t, TaskDTO.class);
+    	     			});
+    			 })
+     			.collect(Collectors.toList());
+    			 
+    	   	
+    	return listDto;
     }
 }
