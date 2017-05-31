@@ -10,12 +10,25 @@
         .controller('TaskShowController', function (TaskShowService, TaskUpdateService, $stateParams, constant, AuthenticationService, TagListService, $scope, $rootScope) {
             var ctrl = this;
 
-            ctrl.popup = {
+            ctrl.popup1 = {
                 opened: false
             };
 
-            ctrl.open = function () {
-                ctrl.popup.opened = true;
+            ctrl.popup2 = {
+                opened: false
+            };
+
+            ctrl.open = function (i) {
+                switch (i) {
+                    case 1: {
+                        ctrl.popup1.opened = true;
+                        break;
+                    }
+                    case 2: {
+                        ctrl.popup2.opened = true;
+                        break;
+                    }
+                }
             };
 
             $scope.$on("showTask", function (event, args) {
@@ -48,7 +61,7 @@
                 ctrl.titleEditable = false;
             };
 
-	ctrl.toggleTitle = function () {
+            ctrl.toggleTitle = function () {
                 if (ctrl.task.task.title !== undefined)
                     ctrl.titleEditable = !ctrl.titleEditable;
             };
@@ -95,7 +108,7 @@
                 });
             };
 
-ctrl.performActionTask = function () {
+            ctrl.performActionTask = function () {
                 if (ctrl.creation) {
                     ctrl.createTask();
                 } else {
@@ -107,6 +120,7 @@ ctrl.performActionTask = function () {
                 if (ctrl.task.task.isPeriodicity) {
                     ctrl.task.task.periodicity.dateBegin = new Date(ctrl.task.task.periodicity.dateBegin).getTime();
                 }
+                ctrl.task.task.dateEnd = new Date(ctrl.task.task.dateEnd).getTime();
                 TaskUpdateService.createTask(ctrl.task).then(function (data) {
                     var args = {};
                     args.task = data;
@@ -122,6 +136,7 @@ ctrl.performActionTask = function () {
                 if (ctrl.task.task.isPeriodicity) {
                     ctrl.task.task.periodicity.dateBegin = new Date(ctrl.task.task.periodicity.dateBegin).getTime();
                 }
+                ctrl.task.task.dateEnd = new Date(ctrl.task.task.dateEnd).getTime();
                 TaskUpdateService.updateTask(ctrl.task.id, ctrl.task).then(function (data) {
                     angular.extend(ctrl.newTask, ctrl.newTask, data);
                     $("#editTask").modal('toggle');

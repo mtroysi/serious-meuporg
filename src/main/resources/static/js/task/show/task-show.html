@@ -51,7 +51,25 @@
                                ng-model="ctrl.task.task.duration" ng-required="true"
                                placeholder="Durée"/>
                     </div>
-                    <label class="col-sm-2"> points d'énergie</label>
+                    <label class="col-sm-3"> points d'énergie</label>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="taskDateEnd">Date de fin<span
+                            class="required">*</span>
+                    </label>
+                    <div class="col-sm-6">
+                        <p class="input-group">
+                            <input id="taskDateEnd" type="text" class="form-control" uib-datepicker-popup
+                                   ng-model="ctrl.task.task.dateEnd"
+                                   is-open="ctrl.popup1.opened" datepicker-options="dateOptions"
+                                   close-text="Close" ng-required="true"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="ctrl.open(1)">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </p>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="taskDuration">Quête récurrente</label>
@@ -73,14 +91,14 @@
                             <p class="input-group">
                                 <input id="taskDatePeriodicity" type="text" class="form-control" uib-datepicker-popup
                                        ng-model="ctrl.task.task.periodicity.dateBegin"
-                                       is-open="ctrl.popup.opened" datepicker-options="dateOptions"
+                                       is-open="ctrl.popup2.opened" datepicker-options="dateOptions"
                                        ng-required="ctrl.task.task.isPeriodicity"
                                        close-text="Close"/>
                                 <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="ctrl.open()">
-                                    <i class="glyphicon glyphicon-calendar"></i>
-                                </button>
-                            </span>
+                                    <button type="button" class="btn btn-default" ng-click="ctrl.open(2)">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </span>
                             </p>
                         </div>
                     </div>

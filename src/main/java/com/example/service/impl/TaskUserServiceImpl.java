@@ -264,8 +264,10 @@ public class TaskUserServiceImpl implements TaskUserService {
 		taskUser.setTask(task);
 
 		Map<String, Object> colonneValues = (Map<String, Object>) taskValues.get("colonneKanban");
-		ColonneKanban colonneKanban = colonneKanbanRepository.findOne(new Long((Integer) colonneValues.get("id")));
-		taskUser.setColonneKanban(colonneKanban);
+		if (colonneValues != null) {
+			ColonneKanban colonneKanban = colonneKanbanRepository.findOne(new Long((Integer) colonneValues.get("id")));
+			taskUser.setColonneKanban(colonneKanban);
+		}
 
 		taskUser = taskUserRepository.save(taskUser);
 
