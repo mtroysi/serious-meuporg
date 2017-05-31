@@ -3,6 +3,7 @@ package com.example.enumeration;
 public enum PeriodicityEnum {
 
     DAILY("Jour"),
+    WEEKLY("Semaine"),
     MONTHLY("Mois"),
     YEARLY("Année");
 

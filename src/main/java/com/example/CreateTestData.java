@@ -691,10 +691,47 @@ public class CreateTestData {
 		item6.setDescription("Petite musique de la brebis");
 		item6.setPrice(175L);
 		item6.setRequiredLevel(2L);
+		item6.setDuration(3);
 		item6.setReusable(Boolean.FALSE);
 		item6.setType(ItemEnum.CURSE);
-		item6.setImage("Son sympa");
+		item6.setImage("https://dechairetdelait.files.wordpress.com/2014/04/chevreau.jpg");
 		itemRepository.save(item6);
+		
+		Item item7 = new Item();
+		item7.setKeyItem("CURSE_JCVD");
+		item7.setName("Malediction de Jean-Claude");
+		item7.setDescription("Jean-Claude va vous permettre de travailler plus rapidement pendant 3jours");
+		item7.setPrice(175L);
+		item7.setRequiredLevel(2L);
+		item7.setDuration(3);
+		item7.setReusable(Boolean.FALSE);
+		item7.setType(ItemEnum.CURSE);
+		item7.setImage("http://www.jookos.com/wp-content/uploads/2016/06/url-4.jpg");
+		itemRepository.save(item7);
+		
+		Item item8 = new Item();
+		item8.setKeyItem("FOND_ANGERS");
+		item8.setName("Fond d'écran d'Angers");
+		item8.setDescription("");
+		item8.setPrice(500L);
+		item8.setRequiredLevel(2L);
+		item8.setReusable(Boolean.FALSE);
+		item8.setType(ItemEnum.WALLPAPER);
+		item8.setUrl("http://www.hostpic.org/images/1608091515530095.jpeg");
+		item8.setImage("http://www.hostpic.org/images/1608091515530095.jpeg");
+		itemRepository.save(item8);
+		
+		Item item9 = new Item();
+		item9.setKeyItem("FOND_SEA");
+		item9.setName("FOnd d'écran de la mer");
+		item9.setDescription("");
+		item9.setPrice(750L);
+		item9.setRequiredLevel(5L);
+		item9.setReusable(Boolean.FALSE);
+		item9.setType(ItemEnum.WALLPAPER);
+		item9.setUrl("http://www.weesk.com/wallpaper/nature/mers-oceans-plages/barque-en-bord-de-mer/barque-en-bord-de-mer-720px.jpg");
+		item9.setImage("http://www.weesk.com/wallpaper/nature/mers-oceans-plages/barque-en-bord-de-mer/barque-en-bord-de-mer-720px.jpg");
+		itemRepository.save(item9);
 		
 		return "FINI";
 	}

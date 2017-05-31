@@ -19,4 +19,7 @@ public final class ConstanteGameMaster {
 	
 	public static final String BUY_ITEM= "Tu as acheté un element dans ton inventaire";
 	public static final String BUY_CURSE = "Un utilisateur vient de te lancer une malédiction. Merci ";
+
+	public static final String ASSIGNMENT_TASK= "Tu as été affecté à un nouveau tableau : ";
+	public static final String ASSIGNMENT_TASK_TITLE= "Affectation dans un nouveau tableau";
 }

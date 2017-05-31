@@ -73,6 +73,14 @@
                     $('body').append($('<audio class="brebis" autoplay><source src="assets/audio/mouton.mp3" type="audio/mp3"></source></audio>'));
                 }
             }
+            if (item.keyItem === 'CURSE_JCVD') {
+                if ($('body .jcvd').length == 0) {
+                    $('body').append($('<div class="jcvd"><img src="images/jcvd1.gif" /></div>'));
+                    setTimeout(function() {
+                        $('body .jcvd img').remove();
+                    }, 15000);
+                }
+            }
         };
 
         svc.spellHappyAction = function() {
@@ -82,6 +90,7 @@
                 CommonNotificationBoxService.messageAdore(item);
             }
         }
+
 
         svc.setItems = function(data) {
             svc.items = data;
