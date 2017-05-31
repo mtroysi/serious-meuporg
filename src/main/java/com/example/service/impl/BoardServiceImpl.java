@@ -170,8 +170,8 @@ public class BoardServiceImpl implements BoardService {
                 if( user != null) {
                 	// Notification pour l'ajout
                 	Notification notif = new Notification();
-            		notif.setContent(ConstanteGameMaster.ASSIGNMENT_TASK + " " + boardDTO.getName());
-            		notif.setTitle(ConstanteGameMaster.ASSIGNMENT_TASK_TITLE);
+            		notif.setContent(ConstanteGameMaster.ASSIGNMENT_BOARD + " " + boardDTO.getName());
+            		notif.setTitle(ConstanteGameMaster.ASSIGNMENT_BOARD_TITLE);
             		notif.setDateCreation(new Date());
             		notif.setIsRead(false);
             		notif.setType(TypeNotifEnum.information);
