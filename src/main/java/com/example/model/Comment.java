@@ -27,7 +27,7 @@ public class Comment extends CommonEntity {
     /**
      * Contenu
      */
-    @Column(name = "content")
+    @Column(name = "content", length = 500)
     private String content;
 
     /**

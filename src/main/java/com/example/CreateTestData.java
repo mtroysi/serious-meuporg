@@ -618,7 +618,9 @@ public class CreateTestData {
 		taskUser1.setDurationReel(null);
 		taskUser1.setStatus(StatusEnum.IN_PROGRESS);
 		taskUser1.setTask(this.task1);
-		taskUser1.setUser(this.user1);
+		ArrayList<User> list1 = new ArrayList<>();
+		list1.add(this.user1);
+		taskUser1.setUser(list1);
 		taskUser1.setColonneKanban(col1);
 		taskUser1.setVersion(1);
 		this.taskUser1 = taskUserRepository.save(taskUser1);
@@ -629,7 +631,9 @@ public class CreateTestData {
 		taskUser2.setDurationReel(null);
 		taskUser2.setStatus(StatusEnum.IN_PROGRESS);
 		taskUser2.setTask(this.task2);
-		taskUser2.setUser(this.user1);
+		ArrayList<User> list2 = new ArrayList<>();
+		list2.add(this.user1);
+		taskUser2.setUser(list2);
 		taskUser1.setColonneKanban(col1);
 		taskUser2.setVersion(1);
 		this.taskUser2 = taskUserRepository.save(taskUser2);
@@ -640,7 +644,9 @@ public class CreateTestData {
 		taskUser3.setDurationReel(null);
 		taskUser3.setStatus(StatusEnum.IN_PROGRESS);
 		taskUser3.setTask(this.task3);
-		taskUser3.setUser(this.user1);
+		ArrayList<User> list3 = new ArrayList<>();
+		list3.add(this.user1);
+		taskUser3.setUser(list3);
 		taskUser3.setVersion(1);
 		this.taskUser3 = taskUserRepository.save(taskUser3);
 

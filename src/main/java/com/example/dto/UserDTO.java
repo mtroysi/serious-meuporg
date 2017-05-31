@@ -1,5 +1,7 @@
 package com.example.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 
@@ -10,6 +12,7 @@ public class UserDTO {
     private String lastName;
     private String fullName;
     private String email;
+    @JsonIgnore
     private String password;
     private String avatar;
     private Date dateCreation;

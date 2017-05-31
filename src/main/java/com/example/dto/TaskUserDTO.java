@@ -3,6 +3,8 @@ package com.example.dto;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by Florentin NOËL on 11/05/17.
@@ -12,7 +14,7 @@ public class TaskUserDTO {
 
     private Long id;
     private TaskWithPeriodDTO task;
-    private UserDTO user;
+    private ArrayList<UserDTO> user;
 
     public Long getId() {
         return id;
@@ -28,11 +30,11 @@ public class TaskUserDTO {
         this.task = task;
     }
 
-    public UserDTO getUser() {
+    public ArrayList<UserDTO> getUser() {
         return user;
     }
 
-    public void setUser(UserDTO user) {
+    public void setUser(ArrayList<UserDTO> user) {
         this.user = user;
     }
 }

@@ -8,6 +8,8 @@ import com.example.enumeration.PriorityEnum;
 import com.example.enumeration.StatusEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.Column;
+
 
 public class TaskWithPeriodDTO {
 
@@ -29,6 +31,8 @@ public class TaskWithPeriodDTO {
     private Date dateEndTask; /* Valeur reel de la tache (gestion de la périodicity) */
     private Boolean isPeriodicity = false;
     private PeriodicityDTO periodicity;
+    private Long money;
+    private Long experience;
     private ColonneKanbanDTO colonneKanban;
     private List<TagDTO> tags = new ArrayList<>();
     private List<CommentDTO> taskComments = new ArrayList<>();
@@ -191,6 +195,22 @@ public class TaskWithPeriodDTO {
 
     public void setTags(List<TagDTO> tags) {
         this.tags = tags;
+    }
+
+    public Long getMoney() {
+        return money;
+    }
+
+    public void setMoney(Long money) {
+        this.money = money;
+    }
+
+    public Long getExperience() {
+        return experience;
+    }
+
+    public void setExperience(Long experience) {
+        this.experience = experience;
     }
 
     public Long getCreator() {

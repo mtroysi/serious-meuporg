@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.example.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    
     /* 
      * (non-Javadoc)
      * @see com.example.service.UserService#loadUsers(java.lang.String)
@@ -50,6 +50,24 @@ public class UserServiceImpl implements UserService {
     public List<UserDTO> loadUsers(String query) {
         User currentUser = this.getCurrentUser();
         List<User> users = userRepository.findByFirstNameContainingOrLastNameContainingAndEmailNot(query, currentUser.getEmail());
+        List<UserDTO> result = new ArrayList<>();
+        for (User user : users) {
+            UserDTO userDTO = transformers.transformUserToUserDto(user);
+            result.add(userDTO);
+        }
+        return result;
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.example.service.UserService#loadUsersFromBoardWithCurrent(java.lang.String, java.lang.Integer)
+     */
+    @Override
+    public List<UserDTO> loadUsersFromBoardWithCurrent(String query, Long id) {
+        User currentUser = this.getCurrentUser();
+
+        List<User> users = userRepository.findByIdAndFirstNameContainingOrLastNameContaining(id, query);
+
         List<UserDTO> result = new ArrayList<>();
         for (User user : users) {
             UserDTO userDTO = transformers.transformUserToUserDto(user);
