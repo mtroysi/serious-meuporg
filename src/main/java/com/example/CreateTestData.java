@@ -691,6 +691,7 @@ public class CreateTestData {
 		item6.setDescription("Petite musique de la brebis");
 		item6.setPrice(175L);
 		item6.setRequiredLevel(2L);
+		item6.setDuration(3);
 		item6.setReusable(Boolean.FALSE);
 		item6.setType(ItemEnum.CURSE);
 		item6.setImage("https://dechairetdelait.files.wordpress.com/2014/04/chevreau.jpg");
@@ -702,6 +703,7 @@ public class CreateTestData {
 		item7.setDescription("Jean-Claude va vous permettre de travailler plus rapidement pendant 3jours");
 		item7.setPrice(175L);
 		item7.setRequiredLevel(2L);
+		item7.setDuration(3);
 		item7.setReusable(Boolean.FALSE);
 		item7.setType(ItemEnum.CURSE);
 		item7.setImage("http://www.jookos.com/wp-content/uploads/2016/06/url-4.jpg");

@@ -2,15 +2,19 @@ package com.example.service.impl;
 
 import com.example.ConstanteGameMaster;
 import com.example.dto.BoardDTO;
+import com.example.dto.UserDTO;
 import com.example.enumeration.RoleEnum;
 import com.example.enumeration.StatusEnum;
+import com.example.enumeration.TypeNotifEnum;
 import com.example.exception.GameMasterException;
 import com.example.model.Board;
 import com.example.model.BoardUser;
 import com.example.model.ColonneKanban;
+import com.example.model.Notification;
 import com.example.model.User;
 import com.example.repository.BoardRepository;
 import com.example.repository.RoleRepository;
+import com.example.repository.UserRepository;
 import com.example.service.BoardService;
 import com.example.service.UserService;
 import com.example.transformers.Transformers;
@@ -19,6 +23,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Created by Morgane TROYSI on 11/05/17.
@@ -33,7 +41,10 @@ public class BoardServiceImpl implements BoardService {
 
     @Autowired
     private RoleRepository roleRepository;
-
+    
+    @Autowired
+    private UserRepository userRepository;
+    
     @Autowired
     private Transformers transformers;
 
@@ -63,7 +74,7 @@ public class BoardServiceImpl implements BoardService {
         board.setExpDoneTask(boardDTO.getExpDoneTask());
         board.setExpWinBid(boardDTO.getExpWinBid());
         
-        inviteUsers(board, boardDTO);
+        inviteUsers(board, boardDTO, true);
         
         //Add column Kanban
         ArrayList<ColonneKanban> list = new ArrayList<>();
@@ -103,8 +114,7 @@ public class BoardServiceImpl implements BoardService {
             board.setExpDoneTask(boardDTO.getExpDoneTask());
             board.setExpWinBid(boardDTO.getExpWinBid());
             board.setName(boardDTO.getName());
-            board.getBoardUsers().clear();
-            inviteUsers(board, boardDTO);
+            inviteUsers(board, boardDTO, false);
             return transformers.transformBoardToBoardDto(boardRepository.save(board));
         } else {
             throw new GameMasterException(ConstanteGameMaster.UNAUTHORIZED_ERROR);
@@ -126,24 +136,52 @@ public class BoardServiceImpl implements BoardService {
      * @param board
      * @param boardDTO
      */
-    private void inviteUsers(Board board, BoardDTO boardDTO) {
-
+    private void inviteUsers(Board board, BoardDTO boardDTO, Boolean creation) {
+    	
+    	/* On supprime tous les utilisateurs */
+        List<BoardUser> listBoardUser = board.getBoardUsers();
+        
+        
         /* Gestion du créateur/administrateur du tableau */
-        User creator = userService.getCurrentUser();
-        board.setCreator(creator);
-        BoardUser boardUserCreator = new BoardUser();
-        boardUserCreator.setBoard(board);
-        boardUserCreator.setRole(roleRepository.findByCode(RoleEnum.ADMIN));
-        boardUserCreator.setUser(creator);
-        board.getBoardUsers().add(boardUserCreator);
-
+        if(creation){
+	        User creator = userService.getCurrentUser();
+	        board.setCreator(creator);
+	        BoardUser boardUserCreator = new BoardUser();
+	        boardUserCreator.setBoard(board);
+	        boardUserCreator.setRole(roleRepository.findByCode(RoleEnum.ADMIN));
+	        boardUserCreator.setUser(creator);
+	        board.getBoardUsers().add(boardUserCreator);
+        }
+        
+        /* On supprime les utilisateurs supprimés dans le boardDTO */
+        board.getBoardUsers().removeAll(board.getBoardUsers().stream().filter((BoardUser bu) -> {
+        	return !boardDTO.getUsers().stream().filter((UserDTO userDTO) -> userDTO.getId().equals(bu.getUser().getId())).findFirst().isPresent();
+        }).collect(Collectors.toList()));
+        
         /* Gestion des utilisateurs invités */
         boardDTO.getUsers().stream().forEach(userDTO -> {
-            BoardUser boardUser = new BoardUser();
-            boardUser.setBoard(board);
-            boardUser.setRole(roleRepository.findByCode(RoleEnum.USER));
-            boardUser.setUser((User) transformers.convertDtoToEntity(userDTO, User.class));
-            board.getBoardUsers().add(boardUser);
+        	// Si l'utilisateur n'est pas deja présent dans la liste BoardUser alors on le rajoute
+        	if( !listBoardUser.stream().filter((BoardUser bu) -> bu.getUser().getId().equals(userDTO.getId())).findFirst().isPresent()){
+                BoardUser boardUser = new BoardUser();
+                boardUser.setBoard(board);
+                boardUser.setRole(roleRepository.findByCode(RoleEnum.USER));
+                User user = userRepository.findOne(userDTO.getId());
+                
+                if( user != null) {
+                	// Notification pour l'ajout
+                	Notification notif = new Notification();
+            		notif.setContent(ConstanteGameMaster.ASSIGNMENT_TASK + " " + boardDTO.getName());
+            		notif.setTitle(ConstanteGameMaster.ASSIGNMENT_TASK_TITLE);
+            		notif.setDateCreation(new Date());
+            		notif.setIsRead(false);
+            		notif.setType(TypeNotifEnum.information);
+            		notif.setUser(user);
+            		
+	                boardUser.setUser(user);
+            		boardUser.getUser().addNotification(notif);
+	                board.getBoardUsers().add(boardUser);
+                }
+        	}
         });
     }
 }
