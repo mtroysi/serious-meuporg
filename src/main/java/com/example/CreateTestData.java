@@ -693,8 +693,20 @@ public class CreateTestData {
 		item6.setRequiredLevel(2L);
 		item6.setReusable(Boolean.FALSE);
 		item6.setType(ItemEnum.CURSE);
-		item6.setImage("Son sympa");
+		item6.setImage("https://dechairetdelait.files.wordpress.com/2014/04/chevreau.jpg");
 		itemRepository.save(item6);
+		
+		Item item7 = new Item();
+		item7.setKeyItem("CURSE_JCVD");
+		item7.setName("Malediction de Jean-Claude");
+		item7.setDescription("Jean-Claude va vous permettre de travailler plus rapidement");
+		item7.setPrice(175L);
+		item7.setRequiredLevel(2L);
+		item7.setReusable(Boolean.FALSE);
+		item7.setType(ItemEnum.CURSE);
+		item7.setImage("Son sympa");
+		item7.setImage("http://www.jookos.com/wp-content/uploads/2016/06/url-4.jpg");
+		itemRepository.save(item7);
 		
 		return "FINI";
 	}
