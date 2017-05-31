@@ -54,6 +54,22 @@
                     <label class="col-sm-3"> points d'énergie</label>
                 </div>
                 <div class="form-group">
+                    <label class="col-sm-3 control-label" for="taskExperience">Experience<span
+                            class="required">*</span></label>
+                    <div class="col-sm-3">
+                        <input type="number" class="form-control" id="taskExperience"
+                               ng-model="ctrl.task.task.experience" ng-required="true"
+                               placeholder="Expérience" ng-value="ctrl.calculExperience()"/>
+                    </div>
+                    <label class="col-sm-2 control-label" for="taskMoney">Butin<span
+                            class="required">*</span></label>
+                    <div class="col-sm-3">
+                        <input type="number" class="form-control" id="taskMoney"
+                               ng-model="ctrl.task.task.money" ng-required="true"
+                               placeholder="Butin" ng-value="ctrl.calculMoney()"/>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="col-sm-3 control-label" for="taskDateEnd">Date de fin<span
                             class="required">*</span>
                     </label>

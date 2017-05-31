@@ -114,7 +114,7 @@ public interface UserService {
     /**
      * Modifie l'inventaire d'un utilisateur
      *
-     * @param itemDtoList liste des objets possédés par l'utilisateur
+     * @param items liste des objets possédés par l'utilisateur
      * @return inventaire mis à jour
      */
     List<ItemDTO> updateInventory(List<ItemDTO> items);

@@ -206,6 +206,8 @@
                 args.task.task.boardId = ctrl.board.id;
                 args.task.task.creator = Number(AuthenticationService.getUserId());
                 args.colonneKanban = ctrl.board.colonneKanbans;
+                args.moneyValue = ctrl.board.moneyDoneTask;
+                args.experienceValue = ctrl.board.expDoneTask;
 
                 $scope.$broadcast("createTask", args);
             };
@@ -219,9 +221,10 @@
             });
 
             $scope.$on("createdTask", function(event, args) {
-                console.log("event create !");
-                ctrl.listTask.push(args.task);
-                ctrl.listTaskDefault.push(args.task);
+                if (args.task.user.id === Number(AuthenticationService.getUserId())){
+                    ctrl.listTask.push(args.task);
+                    ctrl.listTaskDefault.push(args.task);
+                }
                 ctrl.filterTask();
             });
 
