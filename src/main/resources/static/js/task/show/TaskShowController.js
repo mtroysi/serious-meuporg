@@ -35,7 +35,6 @@
                 ctrl.newTask = args.task;
                 ctrl.task = angular.copy(ctrl.newTask);
                 ctrl.columns = args.colonneKanban;
-                console.log(ctrl.task);
                 ctrl.listTags();
                 ctrl.titleEditable = false;
                 ctrl.creation = false;
@@ -45,11 +44,31 @@
                 ctrl.newTask = args.task;
                 ctrl.task = angular.copy(ctrl.newTask);
                 ctrl.columns = args.colonneKanban;
+                ctrl.moneyValue = args.moneyValue;
+                ctrl.experienceValue = args.experienceValue;
+
+
                 ctrl.task.task.isPeriodicity = false;
                 ctrl.listTags();
                 ctrl.titleEditable = true;
                 ctrl.creation = true;
+
+
+                ctrl.calculExperience = function () {
+                    if (ctrl.creation === true) {
+                        ctrl.task.task.experience = ctrl.experienceValue * ctrl.task.task.duration;
+                    }
+                    return ctrl.task.task.experience;
+                };
+
+                ctrl.calculMoney = function () {
+                    if (ctrl.creation === true) {
+                        ctrl.task.task.money = ctrl.moneyValue * ctrl.task.task.duration;
+                    }
+                    return ctrl.task.task.money;
+                };
             });
+
 
             ctrl.priority = constant.priority;
             ctrl.periodicityType = constant.periodicity;
