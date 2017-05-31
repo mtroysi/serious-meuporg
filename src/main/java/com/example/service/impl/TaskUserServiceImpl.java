@@ -187,6 +187,9 @@ public class TaskUserServiceImpl implements TaskUserService {
 		case DAILY:
 			date.add(Calendar.DAY_OF_YEAR, periodicity.getFrequency() * negativeFrequence);
 			break;
+		case WEEKLY:
+			date.add(Calendar.WEEK_OF_YEAR, periodicity.getFrequency() * negativeFrequence);
+			break;
 		case MONTHLY:
 			date.add(Calendar.MONTH, periodicity.getFrequency() * negativeFrequence);
 			break;
