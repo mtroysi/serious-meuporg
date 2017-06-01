@@ -78,12 +78,14 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
                 
                 
                 if (taskUserBid == null) {
-                    return new TaskUserBidDTO((TaskDTO) transformers.convertEntityToDto(task, TaskDTO.class), null,
+                  /*  return new TaskUserBidDTO((TaskDTO) transformers.convertEntityToDto(task, TaskDTO.class), null,
                             null);
                 } else {
                     return new TaskUserBidDTO((TaskDTO) transformers.convertEntityToDto(task, TaskDTO.class), userDto,
-                            taskUserBid.getDuration());
+                            taskUserBid.getDuration());*/
+                	return new TaskUserBidDTO();
                 }
+                return null;
             }).filter(Objects::nonNull).collect(Collectors.toList());
         } else {
             return null;
@@ -143,8 +145,8 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
             Task task = taskRepo.findOne(id);
             task.setBid(true);
             task.setDateEndBid(new Date(dateEnd));
-            list.add(new TaskUserBidDTO((TaskDTO) transformers.convertEntityToDto(taskRepo.save(task), TaskDTO.class),
-                    null, null));
+            /*list.add(new TaskUserBidDTO((TaskDTO) transformers.convertEntityToDto(taskRepo.save(task), TaskDTO.class),
+                    null, null));*/
         });
         return list;
     }
