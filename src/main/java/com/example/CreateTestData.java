@@ -475,7 +475,6 @@ public class CreateTestData {
 		taskTag1.add(tag1);
 		task1.setTags(taskTag1);
 		task1.setTaskParents(null);
-		task1.setTaskUserBids(null);
 		task1.setTaskUsers(null);
 		task1.setTitle("Titre de la tache 1");
 		task1.setVersion(1);
@@ -500,7 +499,6 @@ public class CreateTestData {
 		taskTag2.add(tag2);
 		task2.setTags(taskTag2);
 		task2.setTaskParents(null);
-		task2.setTaskUserBids(null);
 		task2.setTaskUsers(null);
 		task2.setTitle("Titre de la tache 2");
 		task2.setVersion(1);
@@ -523,7 +521,6 @@ public class CreateTestData {
 		task3.setPriority(PriorityEnum.NOT_URGENT_IMPORTANT);
 		task3.setTags(null);
 		task3.setTaskParents(null);
-		task3.setTaskUserBids(null);
 		task3.setTaskUsers(null);
 		task3.setTitle("Titre de la tache 3 (without)");
 		task3.setVersion(1);
@@ -546,7 +543,6 @@ public class CreateTestData {
 		task4.setPriority(PriorityEnum.NOT_URGENT_IMPORTANT);
 		task4.setTags(null);
 		task4.setTaskParents(null);
-		task4.setTaskUserBids(null);
 		task4.setTaskUsers(null);
 		task4.setTitle("Titre de la tache 4 (sans user et au enchere)");
 		task4.setVersion(1);
@@ -569,7 +565,6 @@ public class CreateTestData {
 		task5.setPriority(PriorityEnum.NOT_URGENT_IMPORTANT);
 		task5.setTags(null);
 		task5.setTaskParents(null);
-		task5.setTaskUserBids(null);
 		task5.setTaskUsers(null);
 		task5.setTitle("Titre de la tache 5 (bid witout user)");
 		task5.setVersion(1);
@@ -592,7 +587,6 @@ public class CreateTestData {
 		task6.setPriority(PriorityEnum.NOT_URGENT_IMPORTANT);
 		task6.setTags(null);
 		task6.setTaskParents(null);
-		task6.setTaskUserBids(null);
 		task6.setTaskUsers(null);
 		task6.setTitle("Titre de la tache 6 (bid witout user)");
 		task6.setVersion(1);

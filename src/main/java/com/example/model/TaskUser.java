@@ -1,5 +1,6 @@
 package com.example.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -53,7 +54,13 @@ public class TaskUser extends CommonEntity {
     @ManyToOne
     @JoinColumn(name = "colonne_kanban_id", nullable= true)
     private ColonneKanban colonneKanban;
-
+    
+    /**
+     * Enchèrissements des utilisateurs
+     */
+    @OneToMany(mappedBy = "taskUser", cascade = CascadeType.ALL)
+    private List<TaskUserBid> taskUserBids = new ArrayList<>();
+    
     public List<User> getUser() {
         return user;
     }
@@ -100,5 +107,13 @@ public class TaskUser extends CommonEntity {
 
 	public void setColonneKanban(ColonneKanban colonneKanban) {
 		this.colonneKanban = colonneKanban;
+	}
+
+	public List<TaskUserBid> getTaskUserBids() {
+		return taskUserBids;
+	}
+
+	public void setTaskUserBids(List<TaskUserBid> taskUserBids) {
+		this.taskUserBids = taskUserBids;
 	}
 }

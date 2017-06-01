@@ -130,12 +130,6 @@ public class Task extends CommonEntity {
     private List<TaskUser> taskUsers = new ArrayList<>();
 
     /**
-     * Enchèrissements des utilisateurs
-     */
-    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
-    private List<TaskUserBid> taskUserBids = new ArrayList<>();
-
-    /**
      * Tâches parentes
      */
     @ManyToMany
@@ -227,19 +221,9 @@ public class Task extends CommonEntity {
         this.taskUsers = taskUsers;
     }
 
-    public List<TaskUserBid> getTaskUserBids() {
-        return taskUserBids;
-    }
-    
-    
-
     public boolean addTaskUsers(TaskUser e) {
 		return taskUsers.add(e);
 	}
-
-	public void setTaskUserBids(List<TaskUserBid> taskUserBids) {
-        this.taskUserBids = taskUserBids;
-    }
 
     public Date getDateEndBid() {
         return dateEndBid;

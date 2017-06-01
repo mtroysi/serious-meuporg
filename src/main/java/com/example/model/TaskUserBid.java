@@ -21,8 +21,8 @@ public class TaskUserBid extends CommonEntity {
      * Tâche
      */
     @ManyToOne
-    @JoinColumn(name = "task_id")
-    private Task task;
+    @JoinColumn(name = "task_user_id")
+    private TaskUser taskUser;
 
     /**
      * Durée (enchère)
@@ -38,15 +38,15 @@ public class TaskUserBid extends CommonEntity {
         this.user = user;
     }
 
-    public Task getTask() {
-        return task;
-    }
+    public TaskUser getTaskUser() {
+		return taskUser;
+	}
 
-    public void setTask(Task task) {
-        this.task = task;
-    }
+	public void setTaskUser(TaskUser taskUser) {
+		this.taskUser = taskUser;
+	}
 
-    public Double getDuration() {
+	public Double getDuration() {
         return duration;
     }
 

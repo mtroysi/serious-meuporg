@@ -1,7 +1,6 @@
 package com.example.service.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -13,16 +12,17 @@ import org.springframework.stereotype.Service;
 import com.example.dto.BoardDTO;
 import com.example.dto.TaskDTO;
 import com.example.dto.TaskLiteDTO;
+import com.example.dto.TaskUserDTO;
 import com.example.dto.TaskWithPeriodDTO;
 import com.example.enumeration.PriorityEnum;
 import com.example.model.BoardUser;
 import com.example.model.Tag;
 import com.example.model.Task;
+import com.example.model.TaskUser;
 import com.example.model.User;
-import com.example.repository.ColonneKanbanRepository;
-import com.example.repository.PeriodicityRepository;
 import com.example.repository.TagRepository;
 import com.example.repository.TaskRepository;
+import com.example.repository.TaskUserRepository;
 import com.example.repository.UserRepository;
 import com.example.service.TaskService;
 import com.example.transformers.Transformers;
@@ -32,12 +32,19 @@ import com.example.transformers.Transformers;
  */
 @Service
 public class TaskServiceImpl implements TaskService {
+	
     @Autowired
     private TaskRepository taskRepository;
+    
+    @Autowired
+    private TaskUserRepository taskUserRepository;
+    
     @Autowired
     private TagRepository tagRepository;
+    
     @Autowired
     private Transformers transformers;
+    
     @Autowired
     private UserRepository userRepository;
 
@@ -101,18 +108,27 @@ public class TaskServiceImpl implements TaskService {
      * @see com.example.service.TaskService#getTaskWithoutUser(java.lang.Long)
      */
     @Override
-    public List<TaskLiteDTO> getTaskWithoutUser(Long boardId) {
-        List<Task> list = taskRepository.findTaskByUserIsNullAndBoardId(boardId);
-
-        return list.stream().map((Task task) -> (TaskLiteDTO) transformers.convertEntityToDto(task, TaskLiteDTO.class)).collect(Collectors.toList());
+    public List<TaskUserDTO> getTaskWithoutUser(Long boardId) {
+        List<TaskUser> list = taskUserRepository.findTaskUserByUserIsNullAndBoardId(boardId);
+        return list.stream().map((TaskUser task) -> (TaskUserDTO) transformers.convertEntityToDto(task, TaskUserDTO.class)).collect(Collectors.toList());
     }
 
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.TaskService#getBoardFromTask(java.lang.Long)
+     */
     @Override
     public BoardDTO getBoardFromTask(Long id) {
         Task task = taskRepository.findOne(id);
         return (BoardDTO)transformers.convertEntityToDto(task.getBoard(), BoardDTO.class);
     }
     
+    
+    /* 
+     * (non-Javadoc)
+     * @see com.example.service.TaskService#getTaskBidUser(java.lang.Long)
+     */
     @Override
     public List<TaskDTO> getTaskBidUser(Long id){
     	 User user = userRepository.findOne(id);

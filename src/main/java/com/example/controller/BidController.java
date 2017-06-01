@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.dto.BidDTO;
 import com.example.dto.TaskLiteDTO;
 import com.example.dto.TaskUserBidDTO;
+import com.example.dto.TaskUserDTO;
 import com.example.service.TaskService;
 import com.example.service.TaskUserBidService;
 
@@ -37,13 +38,13 @@ public class BidController {
     /**
      * Retourne la liste des taches d'un tableaux qui n'ont pas d'utilisateur assigne
      * @param idBoard
-     * @return list TaskLiteDTO
+     * @return list TaskUserDTO
      */
     @RequestMapping(value = "/withoutuser/board/{idBoard}", method = RequestMethod.GET)
-    public ResponseEntity<List<TaskLiteDTO>> getTaskWithoutUser(@PathVariable("idBoard") Long idBoard) {
-    	logger.info("Calling BidController.getTaskWithoutUser with {}", idBoard);
+    public ResponseEntity<List<TaskUserDTO>> getTaskUserWithoutUser(@PathVariable("idBoard") Long idBoard) {
+    	logger.info("Calling BidController.getTaskUserWithoutUser with {}", idBoard);
     	
-    	List<TaskLiteDTO> list = taskService.getTaskWithoutUser(idBoard);
+    	List<TaskUserDTO> list = taskService.getTaskWithoutUser(idBoard);
     	
         if (CollectionUtils.isEmpty(list)) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -6,7 +6,7 @@ import java.util.Map;
 
 import com.example.dto.BoardDTO;
 import com.example.dto.TaskDTO;
-import com.example.dto.TaskLiteDTO;
+import com.example.dto.TaskUserDTO;
 import com.example.dto.TaskWithPeriodDTO;
 
 /**
@@ -31,7 +31,7 @@ public interface TaskService {
      * @param boardId id du tableau
      * @return tâches non-assignées du tableau
      */
-    List<TaskLiteDTO> getTaskWithoutUser(Long boardId);
+    List<TaskUserDTO> getTaskWithoutUser(Long boardId);
     
     
     /**

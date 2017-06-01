@@ -69,9 +69,14 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
             UserDTO userDto = (UserDTO) transformers.convertEntityToDto(user, UserDTO.class);
 
             return listTask.stream().map((Task task) -> {
-                TaskUserBid taskUserBid = task.getTaskUserBids().stream()
-                        .filter((TaskUserBid tub) -> tub.getUser().getId().equals(user.getId())).findFirst()
-                        .orElse(null);
+                TaskUserBid taskUserBid = task.getTaskUsers().stream()
+                							.map((TaskUser tu)-> {
+                								return tu.getTaskUserBids().stream()
+                										.filter((TaskUserBid tub) -> tub.getUser().getId().equals(user.getId()))
+                										.findFirst().orElse(null);
+                							}).findFirst().orElse(null);
+                
+                
                 if (taskUserBid == null) {
                     return new TaskUserBidDTO((TaskDTO) transformers.convertEntityToDto(task, TaskDTO.class), null,
                             null);
@@ -91,7 +96,7 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
      */
     @Override
     public List<TaskUserBidDTO> getTaskUserBidEndByBoard(Long idBoard) {
-        return taskUserBidRepo.findByTaskBoardIdAndTaskDateEndBidBefore(idBoard, new Date()).stream()
+        return taskUserBidRepo.findByTaskUserTaskBoardIdAndTaskUserTaskDateEndBidBefore(idBoard, new Date()).stream()
                 .map((TaskUserBid tub) -> {
                     return (TaskUserBidDTO) transformers.convertEntityToDto(tub, TaskUserBidDTO.class);
                 }).collect(Collectors.toList());
@@ -105,7 +110,7 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
     public TaskUserBidDTO addOrUpdateTaskUserBid(Long idTask, Double duration) {
         User user = userService.getCurrentUser();
 
-        TaskUserBid tub = taskUserBidRepo.findByTaskIdAndUserId(idTask, user.getId());
+        TaskUserBid tub = taskUserBidRepo.findByTaskUserTaskIdAndUserId(idTask, user.getId());
 
         if (tub != null) {
             tub.setDuration(duration);
@@ -115,7 +120,7 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
             if (task != null) {
                 TaskUserBid tub_new = new TaskUserBid();
                 tub_new.setDuration(duration);
-                tub_new.setTask(task);
+                // tub_new.setTask(task);
                 tub_new.setUser(user);
                 tub = taskUserBidRepo.save(tub_new);
             } else {
@@ -191,7 +196,7 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
                 task.setDuration(bid.getDuration());
 
                 // suppression des enchères dans la BDD
-                task.getTaskUserBids().clear();
+                task.getTaskUsers().stream().forEach((TaskUser t) -> t.getTaskUserBids().clear());
 
                 taskRepo.save(task);
             }
