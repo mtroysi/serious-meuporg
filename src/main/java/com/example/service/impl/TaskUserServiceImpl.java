@@ -94,6 +94,7 @@ public class TaskUserServiceImpl implements TaskUserService {
             TaskWithPeriodDTO taskWithPeriod = taskUserDTO.getTask();
             taskWithPeriod.setBoardId(tu.getTask().getBoard().getId());
             taskWithPeriod.setDateEnd(tu.getTask().getDateEnd());
+            
             /* Si pas de periode alors la tache est classique */
             if (period == null) {
                 taskWithPeriod.setDateBeginTask(taskWithPeriod.getDateBegin());
@@ -135,7 +136,7 @@ public class TaskUserServiceImpl implements TaskUserService {
                     taskWithPeriod.setDateBeginTask(dateBeginPeriodicity.getTime());
                     taskUserDTO.setTask(taskWithPeriod);
                 } else {
-                    // SI la dateBeginPeriodicity est avant la date de fin alors
+                    // SI la dateBeginPeriodicity est apres la date de fin alors
                     // en prend la date de l'occurence -1 (pour la date de fin)
                     // et la date de -2 occurrence pour la date de debut
                     this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
@@ -144,7 +145,27 @@ public class TaskUserServiceImpl implements TaskUserService {
                     taskWithPeriod.setDateBeginTask(dateBeginPeriodicity.getTime());
                     taskUserDTO.setTask(taskWithPeriod);
                 }
-
+                
+                System.out.println("task" + taskWithPeriod.getTitle());
+                System.out.println("end" + taskWithPeriod.getDateEndTask());
+                System.out.println("end2" + taskWithPeriod.getDateEnd());
+                System.out.println("begin" + taskWithPeriod.getDateBeginTask());
+                System.out.println("begin2" + taskWithPeriod.getDateBegin());
+                
+                if( taskWithPeriod.getDateEndTask().before(taskWithPeriod.getDateBegin())){
+            		taskWithPeriod.setDateEndTask(taskWithPeriod.getDateBegin());
+            	}
+            	if(  taskWithPeriod.getDateBeginTask().after(taskWithPeriod.getDateEnd())){
+            		taskWithPeriod.setDateBeginTask(taskWithPeriod.getDateEnd());
+            	}
+            	
+            	if( taskWithPeriod.getDateEndTask().after(taskWithPeriod.getDateEnd())){
+            		taskWithPeriod.setDateEndTask(taskWithPeriod.getDateEnd());
+            	}
+            	if(  taskWithPeriod.getDateBeginTask().before(taskWithPeriod.getDateBegin())){
+            		taskWithPeriod.setDateBeginTask(taskWithPeriod.getDateBegin());
+            	}
+            	
                 // Test sur les valeurs de la tasks, on va remettre le statut a
                 // TODO pour chaque nouvelle occurence de la periodicity.
                 if (taskWithPeriod.getDateBeginTask().after(dateUpdatePeriodicity.getTime())) {
@@ -174,6 +195,9 @@ public class TaskUserServiceImpl implements TaskUserService {
         switch (periodicity.getType()) {
             case DAILY:
                 date.add(Calendar.DAY_OF_YEAR, periodicity.getFrequency() * negativeFrequence);
+                break;
+            case WEEKLY:
+                date.add(Calendar.WEEK_OF_YEAR, periodicity.getFrequency() * negativeFrequence);
                 break;
             case MONTHLY:
                 date.add(Calendar.MONTH, periodicity.getFrequency() * negativeFrequence);
