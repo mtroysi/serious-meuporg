@@ -126,45 +126,31 @@ public class TaskUserServiceImpl implements TaskUserService {
                     }
 
                 } while (dateBeginPeriodicity.before(dateEnd) && !test);
-
-                // SI la dateBeginPeriodicity est avant la date de fin alors en
-                // prend la date de la premiere occurence (pour la date de fin)
-                // et la date de -1 occurrence pour la date de debut
-                if (dateBeginPeriodicity.before(dateEnd)) {
-                    taskWithPeriod.setDateEndTask((Date) dateBeginPeriodicity.getTime().clone());
-                    this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
-                    taskWithPeriod.setDateBeginTask(dateBeginPeriodicity.getTime());
-                    taskUserDTO.setTask(taskWithPeriod);
-                } else {
-                    // SI la dateBeginPeriodicity est apres la date de fin alors
-                    // en prend la date de l'occurence -1 (pour la date de fin)
-                    // et la date de -2 occurrence pour la date de debut
-                    this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
-                    taskWithPeriod.setDateEndTask((Date) dateBeginPeriodicity.getTime().clone());
-                    this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
-                    taskWithPeriod.setDateBeginTask(dateBeginPeriodicity.getTime());
-                    taskUserDTO.setTask(taskWithPeriod);
+                
+                // S'il n'y a pas de périodicité
+                if(test == false ){
+                    taskWithPeriod.setDateBeginTask(taskWithPeriod.getDateBegin());
+                    taskWithPeriod.setDateEndTask(taskWithPeriod.getDateEnd());
+                }else{
+	                // SI la dateBeginPeriodicity est avant la date de fin alors en
+	                // prend la date de la premiere occurence (pour la date de fin)
+	                // et la date de -1 occurrence pour la date de debut
+	                if (dateBeginPeriodicity.before(dateEnd)) {
+	                    taskWithPeriod.setDateEndTask((Date) dateBeginPeriodicity.getTime().clone());
+	                    this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
+	                    taskWithPeriod.setDateBeginTask(dateBeginPeriodicity.getTime());
+	                    taskUserDTO.setTask(taskWithPeriod);
+	                } else {
+	                    // SI la dateBeginPeriodicity est apres la date de fin alors
+	                    // en prend la date de l'occurence -1 (pour la date de fin)
+	                    // et la date de -2 occurrence pour la date de debut
+	                    this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
+	                    taskWithPeriod.setDateEndTask((Date) dateBeginPeriodicity.getTime().clone());
+	                    this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
+	                    taskWithPeriod.setDateBeginTask(dateBeginPeriodicity.getTime());
+	                    taskUserDTO.setTask(taskWithPeriod);
+	                }
                 }
-                
-                System.out.println("task" + taskWithPeriod.getTitle());
-                System.out.println("end" + taskWithPeriod.getDateEndTask());
-                System.out.println("end2" + taskWithPeriod.getDateEnd());
-                System.out.println("begin" + taskWithPeriod.getDateBeginTask());
-                System.out.println("begin2" + taskWithPeriod.getDateBegin());
-                
-                if( taskWithPeriod.getDateEndTask().before(taskWithPeriod.getDateBegin())){
-            		taskWithPeriod.setDateEndTask(taskWithPeriod.getDateBegin());
-            	}
-            	if(  taskWithPeriod.getDateBeginTask().after(taskWithPeriod.getDateEnd())){
-            		taskWithPeriod.setDateBeginTask(taskWithPeriod.getDateEnd());
-            	}
-            	
-            	if( taskWithPeriod.getDateEndTask().after(taskWithPeriod.getDateEnd())){
-            		taskWithPeriod.setDateEndTask(taskWithPeriod.getDateEnd());
-            	}
-            	if(  taskWithPeriod.getDateBeginTask().before(taskWithPeriod.getDateBegin())){
-            		taskWithPeriod.setDateBeginTask(taskWithPeriod.getDateBegin());
-            	}
             	
                 // Test sur les valeurs de la tasks, on va remettre le statut a
                 // TODO pour chaque nouvelle occurence de la periodicity.
@@ -285,8 +271,10 @@ public class TaskUserServiceImpl implements TaskUserService {
         	if( taskUser.getDateBegin() == null){
         		taskUser.setDateBegin(new Date());
         	}
+        	
             userValues.forEach(u -> {
                 User user = userRepository.findOne(new Long((Integer) u.get("id")));
+                
                 if(user != null) {
                     // Notification pour l'ajout
                     Notification notif = new Notification();
