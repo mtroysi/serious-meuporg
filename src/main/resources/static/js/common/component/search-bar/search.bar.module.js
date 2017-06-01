@@ -2,7 +2,7 @@
  * Created by Morgane TROYSI on 30/05/17.
  */
 
-(function () {
+(function() {
     'use strict';
 
     /** @ngInject */
@@ -14,7 +14,7 @@
          * @param query chaîne à chercher
          * @returns {HttpPromise}
          */
-        ctrl.searchUsersAndTasks = function (query) {
+        ctrl.searchUsersAndTasks = function(query) {
             return CommonSearchBarService.searchUsersAndTasks(query);
         };
 
@@ -24,8 +24,9 @@
          * @param $model
          * @param $label
          */
-        ctrl.onSelect = function ($item, $model, $label) {
-            if($item.type === "USER") {
+        ctrl.onSelect = function($item, $model, $label) {
+            $('body').click();
+            if ($item.type === "USER") {
                 $state.go('app.profil', { idUser: $item.id });
             } else {
                 $state.go('app.board-preview', { idtask: $item.id });
