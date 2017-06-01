@@ -48,7 +48,8 @@
                             class="required">*</span></label>
                     <div class="col-sm-6">
                         <input type="number" class="form-control" id="taskDuration"
-                               ng-model="ctrl.task.task.duration" ng-required="true" ng-change="ctrl.calculExperience()&&ctrl.calculMoney()"
+                               ng-model="ctrl.task.task.duration" ng-required="true"
+                               ng-change="ctrl.calculExperience()&&ctrl.calculMoney()"
                                placeholder="Durée"/>
                     </div>
                     <label class="col-sm-3"> points d'énergie</label>
@@ -120,14 +121,21 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3">Est aux enchères</label>
+                    <label class="col-sm-3 control-label">Est aux enchères</label>
                     <p class="col-sm-8" ng-show="ctrl.task.task.isBid">Oui</p>
                     <p class="col-sm-8" ng-hide="ctrl.task.task.isBid">Non</p>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Inviter des utilisateurs : </label>
-                    <div class="col-sm-7">
-                        <users-input users="ctrl.task.user" with-current="true" board-id="ctrl.task.task.boardId"></users-input>
+                <div class="form-group" ng-hide="ctrl.task.task.isBid">
+                    <label class="col-sm-3 control-label">Inviter des utilisateurs : </label>
+                    <div class="col-sm-8 form-inline">
+                        <users-input users="ctrl.task.user" with-current="true"
+                                     board-id="ctrl.task.task.boardId"></users-input>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="ctrl.task.task.isBid">
+                    <label class="col-sm-3 control-label">Liste des utilisateurs : </label>
+                    <div class="col-sm-8 form-inline">
+                        <div class="tags" ng-repeat="user in ctrl.task.user">{{user.fullName}}</div>
                     </div>
                 </div>
             </div>

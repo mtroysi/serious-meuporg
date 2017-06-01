@@ -15,7 +15,6 @@
          * @param query chaîne à chercher
          */
         ctrl.loadUsers = function (query) {
-            console.log(ctrl.boardId);
             return CommonUsersInputService.loadUsers(query, ctrl.withCurrent, ctrl.boardId);
         };
     }
