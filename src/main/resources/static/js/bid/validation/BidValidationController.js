@@ -45,15 +45,15 @@
             $.each(ctrl.listBidEnd, function(index, value) {
                 // returns the id list when the state is true
                 var listUser = [];
-                if (value.listTask) {
-                    value.listTask.forEach(function(element) {
+                if (value.listUser) {
+                    value.listUser.forEach(function(element) {
                         if (element.etat === true) {
                             listUser.push(element.userId);
                         }
                     });
                 }
 
-                listFinal.push({ idTask: value.task.id, duration: value.value, listUserId: listUser });
+                listFinal.push({ idTaskUser: value.taskUser.id, duration: value.value, listUserId: listUser });
             });
 
             BidService.validBid($stateParams.idBoard, listFinal).then(function() {

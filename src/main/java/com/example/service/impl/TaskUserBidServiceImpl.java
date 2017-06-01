@@ -74,10 +74,7 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 
             return listTaskUser.stream().map((TaskUser taskUser) -> {
                 TaskUserBid taskUserBid = taskUser.getTaskUserBids().stream()
-                		 .filter((TaskUserBid tub) -> { 
-                			 System.out.println("----------"+ tub.getUser().getId() +"------" + user.getId());
-                			 return tub.getUser().getId().equals(user.getId()); 
-                		 }).findFirst()
+                		 .filter((TaskUserBid tub) -> tub.getUser().getId().equals(user.getId())).findFirst()
                 		 .orElse(null);
                 
                 

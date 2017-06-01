@@ -41,11 +41,11 @@ public interface TaskUserRepository extends PagingAndSortingRepository<TaskUser,
 	 * @param boardId : id du tableau
 	 * @return liste des taches
 	 */
-	@Query(value="SELECT * FROM task_user ttuu LEFT JOIN task_user_user tuu ON ttuu.id = tuu.task_user_id WHERE tuu.user_id IS NULL AND ttuu.task_id IN ( SELECT t.id FROM task t WHERE t.is_bid = true AND t.board_id=?1)", nativeQuery = true)
+	@Query(value="SELECT * FROM task_user ttuu LEFT JOIN task_user_user tuu ON ttuu.id = tuu.task_user_id WHERE tuu.user_id IS NULL AND ttuu.task_id IN ( SELECT t.id FROM task t WHERE t.is_bid = false AND t.board_id=?1)", nativeQuery = true)
 	List<TaskUser> findTaskUserByUserIsNullAndBoardId(Long boardId);
 	
 	/**
-	 * Retourne la liste des taches aux enchères dasn la date de fin est supérieure à la date en parametre
+	 * Retourne la liste des taches aux enchères dont la date de fin est supérieure à la date en parametre
 	 * @param boardId : id du tableau
 	 * @param dateEndBid : date de fin des enchères
 	 * @return liste des taches
