@@ -12,7 +12,7 @@
                 <li><a ui-sref="app.bidPreview({ idBoard: board.id})">Enchères</a></li>
             </ul>
         </li>
-        <li class="nav-separator" ng-if="vm.user.isSuperAdmin"><span>Super Admin</span></li>
-        <li ng-class="vm.getClass(['app.shopCreate'])" ng-if="vm.user.isSuperAdmin"><a ui-sref="app.shopCreate"><i class="ti ti ti-shopping-cart"></i><span>Créer des objets</span></a></li>
+        <li class="nav-separator" ng-if="vm.user.isSuperAdmin"><span>Administration</span></li>
+        <li ng-class="vm.getClass(['app.shopCreate'])" ng-if="vm.user.isSuperAdmin"><a ui-sref="app.shopCreate"><i class="ti ti-wand"></i><span>Créer des objets</span></a></li>
     </ul>
 </nav>
