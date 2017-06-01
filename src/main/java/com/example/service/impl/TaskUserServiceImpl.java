@@ -1,11 +1,13 @@
 package com.example.service.impl;
 
 import com.example.ConstanteGameMaster;
+import com.example.dto.BoardDTO;
 import com.example.dto.TaskUserDTO;
 import com.example.dto.TaskWithPeriodDTO;
 import com.example.dto.UserDTO;
 import com.example.enumeration.PeriodicityEnum;
 import com.example.enumeration.PriorityEnum;
+import com.example.enumeration.RoleEnum;
 import com.example.enumeration.StatusEnum;
 import com.example.enumeration.TypeNotifEnum;
 import com.example.exception.GameMasterException;
@@ -274,20 +276,11 @@ public class TaskUserServiceImpl implements TaskUserService {
         	
             userValues.forEach(u -> {
                 User user = userRepository.findOne(new Long((Integer) u.get("id")));
-                
-                if(user != null) {
-                    // Notification pour l'ajout
-                    Notification notif = new Notification();
-                    notif.setContent(ConstanteGameMaster.ASSIGNMENT_TASK + " " + task.getTitle());
-                    notif.setTitle(ConstanteGameMaster.ASSIGNMENT_TASK_TITLE);
-                    notif.setDateCreation(new Date());
-                    notif.setIsRead(false);
-                    notif.setType(TypeNotifEnum.information);
-                    notif.setUser(user);
-                    user.addNotification(notif);
-                }
                 users.add(user);
             });
+            
+            //Gestion des utilisateurs
+        	inviteUsers(taskUser, users);
         }
         taskUser.setUser(users);
 
@@ -318,6 +311,44 @@ public class TaskUserServiceImpl implements TaskUserService {
         taskUser = taskUserRepository.save(taskUser);
 
         return updateTask(taskUser.getId(), values);
+    }
+    
+    
+    /**
+     * Gestionnaire des utilisateurs invités
+     * @param board
+     * @param boardDTO
+     */
+    private void inviteUsers(TaskUser taskUser, List<User> listNewUser) {
+    	
+    	/* On recupere tous les utilisateurs */
+        List<User> listUserCurrent = taskUser.getUser();
+     
+        
+        /* On supprime les utilisateurs supprimés dans le boardDTO */
+        listUserCurrent.removeAll(listUserCurrent.stream().filter((User u) -> {
+        	return !listNewUser.stream().filter((User newUser) -> newUser.getId().equals(u.getId())).findFirst().isPresent();
+        }).collect(Collectors.toList()));
+        
+        /* Gestion des utilisateurs invités */
+        listNewUser.stream().forEach((User newUser) -> {
+        	// Si l'utilisateur n'est pas deja présent dans la liste BoardUser alors on le rajoute
+        	if( !listUserCurrent.stream().filter((User u) -> u.getId().equals(newUser.getId())).findFirst().isPresent()){
+                User user = userRepository.findOne(newUser.getId());
+                
+                if( user != null) {
+                	// Notification pour l'ajout
+                	Notification notif = new Notification();
+                    notif.setContent(ConstanteGameMaster.ASSIGNMENT_TASK + " " + taskUser.getTask().getTitle());
+                    notif.setTitle(ConstanteGameMaster.ASSIGNMENT_TASK_TITLE);
+                    notif.setDateCreation(new Date());
+                    notif.setIsRead(false);
+                    notif.setType(TypeNotifEnum.information);
+                    notif.setUser(user);
+                    user.addNotification(notif);
+                }
+        	}
+        });
     }
 
     /*
