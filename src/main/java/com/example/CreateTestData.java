@@ -113,17 +113,23 @@ public class CreateTestData {
 
 	private Task task3;
 
+	private Task task4;
+
+	private Task task5;
+
+	private Task task6;
+
 	private TaskUser taskUser1;
 
 	private TaskUser taskUser2;
 
 	private TaskUser taskUser3;
 
-	private Task task4;
+	private TaskUser taskUser4;
 
-	private Task task5;
+	private TaskUser taskUser5;
 
-	private Task task6;
+	private TaskUser taskUser6;
 
 	private User user2;
 
@@ -649,6 +655,39 @@ public class CreateTestData {
 		taskUser3.setUser(list3);
 		taskUser3.setVersion(1);
 		this.taskUser3 = taskUserRepository.save(taskUser3);
+
+		TaskUser taskUser4 = new TaskUser();
+		taskUser4.setId(4L);
+		taskUser4.setDateBegin(new Date(sdf.parse("12/01/2016").getTime()));
+		taskUser4.setDurationReel(null);
+		taskUser4.setStatus(StatusEnum.IN_PROGRESS);
+		taskUser4.setTask(this.task4);
+		ArrayList<User> list4 = new ArrayList<>();
+		taskUser4.setUser(list4);
+		taskUser4.setVersion(1);
+		this.taskUser4 = taskUserRepository.save(taskUser4);
+
+		TaskUser taskUser5 = new TaskUser();
+		taskUser5.setId(5L);
+		taskUser5.setDateBegin(new Date(sdf.parse("12/01/2016").getTime()));
+		taskUser5.setDurationReel(null);
+		taskUser5.setStatus(StatusEnum.IN_PROGRESS);
+		taskUser5.setTask(this.task5);
+		ArrayList<User> list5 = new ArrayList<>();
+		taskUser5.setUser(list5);
+		taskUser5.setVersion(1);
+		this.taskUser5 = taskUserRepository.save(taskUser5);
+
+		TaskUser taskUser6 = new TaskUser();
+		taskUser6.setId(6L);
+		taskUser6.setDateBegin(new Date(sdf.parse("12/01/2016").getTime()));
+		taskUser6.setDurationReel(null);
+		taskUser6.setStatus(StatusEnum.IN_PROGRESS);
+		taskUser6.setTask(this.task3);
+		ArrayList<User> list6 = new ArrayList<>();
+		taskUser6.setUser(list6);
+		taskUser6.setVersion(1);
+		this.taskUser6 = taskUserRepository.save(taskUser6);
 
 		/* CREATION OBJETS */
 		Item item1 = new Item();
