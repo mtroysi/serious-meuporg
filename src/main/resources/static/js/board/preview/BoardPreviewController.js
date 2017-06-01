@@ -54,8 +54,8 @@
              * WS Loard info board
              */
             ctrl.getBoard = function(id) {
-                if(($stateParams.idtask)&&(!$stateParams.idBoard)) {
-                    BoardService.getBoardFromTask($stateParams.idtask).then(function (response) {
+                if (($stateParams.idtask) && (!$stateParams.idBoard)) {
+                    BoardService.getBoardFromTask($stateParams.idtask).then(function(response) {
                         ctrl.board = response;
                         ctrl.isAdmin = (Number(AuthenticationService.getUserId()) === ctrl.board.creator.id);
                         ctrl.getTaskBoard(ctrl.board.id, AuthenticationService.getUserId());
@@ -221,11 +221,28 @@
             });
 
             $scope.$on("createdTask", function(event, args) {
-                if (args.task.user.id === Number(AuthenticationService.getUserId())){
+                if (args.task.user.id === Number(AuthenticationService.getUserId())) {
                     ctrl.listTask.push(args.task);
                     ctrl.listTaskDefault.push(args.task);
                 }
                 ctrl.filterTask();
+            });
+
+            /** On va supprimer les taches qui se sont plus affectées à l'utilisateur courant */
+            $scope.$on("updateTask", function() {
+                // Si on se trouve en mode individuelle
+                if ($state.current.name === "app.board-preview") {
+                    console.log(ctrl.listTaskDefault);
+                    ctrl.listTaskDefault = ctrl.listTaskDefault.filter(function(e) {
+                        var sum = 0;
+                        e.user.forEach(function(u, initialValue) {
+                            sum += u.id === Number(AuthenticationService.getUserId()) ? 1 : 0;
+                        });
+                        return sum > 0;
+                    });
+                    ctrl.listTask = angular.copy(ctrl.listTaskDefault);
+                    ctrl.filterTask();
+                }
             });
 
             /**
