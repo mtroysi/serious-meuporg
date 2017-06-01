@@ -27,7 +27,7 @@
             };
 
             svc.deleteTask = function(id) {
-                return $http.delete(constant.BASE_URI + '/task/' + id);
+                return $http.delete(constant.BASE_URI + '/taskUser/' + id);
             };
 
             svc.listTaskByBoardAndUser = function(board_id, user_id) {
