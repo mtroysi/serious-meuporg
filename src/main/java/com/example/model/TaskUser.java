@@ -58,7 +58,7 @@ public class TaskUser extends CommonEntity {
     /**
      * Enchèrissements des utilisateurs
      */
-    @OneToMany(mappedBy = "taskUser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "taskUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TaskUserBid> taskUserBids = new ArrayList<>();
     
     public List<User> getUser() {
