@@ -97,6 +97,9 @@ public class User extends CommonEntity {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Notification> notifications = new ArrayList<>();
     
+    /**
+     * Item User
+     */
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ItemUser> itemUser = new ArrayList<>();
 
