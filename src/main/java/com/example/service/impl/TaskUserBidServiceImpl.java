@@ -157,33 +157,34 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
             Task task = taskRepo.findOne(bid.getIdTask());
 
             if (task != null) {
-                // Creation du lien entre une tache et un utilisateur
-                task.setTaskUsers(bid.getListUserId().stream().map((Long idUser) -> {
+            	//Create TaskUser
+                TaskUser taskUser = new TaskUser();
+                taskUser.setColonneKanban(null);
+                taskUser.setDateBegin(new Date());
+                taskUser.setDurationReel(null);
+                taskUser.setStatus(StatusEnum.TODO);
+                taskUser.setTask(task);
+                
+                List<User> listuser= bid.getListUserId().stream().map((Long idUser) -> {
                     User user = userRepo.findOne(idUser);
                     if (user != null) {
                         // Add Exp + Level + Money
                         userService.manageMoneyExpUser(user, board.getMoneyWinBid(), board.getExpWinBid());
                         // Add notif
                         this.createNotifWinBid(task, user);
-
-                        //Create TaskUser
-                        TaskUser taskUser = new TaskUser();
-                        taskUser.setColonneKanban(null);
-                        taskUser.setDateBegin(new Date());
-                        taskUser.setDurationReel(null);
-                        taskUser.setStatus(StatusEnum.TODO);
-                        taskUser.setTask(task);
-                        ArrayList<User> list = new ArrayList<>();
-                        list.add(user);
-                        taskUser.setUser(list);
-                        return taskUser;
+                        return user;
                     } else {
                         return null;
                     }
                 })
-                        .filter(Objects::nonNull)
-                        .collect(Collectors.toList()));
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
 
+        		taskUser.setUser(listuser);
+        		
+        		// ajout de la taskUser à la tache
+            	task.addTaskUsers(taskUser);
+            	
                 // modification de la task (duration + isBid + dateEndBid
                 task.setIsBid(false);
                 task.setDateEndBid(null);

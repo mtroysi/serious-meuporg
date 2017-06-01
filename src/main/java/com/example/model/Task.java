@@ -230,8 +230,14 @@ public class Task extends CommonEntity {
     public List<TaskUserBid> getTaskUserBids() {
         return taskUserBids;
     }
+    
+    
 
-    public void setTaskUserBids(List<TaskUserBid> taskUserBids) {
+    public boolean addTaskUsers(TaskUser e) {
+		return taskUsers.add(e);
+	}
+
+	public void setTaskUserBids(List<TaskUserBid> taskUserBids) {
         this.taskUserBids = taskUserBids;
     }
 
