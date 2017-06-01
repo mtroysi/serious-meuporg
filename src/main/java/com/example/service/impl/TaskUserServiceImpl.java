@@ -257,6 +257,10 @@ public class TaskUserServiceImpl implements TaskUserService {
         List<Map<String, Object>> userValues = (List<Map<String, Object>>) values.get("user");
         ArrayList<User> users = new ArrayList<>();
         if (userValues != null) {
+        	// La premiere fois que un utilisateur est ajouté à la tache, on va lancer la date de debut
+        	if( taskUser.getDateBegin() == null){
+        		taskUser.setDateBegin(new Date());
+        	}
             userValues.forEach(u -> {
                 User user = userRepository.findOne(new Long((Integer) u.get("id")));
                 if(user != null) {
@@ -298,6 +302,7 @@ public class TaskUserServiceImpl implements TaskUserService {
         task = taskRepository.save(task);
 
         taskUser.setTask(task);
+        taskUser.setStatus(StatusEnum.TODO);
         taskUser = taskUserRepository.save(taskUser);
 
         return updateTask(taskUser.getId(), values);
