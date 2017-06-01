@@ -95,11 +95,11 @@ public class BidController {
      * @param duration : duree
      * @return liste de TaskUserBidDTO
      */
-    @RequestMapping(value = "/task/{task_id}", method = RequestMethod.POST)
-    public ResponseEntity<TaskUserBidDTO> addOrUpdateTaskUserBid(@PathVariable(value = "task_id") Long task_id, @RequestBody Double duration) {
-        logger.info("Calling BidController.addOrUpdateTaskUserBid with {}", task_id);
+    @RequestMapping(value = "/task/{task_user_id}", method = RequestMethod.POST)
+    public ResponseEntity<TaskUserBidDTO> addOrUpdateTaskUserBid(@PathVariable(value = "task_user_id") Long taskUser_id, @RequestBody Double duration) {
+        logger.info("Calling BidController.addOrUpdateTaskUserBid with {}", taskUser_id);
 
-        TaskUserBidDTO tub = taskUserBidService.addOrUpdateTaskUserBid(task_id, duration);
+        TaskUserBidDTO tub = taskUserBidService.addOrUpdateTaskUserBid(taskUser_id, duration);
 
         return new ResponseEntity<>(tub, HttpStatus.OK);
     }

@@ -43,9 +43,9 @@
                     <div class="panel-body">
                         <div class="responsive-carousel">
                             <div ng-repeat="taskUserBid in ctrl.listTaskUserBid">
-                                <div class="tile-carousel" ng-class="{active : ctrl.taskShow.task.id == taskUserBid.task.id }" ng-click="ctrl.changeTask(taskUserBid)">
-                                    <div class="tile-heading"><span>{{ taskUserBid.task.title }}</span>
-                                        <br><strong class="date">fin le {{ taskUserBid.task.dateEndBid | date:'dd/MM/yyyy à HH:mm' }}</strong></div>
+                                <div class="tile-carousel" ng-class="{active : ctrl.taskShow.taskUser.task.id == taskUserBid.taskUser.task.id }" ng-click="ctrl.changeTask(taskUserBid)">
+                                    <div class="tile-heading"><span>{{ taskUserBid.taskUser.task.title }}</span>
+                                        <br><strong class="date">fin le {{ taskUserBid.taskUser.task.dateEndBid | date:'dd/MM/yyyy à HH:mm' }}</strong></div>
                                     <div class="tile-footer">
                                         <span class="estimation">{{ taskUserBid.duration ? taskUserBid.duration : '?' }}</span>
                                     </div>
@@ -58,8 +58,8 @@
             <div class="row margin-h-20" ng-show="ctrl.taskShow">
                 <div class=" col-md-12 panel panel-default">
                     <div class="panel-body boxTinder">
-                        <h2>{{ ctrl.taskShow.task.title }}</h2>
-                        <p>{{ ctrl.taskShow.task.content }}</p>
+                        <h2>{{ ctrl.taskShow.taskUser.task.title }}</h2>
+                        <p>{{ ctrl.taskShow.taskUser.task.content }}</p>
                         <div class="buttonTinder">
                             <button class="left btn btn-danger" ng-click="ctrl.refusedTask()"><i class="ti ti-close"></i></button>
                             <button class="right btn btn-success" ng-click="ctrl.acceptedTask()"><i class="ti ti-check"></i></button>

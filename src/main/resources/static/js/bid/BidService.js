@@ -20,11 +20,11 @@
 
         /**
          * Affecte un temps à une tâche aux enchères
-         * @param taskId id de la tâche
+         * @param taskId id de la tâcheUser
          * @param duration durée
          */
-        svc.addOrUpdateTaskUserBid = function(taskId, duration) {
-            return BidWS.addOrUpdateTaskUserBid(taskId, duration).then(function(response) {
+        svc.addOrUpdateTaskUserBid = function(taskUserId, duration) {
+            return BidWS.addOrUpdateTaskUserBid(taskUserId, duration).then(function(response) {
                 return response.data;
             });
         };

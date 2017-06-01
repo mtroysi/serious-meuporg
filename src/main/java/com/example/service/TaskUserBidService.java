@@ -19,11 +19,11 @@ public interface TaskUserBidService {
     
     /**
      * Ajoute le temps à une enchère par rapport à une tache
-     * @param idTask
+     * @param idTaskUser
      * @param duration
      * @return tache (TaskUserBidDTO)
      */
-    TaskUserBidDTO addOrUpdateTaskUserBid(Long idTask, Double duration);
+    TaskUserBidDTO addOrUpdateTaskUserBid(Long idTaskUser, Double duration);
     
     
     /**

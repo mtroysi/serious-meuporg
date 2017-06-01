@@ -67,29 +67,27 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
     @Override
     public List<TaskUserBidDTO> getTaskUserBidByBoardAndUser(Long idBoard, Long idUser) {
 
-        List<Task> listTask = taskRepo.findTaskBidByBoardIdAndDate(idBoard, new Date());
+        List<TaskUser> listTaskUser = taskUserRepo.findTaskUserBidByBoardIdAndDate(idBoard, new Date());
         User user = userRepo.findOne(idUser);
         if (user != null) {
             UserDTO userDto = (UserDTO) transformers.convertEntityToDto(user, UserDTO.class);
 
-            return listTask.stream().map((Task task) -> {
-                TaskUserBid taskUserBid = task.getTaskUsers().stream()
-                							.map((TaskUser tu)-> {
-                								return tu.getTaskUserBids().stream()
-                										.filter((TaskUserBid tub) -> tub.getUser().getId().equals(user.getId()))
-                										.findFirst().orElse(null);
-                							}).findFirst().orElse(null);
+            return listTaskUser.stream().map((TaskUser taskUser) -> {
+                TaskUserBid taskUserBid = taskUser.getTaskUserBids().stream()
+                		 .filter((TaskUserBid tub) -> { 
+                			 System.out.println("----------"+ tub.getUser().getId() +"------" + user.getId());
+                			 return tub.getUser().getId().equals(user.getId()); 
+                		 }).findFirst()
+                		 .orElse(null);
                 
                 
                 if (taskUserBid == null) {
-                  /*  return new TaskUserBidDTO((TaskDTO) transformers.convertEntityToDto(task, TaskDTO.class), null,
+                    return new TaskUserBidDTO((TaskUserDTO) transformers.convertEntityToDto(taskUser, TaskUserDTO.class), null,
                             null);
                 } else {
-                    return new TaskUserBidDTO((TaskDTO) transformers.convertEntityToDto(task, TaskDTO.class), userDto,
-                            taskUserBid.getDuration());*/
-                	return new TaskUserBidDTO();
+                    return new TaskUserBidDTO((TaskUserDTO) transformers.convertEntityToDto(taskUser, TaskUserDTO.class), userDto,
+                            taskUserBid.getDuration());
                 }
-                return null;
             }).filter(Objects::nonNull).collect(Collectors.toList());
         } else {
             return null;
@@ -113,20 +111,20 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
      * @see com.example.service.TaskUserBidService#addOrUpdateTaskUserBid(java.lang.Long, java.lang.Double)
      */
     @Override
-    public TaskUserBidDTO addOrUpdateTaskUserBid(Long idTask, Double duration) {
+    public TaskUserBidDTO addOrUpdateTaskUserBid(Long idTaskUser, Double duration) {
         User user = userService.getCurrentUser();
 
-        TaskUserBid tub = taskUserBidRepo.findByTaskUserTaskIdAndUserId(idTask, user.getId());
+        TaskUserBid tub = taskUserBidRepo.findByTaskUserIdAndUserId(idTaskUser, user.getId());
 
         if (tub != null) {
             tub.setDuration(duration);
             tub = taskUserBidRepo.save(tub);
         } else {
-            Task task = taskRepo.findOne(idTask);
-            if (task != null) {
+            TaskUser taskuser = taskUserRepo.findOne(idTaskUser);
+            if (taskuser != null) {
                 TaskUserBid tub_new = new TaskUserBid();
                 tub_new.setDuration(duration);
-                // tub_new.setTask(task);
+                tub_new.setTaskUser(taskuser);
                 tub_new.setUser(user);
                 tub = taskUserBidRepo.save(tub_new);
             } else {

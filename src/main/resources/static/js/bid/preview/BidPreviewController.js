@@ -144,7 +144,7 @@
          * Saving the user's estimate for a task
          */
         ctrl.saveBid = function() {
-            BidService.addOrUpdateTaskUserBid(ctrl.taskShow.task.id, ctrl.durationBid).then(function() {
+            BidService.addOrUpdateTaskUserBid(ctrl.taskShow.taskUser.id, ctrl.durationBid).then(function() {
                 ctrl.taskShow.read = true;
                 ctrl.taskShow.duration = angular.copy(ctrl.durationBid);
                 ctrl.showTaskCarouselAndTinder();

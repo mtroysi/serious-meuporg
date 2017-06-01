@@ -23,11 +23,11 @@ public interface TaskUserBidRepository extends PagingAndSortingRepository<TaskUs
 	List<TaskUserBid> findByTaskUserTaskBoardIdAndTaskUserTaskDateEndBidBefore(Long boardId, Date dateFinBid);
 	
 	/**
-	 * Retourne une tache enchères par rapport à un utilisateur et une tache
-	 * @param task_id : id de la tache
+	 * Retourne une tache enchères par rapport à un utilisateur et une tacheUser
+	 * @param task_id : id de la tacheUser
 	 * @param user_id : id de l'utilisateur
 	 * @return liste de tache
 	 */
-	TaskUserBid findByTaskUserTaskIdAndUserId(Long task_id, Long user_id);
+	TaskUserBid findByTaskUserIdAndUserId(Long taskUser_id, Long user_id);
 	
 }
