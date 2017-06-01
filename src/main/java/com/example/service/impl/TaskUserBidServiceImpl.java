@@ -160,16 +160,13 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
         Board board = boardRepo.findOne(idBoard);
 
         listBidDTO.stream().forEach((BidDTO bid) -> {
-            Task task = taskRepo.findOne(bid.getIdTask());
+            TaskUser taskUser = taskUserRepo.findOne(bid.getIdTaskUser());
 
-            if (task != null) {
-            	//Create TaskUser
-                TaskUser taskUser = new TaskUser();
-                taskUser.setColonneKanban(null);
+            if (taskUser != null) {
+            	//Update taskUser
                 taskUser.setDateBegin(new Date());
                 taskUser.setDurationReel(null);
                 taskUser.setStatus(StatusEnum.TODO);
-                taskUser.setTask(task);
                 
                 List<User> listuser= bid.getListUserId().stream().map((Long idUser) -> {
                     User user = userRepo.findOne(idUser);
@@ -177,7 +174,7 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
                         // Add Exp + Level + Money
                         userService.manageMoneyExpUser(user, board.getMoneyWinBid(), board.getExpWinBid());
                         // Add notif
-                        this.createNotifWinBid(task, user);
+                        this.createNotifWinBid(taskUser, user);
                         return user;
                     } else {
                         return null;
@@ -188,18 +185,16 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 
         		taskUser.setUser(listuser);
         		
-        		// ajout de la taskUser à la tache
-            	task.addTaskUsers(taskUser);
             	
                 // modification de la task (duration + isBid + dateEndBid
-                task.setIsBid(false);
-                task.setDateEndBid(null);
-                task.setDuration(bid.getDuration());
+        		taskUser.getTask().setIsBid(false);
+        		taskUser.getTask().setDateEndBid(null);
+        		taskUser.getTask().setDuration(bid.getDuration());
 
                 // suppression des enchères dans la BDD
-                task.getTaskUsers().stream().forEach((TaskUser t) -> t.getTaskUserBids().clear());
+        		taskUser.getTaskUserBids().clear();
 
-                taskRepo.save(task);
+                taskUserRepo.save(taskUser);
             }
         });
     }
@@ -210,9 +205,9 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
      * @param task
      * @param user
      */
-    private void createNotifWinBid(Task task, User user) {
+    private void createNotifWinBid(TaskUser taskUser, User user) {
         Notification notif = new Notification();
-        notif.setContent(ConstanteGameMaster.WIN_BID_CONTENT + " " + task.getTitle());
+        notif.setContent(ConstanteGameMaster.WIN_BID_CONTENT + " " + taskUser.getTask() != null ? taskUser.getTask().getTitle() : "");
         notif.setTitle(ConstanteGameMaster.WIN_BID_TITLE);
         notif.setDateCreation(new Date());
         notif.setIsRead(false);
