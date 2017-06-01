@@ -7,9 +7,15 @@
     'use strict';
 
     /** @ngInject */
-    function ComponentCommentController(AuthenticationService) {
+    function ComponentCommentController(AuthenticationService, $scope, constant) {
         var ctrl = this;
         ctrl.editable = false;
+
+        $scope.$watch('this.ctrl.comment.creator.avatar', function() {
+            if (!ctrl.comment.creator.avatar) {
+                ctrl.comment.creator.avatar = constant.URL_IMAGE_DEFAULT;
+            }
+        });
 
         /**
          * Indique si le commentaire est en cours d'édition
@@ -20,12 +26,12 @@
         };
 
         /**
-         * Retourne vrai si l'auer du commentaire est l'utilisateur connecté
+         * Retourne vrai si l'auteur du commentaire est l'utilisateur connecté
          * @returns {boolean}
          */
         ctrl.isOwner = function () {
             return ctrl.comment.creator.id === Number(AuthenticationService.getUserId());
-        }
+        };
     }
 
 
