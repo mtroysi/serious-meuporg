@@ -49,6 +49,7 @@
 
 
                 ctrl.task.task.isPeriodicity = false;
+                ctrl.task.task.isBid = false;
                 ctrl.listTags();
                 ctrl.titleEditable = true;
                 ctrl.creation = true;
