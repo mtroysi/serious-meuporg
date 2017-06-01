@@ -297,7 +297,9 @@ public class TaskUserServiceImpl implements TaskUserService {
      */
     @Override
     public void deleteTask(Long id) {
-        taskUserRepository.delete(id);
+        TaskUser taskUser = taskUserRepository.findOne(id);
+        taskUserRepository.delete(taskUser);
+        taskRepository.delete(taskUser.getTask().getId());
     }
 
     @Override
