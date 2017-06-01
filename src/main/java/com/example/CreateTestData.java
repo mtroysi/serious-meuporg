@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.enumeration.ItemEnum;
+import com.example.enumeration.ItemPositionEnum;
 import com.example.enumeration.PeriodicityEnum;
 import com.example.enumeration.PriorityEnum;
 import com.example.enumeration.RoleEnum;
@@ -167,6 +168,7 @@ public class CreateTestData {
 		user1.setBoardUsers(null);
 		user1.setTaskUserBids(null);
 		user1.setTaskUsers(null);
+		user1.setIsSuperAdmin(false);
 		this.user1 = this.userRepository.save(user1);
 
 		User user2 = new User();
@@ -179,11 +181,30 @@ public class CreateTestData {
 		user2.setPassword("user");
 		user2.setExperience(35L);
 		user2.setMoney(175L);
+		user2.setLevel(1L);
 		user2.setBoardUsers(null);
 		user2.setTaskUserBids(null);
 		user2.setTaskUsers(null);
+		user2.setIsSuperAdmin(false);
 		this.user2 = this.userRepository.save(user2);
-
+		
+		User user3 = new User();
+		user3.setId(3L);
+		user3.setVersion(1);
+		user3.setDateCreation(new Date());
+		user3.setEmail("admin@admin.fr");
+		user3.setFirstName("admin");
+		user3.setLastName("admin");
+		user3.setPassword("admin");
+		user3.setExperience(35L);
+		user3.setMoney(175L);
+		user3.setLevel(1L);
+		user3.setBoardUsers(null);
+		user3.setTaskUserBids(null);
+		user3.setTaskUsers(null);
+		user3.setIsSuperAdmin(true);
+		this.userRepository.save(user3);
+		
 		/* CREATION PERIODICITY */
 		Periodicity period1 = new Periodicity();
 		period1.setId(1L);
@@ -672,7 +693,7 @@ public class CreateTestData {
 		item4.setDescription("Génère de la neige sur l'ecran de l'utilisateur pendant 7 jours");
 		item4.setPrice(175L);
 		item4.setRequiredLevel(2L);
-		item4.setDuration(7);
+		item4.setDuration(7L);
 		item4.setReusable(Boolean.TRUE);
 		item4.setType(ItemEnum.CURSE);
 		item4.setImage(
@@ -697,7 +718,7 @@ public class CreateTestData {
 		item6.setDescription("Petite musique de la brebis");
 		item6.setPrice(175L);
 		item6.setRequiredLevel(2L);
-		item6.setDuration(3);
+		item6.setDuration(3L);
 		item6.setReusable(Boolean.FALSE);
 		item6.setType(ItemEnum.CURSE);
 		item6.setImage("https://dechairetdelait.files.wordpress.com/2014/04/chevreau.jpg");
@@ -709,9 +730,10 @@ public class CreateTestData {
 		item7.setDescription("Jean-Claude va vous permettre de travailler plus rapidement pendant 3jours");
 		item7.setPrice(175L);
 		item7.setRequiredLevel(2L);
-		item7.setDuration(3);
+		item7.setDuration(3L);
 		item7.setReusable(Boolean.FALSE);
 		item7.setType(ItemEnum.CURSE);
+		item7.setPosition(ItemPositionEnum.BOTTOM_RIGHT);
 		item7.setImage("http://www.jookos.com/wp-content/uploads/2016/06/url-4.jpg");
 		itemRepository.save(item7);
 		

@@ -7,13 +7,17 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.ConstanteGameMaster;
 import com.example.dto.ItemDTO;
 import com.example.enumeration.ItemEnum;
+import com.example.exception.GameMasterException;
 import com.example.model.Item;
 import com.example.model.ItemUser;
+import com.example.model.User;
 import com.example.repository.ItemRepository;
 import com.example.repository.ItemUserRepository;
 import com.example.service.ItemService;
+import com.example.service.UserService;
 import com.example.transformers.Transformers;
 
 /**
@@ -28,6 +32,9 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private ItemUserRepository itemUserRepository;
 
+    @Autowired
+    private UserService userService;
+    
     @Autowired
     private Transformers transformers;
 
@@ -52,4 +59,20 @@ public class ItemServiceImpl implements ItemService {
         .filter(Objects::nonNull)
         .collect(Collectors.toList());
     }
+
+    
+	/* 
+	 * (non-Javadoc)
+	 * @see com.example.service.ItemService#createItem(com.example.dto.ItemDTO)
+	 */
+	@Override
+	public ItemDTO createItem(ItemDTO item) {
+		User creator = userService.getCurrentUser();
+		if(creator.getIsSuperAdmin()){
+			Item newItem = (Item)transformers.convertDtoToEntity(item, Item.class);
+			return (ItemDTO)transformers.convertEntityToDto(itemRepository.save(newItem), ItemDTO.class);
+		}else{
+			throw new GameMasterException(ConstanteGameMaster.UNAUTHORIZED_ERROR);
+		}
+	}
 }

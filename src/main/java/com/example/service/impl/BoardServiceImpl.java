@@ -1,5 +1,14 @@
 package com.example.service.impl;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.example.ConstanteGameMaster;
 import com.example.dto.BoardDTO;
 import com.example.dto.UserDTO;
@@ -18,15 +27,6 @@ import com.example.repository.UserRepository;
 import com.example.service.BoardService;
 import com.example.service.UserService;
 import com.example.transformers.Transformers;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * Created by Morgane TROYSI on 11/05/17.

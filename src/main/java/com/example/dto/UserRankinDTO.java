@@ -2,8 +2,6 @@ package com.example.dto;
 
 import java.util.List;
 
-import com.example.model.User;
-
 /**
  * Created by Sara ZALARHE on 24/05/17.
  */

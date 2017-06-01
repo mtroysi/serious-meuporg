@@ -6,9 +6,6 @@ import java.util.List;
 
 import com.example.enumeration.PriorityEnum;
 import com.example.enumeration.StatusEnum;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.Column;
 
 
 public class TaskWithPeriodDTO {

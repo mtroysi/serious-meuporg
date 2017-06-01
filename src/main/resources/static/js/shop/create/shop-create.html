@@ -1,0 +1,83 @@
+<div class="col-md-12 titleHeader panel">
+    <div class="panel-heading">
+        <h1> Création nouveaux objets </h1>
+    </div>
+</div>
+
+<div class="col-md-12 margin-t-20 margin-h-0 padding-h-0 ng-scope">
+    <div class="panel panel-default padding-t-20">
+        <form class="form-horizontal" name="formCreateItem" novalidate="">
+            <div class="form-group" ng-class="{'has-error': formCreateItem.$submitted && formCreateItem.type.$invalid}">
+                <label for="board_name" class="col-sm-2 control-label">Type<span class="required">*</span> : </label>
+                <div class="col-sm-7">
+                    <select class="form-control" ng-model="ctrl.item.type">
+                        <option value="AVATAR">Avatar</option>
+                        <option value="WALLPAPER">Fond d'écran</option>
+                        <option value="CURSE">Malédiction avec image</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': formCreateItem.$submitted && formCreateItem.name.$invalid}">
+                <label for="board_name" class="col-sm-2 control-label">Titre<span class="required">*</span> : </label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="name" name="name" ng-model="ctrl.item.name" ng-required="true" required="required">
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': formCreateItem.$submitted && formCreateItem.description.$invalid}">
+                <label for="board_name" class="col-sm-2 control-label">Description: </label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="description" name="description" ng-model="ctrl.item.description">
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': formCreateItem.$submitted && formCreateItem.price.$invalid}">
+                <label for="board_name" class="col-sm-2 control-label">Prix<span class="required">*</span> : </label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="price" name="price" ng-model="ctrl.item.price" ng-required="true" required="required">
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': formCreateItem.$submitted && formCreateItem.requiredLevel.$invalid}">
+                <label for="board_name" class="col-sm-2 control-label">Level minimun<span class="required">*</span> : </label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="requiredLevel" name="requiredLevel" ng-model="ctrl.item.requiredLevel" ng-required="true" required="required">
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': formCreateItem.$submitted && formCreateItem.image.$invalid}">
+                <label for="board_name" class="col-sm-2 control-label">URL image<span class="required">*</span> : </label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="image" name="image" ng-model="ctrl.item.image" ng-required="true" required="required">
+                </div>
+            </div>
+
+            <div ng-if="ctrl.item.type=='CURSE'">
+                <div class="form-group" ng-class="{'has-error': formCreateItem.$submitted && formCreateItem.duration.$invalid}">
+                    <label for="board_name" class="col-sm-2 control-label">Durée de la malédiction en jours <span class="required">*</span> : </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="duration" name="duration" ng-model="ctrl.item.duration" ng-required="true" required="required">
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': formCreateItem.$submitted && formCreateItem.position.$invalid}">
+                    <label for="board_name" class="col-sm-2 control-label">Position de l'image : </label>
+                    <div class="col-sm-7">
+                        <div class="radio-inline"><label><input type="radio" ng-model="ctrl.item.position" value="TOP_RIGHT"> En haut à droite</label></div>
+                        <div class="radio-inline"><label><input type="radio" ng-model="ctrl.item.position" value="TOP_LEFT"> En haut à gauche</label></div>
+                        <div class="radio-inline"><label><input type="radio" ng-model="ctrl.item.position" value="BOTTOM_RIGHT"> En bas à droite</label></div>
+                        <div class="radio-inline"><label><input type="radio" ng-model="ctrl.item.position" value="BOTTOM_LEFT"> En bas à gauche</label></div>
+                        <div class="radio-inline"><label><input type="radio" ng-model="ctrl.item.position" value="FULL"> Toute la page</label></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" ng-click="formCreateItem.$valid && ctrl.createItem()">Créer</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

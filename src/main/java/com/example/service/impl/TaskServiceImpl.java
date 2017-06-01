@@ -6,22 +6,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.example.dto.*;
-import com.example.enumeration.PeriodicityEnum;
-import com.example.model.*;
-import com.example.repository.PeriodicityRepository;
-import com.fasterxml.jackson.databind.node.BooleanNode;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.BeanUtilsBean;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.dto.BoardDTO;
+import com.example.dto.TaskDTO;
+import com.example.dto.TaskLiteDTO;
+import com.example.dto.TaskWithPeriodDTO;
 import com.example.enumeration.PriorityEnum;
-import com.example.enumeration.StatusEnum;
+import com.example.model.BoardUser;
+import com.example.model.Tag;
+import com.example.model.Task;
+import com.example.model.User;
 import com.example.repository.ColonneKanbanRepository;
+import com.example.repository.PeriodicityRepository;
 import com.example.repository.TagRepository;
 import com.example.repository.TaskRepository;
 import com.example.repository.UserRepository;
@@ -141,7 +140,7 @@ public class TaskServiceImpl implements TaskService {
     	 List<TaskDTO> listDto = listUserBoard.stream()
     			 .flatMap((BoardUser u)-> {
     				return u.getBoard().getTasks().stream()
-    				 .filter((Task t)-> t.getBid().equals(true))
+    				 .filter((Task t)-> Boolean.TRUE.equals(t.getBid()))
     				 .map((Task t )-> {
     	     				return (TaskDTO)transformers.convertEntityToDto(t, TaskDTO.class);
     	     			});

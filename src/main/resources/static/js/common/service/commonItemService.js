@@ -36,6 +36,7 @@
 
         /* AJOUT d'un fond d'écran */
         svc.addWallpaper = function(item) {
+            console.log(item.image);
             $('.static-content-wrapper').css({
                 'background-size': 'cover',
                 'background-image': "url('" + item.image + "')"
@@ -66,19 +67,25 @@
         svc.addCurse = function(item) {
             if (item.keyItem === 'CURSE_SNOW') {
                 $.fn.snow();
-            }
 
-            if (item.keyItem === 'CURSE_BREBIS') {
+            } else if (item.keyItem === 'CURSE_BREBIS') {
                 if ($('body audio.brebis').length == 0) {
                     $('body').append($('<audio class="brebis" autoplay><source src="assets/audio/mouton.mp3" type="audio/mp3"></source></audio>'));
                 }
-            }
-            if (item.keyItem === 'CURSE_JCVD') {
+
+            } else if (item.keyItem === 'CURSE_JCVD') {
                 if ($('body .jcvd').length == 0) {
-                    $('body').append($('<div class="jcvd"><img src="images/jcvd1.gif" /></div>'));
+                    $('body').append($('<div class="jcvd positionFixedImage bottom_right"><img src="images/jcvd1.gif" /></div>'));
                     setTimeout(function() {
                         $('body .jcvd img').remove();
                     }, 15000);
+                }
+            } else {
+                if ($('body .blockImage').length == 0) {
+                    $('body').append($('<div class="blockImage positionFixedImage ' + item.position.toLowerCase() + '"><img src="' + item.image + '" /></div>'));
+                    setTimeout(function() {
+                        $('body .blockImage img').remove();
+                    }, 3000);
                 }
             }
         };

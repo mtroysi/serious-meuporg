@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +30,16 @@ public class ItemController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public List<ItemDTO> getAllItems(@PathVariable("id") Long idUser) {
         return itemService.getAllItemsByUser(idUser);
+    }
+    
+    /**
+     * Création d'un nouveau item
+     * @param item
+     * @return itemDTO 
+     */
+    @RequestMapping(method = RequestMethod.POST)
+    public ItemDTO createItem(@RequestBody ItemDTO item) {
+        return itemService.createItem(item);
     }
     
 }

@@ -112,6 +112,12 @@
                 controller: 'ShopController',
                 controllerAs: 'ctrl'
             })
+            .state('app.shopCreate', {
+                url: '/shop-create',
+                templateUrl: 'js/shop/create/shop-create.html',
+                controller: 'ShopCreateController',
+                controllerAs: 'ctrl'
+            })
             .state('app.inventory', {
                 url: '/inventory',
                 templateUrl: 'js/inventory/inventory.html',

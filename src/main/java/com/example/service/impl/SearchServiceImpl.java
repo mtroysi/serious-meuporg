@@ -1,18 +1,18 @@
 package com.example.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.example.dto.ResultDto;
-import com.example.dto.UserDTO;
 import com.example.model.Task;
 import com.example.model.User;
 import com.example.repository.TaskRepository;
 import com.example.repository.UserRepository;
 import com.example.service.SearchService;
 import com.example.transformers.Transformers;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Morgane TROYSI on 30/05/17.

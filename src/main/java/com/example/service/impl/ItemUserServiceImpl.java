@@ -77,7 +77,7 @@ public class ItemUserServiceImpl implements ItemUserService {
 
 	        			// Ajout d'une duree de malediction
 	        			Calendar dateEnd = new GregorianCalendar();
-	        			dateEnd.add(Calendar.DAY_OF_YEAR, item.getDuration());
+	        			dateEnd.add(Calendar.DAY_OF_YEAR, item.getDuration() != null ? item.getDuration().intValue() : 1);
 	        			itemUser.setDateEnd(dateEnd.getTime());
 	        			itemUser.setActive(true);
 	        			

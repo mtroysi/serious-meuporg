@@ -1,6 +1,7 @@
 package com.example.dto;
 
 import com.example.enumeration.ItemEnum;
+import com.example.enumeration.ItemPositionEnum;
 
 /**
  * Created by Morgane TROYSI on 19/05/17.
@@ -9,24 +10,17 @@ import com.example.enumeration.ItemEnum;
 public class ItemDTO {
 
     private Long id;
-
     private String name;
-
     private ItemEnum type;
-
     private Long price;
-
     private Long requiredLevel;
-
     private String url;
-
+    private Long duration = 1L;
     private String description;
-
     private Boolean isReusable;
-
     private String image;
-    
     private String keyItem;
+    private ItemPositionEnum position;
 
     public String getName() {
         return name;
@@ -115,5 +109,20 @@ public class ItemDTO {
 	public void setKeyItem(String keyItem) {
 		this.keyItem = keyItem;
 	}
-    
+
+	public ItemPositionEnum getPosition() {
+		return position;
+	}
+
+	public void setPosition(ItemPositionEnum position) {
+		this.position = position;
+	}
+
+	public Long getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Long duration) {
+		this.duration = duration;
+	}
 }

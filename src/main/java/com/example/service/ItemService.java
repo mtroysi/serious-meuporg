@@ -14,4 +14,10 @@ public interface ItemService {
      * @return la liste de tous les items
      */
     List<ItemDTO> getAllItemsByUser(Long idUser);
+    
+    /**
+     * Création d'un item
+     * @return Item créé
+     */
+    ItemDTO createItem(ItemDTO item);
 }
