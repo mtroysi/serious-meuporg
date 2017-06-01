@@ -24,13 +24,6 @@ public interface TaskService {
      */
     TaskDTO createTask(Map<String, Object> values) throws InvocationTargetException, IllegalAccessException;
     
-    /**
-     * Retourne toutes les tâches en base de données
-     *
-     * @return liste de toutes les tâches en base de données
-     */
-    List<TaskDTO> listAllTask();
-    
     
     /**
      * Retourne toutes les tâches non-assignées d'un tableau

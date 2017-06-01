@@ -22,4 +22,7 @@ public final class ConstanteGameMaster {
 
 	public static final String ASSIGNMENT_BOARD= "Tu as été invité à rejoindre une guilde : ";
 	public static final String ASSIGNMENT_BOARD_TITLE= "Invitation d'une guilde";
+
+	public static final String ASSIGNMENT_TASK= "Une quête vient de t'être attribuée : ";
+	public static final String ASSIGNMENT_TASK_TITLE= "Attribution d'une quête";
 }

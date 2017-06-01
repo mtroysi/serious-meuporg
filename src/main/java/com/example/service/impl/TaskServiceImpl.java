@@ -37,10 +37,6 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     private TagRepository tagRepository;
     @Autowired
-    private ColonneKanbanRepository colonneKanbanRepository;
-    @Autowired
-    private PeriodicityRepository periodicityRepository;
-    @Autowired
     private Transformers transformers;
     @Autowired
     private UserRepository userRepository;
@@ -56,22 +52,6 @@ public class TaskServiceImpl implements TaskService {
         values.remove("priority");
         BeanUtils.populate(task, values);
         return (TaskDTO) transformers.convertEntityToDto(taskRepository.save(task), TaskDTO.class);
-    }
-
-
-    /* 
-     * (non-Javadoc)
-     * @see com.example.service.TaskService#listAllTask()
-     */
-    @Override
-    public List<TaskDTO> listAllTask() {
-        Iterable<Task> res = taskRepository.findAll();
-        List<TaskDTO> list = new ArrayList<>();
-        for (Task task : res) {
-            TaskDTO dto = (TaskDTO) transformers.convertEntityToDto(task, TaskDTO.class);
-            list.add(dto);
-        }
-        return list;
     }
 
 

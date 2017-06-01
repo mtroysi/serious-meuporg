@@ -48,13 +48,6 @@ public class TaskController {
         return taskService.getTask(id);
     }
 
-    /**
-     * Retourne la liste de toutes les taches
-     * @return liste des taches
-     */
-    public List<TaskDTO> listAllTask() {
-        return taskService.listAllTask();
-    }
 
     /**
      * Crée une tâche.

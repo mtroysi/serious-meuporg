@@ -7,6 +7,7 @@ import com.example.dto.UserDTO;
 import com.example.enumeration.PeriodicityEnum;
 import com.example.enumeration.PriorityEnum;
 import com.example.enumeration.StatusEnum;
+import com.example.enumeration.TypeNotifEnum;
 import com.example.exception.GameMasterException;
 import com.example.model.*;
 import com.example.repository.*;
@@ -258,6 +259,17 @@ public class TaskUserServiceImpl implements TaskUserService {
         if (userValues != null) {
             userValues.forEach(u -> {
                 User user = userRepository.findOne(new Long((Integer) u.get("id")));
+                if(user != null) {
+                    // Notification pour l'ajout
+                    Notification notif = new Notification();
+                    notif.setContent(ConstanteGameMaster.ASSIGNMENT_TASK + " " + task.getTitle());
+                    notif.setTitle(ConstanteGameMaster.ASSIGNMENT_TASK_TITLE);
+                    notif.setDateCreation(new Date());
+                    notif.setIsRead(false);
+                    notif.setType(TypeNotifEnum.information);
+                    notif.setUser(user);
+                    user.addNotification(notif);
+                }
                 users.add(user);
             });
         }
