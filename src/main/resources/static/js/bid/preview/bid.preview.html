@@ -25,7 +25,7 @@
                     <ul>
                         <li ng-repeat="taskWithoutUser in ctrl.listTaskWithoutUser">
                             <div ng-class="{active : ctrl.listTaskWithoutUserSelected[taskWithoutUser.id]}" class="tile-newLook text-center" ng-click="ctrl.listTaskWithoutUserSelected[taskWithoutUser.id] = !ctrl.listTaskWithoutUserSelected[taskWithoutUser.id]">
-                                <div class="tile-heading">{{ taskWithoutUser.title }}</div>
+                                <div class="tile-heading">{{ taskWithoutUser.task.title }}</div>
                             </div>
                         </li>
                     </ul>
@@ -34,20 +34,20 @@
         </div>
     </div>
     <div ng-class="{'col-md-12' : ctrl.isAdmin === false, 'col-md-9' : ctrl.isAdmin}">
-        <div ng-show="ctrl.listTaskBid.length == 0" class="row margin-t-20 margin-l-20">
+        <div ng-show="ctrl.listTaskUserBid.length == 0" class="row margin-t-20 margin-l-20">
             <h2 class="text-center panel panel-default padding-v-20">Il n'y a aucune quête disponible</h2>
         </div>
-        <div ng-show="ctrl.listTaskBid.length > 0">
+        <div ng-show="ctrl.listTaskUserBid.length > 0">
             <div class="row margin-t-20 margin-h-20">
                 <div class=" col-md-12 panel panel-default">
                     <div class="panel-body">
                         <div class="responsive-carousel">
-                            <div ng-repeat="taskBid in ctrl.listTaskBid">
-                                <div class="tile-carousel" ng-class="{active : ctrl.taskShow.task.id == taskBid.task.id }" ng-click="ctrl.changeTask(taskBid)">
-                                    <div class="tile-heading"><span>{{ taskBid.task.title }}</span>
-                                        <br><strong class="date">fin le {{ taskBid.task.dateEndBid | date:'dd/MM/yyyy à HH:mm' }}</strong></div>
+                            <div ng-repeat="taskUserBid in ctrl.listTaskUserBid">
+                                <div class="tile-carousel" ng-class="{active : ctrl.taskShow.task.id == taskUserBid.task.id }" ng-click="ctrl.changeTask(taskUserBid)">
+                                    <div class="tile-heading"><span>{{ taskUserBid.task.title }}</span>
+                                        <br><strong class="date">fin le {{ taskUserBid.task.dateEndBid | date:'dd/MM/yyyy à HH:mm' }}</strong></div>
                                     <div class="tile-footer">
-                                        <span class="estimation">{{ taskBid.duration ? taskBid.duration : '?' }}</span>
+                                        <span class="estimation">{{ taskUserBid.duration ? taskUserBid.duration : '?' }}</span>
                                     </div>
                                 </div>
                             </div>

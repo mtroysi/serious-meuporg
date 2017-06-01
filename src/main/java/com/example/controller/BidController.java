@@ -107,14 +107,14 @@ public class BidController {
     /**
      * Ajoute une/ ou plusieurs taches aux encheres
      * @param datetime
-     * @param listIdTasks : liste des idtache a créer.
+     * @param listIdTaskUsers : liste des idtacheUser a créer.
      * @return liste des taskUserBidDTO
      */
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<List<TaskUserBidDTO>> addBid(@RequestParam(value = "dateend") Long datetime, @RequestBody List<Long> listIdTasks) {
+    public ResponseEntity<List<TaskUserBidDTO>> addBid(@RequestParam(value = "dateend") Long datetime, @RequestBody List<Long> listIdTaskUsers) {
         logger.info("Calling BidController.addBid with {}", datetime);
         
-        List<TaskUserBidDTO> list = taskUserBidService.addNewTaskInBid(listIdTasks, datetime);
+        List<TaskUserBidDTO> list = taskUserBidService.addNewTaskInBid(listIdTaskUsers, datetime);
 
 
         if (CollectionUtils.isEmpty(list)) {

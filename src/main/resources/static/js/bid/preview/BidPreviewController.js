@@ -21,7 +21,7 @@
             ctrl.dateAdmin = moment().add(1, 'day');
             // User
             ctrl.taskShow = {};
-            ctrl.listTaskBid = [];
+            ctrl.listTaskUserBid = [];
         };
 
 
@@ -45,7 +45,7 @@
          */
         ctrl.getListBidByBoardAndUser = function(boardId, userId) {
             BidService.getListBidByBoardAndUser(boardId, userId).then(function(data) {
-                ctrl.listTaskBid = data || [];
+                ctrl.listTaskUserBid = data || [];
                 ctrl.showTaskCarouselAndTinder(true);
             });
         };
@@ -55,15 +55,15 @@
          * @param first
          */
         ctrl.showTaskCarouselAndTinder = function(first) {
-            if (ctrl.listTaskBid.length > 0) {
+            if (ctrl.listTaskUserBid.length > 0) {
                 if (first) {
-                    ctrl.taskShow = ctrl.listTaskBid[0];
+                    ctrl.taskShow = ctrl.listTaskUserBid[0];
                     // Refresh carousel
                     setTimeout(function() {
                         $('.responsive-carousel')[0].slick.refresh();
                     }, 10);
                 } else {
-                    ctrl.taskShow = ctrl.listTaskBid.find(function(element) {
+                    ctrl.taskShow = ctrl.listTaskUserBid.find(function(element) {
                         return !("read" in element);
                     });
                 }
@@ -158,15 +158,15 @@
         ctrl.saveNewTaskBid = function() {
             console.log();
 
-            var listTaskId = [];
+            var listTaskUserId = [];
             for (var k in ctrl.listTaskWithoutUserSelected) {
                 if (ctrl.listTaskWithoutUserSelected[k] === true) {
-                    listTaskId.push(k);
+                    listTaskUserId.push(k);
                 }
             }
 
-            BidService.addBid(moment(ctrl.dateAdmin).valueOf(), listTaskId).then(function(data) {
-                ctrl.listTaskBid = ctrl.listTaskBid.concat(data);
+            BidService.addBid(moment(ctrl.dateAdmin).valueOf(), listTaskUserId).then(function(data) {
+                ctrl.listTaskUserBid = ctrl.listTaskUserBid.concat(data);
                 ctrl.showTaskCarouselAndTinder(true);
                 for (var k in ctrl.listTaskWithoutUserSelected) {
                     if (ctrl.listTaskWithoutUserSelected[k] === true) {

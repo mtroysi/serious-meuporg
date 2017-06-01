@@ -27,12 +27,12 @@ public interface TaskUserBidService {
     
     
     /**
-     * Ajoute une liste de taches aux enchères
-     * @param listTaskId
+     * Ajoute une liste de tachesUser aux enchères
+     * @param listIdTaskUsers
      * @param dateEnd
      * @return la liste des taches créées (TaskUserBidDTO)
      */
-    List<TaskUserBidDTO> addNewTaskInBid(List<Long> listTaskId, Long dateEnd);
+    List<TaskUserBidDTO> addNewTaskInBid(List<Long> listIdTaskUsers, Long dateEnd);
     
     
     /**

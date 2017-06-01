@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.ConstanteGameMaster;
 import com.example.dto.BidDTO;
-import com.example.dto.TaskDTO;
 import com.example.dto.TaskUserBidDTO;
+import com.example.dto.TaskUserDTO;
 import com.example.dto.UserDTO;
 import com.example.enumeration.StatusEnum;
 import com.example.enumeration.TypeNotifEnum;
@@ -27,6 +27,7 @@ import com.example.repository.BoardRepository;
 import com.example.repository.NotificationRepository;
 import com.example.repository.TaskRepository;
 import com.example.repository.TaskUserBidRepository;
+import com.example.repository.TaskUserRepository;
 import com.example.repository.UserRepository;
 import com.example.service.TaskUserBidService;
 import com.example.service.UserService;
@@ -37,6 +38,9 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 
     @Autowired
     private TaskRepository taskRepo;
+    
+    @Autowired
+    private TaskUserRepository taskUserRepo;
 
     @Autowired
     private BoardRepository boardRepo;
@@ -138,15 +142,15 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
      * @see com.example.service.TaskUserBidService#addNewTaskInBid(java.util.List, java.lang.Long)
      */
     @Override
-    public List<TaskUserBidDTO> addNewTaskInBid(List<Long> listTaskId, Long dateEnd) {
+    public List<TaskUserBidDTO> addNewTaskInBid(List<Long> listIdTaskUsers, Long dateEnd) {
         List<TaskUserBidDTO> list = new ArrayList<>();
 
-        listTaskId.stream().forEach((Long id) -> {
-            Task task = taskRepo.findOne(id);
-            task.setBid(true);
-            task.setDateEndBid(new Date(dateEnd));
-            /*list.add(new TaskUserBidDTO((TaskDTO) transformers.convertEntityToDto(taskRepo.save(task), TaskDTO.class),
-                    null, null));*/
+        listIdTaskUsers.stream().forEach((Long id) -> {
+            TaskUser taskUser = taskUserRepo.findOne(id);
+            taskUser.getTask().setBid(true);
+            taskUser.getTask().setDateEndBid(new Date(dateEnd));
+            list.add(new TaskUserBidDTO((TaskUserDTO) transformers.convertEntityToDto(taskUserRepo.save(taskUser), TaskUserDTO.class),
+                    null, null));
         });
         return list;
     }
