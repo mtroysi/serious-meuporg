@@ -124,13 +124,17 @@
                 var listBoard = CommonMenuService.getListBoard();
                 var listColorBoard = {};
 
-                listBoard.forEach(function(board) {
-                    listColorBoard[board.id] = board.color;
-                });
+                if (listBoard) {
+                    listBoard.forEach(function(board) {
+                        listColorBoard[board.id] = board.color;
+                    });
+                }
 
-                data.forEach(function(element) {
-                    element.colorBoard = listColorBoard[element.task.boardId];
-                });
+                if (data) {
+                    data.forEach(function(element) {
+                        element.colorBoard = listColorBoard[element.task.boardId];
+                    });
+                }
                 return data;
             };
 

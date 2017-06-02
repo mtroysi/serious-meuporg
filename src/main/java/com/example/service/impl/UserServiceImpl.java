@@ -304,7 +304,7 @@ public class UserServiceImpl implements UserService {
     	user.setExperience(user.getExperience() + exp);
     	
     	// Calculation of the next level
-    	if((user.getLevel()+1) * ConstanteGameMaster.XP <= user.getExperience()){
+    	if(user.getLevel() * ConstanteGameMaster.XP <= user.getExperience()){
     		user.setLevel(user.getLevel() + 1);
     	}
     }
