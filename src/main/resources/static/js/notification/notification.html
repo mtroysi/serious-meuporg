@@ -19,28 +19,33 @@
         </div>
         <div class="panel panel-inbox">
             <div class="panel-body">
-                <table class="table table-hover table-inbox table-vam">
-                    <tbody>
-                        <tr class="unread" ng-repeat="notif in ctrl.pager.listItems">
-                            <td class="inbox-msg-from hidden-xs hidden-sm" width="20%">
-                                <div>{{ notif.title }}</div>
-                            </td>
-                            <td class="inbox-msg-snip"><span class="label label-{{ notif.type }}" width="58%">{{ notif.type }}</span>{{ notif.content }}</td>
-                            <td class="inbox-msg-attach"><i class="ti ti-paperclip" width="5%"></i> </td>
-                            <td class="inbox-msg-time" width="12%">{{ notif.dateCreation | date:'dd/MM/yyyy' }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="inbox-mail-footer">
-                    <div class="clearfix">
-                        <div class="pull-right">
-                            <strong>{{ ctrl.pager.currentPage }}</strong> sur <strong>{{ ctrl.pager.totalPages }}</strong>
-                            <div class="btn-group ml-sm">
-                                <a ng-click="ctrl.setPage(ctrl.pager.currentPage - 1)" ng-disabled="ctrl.pager.currentPage - 1 <= 0" class="btn btn-lg btn-default"><i class="ti ti-angle-left"></i></a>
-                                <a ng-click="ctrl.setPage(ctrl.pager.currentPage + 1)" class="btn btn-lg btn-default" ng-disabled="ctrl.pager.currentPage >= ctrl.pager.totalPages"><i class="ti ti-angle-right"></i></a>
+                <div ng-show="ctrl.pager.listItems.length > 0">
+                    <table class="table table-hover table-inbox table-vam">
+                        <tbody>
+                            <tr class="unread" ng-repeat="notif in ctrl.pager.listItems">
+                                <td class="inbox-msg-from hidden-xs hidden-sm" width="20%">
+                                    <div>{{ notif.title }}</div>
+                                </td>
+                                <td class="inbox-msg-snip"><span class="label label-{{ notif.type }}" width="58%">{{ notif.type }}</span>{{ notif.content }}</td>
+                                <td class="inbox-msg-attach"><i class="ti ti-paperclip" width="5%"></i> </td>
+                                <td class="inbox-msg-time" width="12%">{{ notif.dateCreation | date:'dd/MM/yyyy' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="inbox-mail-footer">
+                        <div class="clearfix">
+                            <div class="pull-right">
+                                <strong>{{ ctrl.pager.currentPage }}</strong> sur <strong>{{ ctrl.pager.totalPages }}</strong>
+                                <div class="btn-group ml-sm">
+                                    <a ng-click="ctrl.setPage(ctrl.pager.currentPage - 1)" ng-disabled="ctrl.pager.currentPage - 1 <= 0" class="btn btn-lg btn-default"><i class="ti ti-angle-left"></i></a>
+                                    <a ng-click="ctrl.setPage(ctrl.pager.currentPage + 1)" class="btn btn-lg btn-default" ng-disabled="ctrl.pager.currentPage >= ctrl.pager.totalPages"><i class="ti ti-angle-right"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div ng-show="ctrl.pager.listItems.length == 0" class="text-center padding-v-15">
+                    Il n'y a auncune notification
                 </div>
             </div>
         </div>

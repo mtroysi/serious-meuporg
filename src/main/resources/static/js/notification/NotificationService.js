@@ -35,7 +35,8 @@
          * @param idUser id de l'utilisateur
          */
         svc.readAllNotification = function(idUser) {
-            $injector.get('CommonNotificationService').getListNotification().forEach(function(notif) {
+            var list = $injector.get('CommonNotificationService').getListNotification() || [];
+            list.forEach(function(notif) {
                 notif.isRead = true;
             });
             return NotificationWS.readAllNotification(idUser);
