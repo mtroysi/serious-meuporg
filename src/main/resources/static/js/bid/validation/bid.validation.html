@@ -11,10 +11,10 @@
 
 
 <div class="row margin-v-10 margin-h-5 margin-t-20">
-    <div class="col-md-12 padding-h-0" ng-repeat="task in ctrl.listBidEnd">
+    <div class="col-md-12 padding-h-0" ng-repeat="taskUser in ctrl.listBidEnd">
         <div class=" panel panel-bluegray">
             <div class="panel-heading">
-                <h2>{{ task.task.title }}</h2>
+                <h2>{{ taskUser.task.title }}</h2>
             </div>
             <div class="panel-body">
                 <table class="table table-inbox table-vam">
@@ -23,16 +23,16 @@
                         <th>Durée</th>
                         <th>Affectation</th>
                     </tr>
-                    <tr ng-repeat="item in task.listTask">
+                    <tr ng-repeat="item in taskUser.listUser">
                         <td>{{ item.userName }}</td>
                         <td class="width125">{{ item.duration }}</td>
                         <td class="width125"><button class="btn btn-danger" ng-click="item.etat=false" ng-class="{'btn-opacity': item.etat === true}"><i class="ti ti-close"></i></button>
-                            <button class="btn btn-success" ng-click="item.etat=true;task.value=item.duration" ng-class="{'btn-opacity': item.etat === false}"><i class="ti ti-check"></i></button></td>
+                            <button class="btn btn-success" ng-click="item.etat=true;taskUser.value=item.duration" ng-class="{'btn-opacity': item.etat === false}"><i class="ti ti-check"></i></button></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td><input type="text" ng-model="task.value" class="inputSexy" /></td>
-                        <td>{{ (task.listTask | filter:{etat:true}).length }} utilisateur(s)</td>
+                        <td><input type="text" ng-model="taskUser.value" class="inputSexy" /></td>
+                        <td>{{ (taskUser.listUser | filter:{etat:true}).length }} utilisateur(s)</td>
                     </tr>
                 </table>
             </div>

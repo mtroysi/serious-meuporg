@@ -19,20 +19,20 @@ public interface TaskUserBidService {
     
     /**
      * Ajoute le temps à une enchère par rapport à une tache
-     * @param idTask
+     * @param idTaskUser
      * @param duration
      * @return tache (TaskUserBidDTO)
      */
-    TaskUserBidDTO addOrUpdateTaskUserBid(Long idTask, Double duration);
+    TaskUserBidDTO addOrUpdateTaskUserBid(Long idTaskUser, Double duration);
     
     
     /**
-     * Ajoute une liste de taches aux enchères
-     * @param listTaskId
+     * Ajoute une liste de tachesUser aux enchères
+     * @param listIdTaskUsers
      * @param dateEnd
      * @return la liste des taches créées (TaskUserBidDTO)
      */
-    List<TaskUserBidDTO> addNewTaskInBid(List<Long> listTaskId, Long dateEnd);
+    List<TaskUserBidDTO> addNewTaskInBid(List<Long> listIdTaskUsers, Long dateEnd);
     
     
     /**

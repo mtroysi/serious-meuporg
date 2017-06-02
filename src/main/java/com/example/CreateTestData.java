@@ -475,7 +475,6 @@ public class CreateTestData {
 		taskTag1.add(tag1);
 		task1.setTags(taskTag1);
 		task1.setTaskParents(null);
-		task1.setTaskUserBids(null);
 		task1.setTaskUsers(null);
 		task1.setTitle("Titre de la tache 1");
 		task1.setVersion(1);
@@ -500,7 +499,6 @@ public class CreateTestData {
 		taskTag2.add(tag2);
 		task2.setTags(taskTag2);
 		task2.setTaskParents(null);
-		task2.setTaskUserBids(null);
 		task2.setTaskUsers(null);
 		task2.setTitle("Titre de la tache 2");
 		task2.setVersion(1);
@@ -523,7 +521,6 @@ public class CreateTestData {
 		task3.setPriority(PriorityEnum.NOT_URGENT_IMPORTANT);
 		task3.setTags(null);
 		task3.setTaskParents(null);
-		task3.setTaskUserBids(null);
 		task3.setTaskUsers(null);
 		task3.setTitle("Titre de la tache 3 (without)");
 		task3.setVersion(1);
@@ -546,7 +543,6 @@ public class CreateTestData {
 		task4.setPriority(PriorityEnum.NOT_URGENT_IMPORTANT);
 		task4.setTags(null);
 		task4.setTaskParents(null);
-		task4.setTaskUserBids(null);
 		task4.setTaskUsers(null);
 		task4.setTitle("Titre de la tache 4 (sans user et au enchere)");
 		task4.setVersion(1);
@@ -569,7 +565,6 @@ public class CreateTestData {
 		task5.setPriority(PriorityEnum.NOT_URGENT_IMPORTANT);
 		task5.setTags(null);
 		task5.setTaskParents(null);
-		task5.setTaskUserBids(null);
 		task5.setTaskUsers(null);
 		task5.setTitle("Titre de la tache 5 (bid witout user)");
 		task5.setVersion(1);
@@ -592,7 +587,6 @@ public class CreateTestData {
 		task6.setPriority(PriorityEnum.NOT_URGENT_IMPORTANT);
 		task6.setTags(null);
 		task6.setTaskParents(null);
-		task6.setTaskUserBids(null);
 		task6.setTaskUsers(null);
 		task6.setTitle("Titre de la tache 6 (bid witout user)");
 		task6.setVersion(1);
@@ -739,6 +733,224 @@ public class CreateTestData {
 				"https://scontent.cdninstagram.com/t51.2885-19/s150x150/13130013_1681586922105019_1341226456_a.jpg");
 		itemRepository.save(item4);
 
+		Item item5 = new Item();
+		item5.setKeyItem("SPELL_HAPPY");
+		item5.setName("Sort de bonne humeur");
+		item5.setDescription("Génère aléatoirement des notifications pour vous mettre de bonne humeur");
+		item5.setPrice(175L);
+		item5.setRequiredLevel(2L);
+		item5.setReusable(Boolean.FALSE);
+		item5.setType(ItemEnum.SPELL);
+		item5.setImage(
+				"https://previews.123rf.com/images/anastasiiam/anastasiiam1605/anastasiiam160500090/57128892-Simple-flat-like-icon-in-pink-color-Like-counter-notification-emblem-isolated-on-white-background--Stock-Vector.jpg");
+		itemRepository.save(item5);
+		
+		Item item6 = new Item();
+		item6.setKeyItem("CURSE_BREBIS");
+		item6.setName("Malediction de la brebis");
+		item6.setDescription("Petite musique de la brebis");
+		item6.setPrice(175L);
+		item6.setRequiredLevel(2L);
+		item6.setDuration(3L);
+		item6.setReusable(Boolean.FALSE);
+		item6.setType(ItemEnum.CURSE);
+		item6.setImage("https://dechairetdelait.files.wordpress.com/2014/04/chevreau.jpg");
+		itemRepository.save(item6);
+		
+		Item item7 = new Item();
+		item7.setKeyItem("CURSE_JCVD");
+		item7.setName("Malediction de Jean-Claude");
+		item7.setDescription("Jean-Claude va vous permettre de travailler plus rapidement pendant 3jours");
+		item7.setPrice(175L);
+		item7.setRequiredLevel(2L);
+		item7.setDuration(3L);
+		item7.setReusable(Boolean.FALSE);
+		item7.setType(ItemEnum.CURSE);
+		item7.setPosition(ItemPositionEnum.BOTTOM_RIGHT);
+		item7.setImage("http://www.jookos.com/wp-content/uploads/2016/06/url-4.jpg");
+		itemRepository.save(item7);
+		
+		Item item8 = new Item();
+		item8.setKeyItem("FOND_ANGERS");
+		item8.setName("Fond d'écran d'Angers");
+		item8.setDescription("");
+		item8.setPrice(500L);
+		item8.setRequiredLevel(2L);
+		item8.setReusable(Boolean.FALSE);
+		item8.setType(ItemEnum.WALLPAPER);
+		item8.setUrl("http://www.hostpic.org/images/1608091515530095.jpeg");
+		item8.setImage("http://www.hostpic.org/images/1608091515530095.jpeg");
+		itemRepository.save(item8);
+		
+		Item item9 = new Item();
+		item9.setKeyItem("FOND_SEA");
+		item9.setName("FOnd d'écran de la mer");
+		item9.setDescription("");
+		item9.setPrice(750L);
+		item9.setRequiredLevel(5L);
+		item9.setReusable(Boolean.FALSE);
+		item9.setType(ItemEnum.WALLPAPER);
+		item9.setUrl("http://www.weesk.com/wallpaper/nature/mers-oceans-plages/barque-en-bord-de-mer/barque-en-bord-de-mer-720px.jpg");
+		item9.setImage("http://www.weesk.com/wallpaper/nature/mers-oceans-plages/barque-en-bord-de-mer/barque-en-bord-de-mer-720px.jpg");
+		itemRepository.save(item9);
+		
+		return "FINI";
+	}
+	
+	
+	@RequestMapping("/tools/createTestData/prod")
+	public String runCreateTestDataProd() throws ParseException, ScriptException, SQLException, ParseException {
+		// Suppression de tous les éléments de la base
+		deleteAll();
+
+		/* CREATION ROLE */
+		Role role1 = new Role();
+		role1.setId(1L);
+		role1.setVersion(1);
+		role1.setCode(RoleEnum.ADMIN);
+		this.role1 = this.roleRepository.save(role1);
+
+		Role role2 = new Role();
+		role2.setId(2L);
+		role2.setVersion(1);
+		role2.setCode(RoleEnum.USER);
+		this.role2 = this.roleRepository.save(role2);
+
+		/* CREATION UTILISATEUR */
+		User user1 = new User();
+		user1.setId(1L);
+		user1.setVersion(1);
+		user1.setDateCreation(new Date());
+		user1.setEmail("adrien@gmail.com");
+		user1.setFirstName("Adrien");
+		user1.setLastName("Caselles");
+		user1.setPassword("user");
+		user1.setExperience(240L);
+		user1.setMoney(1500L);
+		user1.setLevel(5L);
+		user1.setBoardUsers(null);
+		user1.setTaskUserBids(null);
+		user1.setTaskUsers(null);
+		user1.setIsSuperAdmin(false);
+		this.user1 = this.userRepository.save(user1);
+
+		User user2 = new User();
+		user2.setId(2L);
+		user2.setVersion(1);
+		user2.setDateCreation(new Date());
+		user2.setEmail("sara@gmail.com");
+		user2.setFirstName("Sara");
+		user2.setLastName("Zalarhe");
+		user2.setPassword("user");
+		user2.setExperience(35L);
+		user2.setMoney(1750L);
+		user2.setLevel(18L);
+		user2.setBoardUsers(null);
+		user2.setTaskUserBids(null);
+		user2.setTaskUsers(null);
+		user2.setIsSuperAdmin(false);
+		this.user2 = this.userRepository.save(user2);
+		
+		User user3 = new User();
+		user3.setId(3L);
+		user3.setVersion(1);
+		user3.setDateCreation(new Date());
+		user3.setEmail("florentin@gmail.com");
+		user3.setFirstName("Florentin");
+		user3.setLastName("Noel");
+		user3.setPassword("user");
+		user3.setExperience(100L);
+		user3.setMoney(350L);
+		user3.setLevel(2L);
+		user3.setBoardUsers(null);
+		user3.setTaskUserBids(null);
+		user3.setTaskUsers(null);
+		user3.setIsSuperAdmin(true);
+		this.userRepository.save(user3);
+		
+		User user4 = new User();
+		user4.setId(4L);
+		user4.setVersion(1);
+		user4.setDateCreation(new Date());
+		user4.setEmail("morgane@gmail.com");
+		user4.setFirstName("Morgane");
+		user4.setLastName("Troysi");
+		user4.setPassword("user");
+		user4.setExperience(100L);
+		user4.setMoney(375L);
+		user4.setLevel(2L);
+		user4.setBoardUsers(null);
+		user4.setTaskUserBids(null);
+		user4.setTaskUsers(null);
+		user4.setIsSuperAdmin(false);
+		this.userRepository.save(user4);
+	
+		/* CREATION TAG */
+		Tag tag1 = new Tag();
+		tag1.setId(1L);
+		tag1.setVersion(1);
+		tag1.setName("Tag 1");
+		tag1.setColor("bluegray");
+		this.tag1 = tagRepository.save(tag1);
+
+		Tag tag2 = new Tag();
+		tag2.setId(2L);
+		tag2.setVersion(2);
+		tag2.setName("Tag 2");
+		tag2.setColor("lime");
+		this.tag2 = tagRepository.save(tag2);
+
+		
+		/* CREATION OBJETS */
+		Item item1 = new Item();
+		item1.setName("Joli fond d'écran");
+		item1.setKeyItem("FOND_TOULOUSE");
+		item1.setDescription("Fond d'écran pour la page de guilde représentant la ville de Toulouse");
+		item1.setPrice(250L);
+		item1.setRequiredLevel(1L);
+		item1.setReusable(Boolean.TRUE);
+		item1.setType(ItemEnum.WALLPAPER);
+		item1.setUrl("https://wallpaperscraft.com/image/toulouse_city_square_night_france_58716_1920x1080.jpg");
+		item1.setImage("https://wallpaperscraft.com/image/toulouse_city_square_night_france_58716_1920x1080.jpg");
+		itemRepository.save(item1);
+
+		Item item2 = new Item();
+		item2.setType(ItemEnum.AVATAR);
+		item2.setKeyItem("AVATAR_CHEVALIER");
+		item2.setName("Avatar chevalier");
+		item2.setDescription("Avatar chevalier");
+		item2.setImage("https://secure.gravatar.com/avatar/2ccebdcad2bc218b8ac2f9e8cdecea98?s=200&d=identicon&r=g");
+		item2.setUrl("https://secure.gravatar.com/avatar/2ccebdcad2bc218b8ac2f9e8cdecea98?s=200&d=identicon&r=g");
+		item2.setReusable(Boolean.TRUE);
+		item2.setPrice(1000L);
+		item2.setRequiredLevel(10L);
+		item2 = itemRepository.save(item2);
+
+		Item item3 = new Item();
+		item3.setType(ItemEnum.AVATAR);
+		item3.setName("Avatar Mechant");
+		item3.setKeyItem("AVATAR_MECHANT");
+		item3.setDescription("Avatar Mechant");
+		item3.setImage("http://www.snut.fr/wp-content/uploads/2015/12/image-de-souris-5-150x150.png");
+		item3.setUrl("http://www.snut.fr/wp-content/uploads/2015/12/image-de-souris-5-150x150.png");
+		item3.setReusable(Boolean.TRUE);
+		item3.setPrice(1000L);
+		item3.setRequiredLevel(10L);
+		item3 = itemRepository.save(item3);
+
+		Item item4 = new Item();
+		item4.setName("Malediction de la neige");
+		item4.setKeyItem("CURSE_SNOW");
+		item4.setDescription("Génère de la neige sur l'ecran de l'utilisateur pendant 7 jours");
+		item4.setPrice(175L);
+		item4.setRequiredLevel(2L);
+		item4.setDuration(7L);
+		item4.setReusable(Boolean.TRUE);
+		item4.setType(ItemEnum.CURSE);
+		item4.setImage(
+				"https://scontent.cdninstagram.com/t51.2885-19/s150x150/13130013_1681586922105019_1341226456_a.jpg");
+		itemRepository.save(item4);
+		
 		Item item5 = new Item();
 		item5.setKeyItem("SPELL_HAPPY");
 		item5.setName("Sort de bonne humeur");

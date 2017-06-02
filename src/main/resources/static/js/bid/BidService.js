@@ -20,11 +20,11 @@
 
         /**
          * Affecte un temps à une tâche aux enchères
-         * @param taskId id de la tâche
+         * @param taskId id de la tâcheUser
          * @param duration durée
          */
-        svc.addOrUpdateTaskUserBid = function(taskId, duration) {
-            return BidWS.addOrUpdateTaskUserBid(taskId, duration).then(function(response) {
+        svc.addOrUpdateTaskUserBid = function(taskUserId, duration) {
+            return BidWS.addOrUpdateTaskUserBid(taskUserId, duration).then(function(response) {
                 return response.data;
             });
         };
@@ -38,10 +38,10 @@
                 var list = {};
                 if (response.data) {
                     response.data.forEach(function(element) {
-                        if (!("task_" + element.task.id in list)) {
-                            list["task_" + element.task.id] = { task: element.task, value: element.task.duration, listTask: [] };
+                        if (!("taskUser_" + element.taskUser.id in list)) {
+                            list["taskUser_" + element.taskUser.id] = { taskUser: element.taskUser, value: element.taskUser.duration, listUser: [] };
                         }
-                        list["task_" + element.task.id].listTask.push({
+                        list["taskUser_" + element.taskUser.id].listUser.push({
                             "userId": element.user.id,
                             "userName": element.user.lastName + ' ' + element.user.firstName,
                             "duration": element.duration,
@@ -57,10 +57,10 @@
         /**
          * Ajoute une ou plusieurs tâches aux enchères
          * @param date date de fin de l'enchère
-         * @param listTaskId liste des id des tâches à metre en enchère
+         * @param listTaskUserId liste des id des tâches à metre en enchère
          */
-        svc.addBid = function(date, listTaskId) {
-            return BidWS.addBid(date, listTaskId).then(function(response) {
+        svc.addBid = function(date, listTaskUserId) {
+            return BidWS.addBid(date, listTaskUserId).then(function(response) {
                 return response.data;
             });
         };

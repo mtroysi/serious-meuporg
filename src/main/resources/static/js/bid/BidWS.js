@@ -32,8 +32,8 @@
          * @param duration durée
          * @returns {HttpPromise}
          */
-        svc.addOrUpdateTaskUserBid = function(taskId, duration) {
-            return $http.post(constant.BASE_URI + '/bid/task/' + taskId, duration);
+        svc.addOrUpdateTaskUserBid = function(taskUserId, duration) {
+            return $http.post(constant.BASE_URI + '/bid/task/' + taskUserId, duration);
         };
 
         /**

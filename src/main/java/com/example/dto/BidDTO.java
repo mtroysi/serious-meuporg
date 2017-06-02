@@ -4,16 +4,16 @@ import java.util.List;
 
 public class BidDTO {
 
-	private Long idTask;
+	private Long idTaskUser;
 	private Double duration;
 	private List<Long> listUserId;
 	
 	
-	public Long getIdTask() {
-		return idTask;
+	public Long getIdTaskUser() {
+		return idTaskUser;
 	}
-	public void setIdTask(Long idTask) {
-		this.idTask = idTask;
+	public void setIdTaskUser(Long idTaskUser) {
+		this.idTaskUser = idTaskUser;
 	}
 	public Double getDuration() {
 		return duration;

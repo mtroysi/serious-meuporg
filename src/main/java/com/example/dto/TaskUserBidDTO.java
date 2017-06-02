@@ -2,25 +2,25 @@ package com.example.dto;
 
 public class TaskUserBidDTO {
 
-	private TaskDTO task;
+	private TaskUserDTO taskUser;
 	private UserDTO user;
 	private Double duration;
 
 	public TaskUserBidDTO() {
 	}
 
-	public TaskUserBidDTO(TaskDTO task, UserDTO user, Double duration) {
-		this.task = task;
+	public TaskUserBidDTO(TaskUserDTO taskUser, UserDTO user, Double duration) {
+		this.taskUser = taskUser;
 		this.user = user;
 		this.duration = duration;
 	}
 
-	public TaskDTO getTask() {
-		return task;
+	public TaskUserDTO getTaskUser() {
+		return taskUser;
 	}
 
-	public void setTask(TaskDTO task) {
-		this.task = task;
+	public void setTaskUser(TaskUserDTO task) {
+		this.taskUser = task;
 	}
 
 	public UserDTO getUser() {

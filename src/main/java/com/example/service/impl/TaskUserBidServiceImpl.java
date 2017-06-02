@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.ConstanteGameMaster;
 import com.example.dto.BidDTO;
-import com.example.dto.TaskDTO;
 import com.example.dto.TaskUserBidDTO;
+import com.example.dto.TaskUserDTO;
 import com.example.dto.UserDTO;
 import com.example.enumeration.StatusEnum;
 import com.example.enumeration.TypeNotifEnum;
@@ -27,6 +27,7 @@ import com.example.repository.BoardRepository;
 import com.example.repository.NotificationRepository;
 import com.example.repository.TaskRepository;
 import com.example.repository.TaskUserBidRepository;
+import com.example.repository.TaskUserRepository;
 import com.example.repository.UserRepository;
 import com.example.service.TaskUserBidService;
 import com.example.service.UserService;
@@ -37,6 +38,9 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 
     @Autowired
     private TaskRepository taskRepo;
+    
+    @Autowired
+    private TaskUserRepository taskUserRepo;
 
     @Autowired
     private BoardRepository boardRepo;
@@ -63,20 +67,22 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
     @Override
     public List<TaskUserBidDTO> getTaskUserBidByBoardAndUser(Long idBoard, Long idUser) {
 
-        List<Task> listTask = taskRepo.findTaskBidByBoardIdAndDate(idBoard, new Date());
+        List<TaskUser> listTaskUser = taskUserRepo.findTaskUserBidByBoardIdAndDate(idBoard, new Date());
         User user = userRepo.findOne(idUser);
         if (user != null) {
             UserDTO userDto = (UserDTO) transformers.convertEntityToDto(user, UserDTO.class);
 
-            return listTask.stream().map((Task task) -> {
-                TaskUserBid taskUserBid = task.getTaskUserBids().stream()
-                        .filter((TaskUserBid tub) -> tub.getUser().getId().equals(user.getId())).findFirst()
-                        .orElse(null);
+            return listTaskUser.stream().map((TaskUser taskUser) -> {
+                TaskUserBid taskUserBid = taskUser.getTaskUserBids().stream()
+                		 .filter((TaskUserBid tub) -> tub.getUser().getId().equals(user.getId())).findFirst()
+                		 .orElse(null);
+                
+                
                 if (taskUserBid == null) {
-                    return new TaskUserBidDTO((TaskDTO) transformers.convertEntityToDto(task, TaskDTO.class), null,
+                    return new TaskUserBidDTO((TaskUserDTO) transformers.convertEntityToDto(taskUser, TaskUserDTO.class), null,
                             null);
                 } else {
-                    return new TaskUserBidDTO((TaskDTO) transformers.convertEntityToDto(task, TaskDTO.class), userDto,
+                    return new TaskUserBidDTO((TaskUserDTO) transformers.convertEntityToDto(taskUser, TaskUserDTO.class), userDto,
                             taskUserBid.getDuration());
                 }
             }).filter(Objects::nonNull).collect(Collectors.toList());
@@ -91,7 +97,7 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
      */
     @Override
     public List<TaskUserBidDTO> getTaskUserBidEndByBoard(Long idBoard) {
-        return taskUserBidRepo.findByTaskBoardIdAndTaskDateEndBidBefore(idBoard, new Date()).stream()
+        return taskUserBidRepo.findByTaskUserTaskBoardIdAndTaskUserTaskDateEndBidBefore(idBoard, new Date()).stream()
                 .map((TaskUserBid tub) -> {
                     return (TaskUserBidDTO) transformers.convertEntityToDto(tub, TaskUserBidDTO.class);
                 }).collect(Collectors.toList());
@@ -102,20 +108,20 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
      * @see com.example.service.TaskUserBidService#addOrUpdateTaskUserBid(java.lang.Long, java.lang.Double)
      */
     @Override
-    public TaskUserBidDTO addOrUpdateTaskUserBid(Long idTask, Double duration) {
+    public TaskUserBidDTO addOrUpdateTaskUserBid(Long idTaskUser, Double duration) {
         User user = userService.getCurrentUser();
 
-        TaskUserBid tub = taskUserBidRepo.findByTaskIdAndUserId(idTask, user.getId());
+        TaskUserBid tub = taskUserBidRepo.findByTaskUserIdAndUserId(idTaskUser, user.getId());
 
         if (tub != null) {
             tub.setDuration(duration);
             tub = taskUserBidRepo.save(tub);
         } else {
-            Task task = taskRepo.findOne(idTask);
-            if (task != null) {
+            TaskUser taskuser = taskUserRepo.findOne(idTaskUser);
+            if (taskuser != null) {
                 TaskUserBid tub_new = new TaskUserBid();
                 tub_new.setDuration(duration);
-                tub_new.setTask(task);
+                tub_new.setTaskUser(taskuser);
                 tub_new.setUser(user);
                 tub = taskUserBidRepo.save(tub_new);
             } else {
@@ -131,14 +137,14 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
      * @see com.example.service.TaskUserBidService#addNewTaskInBid(java.util.List, java.lang.Long)
      */
     @Override
-    public List<TaskUserBidDTO> addNewTaskInBid(List<Long> listTaskId, Long dateEnd) {
+    public List<TaskUserBidDTO> addNewTaskInBid(List<Long> listIdTaskUsers, Long dateEnd) {
         List<TaskUserBidDTO> list = new ArrayList<>();
 
-        listTaskId.stream().forEach((Long id) -> {
-            Task task = taskRepo.findOne(id);
-            task.setBid(true);
-            task.setDateEndBid(new Date(dateEnd));
-            list.add(new TaskUserBidDTO((TaskDTO) transformers.convertEntityToDto(taskRepo.save(task), TaskDTO.class),
+        listIdTaskUsers.stream().forEach((Long id) -> {
+            TaskUser taskUser = taskUserRepo.findOne(id);
+            taskUser.getTask().setBid(true);
+            taskUser.getTask().setDateEndBid(new Date(dateEnd));
+            list.add(new TaskUserBidDTO((TaskUserDTO) transformers.convertEntityToDto(taskUserRepo.save(taskUser), TaskUserDTO.class),
                     null, null));
         });
         return list;
@@ -154,16 +160,13 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
         Board board = boardRepo.findOne(idBoard);
 
         listBidDTO.stream().forEach((BidDTO bid) -> {
-            Task task = taskRepo.findOne(bid.getIdTask());
+            TaskUser taskUser = taskUserRepo.findOne(bid.getIdTaskUser());
 
-            if (task != null) {
-            	//Create TaskUser
-                TaskUser taskUser = new TaskUser();
-                taskUser.setColonneKanban(null);
+            if (taskUser != null) {
+            	//Update taskUser
                 taskUser.setDateBegin(new Date());
                 taskUser.setDurationReel(null);
                 taskUser.setStatus(StatusEnum.TODO);
-                taskUser.setTask(task);
                 
                 List<User> listuser= bid.getListUserId().stream().map((Long idUser) -> {
                     User user = userRepo.findOne(idUser);
@@ -171,7 +174,7 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
                         // Add Exp + Level + Money
                         userService.manageMoneyExpUser(user, board.getMoneyWinBid(), board.getExpWinBid());
                         // Add notif
-                        this.createNotifWinBid(task, user);
+                        this.createNotifWinBid(taskUser, user);
                         return user;
                     } else {
                         return null;
@@ -182,18 +185,16 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
 
         		taskUser.setUser(listuser);
         		
-        		// ajout de la taskUser à la tache
-            	task.addTaskUsers(taskUser);
             	
                 // modification de la task (duration + isBid + dateEndBid
-                task.setIsBid(false);
-                task.setDateEndBid(null);
-                task.setDuration(bid.getDuration());
+        		taskUser.getTask().setIsBid(false);
+        		taskUser.getTask().setDateEndBid(null);
+        		taskUser.getTask().setDuration(bid.getDuration());
 
                 // suppression des enchères dans la BDD
-                task.getTaskUserBids().clear();
+        		taskUser.getTaskUserBids().clear();
 
-                taskRepo.save(task);
+                taskUserRepo.save(taskUser);
             }
         });
     }
@@ -204,9 +205,9 @@ public class TaskUserBidServiceImpl implements TaskUserBidService {
      * @param task
      * @param user
      */
-    private void createNotifWinBid(Task task, User user) {
+    private void createNotifWinBid(TaskUser taskUser, User user) {
         Notification notif = new Notification();
-        notif.setContent(ConstanteGameMaster.WIN_BID_CONTENT + " " + task.getTitle());
+        notif.setContent(ConstanteGameMaster.WIN_BID_CONTENT + " " + taskUser.getTask() != null ? taskUser.getTask().getTitle() : "");
         notif.setTitle(ConstanteGameMaster.WIN_BID_TITLE);
         notif.setDateCreation(new Date());
         notif.setIsRead(false);

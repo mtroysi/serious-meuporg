@@ -1,11 +1,13 @@
 package com.example.service.impl;
 
 import com.example.ConstanteGameMaster;
+import com.example.dto.BoardDTO;
 import com.example.dto.TaskUserDTO;
 import com.example.dto.TaskWithPeriodDTO;
 import com.example.dto.UserDTO;
 import com.example.enumeration.PeriodicityEnum;
 import com.example.enumeration.PriorityEnum;
+import com.example.enumeration.RoleEnum;
 import com.example.enumeration.StatusEnum;
 import com.example.enumeration.TypeNotifEnum;
 import com.example.exception.GameMasterException;
@@ -94,6 +96,7 @@ public class TaskUserServiceImpl implements TaskUserService {
             TaskWithPeriodDTO taskWithPeriod = taskUserDTO.getTask();
             taskWithPeriod.setBoardId(tu.getTask().getBoard().getId());
             taskWithPeriod.setDateEnd(tu.getTask().getDateEnd());
+            
             /* Si pas de periode alors la tache est classique */
             if (period == null) {
                 taskWithPeriod.setDateBeginTask(taskWithPeriod.getDateBegin());
@@ -125,26 +128,32 @@ public class TaskUserServiceImpl implements TaskUserService {
                     }
 
                 } while (dateBeginPeriodicity.before(dateEnd) && !test);
-
-                // SI la dateBeginPeriodicity est avant la date de fin alors en
-                // prend la date de la premiere occurence (pour la date de fin)
-                // et la date de -1 occurrence pour la date de debut
-                if (dateBeginPeriodicity.before(dateEnd)) {
-                    taskWithPeriod.setDateEndTask((Date) dateBeginPeriodicity.getTime().clone());
-                    this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
-                    taskWithPeriod.setDateBeginTask(dateBeginPeriodicity.getTime());
-                    taskUserDTO.setTask(taskWithPeriod);
-                } else {
-                    // SI la dateBeginPeriodicity est avant la date de fin alors
-                    // en prend la date de l'occurence -1 (pour la date de fin)
-                    // et la date de -2 occurrence pour la date de debut
-                    this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
-                    taskWithPeriod.setDateEndTask((Date) dateBeginPeriodicity.getTime().clone());
-                    this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
-                    taskWithPeriod.setDateBeginTask(dateBeginPeriodicity.getTime());
-                    taskUserDTO.setTask(taskWithPeriod);
+                
+                // S'il n'y a pas de périodicité
+                if(test == false ){
+                    taskWithPeriod.setDateBeginTask(taskWithPeriod.getDateBegin());
+                    taskWithPeriod.setDateEndTask(taskWithPeriod.getDateEnd());
+                }else{
+	                // SI la dateBeginPeriodicity est avant la date de fin alors en
+	                // prend la date de la premiere occurence (pour la date de fin)
+	                // et la date de -1 occurrence pour la date de debut
+	                if (dateBeginPeriodicity.before(dateEnd)) {
+	                    taskWithPeriod.setDateEndTask((Date) dateBeginPeriodicity.getTime().clone());
+	                    this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
+	                    taskWithPeriod.setDateBeginTask(dateBeginPeriodicity.getTime());
+	                    taskUserDTO.setTask(taskWithPeriod);
+	                } else {
+	                    // SI la dateBeginPeriodicity est apres la date de fin alors
+	                    // en prend la date de l'occurence -1 (pour la date de fin)
+	                    // et la date de -2 occurrence pour la date de debut
+	                    this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
+	                    taskWithPeriod.setDateEndTask((Date) dateBeginPeriodicity.getTime().clone());
+	                    this.addPeriodicityDate(dateBeginPeriodicity, period, -1);
+	                    taskWithPeriod.setDateBeginTask(dateBeginPeriodicity.getTime());
+	                    taskUserDTO.setTask(taskWithPeriod);
+	                }
                 }
-
+            	
                 // Test sur les valeurs de la tasks, on va remettre le statut a
                 // TODO pour chaque nouvelle occurence de la periodicity.
                 if (taskWithPeriod.getDateBeginTask().after(dateUpdatePeriodicity.getTime())) {
@@ -174,6 +183,9 @@ public class TaskUserServiceImpl implements TaskUserService {
         switch (periodicity.getType()) {
             case DAILY:
                 date.add(Calendar.DAY_OF_YEAR, periodicity.getFrequency() * negativeFrequence);
+                break;
+            case WEEKLY:
+                date.add(Calendar.WEEK_OF_YEAR, periodicity.getFrequency() * negativeFrequence);
                 break;
             case MONTHLY:
                 date.add(Calendar.MONTH, periodicity.getFrequency() * negativeFrequence);
@@ -257,21 +269,18 @@ public class TaskUserServiceImpl implements TaskUserService {
         List<Map<String, Object>> userValues = (List<Map<String, Object>>) values.get("user");
         ArrayList<User> users = new ArrayList<>();
         if (userValues != null) {
+        	// La premiere fois que un utilisateur est ajouté à la tache, on va lancer la date de debut
+        	if( taskUser.getDateBegin() == null){
+        		taskUser.setDateBegin(new Date());
+        	}
+        	
             userValues.forEach(u -> {
                 User user = userRepository.findOne(new Long((Integer) u.get("id")));
-                if(user != null) {
-                    // Notification pour l'ajout
-                    Notification notif = new Notification();
-                    notif.setContent(ConstanteGameMaster.ASSIGNMENT_TASK + " " + task.getTitle());
-                    notif.setTitle(ConstanteGameMaster.ASSIGNMENT_TASK_TITLE);
-                    notif.setDateCreation(new Date());
-                    notif.setIsRead(false);
-                    notif.setType(TypeNotifEnum.information);
-                    notif.setUser(user);
-                    user.addNotification(notif);
-                }
                 users.add(user);
             });
+            
+            //Gestion des utilisateurs
+        	inviteUsers(taskUser, users);
         }
         taskUser.setUser(users);
 
@@ -298,9 +307,48 @@ public class TaskUserServiceImpl implements TaskUserService {
         task = taskRepository.save(task);
 
         taskUser.setTask(task);
+        taskUser.setStatus(StatusEnum.TODO);
         taskUser = taskUserRepository.save(taskUser);
 
         return updateTask(taskUser.getId(), values);
+    }
+    
+    
+    /**
+     * Gestionnaire des utilisateurs invités
+     * @param board
+     * @param boardDTO
+     */
+    private void inviteUsers(TaskUser taskUser, List<User> listNewUser) {
+    	
+    	/* On recupere tous les utilisateurs */
+        List<User> listUserCurrent = taskUser.getUser();
+     
+        
+        /* On supprime les utilisateurs supprimés dans le boardDTO */
+        listUserCurrent.removeAll(listUserCurrent.stream().filter((User u) -> {
+        	return !listNewUser.stream().filter((User newUser) -> newUser.getId().equals(u.getId())).findFirst().isPresent();
+        }).collect(Collectors.toList()));
+        
+        /* Gestion des utilisateurs invités */
+        listNewUser.stream().forEach((User newUser) -> {
+        	// Si l'utilisateur n'est pas deja présent dans la liste BoardUser alors on le rajoute
+        	if( !listUserCurrent.stream().filter((User u) -> u.getId().equals(newUser.getId())).findFirst().isPresent()){
+                User user = userRepository.findOne(newUser.getId());
+                
+                if( user != null) {
+                	// Notification pour l'ajout
+                	Notification notif = new Notification();
+                    notif.setContent(ConstanteGameMaster.ASSIGNMENT_TASK + " " + taskUser.getTask().getTitle());
+                    notif.setTitle(ConstanteGameMaster.ASSIGNMENT_TASK_TITLE);
+                    notif.setDateCreation(new Date());
+                    notif.setIsRead(false);
+                    notif.setType(TypeNotifEnum.information);
+                    notif.setUser(user);
+                    user.addNotification(notif);
+                }
+        	}
+        });
     }
 
     /*

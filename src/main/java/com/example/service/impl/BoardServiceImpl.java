@@ -138,7 +138,7 @@ public class BoardServiceImpl implements BoardService {
      */
     private void inviteUsers(Board board, BoardDTO boardDTO, Boolean creation) {
     	
-    	/* On supprime tous les utilisateurs */
+    	/* On recupere tous les utilisateurs */
         List<BoardUser> listBoardUser = board.getBoardUsers();
         
         
