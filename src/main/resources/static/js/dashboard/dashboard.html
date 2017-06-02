@@ -53,7 +53,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div ng-hide="ctrl.editorEnabled" class="col-md-12">
-                                <img ng-srcset="{{ctrl.user.avatar}}" alt="avatar" />
+                                <img ng-srcset="{{ctrl.user.avatar}}" alt="avatar" height="125" />
                                 <table class="table browsers m-n">
                                     <tr>
                                         <th> Nom :</th>
@@ -75,7 +75,7 @@
                             </div>
 
                             <div ng-show="ctrl.editorEnabled" class="col-md-12">
-                                <img ng-srcset="{{ctrl.user.avatar}}" alt="avatar" />
+                                <img ng-srcset="{{ctrl.user.avatar}}" alt="avatar" height="125" />
 
                                 <form name="formEditor" ng-submit="ctrl.editUserAction()" class="form-horizontal">
                                     <div class="form-group">
