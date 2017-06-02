@@ -138,9 +138,11 @@
              * Filter Data Task
              */
             ctrl.filterTask = function() {
-                ctrl.listTask = ctrl.listTaskDefault.filter(function(e) {
-                    return e.task.status === ctrl.filter.type || ctrl.filter.type === 'TOUT';
-                });
+                if (ctrl.listTaskDefault) {
+                    ctrl.listTask = ctrl.listTaskDefault.filter(function(e) {
+                        return e.task.status === ctrl.filter.type || ctrl.filter.type === 'TOUT';
+                    });
+                }
             };
 
             /**
@@ -229,10 +231,17 @@
             });
 
             $scope.$on("createdTask", function(event, args) {
-                if (args.task.user.id === Number(AuthenticationService.getUserId())) {
-                    ctrl.listTask.push(args.task);
-                    ctrl.listTaskDefault.push(args.task);
+                var test = false;
+                if (args.task.user) {
+                    args.task.user.forEach(function(u) {
+                        if (u.id === Number(AuthenticationService.getUserId()) && !test) {
+                            ctrl.listTask.push(args.task);
+                            ctrl.listTaskDefault.push(args.task);
+                            test = true;
+                        }
+                    });
                 }
+
                 ctrl.filterTask();
             });
 

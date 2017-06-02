@@ -326,14 +326,16 @@ public class TaskUserServiceImpl implements TaskUserService {
      
         
         /* On supprime les utilisateurs supprimés dans le boardDTO */
-        listUserCurrent.removeAll(listUserCurrent.stream().filter((User u) -> {
-        	return !listNewUser.stream().filter((User newUser) -> newUser.getId().equals(u.getId())).findFirst().isPresent();
-        }).collect(Collectors.toList()));
+        if( listUserCurrent != null){
+	        listUserCurrent.removeAll(listUserCurrent.stream().filter((User u) -> {
+	        	return !listNewUser.stream().filter((User newUser) -> newUser.getId().equals(u.getId())).findFirst().isPresent();
+	        }).collect(Collectors.toList()));
+        }
         
         /* Gestion des utilisateurs invités */
         listNewUser.stream().forEach((User newUser) -> {
         	// Si l'utilisateur n'est pas deja présent dans la liste BoardUser alors on le rajoute
-        	if( !listUserCurrent.stream().filter((User u) -> u.getId().equals(newUser.getId())).findFirst().isPresent()){
+        	if( listUserCurrent == null || !listUserCurrent.stream().filter((User u) -> u.getId().equals(newUser.getId())).findFirst().isPresent()){
                 User user = userRepository.findOne(newUser.getId());
                 
                 if( user != null) {

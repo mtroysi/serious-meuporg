@@ -36,6 +36,7 @@
             ctrl.createBoard = function() {
                 // ctrl.board.users = angular.copy(ctrl.users);
                 BoardService.createBoard(ctrl.board).then(function(data) {
+                    data.role = 'ADMIN';
                     ctrl.board = data;
                     CommonMenuService.addListBoard(angular.copy(data));
                     $state.go('app.board-preview', { idBoard: ctrl.board.id });
