@@ -183,7 +183,7 @@
                 var args = {};
                 args.task = task;
 
-                if (ctrl.board !== null) {
+                if (ctrl.board != null) {
                     args.colonneKanban = ctrl.board.colonneKanbans;
                 } else {
                     // Vue d'ensemble
