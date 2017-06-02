@@ -38,7 +38,7 @@
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content boxElementTile" id="sortable1" data-task="URGENT_IMPORTANT">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'URGENT_IMPORTANT' }}:true">
-                                <div data-idtask="{{ n.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                <div data-idtask="{{ n.id }}" ng-click="ctrl.editTaskAction(n)" class="info-tile tile-success tile-perso {{ ctrl.tableGlobal ? 'border-custom-' + n.colorBoard : '' }}">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -61,7 +61,7 @@
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content boxElementTile" id="sortable2" data-task="URGENT_NOT_IMPORTANT">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'URGENT_NOT_IMPORTANT'}}:true">
-                                <div data-idtask="{{ n.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                <div data-idtask="{{ n.id }}" ng-click="ctrl.editTaskAction(n)" class="info-tile tile-success tile-perso {{ ctrl.tableGlobal ? 'border-custom-' + n.colorBoard : '' }}">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -86,7 +86,7 @@
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content boxElementTile" id="sortable3" data-task="NOT_URGENT_IMPORTANT">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'NOT_URGENT_IMPORTANT'}}:true">
-                                <div data-idtask="{{ n.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                <div data-idtask="{{ n.id }}" ng-click="ctrl.editTaskAction(n)" class="info-tile tile-success tile-perso {{ ctrl.tableGlobal ? 'border-custom-' + n.colorBoard : '' }}">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>
@@ -109,7 +109,7 @@
                     <div class="panel-body scroll-pane">
                         <div class="row scroll-content boxElementTile" id="sortable4" data-task="NOT_URGENT_NOT_IMPORTANT">
                             <div class="col-md-4" ng-repeat="n in ctrl.listTask | filter:{task : {priority: 'NOT_URGENT_NOT_IMPORTANT'}}:true">
-                                <div data-idtask="{{ n.id }}" class="info-tile tile-success tile-perso" ng-click="ctrl.editTaskAction(n)" ng-class="{'border-custom-{{n.colorBoard}}' : ctrl.tableGlobal }">
+                                <div data-idtask="{{ n.id }}" ng-click="ctrl.editTaskAction(n)" class="info-tile tile-success tile-perso {{ ctrl.tableGlobal ? 'border-custom-' + n.colorBoard : '' }}">
                                     <div class="tile-heading"><span>{{ n.task.title }}</span></div>
                                     <div class="tile-footer">
                                         <span class="pull-left strong" ng-show=" ctrl.typeDisplayTeam == true">{{ n.user.lastName }}</span>

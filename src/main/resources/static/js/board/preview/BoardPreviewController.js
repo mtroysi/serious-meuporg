@@ -6,6 +6,7 @@
         .controller('BoardPreviewController', function($scope, TaskShowService, $rootScope, $state, $stateParams, BoardService, $timeout, CommonMenuService, TaskService, AuthenticationService, CommonDialogService) {
             var ctrl = this;
             ctrl.isAdmin = false;
+            ctrl.CommonMenuService = CommonMenuService;
 
             /**
              * Constructor
@@ -47,6 +48,13 @@
 
                 $scope.$watch('this.ctrl.filter.type', function() {
                     ctrl.filterTask();
+                });
+
+                $scope.$watch('this.ctrl.CommonMenuService.listBoard', function(newValue) {
+                    if (newValue != null) {
+                        ctrl.listTaskDefault = ctrl.addColorTask(ctrl.listTaskDefault);
+                        ctrl.listTask = ctrl.addColorTask(ctrl.listTask);
+                    }
                 });
             };
 
